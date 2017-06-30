@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuitarNeckView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FretboardBG" translatesAutoresizingMaskIntoConstraints="NO" id="BZD-4B-NOb">
+                    <rect key="frame" x="9" y="3" width="366" height="242"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pz3-e2-pji" userLabel="Dot1">
+                    <rect key="frame" x="0.0" y="6" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="F31-ve-bPM"/>
+                        <constraint firstAttribute="width" constant="54" id="thW-E2-M7b"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YLb-8K-VnT" userLabel="Dot2">
+                    <rect key="frame" x="0.0" y="44" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="J21-Je-JlD"/>
+                        <constraint firstAttribute="width" constant="54" id="hK7-7L-ySB"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LGh-43-N2D" userLabel="Dot3">
+                    <rect key="frame" x="0.0" y="82" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="SyE-vh-RQ5"/>
+                        <constraint firstAttribute="width" constant="54" id="Z2q-qV-HL4"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="EeY-mB-5rq" userLabel="Dot4">
+                    <rect key="frame" x="0.0" y="119" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="MDv-Wg-UpY"/>
+                        <constraint firstAttribute="width" constant="54" id="j8s-UV-l02"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="G5I-yy-Q0c" userLabel="Dot5">
+                    <rect key="frame" x="0.0" y="155" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="hHO-2X-1kp"/>
+                        <constraint firstAttribute="width" constant="54" id="qTt-3d-fHY"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="77Z-YV-2gH" userLabel="Dot6">
+                    <rect key="frame" x="0.0" y="192" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="54" id="C4m-Y2-KCH"/>
+                        <constraint firstAttribute="height" constant="54" id="eCV-eV-4Fh"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="EeY-mB-5rq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1BO-MJ-avZ"/>
+                <constraint firstItem="77Z-YV-2gH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="95" id="8MO-Pg-h9e"/>
+                <constraint firstItem="LGh-43-N2D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8qS-Tb-vKX"/>
+                <constraint firstItem="EeY-mB-5rq" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="C1f-Qz-y3N"/>
+                <constraint firstItem="EeY-mB-5rq" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="HJp-HP-pAB"/>
+                <constraint firstItem="G5I-yy-Q0c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="II7-Pe-meO"/>
+                <constraint firstItem="pz3-e2-pji" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="K3j-5k-omX"/>
+                <constraint firstItem="LGh-43-N2D" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="K3j-j5-v2U"/>
+                <constraint firstItem="77Z-YV-2gH" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="M6S-v3-Fyw"/>
+                <constraint firstItem="pz3-e2-pji" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-91" id="Mo8-sm-Hb0"/>
+                <constraint firstItem="77Z-YV-2gH" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="QUC-Io-kjC"/>
+                <constraint firstItem="YLb-8K-VnT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Tts-bh-HUM"/>
+                <constraint firstItem="LGh-43-N2D" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="U32-6G-gJe"/>
+                <constraint firstItem="LGh-43-N2D" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-15" id="Yju-Bt-WgE"/>
+                <constraint firstItem="77Z-YV-2gH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Z2y-5Z-v4c"/>
+                <constraint firstItem="BZD-4B-NOb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="azs-AK-GgR"/>
+                <constraint firstItem="BZD-4B-NOb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="blF-Xy-FxH"/>
+                <constraint firstItem="G5I-yy-Q0c" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="cKB-s8-MjM"/>
+                <constraint firstItem="G5I-yy-Q0c" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="58" id="dTs-qP-w7d"/>
+                <constraint firstAttribute="bottom" secondItem="BZD-4B-NOb" secondAttribute="bottom" constant="3" id="dtb-gk-Zrw"/>
+                <constraint firstItem="EeY-mB-5rq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="22" id="ehg-NN-urd"/>
+                <constraint firstItem="YLb-8K-VnT" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="h5t-Vf-NlD"/>
+                <constraint firstAttribute="trailing" secondItem="BZD-4B-NOb" secondAttribute="trailing" id="kyB-eG-SO8"/>
+                <constraint firstItem="G5I-yy-Q0c" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="noj-wn-JPf"/>
+                <constraint firstItem="YLb-8K-VnT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-53" id="pQR-Gm-wx9"/>
+                <constraint firstItem="YLb-8K-VnT" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="yCW-u3-jdd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BlueDotIcon" width="84" height="82"/>
+        <image name="FretboardBG" width="176" height="116"/>
+        <image name="RedDotIcon" width="84" height="80"/>
+    </resources>
+</document>
