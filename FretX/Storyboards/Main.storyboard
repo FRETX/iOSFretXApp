@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rkl-eN-b69">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Melody-->
+        <scene sceneID="r3t-Ht-6GO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Melody" id="x2W-Bf-NyE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="9Lj-Vz-Py0"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nUG-xu-t9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-596" y="210"/>
+        </scene>
+        <!--Learn-->
+        <scene sceneID="h3H-TB-Kmm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Learn" id="0Qy-rZ-Pbn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="kvF-ht-g6j"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mUb-LJ-EOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-258" y="210"/>
+        </scene>
+        <!--Tuner-->
+        <scene sceneID="Ks5-lt-yKh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Tuner" id="neZ-jC-pCf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="ycz-6N-tLD"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="peK-e1-UgQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-37" y="210"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="uKD-4h-ev8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="33h-ah-z8B" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="SeTTINGS" image="TabBarSettingsBlack" selectedImage="TabBarSettings" id="Hjb-IJ-wn2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uBq-u4-j2g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="265" y="210"/>
+        </scene>
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="kAu-8E-1n3">
+            <objects>
+                <tabBarController id="Rkl-eN-b69" customClass="MainTabBarController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="X07-Qt-Ir1">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="zFQ-G5-Kts">
+                            <rect key="frame" x="137.5" y="0.0" width="100" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhiteBarFretxLogo" translatesAutoresizingMaskIntoConstraints="NO" id="j3f-tp-ZUF">
+                                    <rect key="frame" x="12" y="0.0" width="76" height="44"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="j3f-tp-ZUF" firstAttribute="leading" secondItem="zFQ-G5-Kts" secondAttribute="leading" constant="12" id="32M-8w-mFB"/>
+                                <constraint firstItem="j3f-tp-ZUF" firstAttribute="top" secondItem="zFQ-G5-Kts" secondAttribute="top" id="BtV-qO-bHl"/>
+                                <constraint firstAttribute="bottom" secondItem="j3f-tp-ZUF" secondAttribute="bottom" id="CAY-oU-eS6"/>
+                                <constraint firstAttribute="trailing" secondItem="j3f-tp-ZUF" secondAttribute="trailing" constant="12" id="a64-d7-vnM"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="NKV-uC-7C8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.96470588235294119" green="0.26666666666666666" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="x2W-Bf-NyE" kind="relationship" relationship="viewControllers" id="9yj-xq-M9O"/>
+                        <segue destination="0Qy-rZ-Pbn" kind="relationship" relationship="viewControllers" id="R86-OU-r3K"/>
+                        <segue destination="neZ-jC-pCf" kind="relationship" relationship="viewControllers" id="P48-yI-2gp"/>
+                        <segue destination="33h-ah-z8B" kind="relationship" relationship="viewControllers" id="6Zs-kj-7mx"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8k-Xn-A8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-138.40000000000001" y="-269.41529235382313"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="TabBarSettings" width="36" height="36"/>
+        <image name="TabBarSettingsBlack" width="36" height="36"/>
+        <image name="WhiteBarFretxLogo" width="75" height="44"/>
+    </resources>
+</document>
