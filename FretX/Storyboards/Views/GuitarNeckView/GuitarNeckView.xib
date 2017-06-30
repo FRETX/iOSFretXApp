@@ -9,14 +9,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuitarNeckView"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GuitarNeckView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="248"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FretboardBG" translatesAutoresizingMaskIntoConstraints="NO" id="BZD-4B-NOb">
                     <rect key="frame" x="9" y="3" width="366" height="242"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pz3-e2-pji" userLabel="Dot1">
                     <rect key="frame" x="0.0" y="6" width="54" height="54"/>
@@ -61,7 +62,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="EeY-mB-5rq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1BO-MJ-avZ"/>
                 <constraint firstItem="77Z-YV-2gH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="95" id="8MO-Pg-h9e"/>
@@ -91,6 +92,28 @@
                 <constraint firstItem="YLb-8K-VnT" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="yCW-u3-jdd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dot1LeftConstraint" destination="K3j-5k-omX" id="uXv-fs-3Z2"/>
+                <outlet property="dot1YCenterConstraint" destination="Mo8-sm-Hb0" id="zkO-Ri-cnf"/>
+                <outlet property="dot2LeftConstraint" destination="Tts-bh-HUM" id="Sz3-kf-fXt"/>
+                <outlet property="dot2YCenterConstraint" destination="pQR-Gm-wx9" id="Yo6-oi-2jT"/>
+                <outlet property="dot3LeftConstraint" destination="8qS-Tb-vKX" id="V6M-g1-KjH"/>
+                <outlet property="dot3YCenterConstraint" destination="Yju-Bt-WgE" id="WrE-FU-mp0"/>
+                <outlet property="dot4LeftConstraint" destination="1BO-MJ-avZ" id="SJp-65-zS9"/>
+                <outlet property="dot4YCenterConstraint" destination="ehg-NN-urd" id="CdZ-OF-CyT"/>
+                <outlet property="dot5LeftConstraint" destination="II7-Pe-meO" id="R61-P4-ruK"/>
+                <outlet property="dot5YCenterConstraint" destination="dTs-qP-w7d" id="H5l-CB-gnO"/>
+                <outlet property="dot6LeftConstraint" destination="Z2y-5Z-v4c" id="SF1-ut-7g1"/>
+                <outlet property="dot6YCenterConstraint" destination="8MO-Pg-h9e" id="t8Q-UC-f0E"/>
+                <outlet property="dotImageView" destination="pz3-e2-pji" id="Awd-vr-VUC"/>
+                <outlet property="fretImageView" destination="BZD-4B-NOb" id="4uv-Ci-Xih"/>
+                <outletCollection property="dotsImageViews" destination="pz3-e2-pji" id="ZUO-VZ-YYp"/>
+                <outletCollection property="dotsImageViews" destination="YLb-8K-VnT" id="EAQ-3K-5WD"/>
+                <outletCollection property="dotsImageViews" destination="LGh-43-N2D" id="0qB-9B-Oka"/>
+                <outletCollection property="dotsImageViews" destination="EeY-mB-5rq" id="PGV-4L-lz5"/>
+                <outletCollection property="dotsImageViews" destination="G5I-yy-Q0c" id="THn-Jy-UU4"/>
+                <outletCollection property="dotsImageViews" destination="77Z-YV-2gH" id="ZDV-Hu-C6n"/>
+            </connections>
             <point key="canvasLocation" x="33.5" y="54"/>
         </view>
     </objects>

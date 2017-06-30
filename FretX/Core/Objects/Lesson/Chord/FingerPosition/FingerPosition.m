@@ -25,7 +25,7 @@
         NSString* string = [number.stringValue substringFromIndex:1];
         return string.intValue;
     } else{
-        return 0;
+        return number.intValue;
     }
 }
 
@@ -37,6 +37,12 @@
     } else{
         return 0;
     }
+}
+
+- (NSString*)description{
+    
+    NSString* descriptionString = [NSString stringWithFormat:@"%@. fret=%d; string=%d;", [super description], self.fret, self.string];
+    return descriptionString;
 }
 
 @end

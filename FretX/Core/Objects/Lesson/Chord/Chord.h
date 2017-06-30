@@ -24,5 +24,6 @@
 - (void)setValues:(NSDictionary*)info;
 
 @property (assign) BOOL isEmpty;
+@property (assign) NSUInteger index;
 
 @end

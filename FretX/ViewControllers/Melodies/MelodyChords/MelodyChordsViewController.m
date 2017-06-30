@@ -11,6 +11,7 @@
 //#import "Melody.h"
 #import "GuitarNeckView.h"
 #import "RequestManager.h"
+#import "FingerPosition.h"
 #import "Lesson.h"
 #import "Chord.h"
 
@@ -52,10 +53,11 @@
 */
 
 - (void)layout{
-    
     [self.view layoutIfNeeded];
-    [self layoutLesson:self.lesson];
     [self addFretBoard];
+    
+    [self layoutLesson:self.lesson];
+
 }
 
 #pragma mark - Public
@@ -68,32 +70,53 @@
 - (void)layoutLesson:(Lesson*)lesson{
     
     self.melodyFullNameLabel.text = lesson.melodyTitle;
-    self.currentChordLabel.text =  lesson.punches[0].chordName;// self.currentChord.chordName;
-    self.nextChordLabel.text = lesson.punches[1].chordName;
+    if (lesson.punches.count > 0) {
+        
+        [self layoutChord:lesson.punches[0]];
+    }
 }
 
-//- (void)layoutChordForLesson:(Lesson*)lesson{
-//    
-//    self.currentChord = lesson.punches[0];
-//}
+- (void)layoutChord:(Chord*)chord{
+    
+    self.currentChord = chord;
+    
+    self.currentChordLabel.text =  chord.chordName;// self.currentChord.chordName;
+    if ([self.lesson chordNextToChord:self.currentChord]) {
+        self.nextChordLabel.text = [self.lesson chordNextToChord:self.currentChord].chordName;
+    }
+    
+    [self.guitarNeckView layoutChord:self.currentChord];
+}
 
 #pragma mark - Private
 
 - (void)addFretBoard{
-  
+    
+    [self.view layoutIfNeeded];
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"GuitarNeckView"
                                                       owner:self
                                                     options:nil];
     
     self.guitarNeckView = [nibViews firstObject];
-    CGRect frame = self.fretsContainerView.frame;
-    frame.origin.y = 0;
-    [self.guitarNeckView setFrame:frame];
+    CGRect bounds = self.fretsContainerView.bounds;
+    [self.guitarNeckView setFrame:bounds];
     [self.fretsContainerView addSubview:self.guitarNeckView];
     
 }
 
+- (void)setupNextChord{
+    
+    Chord* nextChord = [self.lesson chordNextToChord:self.currentChord];
+    if (nextChord)
+        [self layoutChord:nextChord];
+}
 
+#pragma mark - Actions
+
+- (IBAction)onNextChordButton:(id)sender{
+    
+    [self setupNextChord];
+}
 
 
 

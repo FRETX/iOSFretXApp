@@ -9,6 +9,7 @@
 #import "Chord.h"
 
 #import "SafeCategories.h"
+#import "FingerPosition.h"
 
 @implementation Chord
 
@@ -41,7 +42,7 @@
     self.rootval = rootval.intValue;
     
     NSArray* fingering = [chord safeArrayObjectForKey:@"fingering"];
-    self.fingering = fingering;
+    [self setFingeringPositions:fingering];
     
     if (fingering.count <= 0 ) {
         self.isEmpty = NO;
@@ -49,6 +50,23 @@
     //
     NSNumber* time_ms = [info safeNSNumberObjectForKey:@"time_ms"];
     self.timeMs = time_ms.unsignedLongValue;
+}
+
+- (void)setFingeringPositions:(NSArray*)fingering{
+    
+//    NSMutableArray* mutFingering = [NSMutableArray new];
+//    for (int i = 0; i < fingering.count; i++) {
+//        NSNumber* number = @(fingering[i]);
+//        [mutFingering addObject:number];
+//    }
+    
+    NSMutableArray* mutResult = [NSMutableArray new];
+    [fingering enumerateObjectsUsingBlock:^(id  _Nonnull number, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        FingerPosition * fingerPosition = [FingerPosition initWith:number];
+        [mutResult addObject:fingerPosition];
+    }];
+    self.fingering = [NSArray arrayWithArray:mutResult];
 }
 
 @end

@@ -24,4 +24,6 @@
 
 - (void)setValuesWithInfo:(NSDictionary*)info;
 
+- (Chord*)chordNextToChord:(Chord*)chord;
+
 @end

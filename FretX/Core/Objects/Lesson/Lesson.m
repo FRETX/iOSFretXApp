@@ -15,7 +15,7 @@
 
 - (void)setValuesWithInfo:(NSDictionary*)info{
     
-    
+    self.melodyTitle = [info safeStringObjectForKey:@"title"];
     self.songName = [info safeStringObjectForKey:@"song_title"];
     self.artistName = [info safeStringObjectForKey:@"artist"];
     self.backendID = [info safeStringObjectForKey:@"id"];
@@ -33,11 +33,22 @@
         
         Chord* chord =  [Chord new];
         [chord setValues:obj];
+        chord.index = idx;
         [mutChords addObject:chord];
     }];
     
     NSArray* chords = [NSArray arrayWithArray:mutChords];
     return chords;
+}
+
+- (Chord*)chordNextToChord:(Chord*)chord{
+    
+    Chord* nexthord;
+    if (chord && chord.index < (self.punches.count-1)) {
+        NSUInteger nextIndex = chord.index + 1;
+        nexthord = [self.punches objectAtIndex:nextIndex];
+    }
+    return nexthord;
 }
 
 @end
