@@ -16,6 +16,8 @@
 		6CF866531F0409410009D0F2 /* SplashScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF866521F0409410009D0F2 /* SplashScreens.m */; };
 		6CF866561F040C480009D0F2 /* LoginActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF866551F040C480009D0F2 /* LoginActivity.m */; };
 		6CF866591F040C900009D0F2 /* MainActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF866581F040C900009D0F2 /* MainActivity.m */; };
+		6CF866661F0844A70009D0F2 /* ToastHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF866631F0844A70009D0F2 /* ToastHelper.m */; };
+		6CF866671F0844A70009D0F2 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF866651F0844A70009D0F2 /* UIViewController+Alerts.m */; };
 		A303AC4A7AB22EB5CE2D96A4 /* Pods_FretX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B66BFFC696957BF9092A319B /* Pods_FretX.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,10 @@
 		6CF8665A1F041A800009D0F2 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		6CF8665B1F041A800009D0F2 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		6CF8665C1F041A800009D0F2 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		6CF866621F0844A70009D0F2 /* ToastHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToastHelper.h; path = CustomClasses/ToastHelper.h; sourceTree = "<group>"; };
+		6CF866631F0844A70009D0F2 /* ToastHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToastHelper.m; path = CustomClasses/ToastHelper.m; sourceTree = "<group>"; };
+		6CF866641F0844A70009D0F2 /* UIViewController+Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Alerts.h"; path = "CustomClasses/UIViewController+Alerts.h"; sourceTree = "<group>"; };
+		6CF866651F0844A70009D0F2 /* UIViewController+Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Alerts.m"; path = "CustomClasses/UIViewController+Alerts.m"; sourceTree = "<group>"; };
 		A07EFF8D4E297EA14CEEC437 /* Pods-FretX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FretX/Pods-FretX.debug.xcconfig"; sourceTree = "<group>"; };
 		B66BFFC696957BF9092A319B /* Pods_FretX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FretX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -78,6 +84,7 @@
 			children = (
 				6CF8663A1F03FB9A0009D0F2 /* AppDelegate.h */,
 				6CF8663B1F03FB9A0009D0F2 /* AppDelegate.m */,
+				6CF8665E1F08441C0009D0F2 /* CustomClasses */,
 				6CF866501F0408420009D0F2 /* ViewControllers */,
 				6CF866371F03FB9A0009D0F2 /* Supporting Files */,
 			);
@@ -111,6 +118,17 @@
 				6CF866581F040C900009D0F2 /* MainActivity.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6CF8665E1F08441C0009D0F2 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				6CF866621F0844A70009D0F2 /* ToastHelper.h */,
+				6CF866631F0844A70009D0F2 /* ToastHelper.m */,
+				6CF866641F0844A70009D0F2 /* UIViewController+Alerts.h */,
+				6CF866651F0844A70009D0F2 /* UIViewController+Alerts.m */,
+			);
+			name = CustomClasses;
 			sourceTree = "<group>";
 		};
 		E3F59A3D6055A594A1CD2A5A /* Pods */ = {
@@ -255,6 +273,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CF866591F040C900009D0F2 /* MainActivity.m in Sources */,
+				6CF866671F0844A70009D0F2 /* UIViewController+Alerts.m in Sources */,
+				6CF866661F0844A70009D0F2 /* ToastHelper.m in Sources */,
 				6CF866561F040C480009D0F2 /* LoginActivity.m in Sources */,
 				6CF8663C1F03FB9A0009D0F2 /* AppDelegate.m in Sources */,
 				6CF866531F0409410009D0F2 /* SplashScreens.m in Sources */,

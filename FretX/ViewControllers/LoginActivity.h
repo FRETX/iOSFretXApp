@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@import GoogleSignIn;
+@import Firebase;
+@import FBSDKCoreKit;
+@import FBSDKLoginKit;
 
-@interface LoginActivity : UIViewController
+@interface LoginActivity : UIViewController <GIDSignInUIDelegate, GIDSignInDelegate>
 
 @end
