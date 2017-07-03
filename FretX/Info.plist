@@ -33,14 +33,14 @@
             <string>Editor</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>fb398986193809257</string>
+                <string>fb138549566723585</string>
             </array>
         </dict>
     </array>
     <key>FacebookAppID</key>
-    <string>1768249810152108</string>
+    <string>138549566723585</string>
     <key>FacebookDisplayName</key>
-    <string>Zeal</string>
+    <string>FretXiOS</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>fbapi</string>
