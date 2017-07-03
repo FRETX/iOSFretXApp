@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  FretX
 //
-//  Created by P1 on 6/28/17.
-//  Copyright © 2017 rocks.fretx. All rights reserved.
+//  Created by Developer on 6/28/17.
+//  Copyright © 2017 Developer. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -20,7 +20,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     
     [FIRApp configure];
     [[FBSDKApplicationDelegate sharedInstance] application:application
@@ -56,35 +55,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-- (BOOL)application:(nonnull UIApplication *)application
-            openURL:(nonnull NSURL *)url
-            options:(nonnull NSDictionary<NSString *, id> *)options {
-    return [self application:application
-                     openURL:url
-            // [START new_options]
-           sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                  annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    
-    BOOL expressionValue = NO;
-    if ([[GIDSignIn sharedInstance] handleURL:url
-                            sourceApplication:sourceApplication
-                                   annotation:annotation]) {
-        expressionValue = YES;
-    }
-
-    if ([[FBSDKApplicationDelegate sharedInstance] application:application
-                                                       openURL:url
-                                             sourceApplication:sourceApplication
-                                                    annotation:annotation]) {
-        expressionValue = YES;
-    }
-    
-    return expressionValue;
 }
 
 

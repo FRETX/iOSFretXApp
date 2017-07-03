@@ -9,7 +9,7 @@
 #import "LoginActivity.h"
 #import "ToastHelper.h"
 #import "UIViewController+Alerts.h"
-#import "MainActivity.h"
+#import "MainTabBarController.h"
 
 #define profilePermission @"public_profile"
 #define emailPermission @"email"
@@ -129,7 +129,7 @@
 
 - (void) gotoMainViewController
 {
-    MainActivity *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
+    MainTabBarController *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
     [self.navigationController pushViewController: mLogin animated: YES];
    
 }

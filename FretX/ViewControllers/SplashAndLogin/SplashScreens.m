@@ -7,7 +7,7 @@
 //
 
 #import "SplashScreens.h"
-#import "MainActivity.h"
+#import "MainTabBarController.h"
 #import "UIViewController+Alerts.h"
 #import "LoginActivity.h"
 @import Firebase;
@@ -63,7 +63,7 @@
 
 - (void) gotoMain
 {
-    MainActivity *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
+    MainTabBarController *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
     [self.navigationController pushViewController: mLogin animated: YES];
 }
 

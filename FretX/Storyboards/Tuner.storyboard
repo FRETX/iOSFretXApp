@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="24V-NP-W6Z">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TUNER-->
+        <scene sceneID="OAo-zc-UHH">
+            <objects>
+                <navigationController id="24V-NP-W6Z" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="TUNER" image="TabIconTunerBlack" selectedImage="TabIconTuner" id="3Pm-h4-FfT"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="E11-Ww-IAL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.96470588235294119" green="0.26666666666666666" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="UlJ-ao-OoP" kind="relationship" relationship="rootViewController" id="Zkp-zv-O2B"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2dO-LQ-blK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-825" y="145"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="MC7-Cq-cjJ">
+            <objects>
+                <viewController id="UlJ-ao-OoP" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P9o-25-Sv7"/>
+                        <viewControllerLayoutGuide type="bottom" id="pEc-rh-6Mz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mjJ-7J-afI">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nU4-6N-Qch"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UAH-hp-fzI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="87" y="146"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="TabIconTuner" width="36" height="36"/>
+        <image name="TabIconTunerBlack" width="36" height="36"/>
+    </resources>
+</document>
