@@ -64,6 +64,8 @@
     NSString* creationDateString = [info safeStringObjectForKey:@"created_at"];
     self.creationDate = [self.dateFormatter dateFromString:creationDateString];
     
+    NSNumber* published = [info safeNSNumberObjectForKey:@"published"];
+    self.published = published.boolValue;
 }
 
 @end

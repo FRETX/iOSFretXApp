@@ -1,0 +1,10 @@
+framework module FretXAudioProcessing {
+  umbrella header "FretXAudioProcessing.h"
+
+  export *
+  module * { export * }
+}
+
+module FretXAudioProcessing.Swift {
+    header "FretXAudioProcessing-Swift.h"
+}

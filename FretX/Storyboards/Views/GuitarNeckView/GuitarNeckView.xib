@@ -4,8 +4,8 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,52 +20,60 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pz3-e2-pji" userLabel="Dot1">
-                    <rect key="frame" x="0.0" y="6" width="54" height="54"/>
+                    <rect key="frame" x="0.0" y="11" width="48" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="54" id="F31-ve-bPM"/>
-                        <constraint firstAttribute="width" constant="54" id="thW-E2-M7b"/>
+                        <constraint firstAttribute="height" constant="48" id="F31-ve-bPM"/>
+                        <constraint firstAttribute="width" constant="48" id="thW-E2-M7b"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YLb-8K-VnT" userLabel="Dot2">
-                    <rect key="frame" x="0.0" y="44" width="54" height="54"/>
+                    <rect key="frame" x="0.0" y="47" width="48" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="54" id="J21-Je-JlD"/>
-                        <constraint firstAttribute="width" constant="54" id="hK7-7L-ySB"/>
+                        <constraint firstAttribute="height" constant="48" id="J21-Je-JlD"/>
+                        <constraint firstAttribute="width" constant="48" id="hK7-7L-ySB"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LGh-43-N2D" userLabel="Dot3">
-                    <rect key="frame" x="0.0" y="82" width="54" height="54"/>
+                    <rect key="frame" x="0.0" y="83" width="48" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="54" id="SyE-vh-RQ5"/>
-                        <constraint firstAttribute="width" constant="54" id="Z2q-qV-HL4"/>
+                        <constraint firstAttribute="height" constant="48" id="SyE-vh-RQ5"/>
+                        <constraint firstAttribute="width" constant="48" id="Z2q-qV-HL4"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="EeY-mB-5rq" userLabel="Dot4">
-                    <rect key="frame" x="0.0" y="119" width="54" height="54"/>
+                    <rect key="frame" x="0.0" y="121" width="48" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="54" id="MDv-Wg-UpY"/>
-                        <constraint firstAttribute="width" constant="54" id="j8s-UV-l02"/>
+                        <constraint firstAttribute="height" constant="48" id="MDv-Wg-UpY"/>
+                        <constraint firstAttribute="width" constant="48" id="j8s-UV-l02"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="G5I-yy-Q0c" userLabel="Dot5">
-                    <rect key="frame" x="0.0" y="155" width="54" height="54"/>
+                    <rect key="frame" x="0.0" y="157" width="48" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="54" id="hHO-2X-1kp"/>
-                        <constraint firstAttribute="width" constant="54" id="qTt-3d-fHY"/>
+                        <constraint firstAttribute="height" constant="48" id="hHO-2X-1kp"/>
+                        <constraint firstAttribute="width" constant="48" id="qTt-3d-fHY"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BlueDotIcon" translatesAutoresizingMaskIntoConstraints="NO" id="77Z-YV-2gH" userLabel="Dot6">
-                    <rect key="frame" x="0.0" y="192" width="54" height="54"/>
+                    <rect key="frame" x="0.0" y="193" width="48" height="48"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="54" id="C4m-Y2-KCH"/>
-                        <constraint firstAttribute="height" constant="54" id="eCV-eV-4Fh"/>
+                        <constraint firstAttribute="width" constant="48" id="C4m-Y2-KCH"/>
+                        <constraint firstAttribute="height" constant="48" id="eCV-eV-4Fh"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2C-av-HcD">
+                    <rect key="frame" x="207" y="3" width="242" height="242"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="z2C-av-HcD" secondAttribute="height" multiplier="1:1" id="yoc-eD-hfK"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="z2C-av-HcD" secondAttribute="bottom" constant="3" id="0yn-Lo-0L2"/>
                 <constraint firstItem="EeY-mB-5rq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1BO-MJ-avZ"/>
-                <constraint firstItem="77Z-YV-2gH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="95" id="8MO-Pg-h9e"/>
+                <constraint firstItem="77Z-YV-2gH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="93" id="8MO-Pg-h9e"/>
                 <constraint firstItem="LGh-43-N2D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8qS-Tb-vKX"/>
                 <constraint firstItem="EeY-mB-5rq" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="C1f-Qz-y3N"/>
                 <constraint firstItem="EeY-mB-5rq" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="HJp-HP-pAB"/>
@@ -73,23 +81,25 @@
                 <constraint firstItem="pz3-e2-pji" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="K3j-5k-omX"/>
                 <constraint firstItem="LGh-43-N2D" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="K3j-j5-v2U"/>
                 <constraint firstItem="77Z-YV-2gH" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="M6S-v3-Fyw"/>
-                <constraint firstItem="pz3-e2-pji" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-91" id="Mo8-sm-Hb0"/>
+                <constraint firstItem="pz3-e2-pji" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-89" id="Mo8-sm-Hb0"/>
                 <constraint firstItem="77Z-YV-2gH" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="QUC-Io-kjC"/>
                 <constraint firstItem="YLb-8K-VnT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Tts-bh-HUM"/>
                 <constraint firstItem="LGh-43-N2D" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="U32-6G-gJe"/>
-                <constraint firstItem="LGh-43-N2D" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-15" id="Yju-Bt-WgE"/>
+                <constraint firstItem="LGh-43-N2D" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-17" id="Yju-Bt-WgE"/>
                 <constraint firstItem="77Z-YV-2gH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Z2y-5Z-v4c"/>
                 <constraint firstItem="BZD-4B-NOb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="azs-AK-GgR"/>
                 <constraint firstItem="BZD-4B-NOb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="blF-Xy-FxH"/>
                 <constraint firstItem="G5I-yy-Q0c" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="cKB-s8-MjM"/>
-                <constraint firstItem="G5I-yy-Q0c" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="58" id="dTs-qP-w7d"/>
+                <constraint firstItem="G5I-yy-Q0c" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="57" id="dTs-qP-w7d"/>
                 <constraint firstAttribute="bottom" secondItem="BZD-4B-NOb" secondAttribute="bottom" constant="3" id="dtb-gk-Zrw"/>
-                <constraint firstItem="EeY-mB-5rq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="22" id="ehg-NN-urd"/>
+                <constraint firstItem="EeY-mB-5rq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="21" id="ehg-NN-urd"/>
                 <constraint firstItem="YLb-8K-VnT" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="h5t-Vf-NlD"/>
                 <constraint firstAttribute="trailing" secondItem="BZD-4B-NOb" secondAttribute="trailing" id="kyB-eG-SO8"/>
+                <constraint firstItem="z2C-av-HcD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="mtH-Al-gH6"/>
                 <constraint firstItem="G5I-yy-Q0c" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="noj-wn-JPf"/>
                 <constraint firstItem="YLb-8K-VnT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-53" id="pQR-Gm-wx9"/>
                 <constraint firstItem="YLb-8K-VnT" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="yCW-u3-jdd"/>
+                <constraint firstAttribute="trailing" secondItem="z2C-av-HcD" secondAttribute="trailing" constant="-74" id="yvM-eM-p1p"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -107,6 +117,7 @@
                 <outlet property="dot6YCenterConstraint" destination="8MO-Pg-h9e" id="t8Q-UC-f0E"/>
                 <outlet property="dotImageView" destination="pz3-e2-pji" id="Awd-vr-VUC"/>
                 <outlet property="fretImageView" destination="BZD-4B-NOb" id="4uv-Ci-Xih"/>
+                <outlet property="progressContainerView" destination="z2C-av-HcD" id="iS7-o1-BaW"/>
                 <outletCollection property="dotsImageViews" destination="pz3-e2-pji" id="ZUO-VZ-YYp"/>
                 <outletCollection property="dotsImageViews" destination="YLb-8K-VnT" id="EAQ-3K-5WD"/>
                 <outletCollection property="dotsImageViews" destination="LGh-43-N2D" id="0qB-9B-Oka"/>

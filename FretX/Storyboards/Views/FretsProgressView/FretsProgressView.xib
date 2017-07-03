@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FretsProgressView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G7g-eh-v09" userLabel="BGView">
+                    <rect key="frame" x="0.0" y="14" width="375" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="rh8-Tw-vV6"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Me-6d-02E" userLabel="ProgressView">
+                    <rect key="frame" x="0.0" y="14" width="24" height="20"/>
+                    <color key="backgroundColor" red="0.40000000000000002" green="0.91722598522167487" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="OfR-e1-mff"/>
+                        <constraint firstAttribute="height" constant="20" id="zMV-Pv-5x5"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                            <integer key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FretBoardSmile" translatesAutoresizingMaskIntoConstraints="NO" id="3Uj-PB-oze">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="3Uj-PB-oze" secondAttribute="height" multiplier="1:1" id="iAL-eg-Nb9"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6Me-6d-02E" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4M5-UK-eSD"/>
+                <constraint firstItem="3Uj-PB-oze" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7ut-l4-6Qo"/>
+                <constraint firstAttribute="trailing" secondItem="G7g-eh-v09" secondAttribute="trailing" id="9Bn-1F-7UE"/>
+                <constraint firstItem="3Uj-PB-oze" firstAttribute="leading" secondItem="6Me-6d-02E" secondAttribute="trailing" constant="-24" id="9Br-vH-JVR"/>
+                <constraint firstItem="G7g-eh-v09" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mpA-wY-edf"/>
+                <constraint firstAttribute="bottom" secondItem="3Uj-PB-oze" secondAttribute="bottom" id="okI-65-gYM"/>
+                <constraint firstItem="6Me-6d-02E" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="qdD-AM-fjd"/>
+                <constraint firstItem="G7g-eh-v09" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qyY-7g-fmD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="emojiImageView" destination="3Uj-PB-oze" id="j8G-UB-bkk"/>
+                <outlet property="progessBGHeightConstraint" destination="rh8-Tw-vV6" id="YQ1-cX-Saf"/>
+                <outlet property="progessWidthConstraint" destination="OfR-e1-mff" id="aWy-kx-GC0"/>
+                <outlet property="progressBGView" destination="G7g-eh-v09" id="29Q-G9-BGi"/>
+                <outlet property="progressThumbView" destination="6Me-6d-02E" id="lCY-wa-vlS"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="FretBoardSmile" width="63" height="64"/>
+    </resources>
+</document>

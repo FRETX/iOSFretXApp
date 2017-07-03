@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import <FretXAudioProcessing/FretXAudioProcessing.h>
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+//    print(MusicUtils.getFingering(chordName: Chord(root: "C", type: "Maj").name))
+//    
+//    prints this:
+//    Optional(FretXAudioProcessing.FingerPositions(name: "Cmaj", baseFret: 0, string6: -1, string5: 3, string4: 2, string3: 0, string2: 1, string1: 0))
+    
+//    MusicUtils getFing
+//    MusicUtils getc
+    
+    
     return YES;
 }
 
