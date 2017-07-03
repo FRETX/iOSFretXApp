@@ -28,19 +28,17 @@
                 <string>com.googleusercontent.apps.1052011804648-iqfe3d3cfrr7imadsfi7vr0hb8ffjl67</string>
             </array>
         </dict>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>fb398986193809257</string>
-            </array>
-        </dict>
+		<dict>
+		<key>CFBundleURLSchemes</key>
+		<array>
+		  <string>fb138549566723585</string>
+		</array>
+		</dict>
     </array>
-    <key>FacebookAppID</key>
-    <string>1768249810152108</string>
-    <key>FacebookDisplayName</key>
-    <string>Zeal</string>
+	<key>FacebookAppID</key>
+	<string>138549566723585</string>
+	<key>FacebookDisplayName</key>
+	<string>FretXiOS</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>fbapi</string>
