@@ -24,7 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     dbRef = [[FIRDatabase database] reference];
-    double delayInSeconds = 3.0;
+    [self.navigationController setNavigationBarHidden:YES];
+    double delayInSeconds = 2.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         
@@ -42,21 +43,14 @@
 - (void) checkUser
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *currentEmail = [defaults objectForKey: @"userEmail"];
-    if (currentEmail != nil) {
-        [[[[dbRef child: @"users"] queryOrderedByChild: @"user_email"]
-          queryEqualToValue: currentEmail]
-         observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-             if (snapshot.value != [NSNull null]){
-                 [self gotoMain];
-             }else
-             {
-                 [self gotoLogin];
-             }
-         }];
-    } else
-    {
+    NSString *currentUid = [defaults objectForKey: @"uid"];
+    NSString *uid = [[[FIRAuth auth] currentUser] uid];
+    
+    if (currentUid == nil) {
         [self gotoLogin];
+    } else if ([currentUid isEqualToString: uid])
+    {
+        [self gotoMain];
     }
     
 }

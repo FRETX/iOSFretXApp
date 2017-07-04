@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -136,6 +135,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dti-7A-dN4"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5C9-yz-DhC" sceneMemberID="firstResponder"/>
             </objects>
@@ -390,6 +390,14 @@
                                     <constraint firstItem="qoE-Kz-C3w" firstAttribute="centerX" secondItem="UAW-gb-10g" secondAttribute="centerX" id="t4d-d8-aTT"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tt1-00-xCU">
+                                <rect key="frame" x="20" y="20" width="32" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="didSelectBack:" destination="3Lc-UQ-f5Y" eventType="touchUpInside" id="U1w-92-bvj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -399,8 +407,10 @@
                             <constraint firstItem="UAW-gb-10g" firstAttribute="width" secondItem="M4X-iO-0xR" secondAttribute="width" id="8DT-Ip-3OD"/>
                             <constraint firstItem="2kT-i8-4Xf" firstAttribute="top" secondItem="lQ6-Gm-h5c" secondAttribute="bottom" constant="78" id="8p2-RN-34V"/>
                             <constraint firstItem="w0b-ZC-kga" firstAttribute="centerX" secondItem="Ih2-wu-G4V" secondAttribute="centerX" id="Bb5-Eb-gmb"/>
+                            <constraint firstItem="tt1-00-xCU" firstAttribute="leading" secondItem="Ih2-wu-G4V" secondAttribute="leadingMargin" constant="4" id="GtN-Cv-ZS1"/>
                             <constraint firstAttribute="leadingMargin" secondItem="lQ6-Gm-h5c" secondAttribute="leading" id="HKy-Jh-01z"/>
                             <constraint firstItem="w0b-ZC-kga" firstAttribute="top" secondItem="dKQ-98-W8u" secondAttribute="bottom" constant="127" id="KNd-x3-ngZ"/>
+                            <constraint firstItem="tt1-00-xCU" firstAttribute="top" secondItem="fnT-j2-b36" secondAttribute="bottom" id="M1b-xI-BqC"/>
                             <constraint firstItem="M4X-iO-0xR" firstAttribute="width" secondItem="lQ6-Gm-h5c" secondAttribute="width" id="PBE-Zv-Vvq"/>
                             <constraint firstItem="lQ6-Gm-h5c" firstAttribute="top" secondItem="dKQ-98-W8u" secondAttribute="bottom" constant="16" id="S5A-my-zKH"/>
                             <constraint firstItem="WzG-71-5aM" firstAttribute="centerX" secondItem="Ih2-wu-G4V" secondAttribute="centerX" id="SIA-bp-BUb"/>
@@ -413,7 +423,9 @@
                             <constraint firstItem="UAW-gb-10g" firstAttribute="centerX" secondItem="M4X-iO-0xR" secondAttribute="centerX" id="xxf-Ga-b4d"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="btn_back" destination="tt1-00-xCU" id="bb4-j7-LLr"/>
                         <outlet property="tf_emailCustomLogin" destination="zUP-e4-ROn" id="quy-Ow-cYk"/>
                         <outlet property="tf_emailForgotPassword" destination="qoE-Kz-C3w" id="adm-DZ-kPJ"/>
                         <outlet property="tf_emailRegister" destination="pfJ-P0-hmy" id="TOb-gX-w9R"/>
@@ -427,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FP2-ls-pvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-138" y="-924"/>
+            <point key="canvasLocation" x="-138.40000000000001" y="-924.28785607196414"/>
         </scene>
     </scenes>
     <resources>

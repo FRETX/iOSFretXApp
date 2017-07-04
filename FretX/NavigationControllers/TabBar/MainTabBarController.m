@@ -7,6 +7,7 @@
 //
 
 #import "MainTabBarController.h"
+@import Firebase;
 
 typedef enum{
     TabIconMelodies,
@@ -28,6 +29,7 @@ typedef enum{
     self.delegate = self;
     [self hideNavigationBarbutton];
     [self customizeTabBarItems];
+    NSString *asd =[[[FIRAuth auth]currentUser]uid];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +41,7 @@ typedef enum{
 {
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.hidesBackButton = YES;
+    
 }
 
 

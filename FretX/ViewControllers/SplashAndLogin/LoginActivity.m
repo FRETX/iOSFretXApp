@@ -10,6 +10,7 @@
 #import "ToastHelper.h"
 #import "UIViewController+Alerts.h"
 #import "MainTabBarController.h"
+#import "MBProgressHUD.h"
 
 #define profilePermission @"public_profile"
 #define emailPermission @"email"
@@ -35,6 +36,8 @@
     // forgot password
     __weak IBOutlet UIView *v_forgotpassword;
     __weak IBOutlet UITextField *tf_emailForgotPassword;
+    __weak IBOutlet UIButton *btn_back;
+    MBProgressHUD *hud;
 }
 @end
 
@@ -44,12 +47,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    btn_back.hidden = YES;
     vCustomLogin.hidden = YES;
     v_register.hidden = YES;
     v_forgotpassword.hidden = YES;
     [GIDSignIn sharedInstance].uiDelegate = self;
     [GIDSignIn sharedInstance].delegate = self;
     dbRef = [[[FIRDatabase database] reference] child: @"users"];
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:@"uid"];
+    [defaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,7 +88,7 @@
             // If you ask for multiple permissions at once, you
             // should check if specific permissions missing
             
-            [ToastHelper showLoading: self.view message: @"Logging in..."];
+            [self showLoading:@"Logging in..."];
             
             if ([FBSDKAccessToken currentAccessToken]) {
                 
@@ -93,49 +102,57 @@
     
 }
 
+- (IBAction)didSelectBack:(id)sender {
+    if (vCustomLogin.hidden == NO) {
+        vCustomLogin.hidden = YES;
+        btn_back.hidden = YES;
+    } else if (v_forgotpassword.hidden == NO)
+    {
+        v_forgotpassword.hidden = YES;
+        vCustomLogin.hidden = NO;
+    } else if (v_register.hidden == NO)
+    {
+        v_register.hidden = YES;
+        vCustomLogin.hidden = NO;
+    }
+}
+
 - (void) signInFirebase: (NSString *) accessToken
 {
     FIRAuthCredential *credential = [FIRFacebookAuthProvider credentialWithAccessToken:accessToken];
     
+    [self gotoMainViewController: credential];
     
-    
-    [[FIRAuth auth] signInWithCredential:credential completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-        [ToastHelper hideLoading];
-        if (error) {
-            [self showMessagePrompt:error.localizedDescription];
-            NSLog(@"Error %@", error.localizedDescription);
-        } else
-        {
-            button.userInteractionEnabled = YES;
-            
-            NSString *currentUserID = [[FIRAuth auth] currentUser].uid;
-            NSString *currentEmail = [[FIRAuth auth] currentUser].email;
-            NSString *userName = [[FIRAuth auth] currentUser].displayName;
-            
-            [self storeEmail: currentEmail userID:currentUserID];
-            
-            dicToStoreInFirebaseUser = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        currentEmail, @"user_email",
-                                        accessToken, @"access_token",
-                                        userName, @"user_name",
-                                        nil];
-            
-            [[dbRef child: currentUserID] setValue: dicToStoreInFirebaseUser];
-            [self gotoMainViewController];
-            
-        }
-    }];
 }
 
-- (void) gotoMainViewController
+- (void) gotoMainViewController: (FIRAuthCredential *) credential
 {
-    MainTabBarController *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
-    [self.navigationController pushViewController: mLogin animated: YES];
+    NSLog(@"--------- %@", credential);
+    [[FIRAuth auth] signInWithCredential: credential completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+        button.userInteractionEnabled = YES;
+        hud.hidden = YES;
+        if (error) {
+            [self showMessagePrompt: error.localizedDescription];
+            tf_emailCustomLogin.text = @"";
+            tf_passwordCustomLogin.text = @"";
+        } else
+        {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            NSString *uid = [[[FIRAuth auth] currentUser] uid];
+            [defaults setObject:uid forKey:@"uid"];
+            [defaults synchronize];
+            
+            MainTabBarController *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
+            [self.navigationController pushViewController: mLogin animated: YES];
+        }
+    }];
+    
    
 }
 
 - (IBAction)didSelectOtherSignin:(id)sender {
     vCustomLogin.hidden = NO;
+    btn_back.hidden = NO;
 }
 
 - (IBAction)didSelectSigninWithGoogle:(id)sender {
@@ -152,16 +169,9 @@
     if (mEmail != nil && mPassword != nil) {
         
         if ([self NSStringIsValidEmail: mEmail]) {
-            [[FIRAuth auth] signInWithEmail:mEmail password:mPassword completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-                if (error) {
-                    [self showMessagePrompt: error.localizedDescription];
-                    tf_emailCustomLogin.text = @"";
-                    tf_passwordCustomLogin.text = @"";
-                } else
-                {
-                    [self gotoMainViewController];
-                }
-            }];
+            FIRAuthCredential *credential = [FIREmailAuthProvider credentialWithEmail: mEmail password: mPassword];
+            [self gotoMainViewController:credential];
+            
             
         } else
         {
@@ -185,7 +195,7 @@
 
 - (IBAction)didSelectForgotPassword:(id)sender {
     v_forgotpassword.hidden = NO;
-    
+    vCustomLogin.hidden = YES;
 }
 
 - (IBAction)sendPasswordWithEmail:(id)sender {
@@ -213,7 +223,9 @@
 }
 
 - (IBAction)goToRegister:(id)sender {
+    
     v_register.hidden = NO;
+    vCustomLogin.hidden = YES;
 }
 
 #pragma mark Register
@@ -260,40 +272,26 @@
     
     if (error == nil) {
         
-        [ToastHelper showLoading: self.view message: @"Signing in..."];
+        [self showLoading: @"Signing in..."];
         GIDAuthentication *authentication = user.authentication;
         FIRAuthCredential *credential =
         [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
                                          accessToken:authentication.accessToken];
         
-        
-        [[FIRAuth auth] signInWithCredential:credential completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-            button.userInteractionEnabled = YES;
-            if (error) {
-                [self showMessagePrompt:error.localizedDescription];
-            } else
-            {
-                NSString *currentUserID = [[FIRAuth auth] currentUser].uid;
-                NSString *currentEmail = [[FIRAuth auth] currentUser].email;
-                NSString *userName = [[FIRAuth auth] currentUser].displayName;
-                [self storeEmail: currentEmail userID:currentUserID];
-                
-                dicToStoreInFirebaseUser = [NSDictionary dictionaryWithObjectsAndKeys:
-                                            currentEmail, @"user_email",
-                                            authentication.idToken, @"id_token",
-                                            authentication.accessToken, @"access_token",
-                                            userName, @"user_name",
-                                            nil];
-                [[dbRef child: currentUserID] setValue: dicToStoreInFirebaseUser];
-                [self gotoMainViewController];
-            }
-        }];
+        [self gotoMainViewController:credential];
         
     } else {
         button.userInteractionEnabled = YES;
         // ...
         [self showMessagePrompt:error.localizedDescription];
     }
+}
+
+- (void) showLoading: (NSString *) message
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.label.text = message;
 }
 
 - (void) storeEmail: (NSString *) mEmail userID: (NSString *) mUserID

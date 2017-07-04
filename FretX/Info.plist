@@ -28,7 +28,6 @@
                 <string>com.googleusercontent.apps.1052011804648-iqfe3d3cfrr7imadsfi7vr0hb8ffjl67</string>
             </array>
         </dict>
-<<<<<<< HEAD
         <dict>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
@@ -38,23 +37,10 @@
             </array>
         </dict>
     </array>
-    <key>FacebookAppID</key>
-    <string>138549566723585</string>
-    <key>FacebookDisplayName</key>
-    <string>FretXiOS</string>
-=======
-		<dict>
-		<key>CFBundleURLSchemes</key>
-		<array>
-		  <string>fb138549566723585</string>
-		</array>
-		</dict>
-    </array>
 	<key>FacebookAppID</key>
 	<string>138549566723585</string>
 	<key>FacebookDisplayName</key>
 	<string>FretXiOS</string>
->>>>>>> 462b63c9f2ced654f64f64aff7bbc5a4c6baec43
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>fbapi</string>
