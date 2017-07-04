@@ -37,10 +37,17 @@
             </array>
         </dict>
     </array>
+<<<<<<< HEAD
     <key>FacebookAppID</key>
     <string>138549566723585</string>
     <key>FacebookDisplayName</key>
     <string>FretXiOS</string>
+=======
+	<key>FacebookAppID</key>
+	<string>138549566723585</string>
+	<key>FacebookDisplayName</key>
+	<string>FretXiOS</string>
+>>>>>>> 1d06e968cf7ca575e3de566615bd2ce64786a03e
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>fbapi</string>
