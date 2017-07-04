@@ -256,6 +256,7 @@
                     
                     [[dbRef child: currentUserID] setValue: dicToStoreInFirebaseUser];
                     v_register.hidden = YES;
+                    vCustomLogin.hidden = NO;
                     [self showMessagePrompt: @"User registered successfully."];
                 }
             }];
