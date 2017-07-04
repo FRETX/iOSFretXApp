@@ -82,7 +82,8 @@
             
             Melody* melody = [Melody new];
             [melody setValuesWithInfo:melodyInfo];
-            [mutableResult addObject:melody];
+            if (melody.published)
+                [mutableResult addObject:melody];
         }];
         
         NSArray<Melody*>* result = [NSArray arrayWithArray:mutableResult];
