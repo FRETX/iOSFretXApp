@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */; };
 		8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B049C3C1F0A3C90008BE4DC /* FretsProgressView.xib */; };
+		8B049C411F0A8364008BE4DC /* PlayYoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C401F0A8364008BE4DC /* PlayYoutubeViewController.m */; };
 		8B0DF59D1F063D8000DB79B8 /* FingerPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0DF59C1F063D8000DB79B8 /* FingerPosition.m */; };
 		8B0EC4111F04E16300EE1489 /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4101F04E16300EE1489 /* RequestManager.m */; };
 		8B0EC4131F04E4A400EE1489 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 8B0EC4121F04E4A400EE1489 /* Podfile */; };
@@ -41,6 +42,14 @@
 		8B1A94F21F039EF300E18BB7 /* Tuner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B1A94F11F039EF300E18BB7 /* Tuner.storyboard */; };
 		8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94F51F03D02000E18BB7 /* MelodyTableCell.m */; };
 		8B41D7421F066F50004EAFB7 /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */; };
+		8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */; };
+		8BFB17061F0B8E25008A48C7 /* PlayerControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */; };
+		8BFB17081F0B8EAE008A48C7 /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */; };
+		8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17101F0BC894008A48C7 /* ChordCollectionViewCell.m */; };
+		8BFB17131F0BDEC1008A48C7 /* ChordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB17121F0BDEC1008A48C7 /* ChordCollectionViewCell.xib */; };
+		8BFB17191F0BE5FC008A48C7 /* ChordsTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17171F0BE5FC008A48C7 /* ChordsTimeLineView.m */; };
+		8BFB17201F0BE7EC008A48C7 /* ChordsTimeLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB171F1F0BE7EC008A48C7 /* ChordsTimeLineView.xib */; };
 		A97BCAC99CF665B1BC703DC6 /* libPods-FretX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 628A8888B6FAACEE4C075E44 /* libPods-FretX.a */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +59,8 @@
 		8B049C391F0A3C50008BE4DC /* FretsProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretsProgressView.h; sourceTree = "<group>"; };
 		8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretsProgressView.m; sourceTree = "<group>"; };
 		8B049C3C1F0A3C90008BE4DC /* FretsProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FretsProgressView.xib; sourceTree = "<group>"; };
+		8B049C3F1F0A8364008BE4DC /* PlayYoutubeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayYoutubeViewController.h; sourceTree = "<group>"; };
+		8B049C401F0A8364008BE4DC /* PlayYoutubeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayYoutubeViewController.m; sourceTree = "<group>"; };
 		8B0DF59B1F063D8000DB79B8 /* FingerPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerPosition.h; sourceTree = "<group>"; };
 		8B0DF59C1F063D8000DB79B8 /* FingerPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerPosition.m; sourceTree = "<group>"; };
 		8B0EC40F1F04E16300EE1489 /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
@@ -106,6 +117,18 @@
 		8B1A94F41F03D02000E18BB7 /* MelodyTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyTableCell.h; sourceTree = "<group>"; };
 		8B1A94F51F03D02000E18BB7 /* MelodyTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyTableCell.m; sourceTree = "<group>"; };
 		8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretXAudioProcessing.framework; sourceTree = "<group>"; };
+		8B8F05A81F0CD5FD00BAADAC /* AdditionalControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalControlsView.h; sourceTree = "<group>"; };
+		8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalControlsView.m; sourceTree = "<group>"; };
+		8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdditionalControlsView.xib; sourceTree = "<group>"; };
+		8BFB17041F0B8E25008A48C7 /* PlayerControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControlsView.h; sourceTree = "<group>"; };
+		8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlsView.m; sourceTree = "<group>"; };
+		8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
+		8BFB170F1F0BC894008A48C7 /* ChordCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordCollectionViewCell.h; sourceTree = "<group>"; };
+		8BFB17101F0BC894008A48C7 /* ChordCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordCollectionViewCell.m; sourceTree = "<group>"; };
+		8BFB17121F0BDEC1008A48C7 /* ChordCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChordCollectionViewCell.xib; sourceTree = "<group>"; };
+		8BFB17161F0BE5FC008A48C7 /* ChordsTimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordsTimeLineView.h; sourceTree = "<group>"; };
+		8BFB17171F0BE5FC008A48C7 /* ChordsTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordsTimeLineView.m; sourceTree = "<group>"; };
+		8BFB171F1F0BE7EC008A48C7 /* ChordsTimeLineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChordsTimeLineView.xib; sourceTree = "<group>"; };
 		DEFEB05092ADAB09FF940464 /* Pods-FretX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FretX/Pods-FretX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B049C3E1F0A7F1A008BE4DC /* PlayYoutube */ = {
+			isa = PBXGroup;
+			children = (
+				8B049C3F1F0A8364008BE4DC /* PlayYoutubeViewController.h */,
+				8B049C401F0A8364008BE4DC /* PlayYoutubeViewController.m */,
+			);
+			path = PlayYoutube;
+			sourceTree = "<group>";
+		};
 		8B0DF59A1F063D8000DB79B8 /* FingerPosition */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +225,9 @@
 		8B0EC4281F0509CD00EE1489 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B8F05A71F0CD5D300BAADAC /* AdditionalControlsView */,
+				8BFB17021F0B8DF3008A48C7 /* ChordsTimelIneView */,
+				8BFB17031F0B8DF3008A48C7 /* PlayerControlsView */,
 				8B1A08D61F0694BB0070F9D8 /* FretsProgressView */,
 				8B0EC4291F0509CD00EE1489 /* GuitarNeckView */,
 			);
@@ -372,6 +407,7 @@
 		8B1A94D71F039B4500E18BB7 /* Melodies */ = {
 			isa = PBXGroup;
 			children = (
+				8B049C3E1F0A7F1A008BE4DC /* PlayYoutube */,
 				8B0EC4141F04F22B00EE1489 /* MelodyChords */,
 				8B1A94F31F03CFDA00E18BB7 /* Cells */,
 				8B1A94DD1F039C0200E18BB7 /* MelodiesViewController.h */,
@@ -427,6 +463,47 @@
 				8B0EC4311F051A3100EE1489 /* Melody */,
 			);
 			path = Objects;
+			sourceTree = "<group>";
+		};
+		8B8F05A71F0CD5D300BAADAC /* AdditionalControlsView */ = {
+			isa = PBXGroup;
+			children = (
+				8B8F05A81F0CD5FD00BAADAC /* AdditionalControlsView.h */,
+				8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */,
+				8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */,
+			);
+			path = AdditionalControlsView;
+			sourceTree = "<group>";
+		};
+		8BFB17021F0B8DF3008A48C7 /* ChordsTimelIneView */ = {
+			isa = PBXGroup;
+			children = (
+				8BFB17161F0BE5FC008A48C7 /* ChordsTimeLineView.h */,
+				8BFB17171F0BE5FC008A48C7 /* ChordsTimeLineView.m */,
+				8BFB171F1F0BE7EC008A48C7 /* ChordsTimeLineView.xib */,
+				8BFB170E1F0BC875008A48C7 /* Cell */,
+			);
+			path = ChordsTimelIneView;
+			sourceTree = "<group>";
+		};
+		8BFB17031F0B8DF3008A48C7 /* PlayerControlsView */ = {
+			isa = PBXGroup;
+			children = (
+				8BFB17041F0B8E25008A48C7 /* PlayerControlsView.h */,
+				8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */,
+				8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */,
+			);
+			path = PlayerControlsView;
+			sourceTree = "<group>";
+		};
+		8BFB170E1F0BC875008A48C7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8BFB170F1F0BC894008A48C7 /* ChordCollectionViewCell.h */,
+				8BFB17101F0BC894008A48C7 /* ChordCollectionViewCell.m */,
+				8BFB17121F0BDEC1008A48C7 /* ChordCollectionViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C2E7F2135872EE37F2A5CD7B /* Frameworks */ = {
@@ -510,15 +587,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */,
+				8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */,
 				8B1A94E81F039CCB00E18BB7 /* LaunchScreen.storyboard in Resources */,
 				8B1A94EA1F039E7500E18BB7 /* Melody.storyboard in Resources */,
 				8B0EC4131F04E4A400EE1489 /* Podfile in Resources */,
 				8B1A94EE1F039ED700E18BB7 /* Learn.storyboard in Resources */,
 				8B1A94F21F039EF300E18BB7 /* Tuner.storyboard in Resources */,
 				8B1A94F01F039EE500E18BB7 /* Settings.storyboard in Resources */,
+				8BFB17131F0BDEC1008A48C7 /* ChordCollectionViewCell.xib in Resources */,
 				8B1A94C91F0397B900E18BB7 /* Assets.xcassets in Resources */,
 				8B1A94EC1F039EBB00E18BB7 /* Main.storyboard in Resources */,
 				8B0EC42E1F050EFC00EE1489 /* GuitarNeckView.xib in Resources */,
+				8BFB17081F0B8EAE008A48C7 /* PlayerControlsView.xib in Resources */,
+				8BFB17201F0BE7EC008A48C7 /* ChordsTimeLineView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,10 +658,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B049C411F0A8364008BE4DC /* PlayYoutubeViewController.m in Sources */,
+				8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */,
 				8B0EC44F1F0548B100EE1489 /* BaseViewController.m in Sources */,
 				8B0EC4271F05080700EE1489 /* MelodyChordsViewController.m in Sources */,
+				8BFB17191F0BE5FC008A48C7 /* ChordsTimeLineView.m in Sources */,
 				8B0EC4241F04F6C900EE1489 /* NSMutableDictionary+Safe.m in Sources */,
 				8B0EC43A1F051A7E00EE1489 /* Chord.m in Sources */,
+				8BFB17061F0B8E25008A48C7 /* PlayerControlsView.m in Sources */,
 				8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */,
 				8B1A94DF1F039C0200E18BB7 /* MelodiesViewController.m in Sources */,
 				8B0EC43E1F0529C200EE1489 /* UIView+Activity.m in Sources */,
@@ -592,6 +677,7 @@
 				8B1A94BE1F0397B900E18BB7 /* main.m in Sources */,
 				8B0EC4481F05480800EE1489 /* MainTabBarController.m in Sources */,
 				8B0EC4231F04F6C900EE1489 /* NSMutableArray+Safe.m in Sources */,
+				8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */,
 				8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */,
 				8B1A94DC1F039BDF00E18BB7 /* LearnProgrammsViewController.m in Sources */,
 				8B0EC44B1F05485800EE1489 /* BaseNavigationController.m in Sources */,

@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -62,10 +61,10 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2C-av-HcD">
-                    <rect key="frame" x="207" y="3" width="242" height="242"/>
+                    <rect key="frame" x="339" y="3" width="30" height="242"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="z2C-av-HcD" secondAttribute="height" multiplier="1:1" id="yoc-eD-hfK"/>
+                        <constraint firstAttribute="width" constant="30" id="OQX-x5-IXF"/>
                     </constraints>
                 </view>
             </subviews>
@@ -99,7 +98,7 @@
                 <constraint firstItem="G5I-yy-Q0c" firstAttribute="height" secondItem="pz3-e2-pji" secondAttribute="height" id="noj-wn-JPf"/>
                 <constraint firstItem="YLb-8K-VnT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-53" id="pQR-Gm-wx9"/>
                 <constraint firstItem="YLb-8K-VnT" firstAttribute="width" secondItem="pz3-e2-pji" secondAttribute="width" id="yCW-u3-jdd"/>
-                <constraint firstAttribute="trailing" secondItem="z2C-av-HcD" secondAttribute="trailing" constant="-74" id="yvM-eM-p1p"/>
+                <constraint firstAttribute="trailing" secondItem="z2C-av-HcD" secondAttribute="trailing" constant="6" id="yvM-eM-p1p"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

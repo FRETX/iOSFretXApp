@@ -61,7 +61,7 @@
     [self layoutIfNeeded];
     float width = self.emojiImageView.frame.size.width - (ThubmImageInset*2);
     
-    if (progressViewStyle == ProgressViewStyleWide) {
+    if (progressViewStyle == ProgressViewStyleVertical) {
         
         self.progressThumbView.layer.borderWidth = 0;
         self.progressBGView.layer.borderWidth = 0;
@@ -78,19 +78,20 @@
         self.progressBGView.alpha = 0.f;
         
     } else if (progressViewStyle == ProgressViewStyleDefault) {
-
-//        self.progressThumbView.layer.borderWidth = 1;
-//        self.progressBGView.layer.borderWidth = 1;
-//        
-//        self.progressThumbView.layer.cornerRadius = 0;
-//        self.progressBGView.layer.cornerRadius = 0;
-//        
-//        self.progressThumbView.backgroundColor = [UIColor colorWithRed:102/255.f green:234/255.f blue:51/255.f alpha:1.0f];
-//        
-//        self.progessHeightConstraint.constant = DefaultStyleHeight;
+        
+        self.progressThumbView.layer.borderWidth = 1;
+        self.progressBGView.layer.borderWidth = 1;
+        
+        self.progressThumbView.layer.cornerRadius = 0;
+        self.progressBGView.layer.cornerRadius = 0;
+        
+        self.progressThumbView.backgroundColor = [UIColor clearColor];
+        self.progressBGView.backgroundColor = [UIColor colorWithRed:102/255.f green:234/255.f blue:51/255.f alpha:1.0f];
+        
+        self.progessBGHeightConstraint.constant = DefaultStyleHeight;
         
         self.emojiImageView.alpha = 1.f;
-        self.progressThumbView.alpha = 1.f;
+        self.progressBGView.alpha = 1.f;
     }
     self.style = progressViewStyle;
     [self layoutIfNeeded];
@@ -99,11 +100,6 @@
 - (void)showAnimation{
     
     static BOOL isAnimatingNow = NO;
-    
-//    if (isAnimatingNow) {
-//        UIView canc
-//        return;
-//    }
     
     //reset animation
     self.emojiImageView.alpha = 1.f;

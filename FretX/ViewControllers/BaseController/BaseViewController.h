@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define kOpenPlayYoutubeSegueID @"OpenPlayYoutubeSegue"
+#define kMelodyLessonSegue @"MelodyLessonSegue"
+
 @interface BaseViewController : UIViewController
 
 @end

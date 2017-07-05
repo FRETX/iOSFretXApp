@@ -64,7 +64,7 @@
     CGRect bounds = [self boundsFromContainer];//self.progressContainerView.bounds;
     [self.fretsProgressView setFrame:bounds];
     [self.progressContainerView addSubview:self.fretsProgressView];
-    [self.fretsProgressView setupStyle:ProgressViewStyleWide];
+    [self.fretsProgressView setupStyle:ProgressViewStyleVertical];
     
     [self rotateProgressView];
     
@@ -73,34 +73,23 @@
 }
 
 - (CGRect)boundsFromContainer{
-    
-    CGRect bounds = self.progressContainerView.bounds;
-    bounds.origin.x = 0;
-    bounds.origin.y = self.progressContainerView.frame.size.height/2 - 15;
-    bounds.size.width = self.progressContainerView.bounds.size.height;
-    bounds.size.height = 30;//self.progressContainerView.bounds.size.width;
+#warning TEST
+    CGRect bounds = CGRectMake(-self.progressContainerView.bounds.size.height/2 + self.progressContainerView.bounds.size.width/2,
+                               self.progressContainerView.bounds.size.height/2 - self.progressContainerView.bounds.size.width/2,
+                               self.progressContainerView.bounds.size.height,
+                               self.progressContainerView.bounds.size.width);
+//    CGRect bounds = self.progressContainerView.bounds;
+//    bounds.origin.x = 0;
+//    bounds.origin.y = self.progressContainerView.frame.size.height/2 - 15;
+//    bounds.size.width = self.progressContainerView.bounds.size.height;
+//    bounds.size.height = 30;//self.progressContainerView.bounds.size.width;
     return bounds;
 }
 
 - (void)rotateProgressView{
     
-//    CGFloat degreesOfRotation = -90.0;
-//    self.fretsProgressView.transform = CGAffineTransformRotate(self.fretsProgressView.transform,
-//                                             degreesOfRotation * M_PI/180.0);
-    
-//    CGFloat radians = atan2f(self.fretsProgressView.transform.b, self.fretsProgressView.transform.a);
-//    CGFloat degrees = radians * (180 / M_PI);
-//    CGAffineTransform transform = CGAffineTransformMakeRotation((90 + degrees) * M_PI/180);
-//    self.fretsProgressView.transform = transform;
-    
-//    self.fretsProgressView.transform = CGAffineTransformMakeRotation(M_PI_2);
-//    self.fretsProgressView.center = self.progressContainerView.center;
     self.fretsProgressView.transform = CGAffineTransformMakeRotation(M_PI / 2);
- 
-    
-//    CGRect frame = self.fretsProgressView.frame;
-//    frame.origin = CGPointMake(frame.size.height-30, 0);
-//    self.fretsProgressView.frame = frame;
+
 }
 
 #pragma mark - Public
@@ -111,15 +100,13 @@
         
         dotView.hidden = YES;
     }];
-    
-    NSLog(@" ");
+
     //set horizontal positions
     [chord.fingering enumerateObjectsUsingBlock:^(FingerPosition * _Nonnull fingerPos, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        
         [self layoutDotImageForString:fingerPos.string fret:fingerPos.fret];
     }];
-    NSLog(@" ");
+
     
     //adjust vertical
     for (int i = 1; i <= StringsCount; i++) {
@@ -165,7 +152,6 @@
         leftSpaing = leftSpaing - fretWidth/2;//- self.dotImageView.frame.size.width/2;
         leftSpaing = leftSpaing - self.fretImageView.frame.origin.x;
     }
-    NSLog(@"leftSpaing - %f",leftSpaing);
     return leftSpaing;
 }
 

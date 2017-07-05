@@ -125,12 +125,106 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="NlP-zO-puE" id="v5B-VY-sfF"/>
-                        <segue destination="euD-ck-oRZ" kind="push" identifier="MelodyLessonSegue" id="FU1-SE-y04"/>
+                        <segue destination="euD-ck-oRZ" kind="show" identifier="MelodyLessonSegue" id="FU1-SE-y04"/>
+                        <segue destination="DdI-8i-BfS" kind="show" identifier="OpenPlayYoutubeSegue" id="wcZ-Ye-55C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138.40000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="-68" y="138"/>
+        </scene>
+        <!--Play Youtube View Controller-->
+        <scene sceneID="Pdb-Ex-37J">
+            <objects>
+                <viewController id="DdI-8i-BfS" customClass="PlayYoutubeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JTe-ui-SWC"/>
+                        <viewControllerLayoutGuide type="bottom" id="PVP-1t-O9Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cdO-dW-LHl">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjc-Me-1sL" userLabel="SongTitleLabel">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Hjc-Me-1sL" secondAttribute="height" multiplier="320:21" id="irR-q6-tm8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KR1-CU-Zy1" userLabel="FretsContainerView">
+                                <rect key="frame" x="5" y="130" width="311" height="158"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KR1-CU-Zy1" secondAttribute="height" multiplier="311:158" id="WXF-1G-d0d"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cf6-19-llv" userLabel="YTPlayerView" customClass="YTPlayerView">
+                                <rect key="frame" x="65" y="21" width="190" height="107"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Cf6-19-llv" secondAttribute="height" multiplier="190:107" id="e2Q-M3-TTO"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIY-ck-BJU" userLabel="ControlsView">
+                                <rect key="frame" x="0.0" y="288" width="320" height="45"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="gRw-Jj-FlO"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTN-p9-hdy">
+                                <rect key="frame" x="0.0" y="343" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9Eo-Zk-R15"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYM-sN-HQ5">
+                                <rect key="frame" x="7" y="401" width="313" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="q1w-dO-mlv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Cf6-19-llv" firstAttribute="top" secondItem="Hjc-Me-1sL" secondAttribute="bottom" id="66b-9Z-mQi"/>
+                            <constraint firstItem="Hjc-Me-1sL" firstAttribute="top" secondItem="JTe-ui-SWC" secondAttribute="bottom" id="8w2-tU-1IT"/>
+                            <constraint firstItem="PYM-sN-HQ5" firstAttribute="top" secondItem="jTN-p9-hdy" secondAttribute="bottom" constant="8" id="LEq-Cz-gWY"/>
+                            <constraint firstAttribute="trailing" secondItem="Cf6-19-llv" secondAttribute="trailing" constant="65" id="MMq-IP-hwB"/>
+                            <constraint firstItem="KR1-CU-Zy1" firstAttribute="leading" secondItem="cdO-dW-LHl" secondAttribute="leading" constant="5" id="Q3I-cx-sOc"/>
+                            <constraint firstItem="jTN-p9-hdy" firstAttribute="leading" secondItem="cdO-dW-LHl" secondAttribute="leading" id="WxD-bW-TxY"/>
+                            <constraint firstAttribute="trailing" secondItem="jTN-p9-hdy" secondAttribute="trailing" id="YIR-NX-p1V"/>
+                            <constraint firstAttribute="trailing" secondItem="KR1-CU-Zy1" secondAttribute="trailing" constant="4" id="aQy-5d-k9r"/>
+                            <constraint firstItem="KR1-CU-Zy1" firstAttribute="top" secondItem="Cf6-19-llv" secondAttribute="bottom" constant="2" id="cAR-mX-Q2N"/>
+                            <constraint firstItem="yIY-ck-BJU" firstAttribute="leading" secondItem="cdO-dW-LHl" secondAttribute="leading" id="ftZ-gz-ZG2"/>
+                            <constraint firstItem="jTN-p9-hdy" firstAttribute="top" secondItem="yIY-ck-BJU" secondAttribute="bottom" constant="10" id="hy8-4P-jOv"/>
+                            <constraint firstAttribute="trailing" secondItem="Hjc-Me-1sL" secondAttribute="trailing" id="nBl-1r-sgU"/>
+                            <constraint firstItem="PYM-sN-HQ5" firstAttribute="leading" secondItem="cdO-dW-LHl" secondAttribute="leading" constant="7" id="nzh-h1-6UQ"/>
+                            <constraint firstItem="Hjc-Me-1sL" firstAttribute="leading" secondItem="cdO-dW-LHl" secondAttribute="leading" id="p8k-1R-Dna"/>
+                            <constraint firstItem="yIY-ck-BJU" firstAttribute="top" secondItem="KR1-CU-Zy1" secondAttribute="bottom" id="pKi-VV-qLy"/>
+                            <constraint firstItem="Cf6-19-llv" firstAttribute="leading" secondItem="cdO-dW-LHl" secondAttribute="leading" constant="65" id="qDT-N8-nrO"/>
+                            <constraint firstAttribute="trailing" secondItem="yIY-ck-BJU" secondAttribute="trailing" id="xjw-Zh-uED"/>
+                            <constraint firstAttribute="trailing" secondItem="PYM-sN-HQ5" secondAttribute="trailing" id="zqz-fm-OL1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="controlsContainerView" destination="yIY-ck-BJU" id="atF-lQ-uDt"/>
+                        <outlet property="fretsContainerView" destination="KR1-CU-Zy1" id="w3g-UO-0W2"/>
+                        <outlet property="playerView" destination="Cf6-19-llv" id="Lkv-zt-41a"/>
+                        <outlet property="songFullNameLabel" destination="Hjc-Me-1sL" id="8Kg-re-vn3"/>
+                        <outlet property="testChordNameLabel" destination="PYM-sN-HQ5" id="tjh-vA-aBC"/>
+                        <outlet property="timeLineContainerView" destination="jTN-p9-hdy" id="Ed7-dI-7hP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CrQ-hy-hxx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1177.5" y="-298.94366197183098"/>
         </scene>
         <!--Melody Chords View Controller-->
         <scene sceneID="rxP-mJ-rRg">
@@ -158,12 +252,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sB8-pZ-SIG" secondAttribute="height" multiplier="155:28" id="Wi1-8c-16b"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USK-h0-kIn">
-                                <rect key="frame" x="254" y="32" width="47" height="21"/>
+                                <rect key="frame" x="254" y="30.5" width="47" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="IQo-xp-I5a"/>
                                     <constraint firstAttribute="width" constant="47" id="NeT-TQ-nhn"/>
@@ -188,6 +282,9 @@
                                 <state key="normal" title="Play">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onPlayYoutubeButton:" destination="euD-ck-oRZ" eventType="touchUpInside" id="AaK-Vb-Uh1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BjG-8h-84L">
                                 <rect key="frame" x="170.5" y="399" width="145.5" height="49"/>
@@ -251,7 +348,7 @@
                                 <rect key="frame" x="11" y="220" width="297" height="47"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="XLF-tq-CQ4"/>
+                                    <constraint firstAttribute="width" secondItem="Za5-oT-aXL" secondAttribute="height" multiplier="297:47" id="gqD-9I-5ED"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -269,6 +366,7 @@
                             <constraint firstAttribute="trailing" secondItem="Za5-oT-aXL" secondAttribute="trailing" constant="12" id="KV0-B8-KwP"/>
                             <constraint firstAttribute="trailing" secondItem="HWD-of-LCd" secondAttribute="trailing" constant="5" id="NDs-od-Iab"/>
                             <constraint firstItem="BjG-8h-84L" firstAttribute="width" secondItem="678-6a-Bvz" secondAttribute="width" id="OR4-mD-O0m"/>
+                            <constraint firstItem="USK-h0-kIn" firstAttribute="centerY" secondItem="sB8-pZ-SIG" secondAttribute="centerY" id="QtP-n9-fsz"/>
                             <constraint firstItem="USK-h0-kIn" firstAttribute="leading" secondItem="sB8-pZ-SIG" secondAttribute="trailing" constant="16.5" id="Sua-KX-SKQ"/>
                             <constraint firstItem="Uqq-2X-4E4" firstAttribute="centerX" secondItem="ur9-Pk-tH4" secondAttribute="centerX" id="TPP-E3-pHM"/>
                             <constraint firstItem="HWD-of-LCd" firstAttribute="leading" secondItem="ur9-Pk-tH4" secondAttribute="leading" constant="5" id="UJt-i6-bUU"/>
@@ -287,7 +385,6 @@
                             <constraint firstAttribute="trailing" secondItem="BjG-8h-84L" secondAttribute="trailing" constant="4" id="wgW-F1-gBr"/>
                             <constraint firstItem="Za5-oT-aXL" firstAttribute="leading" secondItem="ur9-Pk-tH4" secondAttribute="leading" constant="11" id="wy1-6Z-kym"/>
                             <constraint firstItem="HWD-of-LCd" firstAttribute="top" secondItem="lh1-cW-qQ3" secondAttribute="bottom" constant="3" id="yX3-Iz-y1d"/>
-                            <constraint firstItem="USK-h0-kIn" firstAttribute="top" secondItem="u0a-wv-jy6" secondAttribute="bottom" constant="8" id="zwk-7Q-3wC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vXJ-Yu-DA5">
@@ -296,14 +393,15 @@
                     <connections>
                         <outlet property="currentChordLabel" destination="sB8-pZ-SIG" id="U37-KE-yga"/>
                         <outlet property="fretsContainerView" destination="2ct-gd-P7V" id="tEV-LT-dSB"/>
-                        <outlet property="melodyFullNameLabel" destination="u0a-wv-jy6" id="kc9-tB-WlE"/>
                         <outlet property="nextChordLabel" destination="USK-h0-kIn" id="BPq-Ld-WxV"/>
                         <outlet property="progressContainerView" destination="Za5-oT-aXL" id="10X-WK-YSe"/>
+                        <outlet property="songFullNameLabel" destination="u0a-wv-jy6" id="LvL-2M-bQI"/>
+                        <segue destination="DdI-8i-BfS" kind="show" identifier="OpenPlayYoutubeSegue" id="Z0q-Lw-ghv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGT-1S-7qY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013.6" y="138.98050974512745"/>
+            <point key="canvasLocation" x="1069" y="557"/>
         </scene>
     </scenes>
     <resources>
@@ -313,4 +411,7 @@
         <image name="TabIconMelodies" width="36" height="36"/>
         <image name="TabIconMelodiesBlack" width="36" height="36"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Z0q-Lw-ghv"/>
+    </inferredMetricsTieBreakers>
 </document>

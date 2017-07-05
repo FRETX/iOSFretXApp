@@ -10,7 +10,7 @@
 
 typedef enum{
     ProgressViewStyleDefault,
-    ProgressViewStyleWide
+    ProgressViewStyleVertical
 }ProgressViewStyle;
 
 @interface FretsProgressView : UIView

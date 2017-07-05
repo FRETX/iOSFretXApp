@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NvS-6L-Emt" customClass="PlayerControlsView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LDJ-hp-Iiq" userLabel="PlayerControlsView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acf-8V-VyR" userLabel="PlayButton">
+                            <rect key="frame" x="0.0" y="0.0" width="53" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="53" id="u2m-oE-0qV"/>
+                            </constraints>
+                            <state key="normal" image="PlayButtonIcon"/>
+                            <connections>
+                                <action selector="onPlayerButton:" destination="NvS-6L-Emt" eventType="touchUpInside" id="ds4-Rb-pmv"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="myI-5n-f11" userLabel="TimLineView">
+                            <rect key="frame" x="53" y="0.0" width="322" height="45"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phF-Hf-S1g">
+                                    <rect key="frame" x="8" y="12.5" width="36" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="28y-vE-A7N"/>
+                                        <constraint firstAttribute="width" constant="36" id="odZ-hk-VZx"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G18-KE-LPe">
+                                    <rect key="frame" x="278" y="12.5" width="36" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="36" id="0yo-NL-2Jl"/>
+                                        <constraint firstAttribute="height" constant="20" id="XqW-6e-a9e"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="MoZ-TA-IUN">
+                                    <rect key="frame" x="50" y="7" width="222" height="31"/>
+                                    <color key="tintColor" red="0.91067708329999997" green="0.27007575760000002" blue="0.20886600380000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="gRI-37-wfJ"/>
+                                    </constraints>
+                                    <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </slider>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="MoZ-TA-IUN" firstAttribute="centerY" secondItem="myI-5n-f11" secondAttribute="centerY" id="2MI-Of-sqq"/>
+                                <constraint firstItem="MoZ-TA-IUN" firstAttribute="leading" secondItem="phF-Hf-S1g" secondAttribute="trailing" constant="8" id="9Mw-Jx-pBj"/>
+                                <constraint firstItem="phF-Hf-S1g" firstAttribute="centerY" secondItem="myI-5n-f11" secondAttribute="centerY" id="AqE-1p-x4p"/>
+                                <constraint firstAttribute="trailing" secondItem="G18-KE-LPe" secondAttribute="trailing" constant="8" id="bBR-jO-xxa"/>
+                                <constraint firstItem="phF-Hf-S1g" firstAttribute="leading" secondItem="myI-5n-f11" secondAttribute="leading" constant="8" id="gMi-67-BOJ"/>
+                                <constraint firstItem="G18-KE-LPe" firstAttribute="centerY" secondItem="myI-5n-f11" secondAttribute="centerY" id="iCR-Bx-ZjA"/>
+                                <constraint firstItem="G18-KE-LPe" firstAttribute="leading" secondItem="MoZ-TA-IUN" secondAttribute="trailing" constant="8" id="sns-Yt-LEq"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="acf-8V-VyR" firstAttribute="leading" secondItem="LDJ-hp-Iiq" secondAttribute="leading" id="0KJ-Jp-bDQ"/>
+                        <constraint firstItem="myI-5n-f11" firstAttribute="leading" secondItem="acf-8V-VyR" secondAttribute="trailing" id="70Z-RA-3eY"/>
+                        <constraint firstItem="myI-5n-f11" firstAttribute="top" secondItem="LDJ-hp-Iiq" secondAttribute="top" id="7sA-BQ-aCV"/>
+                        <constraint firstAttribute="bottom" secondItem="acf-8V-VyR" secondAttribute="bottom" id="D9J-0A-gJX"/>
+                        <constraint firstItem="acf-8V-VyR" firstAttribute="top" secondItem="LDJ-hp-Iiq" secondAttribute="top" id="Hyc-3x-aql"/>
+                        <constraint firstAttribute="bottom" secondItem="myI-5n-f11" secondAttribute="bottom" id="eyY-ea-7Mq"/>
+                        <constraint firstAttribute="trailing" secondItem="myI-5n-f11" secondAttribute="trailing" id="hHJ-or-pUF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="LDJ-hp-Iiq" secondAttribute="trailing" id="cAa-r4-C31"/>
+                <constraint firstItem="LDJ-hp-Iiq" firstAttribute="top" secondItem="NvS-6L-Emt" secondAttribute="top" id="qH4-Zj-TYb"/>
+                <constraint firstItem="LDJ-hp-Iiq" firstAttribute="leading" secondItem="NvS-6L-Emt" secondAttribute="leading" id="qYO-Z4-Q9e"/>
+                <constraint firstAttribute="bottom" secondItem="LDJ-hp-Iiq" secondAttribute="bottom" id="tXc-Qa-yGj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="playerButton" destination="acf-8V-VyR" id="s57-sD-N8B"/>
+                <outlet property="timeLeftLabel" destination="G18-KE-LPe" id="nXF-ux-pKa"/>
+                <outlet property="timeLineSlider" destination="MoZ-TA-IUN" id="esp-Xh-r6C"/>
+                <outlet property="timePassedLabel" destination="phF-Hf-S1g" id="FL1-Us-4AE"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="PlayButtonIcon" width="48" height="48"/>
+    </resources>
+</document>

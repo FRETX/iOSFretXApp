@@ -9,13 +9,12 @@
 #import "MelodiesViewController.h"
 
 #import "MelodyChordsViewController.h"
+#import "PlayYoutubeViewController.h"
 #import "MelodyTableCell.h"
 #import "UIView+Activity.h"
 #import "RequestManager.h"
 #import "Lesson.h"
 #import "Melody.h"
-
-#define kMelodyLessonSegue @"MelodyLessonSegue"
 
 @interface MelodiesViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -54,6 +53,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
+    //open chords lesson
     if ([segue.identifier isEqualToString:kMelodyLessonSegue]) {
         
         if (self.mellodyLesson) {
@@ -61,6 +61,13 @@
             [chordsViewController setupLesson:self.mellodyLesson];
             self.mellodyLesson = nil;
         }
+    }
+    
+    //open chords video lesson
+    if ([segue.identifier isEqualToString:kOpenPlayYoutubeSegueID]) {
+        
+        PlayYoutubeViewController* playYoutubeController = segue.destinationViewController;
+        [playYoutubeController setupLesson:self.mellodyLesson];
     }
 }
 

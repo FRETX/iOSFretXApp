@@ -7,5 +7,5 @@ target 'FretX' do
 
   # Pods for FretX
     pod 'AFNetworking', '~> 3.0'
-
+    pod 'youtube-ios-player-helper', '~> 0.1.4'
 end
