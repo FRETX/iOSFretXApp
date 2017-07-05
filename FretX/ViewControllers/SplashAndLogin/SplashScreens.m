@@ -49,7 +49,7 @@
     NSString *uid = [[[FIRAuth auth] currentUser] uid];
     NSString *user_name = [[[FIRAuth auth] currentUser] email];
     
-    if (user_name == nil) {
+    if (uid == nil) {
         [Intercom reset];
         [self gotoLogin];
     } else
