@@ -13,6 +13,8 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+#import "AdditionalControlsView.h"
+#import "VideoEditor.h"
 #import "ChordsTimeLineView.h"
 #import "PlayerControlsView.h"
 #import "GuitarNeckView.h"
@@ -21,27 +23,29 @@
 #import "Lesson.h"
 #import "Chord.h"
 
-@interface PlayYoutubeViewController () <YTPlayerViewDelegate, PlayerControlsViewDelegate>
+@interface PlayYoutubeViewController () <YTPlayerViewDelegate, PlayerControlsViewDelegate, AdditionalControlsViewDelegate, VideoEditorDelegate>
 
 //ui
-@property (nonatomic, weak) IBOutlet UIView* controlsContainerView;
-
 @property (nonatomic, weak) IBOutlet UILabel* songFullNameLabel;
 @property (nonatomic, weak) IBOutlet UIView* fretsContainerView;
 @property (nonatomic, weak) GuitarNeckView* guitarNeckView;
+@property (nonatomic, weak) IBOutlet UIView* controlsContainerView;
 @property (nonatomic, weak) PlayerControlsView* playerControlsView;
 @property(nonatomic, strong) IBOutlet YTPlayerView *playerView;
 @property (nonatomic, weak) IBOutlet UIView* timeLineContainerView;
 @property (nonatomic, weak) ChordsTimeLineView* timeLineView;
+@property (nonatomic, weak) IBOutlet UIView* additionalControlsContainerView;
+@property (nonatomic, weak) AdditionalControlsView* additionalControlsView;
 
+@property (weak) IBOutlet NSLayoutConstraint* additionalControlsBottomConstraint;
 
 @property (nonatomic, weak) IBOutlet UILabel* testChordNameLabel;
 
 //Data
 @property (strong, nonatomic) Lesson* lesson;
 @property (strong) Chord* currentChord;
-
 @property (nonatomic, strong) NSTimer* timer;
+@property (strong) VideoEditor* videoEditor;
 
 //@property (strong) AVPlayer* player;
 
@@ -57,7 +61,7 @@
                                              selector:@selector(applicationWillResignActive:)
                                                  name:UIApplicationWillResignActiveNotification
                                                object:nil];
-    
+    self.videoEditor = [VideoEditor initWithDelegate:self];
     [self layout];
 }
 
@@ -114,9 +118,23 @@
     [self.playerView stopVideo];
 }
 
+- (void)playFromTime:(float)time{
+#warning TEST
+    [self.playerView pauseVideo];
+    [self.playerView seekToSeconds:time allowSeekAhead:YES];
+    [self resumeSongVideo];
+    
+}
+
 #pragma mark - Update all controls
 
 - (void)layoutStartPlayingVideoLesson{
+    
+#warning TEST
+    Chord* nextChord = [self.lesson chordClosestToTime:self.playerView.currentTime*1000];
+    [self layoutChord:nextChord];
+    
+
     [self.timeLineView move];
     [self startChordsTimer];
     [self.playerControlsView setupState:ControlsStatePlaying];
@@ -136,11 +154,13 @@
     [self addChordsTimeLineView];
     [self addFretBoard];
     [self addControlsView];
+    [self addAdditionalControlsView];
 
     [self layoutLesson:self.lesson];
     
     [self setupPlayerView];
     
+    [self hideAdditionalControlsAnimated:NO];
 }
 
 - (void)layoutLesson:(Lesson*)lesson{
@@ -206,6 +226,23 @@
     [self.view layoutIfNeeded];
 }
 
+- (void)addAdditionalControlsView{
+    
+    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"AdditionalControlsView"
+                                                      owner:self
+                                                    options:nil];
+    
+    self.additionalControlsView = [nibViews firstObject];
+    CGRect bounds = self.additionalControlsContainerView.bounds;
+    [self.additionalControlsView setFrame:bounds];
+    [self.additionalControlsContainerView addSubview:self.additionalControlsView];
+    
+    self.additionalControlsView.delegate = self;
+    [self.additionalControlsView layoutLoop:self.videoEditor.loop];
+    
+    [self.view layoutIfNeeded];
+}
+
 #pragma mark -
 
 - (void)setupPlayerView{
@@ -223,6 +260,27 @@
     
     NSString* videoID = self.lesson.youtubeVideoId;
     [self.playerView loadWithVideoId:videoID playerVars:playerParams];//@"M7lc1UVf-VE"
+}
+
+
+- (void)showAdditionalControlsAnimated:(BOOL)animated{
+    
+    float duration = animated ? 0.25 : 0.f;
+    self.additionalControlsBottomConstraint.constant = 0.f;
+    [UIView animateWithDuration:duration animations:^{
+        
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)hideAdditionalControlsAnimated:(BOOL)animated{
+    
+    float duration = animated ? 0.25 : 0.f;
+    self.additionalControlsBottomConstraint.constant = -self.additionalControlsContainerView.frame.size.height + 27.f;
+    [UIView animateWithDuration:duration animations:^{
+        
+        [self.view layoutIfNeeded];
+    }];
 }
 
 #pragma mark - Timer
@@ -246,9 +304,15 @@
     
     float currentTime = self.playerView.currentTime * 1000;
     if (self.currentChord.timeMs <= 0 || self.currentChord.timeMs <= currentTime ) {
-        Chord* nextChord = [self.lesson chordNextToChord:self.currentChord];
-        if (nextChord)
-            [self layoutChord:nextChord];
+        
+        Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
+        [self layoutChord:nextChord];
+//        NSLog(@"nextChord = %@",nextChord);
+        
+#warning TEST
+//        Chord* nextChord = [self.lesson chordNextToChord:self.currentChord];
+//        if (nextChord)
+//            [self layoutChord:nextChord];
         
 //        NSLog(@"didPlayTime = %f", currentTime);
     }
@@ -266,6 +330,11 @@
     }
 }
 
+- (void)didSeekNewTimePosition:(float)newTime{
+    
+    [self playFromTime:newTime/1000];
+}
+
 #pragma mark - YTPlayerViewDelegate
 
 - (void)playerViewDidBecomeReady:(nonnull YTPlayerView *)playerView{
@@ -281,6 +350,7 @@
 //    NSLog(@"didPlayTime");
 //    NSLog(@"didPlayTime = %f", playTime);
     [self.playerControlsView setupCurrentTime:playTime*1000];
+    [self.videoEditor setCurrentPlayerTime:playTime*1000];
 }
 
 - (void)playerView:(nonnull YTPlayerView *)playerView didChangeToState:(YTPlayerState)state{
@@ -346,6 +416,56 @@
             break;
     }
     NSLog(@"PlayerError = %@",strError);
+}
+
+#pragma mark - VideoEditorDelegate
+
+- (void)didCancelCutVideoEditor:(VideoEditor*)videoEditor{
+    [self.additionalControlsView deselectTimePointsButtons];
+}
+
+- (void)didDetectInvalidCutVideoEditor:(VideoEditor*)videoEditor{
+    [self.additionalControlsView deselectTimePointsButtons];
+}
+
+- (void)didReachedEndingTimePointVideoEditor:(VideoEditor*)videoEditor{
+    
+    float startTimePoint = videoEditor.pointA / 1000;
+    [self playFromTime:startTimePoint];
+    
+}
+
+#pragma mark - AdditionalControlsViewDelegate
+
+- (void)didTapCollapseAdditionalControls:(AdditionalControlsView*)additionalControlsView{
+    
+    [self hideAdditionalControlsAnimated:YES];
+}
+
+- (void)didTapExpandAdditionalControls:(AdditionalControlsView*)additionalControlsView{
+    
+    [self showAdditionalControlsAnimated:YES];
+}
+
+- (void)didTapLoopAdditionalControls:(AdditionalControlsView*)additionalControlsView{
+    
+    BOOL loop = self.videoEditor.loop;
+    [self.videoEditor setLoop:!loop];
+}
+
+- (void)additionalControls:(AdditionalControlsView*)additionalControlsView didTapCutPoint:(CutPoint)cutPoint{
+    
+    float miliseconds = self.playerView.currentTime*1000;
+    if (cutPoint == CutPointA) {
+        [self.videoEditor setupTimePointA:miliseconds];
+    } else{
+        [self.videoEditor setupTimePointB:miliseconds];
+    }
+}
+
+- (void)additionalControls:(AdditionalControlsView*)additionalControlsView didTapTimeDelay:(TimeDelay)timeDelay{
+    
+    
 }
 
 #pragma mark - Notifications

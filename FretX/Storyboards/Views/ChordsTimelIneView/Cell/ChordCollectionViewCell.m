@@ -19,7 +19,7 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     
-    self.roundedView.layer.cornerRadius = self.roundedView.frame.size.width/2;
+    self.roundedView.layer.cornerRadius = self.roundedView.frame.size.height/2;
     self.roundedView.layer.borderWidth = 5.f;
     self.roundedView.layer.borderColor = [UIColor whiteColor].CGColor;
 }

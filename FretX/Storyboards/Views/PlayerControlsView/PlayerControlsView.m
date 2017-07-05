@@ -123,6 +123,14 @@
 
 #pragma mark - Actions
 
+- (IBAction)onChangeValueTimeSlider:(UISlider*)sender{
+    
+    float newTimePositionMs = sender.value * self.duration;
+    if ([self.delegate respondsToSelector:@selector(didSeekNewTimePosition:)]) {
+        [self.delegate didSeekNewTimePosition:newTimePositionMs];
+    }
+}
+
 - (IBAction)onPlayerButton:(UIButton*)sender{
     if ([self.delegate respondsToSelector:@selector(didTapPlayerButton)]) {
         [self.delegate didTapPlayerButton];

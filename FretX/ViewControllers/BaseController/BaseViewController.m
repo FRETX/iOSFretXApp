@@ -63,6 +63,13 @@
     self.navigationItem.leftBarButtonItem = backItem;
 }
 
+#pragma mark - Override
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return UIStatusBarStyleLightContent;
+}
+
 #pragma mark - Actions
 
 - (void)onBackButton:(id)sender{

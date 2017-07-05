@@ -25,5 +25,5 @@
 - (void)setValuesWithInfo:(NSDictionary*)info;
 
 - (Chord*)chordNextToChord:(Chord*)chord;
-
+- (Chord*)chordClosestToTime:(float)time;
 @end

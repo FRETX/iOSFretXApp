@@ -69,4 +69,10 @@
     self.fingering = [NSArray arrayWithArray:mutResult];
 }
 
+- (NSString*)description{
+    
+    NSString* description = [NSString stringWithFormat:@"%@. %@",[super description], self.chordName];
+    return description;
+}
+
 @end

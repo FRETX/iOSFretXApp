@@ -53,6 +53,7 @@
 		8B41D7421F066F50004EAFB7 /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */; };
 		8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */; };
+		8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */; };
 		8BFB17061F0B8E25008A48C7 /* PlayerControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */; };
 		8BFB17081F0B8EAE008A48C7 /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */; };
 		8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17101F0BC894008A48C7 /* ChordCollectionViewCell.m */; };
@@ -141,6 +142,8 @@
 		8B8F05A81F0CD5FD00BAADAC /* AdditionalControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalControlsView.h; sourceTree = "<group>"; };
 		8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalControlsView.m; sourceTree = "<group>"; };
 		8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdditionalControlsView.xib; sourceTree = "<group>"; };
+		8B8F05AE1F0D131A00BAADAC /* VideoEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoEditor.h; sourceTree = "<group>"; };
+		8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoEditor.m; sourceTree = "<group>"; };
 		8BFB17041F0B8E25008A48C7 /* PlayerControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControlsView.h; sourceTree = "<group>"; };
 		8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlsView.m; sourceTree = "<group>"; };
 		8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -426,6 +429,7 @@
 		8B1A94D31F039B4500E18BB7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8B8F05AD1F0D12E800BAADAC /* VideoEditor */,
 				8B0EC40D1F04E10500EE1489 /* Managers */,
 				8B1A94F71F03D2C300E18BB7 /* Objects */,
 			);
@@ -435,8 +439,8 @@
 		8B1A94D51F039B4500E18BB7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				6CD1BF4C1F0A86D8000D8819 /* SplashAndLogin */,
 				8B0EC44C1F05487900EE1489 /* BaseController */,
+				6CD1BF4C1F0A86D8000D8819 /* SplashAndLogin */,
 				8B1A94D71F039B4500E18BB7 /* Melodies */,
 				8B1A94D61F039B4500E18BB7 /* LearnProgramms */,
 				8B1A94D81F039B4500E18BB7 /* Settings */,
@@ -525,6 +529,15 @@
 			path = AdditionalControlsView;
 			sourceTree = "<group>";
 		};
+		8B8F05AD1F0D12E800BAADAC /* VideoEditor */ = {
+			isa = PBXGroup;
+			children = (
+				8B8F05AE1F0D131A00BAADAC /* VideoEditor.h */,
+				8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */,
+			);
+			path = VideoEditor;
+			sourceTree = "<group>";
+		};
 		8BFB17021F0B8DF3008A48C7 /* ChordsTimelIneView */ = {
 			isa = PBXGroup;
 			children = (
@@ -608,7 +621,7 @@
 				TargetAttributes = {
 					8B1A94B81F0397B900E18BB7 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = QL6GXXKKF4;
+						DevelopmentTeam = 32NXMZVVF5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -729,6 +742,7 @@
 				8B0EC4221F04F6C900EE1489 /* NSDictionary+Safe.m in Sources */,
 				8B1A94C11F0397B900E18BB7 /* AppDelegate.m in Sources */,
 				8B0EC42C1F0509ED00EE1489 /* GuitarNeckView.m in Sources */,
+				8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */,
 				6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */,
 				8B1A94BE1F0397B900E18BB7 /* main.m in Sources */,
 				8B0EC4481F05480800EE1489 /* MainTabBarController.m in Sources */,
@@ -858,7 +872,7 @@
 			baseConfigurationReference = DEFEB05092ADAB09FF940464 /* Pods-FretX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QL6GXXKKF4;
+				DEVELOPMENT_TEAM = 32NXMZVVF5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",
@@ -877,7 +891,7 @@
 			baseConfigurationReference = 7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QL6GXXKKF4;
+				DEVELOPMENT_TEAM = 32NXMZVVF5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",

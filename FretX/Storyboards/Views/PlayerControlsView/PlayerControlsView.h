@@ -17,6 +17,8 @@ typedef enum{
 
 - (void)didTapPlayerButton;
 
+- (void)didSeekNewTimePosition:(float)newTime;
+
 @end
 
 @interface PlayerControlsView : UIView

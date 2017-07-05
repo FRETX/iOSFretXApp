@@ -152,7 +152,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     float width = [self chordViewWidthForIndex:indexPath.row];
-    return CGSizeMake(width, 50);
+    return CGSizeMake(width, self.frame.size.height);
 }
 
 
