@@ -53,7 +53,7 @@
         <scene sceneID="ljc-y2-DaC">
             <objects>
                 <navigationController id="c32-Gp-nWP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cNU-Ry-UfM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cNU-Ry-UfM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

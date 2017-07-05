@@ -10,6 +10,7 @@
 #import "MainTabBarController.h"
 #import "UIViewController+Alerts.h"
 #import "LoginActivity.h"
+#import <Intercom/Intercom.h>
 @import Firebase;
 
 @interface SplashScreens ()
@@ -25,7 +26,7 @@
     // Do any additional setup after loading the view.
     dbRef = [[FIRDatabase database] reference];
     [self.navigationController setNavigationBarHidden:YES];
-    double delayInSeconds = 2.5;
+    double delayInSeconds = 2;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         
@@ -42,13 +43,16 @@
 
 - (void) checkUser
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *currentUid = [defaults objectForKey: @"uid"];
+//    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *currentUid = [defaults objectForKey: @"uid"];
     NSString *uid = [[[FIRAuth auth] currentUser] uid];
+    NSString *user_name = [[[FIRAuth auth] currentUser] email];
     
-    if (currentUid == nil) {
+    if (user_name == nil) {
+        [Intercom reset];
         [self gotoLogin];
-    } else if ([currentUid isEqualToString: uid])
+    } else
     {
         [self gotoMain];
     }

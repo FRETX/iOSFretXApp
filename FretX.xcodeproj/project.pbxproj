@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		335F36C14EDF58C27D68420D /* Pods_FretX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812D127868654BE666A0B042 /* Pods_FretX.framework */; };
+		6CC818AA1F0C4820009AC29E /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC818A91F0C4820009AC29E /* Intercom.framework */; };
+		6CC818AB1F0C483A009AC29E /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC818A91F0C4820009AC29E /* Intercom.framework */; };
+		6CC818AC1F0C483A009AC29E /* Intercom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC818A91F0C4820009AC29E /* Intercom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CD1BF411F0A7A7F000D8819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD1BF3D1F0A7A7F000D8819 /* GoogleService-Info.plist */; };
 		6CD1BF421F0A7A7F000D8819 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD1BF3E1F0A7A7F000D8819 /* Roboto-Italic.ttf */; };
 		6CD1BF431F0A7A7F000D8819 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD1BF3F1F0A7A7F000D8819 /* Roboto-Medium.ttf */; };
@@ -49,7 +52,22 @@
 		8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94F51F03D02000E18BB7 /* MelodyTableCell.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6CC818AD1F0C483A009AC29E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6CC818AC1F0C483A009AC29E /* Intercom.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		6CC818A91F0C4820009AC29E /* Intercom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intercom.framework; path = FretX/Framework/Intercom.framework; sourceTree = "<group>"; };
 		6CD1BF3D1F0A7A7F000D8819 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6CD1BF3E1F0A7A7F000D8819 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		6CD1BF3F1F0A7A7F000D8819 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -128,6 +146,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				335F36C14EDF58C27D68420D /* Pods_FretX.framework in Frameworks */,
+				6CC818AA1F0C4820009AC29E /* Intercom.framework in Frameworks */,
+				6CC818AB1F0C483A009AC29E /* Intercom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +481,7 @@
 		C2E7F2135872EE37F2A5CD7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6CC818A91F0C4820009AC29E /* Intercom.framework */,
 				812D127868654BE666A0B042 /* Pods_FretX.framework */,
 			);
 			name = Frameworks;
@@ -488,6 +509,7 @@
 				8B1A94B71F0397B900E18BB7 /* Resources */,
 				6A1E31B6CD2B6B34BFBB8AC1 /* [CP] Embed Pods Frameworks */,
 				8F8A1A49A1CA2C2C7CAE6AA9 /* [CP] Copy Pods Resources */,
+				6CC818AD1F0C483A009AC29E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -752,6 +774,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",
+					"$(PROJECT_DIR)/FretX/Framework",
 				);
 				INFOPLIST_FILE = FretX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -770,6 +793,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",
+					"$(PROJECT_DIR)/FretX/Framework",
 				);
 				INFOPLIST_FILE = FretX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
