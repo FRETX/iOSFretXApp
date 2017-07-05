@@ -7,5 +7,15 @@ target 'FretX' do
 
   # Pods for FretX
     pod 'AFNetworking', '~> 3.0'
+     pod 'Firebase/Core'
+     pod 'Firebase/Auth'
+     pod 'Firebase/Database'
+     pod 'GoogleSignIn'
+     
+     # Pods for Facebook
+     pod 'Bolts'
+     pod 'FBSDKCoreKit'
+     pod 'FBSDKLoginKit'
+     pod 'MBProgressHUD'
     pod 'youtube-ios-player-helper', '~> 0.1.4'
 end
