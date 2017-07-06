@@ -51,11 +51,14 @@ typedef enum{
     // default values Handedness=right , skill level=beginner , guitar type=classical
     currentUID =[[[FIRAuth auth]currentUser]uid];
     dbRef = [[[[[FIRDatabase database] reference] child: @"users"] child: currentUID] child:@"prefs"];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                         @"right", @"hand",
-                         @"classical", @"guitar",
-                         @"beginner", @"level", nil];
-    [dbRef setValue: dic];
+    if (dbRef == nil) {
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                             @"right", @"hand",
+                             @"classical", @"guitar",
+                             @"beginner", @"level", nil];
+        [dbRef setValue: dic];
+    }
+    
 }
 
 - (void) showLoading: (NSString *) message
