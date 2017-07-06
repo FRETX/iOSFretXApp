@@ -13,7 +13,6 @@
 @class MelodiesViewController, LearnProgrammsViewController, TunerViewController, SettingsViewController;
 
 @interface BaseViewController () <FretxProtocol>
-@property FretxBLE* bluetooth;
 @end
 
 @implementation BaseViewController
@@ -21,13 +20,14 @@
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [super viewDidLoad];
     [self setupNavigation];
-    _bluetooth = [FretxBLE sharedInstance];
-    [_bluetooth verboseOn];
-    _bluetooth.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    FretxBLE.sharedInstance.delegate = self;
+    [self updateBluetoothButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +51,6 @@
     if (![self.navigationController.viewControllers[0] isEqual:self]) {
         [self addLeftBarItem];
     }
-    [self addRightBarItem];
 }
 
 - (void)setupNavigationItem{
@@ -70,22 +69,16 @@
     self.navigationItem.leftBarButtonItem = backItem;
 }
 
-- (void) addRightBarItem{
-    NSString *imageName;
-    if(_bluetooth.isConnected) {
-        imageName =  @"GuitarHeadSelected";
-    } else {
-        imageName = @"GuitarHeadDeselected";
-    }
-    UIBarButtonItem* btItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
-                                                               style:UIBarButtonItemStylePlain
-                                                              target:self action:@selector(onGuitarHeadButton:)];
-    self.navigationItem.rightBarButtonItem = btItem;
-}
-
 - (void)updateBluetoothButton{
+    if(FretxBLE.sharedInstance.isScanning){
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [activityIndicator startAnimating];
+        UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+        NSLog(@"attempting to set scanning animation");
+        self.navigationItem.rightBarButtonItem = activityItem;
+    } else {
         NSString *imageName;
-        if(_bluetooth.isConnected) {
+        if(FretxBLE.sharedInstance.isConnected) {
             imageName =  @"GuitarHeadSelected";
         } else {
             imageName = @"GuitarHeadDeselected";
@@ -94,24 +87,25 @@
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self action:@selector(onGuitarHeadButton:)];
         self.navigationItem.rightBarButtonItem = btItem;
+    }
 }
 
 #pragma mark - Override
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
-    
     return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Actions
 
 - (void)onGuitarHeadButton:(UIBarButtonItem*)sender{
-    [self updateBluetoothButton];
-    
-    if(_bluetooth.isConnected){
-        [_bluetooth disconnect];
+    if(FretxBLE.sharedInstance.isScanning){
+        return;
+    }
+    if(FretxBLE.sharedInstance.isConnected){
+        [FretxBLE.sharedInstance disconnect];
     } else {
-        [_bluetooth connect];
+        [FretxBLE.sharedInstance connect];
     }
     
 //    if ([self respondsToSelector:@selector(guitarHeadButtonTapped:)]) {
@@ -126,37 +120,20 @@
 }
 
 - (void) didStartScan{
-    NSLog(@"didStartScan");
-    NSLog(@"isConnected");
-    NSLog(_bluetooth.isConnected ? @"Yes" : @"No");
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [activityIndicator startAnimating];
-    UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-    self.navigationItem.rightBarButtonItem = activityItem;
+    [self updateBluetoothButton];
 }
 
 - (void) didConnect{
-    NSLog(@"isConnected");
-    NSLog(_bluetooth.isConnected ? @"Yes" : @"No");
     [self updateBluetoothButton];
 }
 
 - (void) didDisconnect{
-    NSLog(@"isConnected");
-    NSLog(_bluetooth.isConnected ? @"Yes" : @"No");
     [self updateBluetoothButton];
 }
 
 - (void) didScanTimeout{
-    NSLog(@"timeout?");
-    NSLog(@"isConnected");
-    NSLog(_bluetooth.isConnected ? @"Yes" : @"No");
     [self updateBluetoothButton];
 }
-
-
-
-
 
 - (void)onBackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];

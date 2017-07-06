@@ -73,16 +73,12 @@
 }
 
 - (CGRect)boundsFromContainer{
-#warning TEST
+
     CGRect bounds = CGRectMake(-self.progressContainerView.bounds.size.height/2 + self.progressContainerView.bounds.size.width/2,
                                self.progressContainerView.bounds.size.height/2 - self.progressContainerView.bounds.size.width/2,
                                self.progressContainerView.bounds.size.height,
                                self.progressContainerView.bounds.size.width);
-//    CGRect bounds = self.progressContainerView.bounds;
-//    bounds.origin.x = 0;
-//    bounds.origin.y = self.progressContainerView.frame.size.height/2 - 15;
-//    bounds.size.width = self.progressContainerView.bounds.size.height;
-//    bounds.size.height = 30;//self.progressContainerView.bounds.size.width;
+
     return bounds;
 }
 

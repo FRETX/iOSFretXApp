@@ -23,8 +23,10 @@
 + (instancetype)initWithDelegate:(nullable id<VideoEditorDelegate>)delegate{
     
     VideoEditor* videoEditor = [VideoEditor new];
-    if (videoEditor)
+    if (videoEditor){
         videoEditor.delegate = delegate;
+        videoEditor.delay = 0.f;
+    }
     return videoEditor;
 }
 
@@ -77,6 +79,11 @@
         [self notifyAboutEndOfTimeSnippet];
     }
 }
+
+//- (void)setDelay:(float)delay{
+//    
+//    self.delay = delay;
+//}
 
 #pragma mark - Getters
 

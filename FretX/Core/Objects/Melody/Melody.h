@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSString* youtubeVideoId;
 @property (nonatomic, strong) NSString* fretxID;
 @property (nonatomic, strong) NSDate* creationDate;
-
 @property (nonatomic, assign) BOOL published;
 
 - (void)setValuesWithInfo:(NSDictionary*)info;

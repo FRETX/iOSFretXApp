@@ -12,7 +12,6 @@
 
 @interface Chord : NSObject
 
-//chord =             {
 @property (strong) NSArray<FingerPosition*>* fingering;
 @property (strong) NSString* chordName;
 @property (strong) NSString* quality;

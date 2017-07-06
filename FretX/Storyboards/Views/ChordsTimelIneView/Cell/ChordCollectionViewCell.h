@@ -12,6 +12,6 @@
 
 - (void)setupWithChordName:(NSString*)chordName selected:(BOOL)isSelected;
 
-- (void)setSelected:(BOOL)selected;
+- (void)setSelectedStatus:(BOOL)selected;
 
 @end

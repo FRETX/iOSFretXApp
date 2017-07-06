@@ -19,7 +19,8 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     
-    self.roundedView.layer.cornerRadius = self.roundedView.frame.size.height/2;
+    [self layoutIfNeeded];
+//    self.roundedView.layer.cornerRadius = self.roundedView.frame.size.height/2;
     self.roundedView.layer.borderWidth = 5.f;
     self.roundedView.layer.borderColor = [UIColor whiteColor].CGColor;
 }
@@ -28,13 +29,16 @@
     
     self.nameLabel.text = chordName;
     
-    [self setSelected:isSelected];
+    [self setSelectedStatus:isSelected];
+    
+    self.roundedView.layer.cornerRadius = self.frame.size.height/2;
 }
 
-- (void)setSelected:(BOOL)selected{
+- (void)setSelectedStatus:(BOOL)selected{
     
     UIColor *color = selected ? [UIColor colorWithRed:27/255.f green:167/255.f blue:162/255.f alpha:1.0f] : [UIColor colorWithRed:240/255.f green:183/255.f blue:28/255.f alpha:1.0f];
     self.roundedView.backgroundColor = color;
+    
 }
 
 @end

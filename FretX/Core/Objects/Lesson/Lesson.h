@@ -18,12 +18,14 @@
 @property (nonatomic, strong) NSString* backendID;
 @property (nonatomic, strong) NSString* youtubeVideoId;
 @property (nonatomic, strong) NSString* fretxID;
-
 @property (strong) NSString* artistName;
 @property(strong) NSArray<Chord*>* punches;
+
+@property (strong) NSString* nextLessonYoutubeID;
 
 - (void)setValuesWithInfo:(NSDictionary*)info;
 
 - (Chord*)chordNextToChord:(Chord*)chord;
 - (Chord*)chordClosestToTime:(float)time;
+
 @end
