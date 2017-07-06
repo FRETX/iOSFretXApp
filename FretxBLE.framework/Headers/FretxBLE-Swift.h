@@ -160,6 +160,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) FretxBLE * _
 
 SWIFT_PROTOCOL("_TtP8FretxBLE13FretxProtocol_")
 @protocol FretxProtocol
+- (void)didStartScan;
 - (void)didConnect;
 - (void)didDisconnect;
 - (void)didBLEStateChangeWithState:(CBManagerState)state;

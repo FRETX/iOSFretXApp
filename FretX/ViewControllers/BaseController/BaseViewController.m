@@ -51,7 +51,7 @@
     if (![self.navigationController.viewControllers[0] isEqual:self]) {
         [self addLeftBarItem];
     }
-    [self addRightBarItems];
+    [self addRightBarItem];
 }
 
 - (void)setupNavigationItem{
@@ -70,14 +70,20 @@
     self.navigationItem.leftBarButtonItem = backItem;
 }
 
-- (void)addRightBarItems{
-
-    if(_bluetooth.isScanning){
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        [activityIndicator startAnimating];
-        UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-        self.navigationItem.rightBarButtonItem = activityItem;
+- (void) addRightBarItem{
+    NSString *imageName;
+    if(_bluetooth.isConnected) {
+        imageName =  @"GuitarHeadSelected";
     } else {
+        imageName = @"GuitarHeadDeselected";
+    }
+    UIBarButtonItem* btItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self action:@selector(onGuitarHeadButton:)];
+    self.navigationItem.rightBarButtonItem = btItem;
+}
+
+- (void)updateBluetoothButton{
         NSString *imageName;
         if(_bluetooth.isConnected) {
             imageName =  @"GuitarHeadSelected";
@@ -88,9 +94,6 @@
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self action:@selector(onGuitarHeadButton:)];
         self.navigationItem.rightBarButtonItem = btItem;
-    }
-    
-    
 }
 
 #pragma mark - Override
@@ -103,7 +106,7 @@
 #pragma mark - Actions
 
 - (void)onGuitarHeadButton:(UIBarButtonItem*)sender{
-    [self addRightBarItems];
+    [self updateBluetoothButton];
     
     if(_bluetooth.isConnected){
         [_bluetooth disconnect];
@@ -122,16 +125,33 @@
     
 }
 
+- (void) didStartScan{
+    NSLog(@"didStartScan");
+    NSLog(@"isConnected");
+    NSLog(_bluetooth.isConnected ? @"Yes" : @"No");
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [activityIndicator startAnimating];
+    UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    self.navigationItem.rightBarButtonItem = activityItem;
+}
+
 - (void) didConnect{
-    [self addRightBarItems];
+    NSLog(@"isConnected");
+    NSLog(_bluetooth.isConnected ? @"Yes" : @"No");
+    [self updateBluetoothButton];
 }
 
 - (void) didDisconnect{
-    [self addRightBarItems];
+    NSLog(@"isConnected");
+    NSLog(_bluetooth.isConnected ? @"Yes" : @"No");
+    [self updateBluetoothButton];
 }
 
 - (void) didScanTimeout{
-    [self addRightBarItems];
+    NSLog(@"timeout?");
+    NSLog(@"isConnected");
+    NSLog(_bluetooth.isConnected ? @"Yes" : @"No");
+    [self updateBluetoothButton];
 }
 
 
