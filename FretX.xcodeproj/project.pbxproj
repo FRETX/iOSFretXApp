@@ -621,7 +621,7 @@
 				TargetAttributes = {
 					8B1A94B81F0397B900E18BB7 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 32NXMZVVF5;
+						DevelopmentTeam = QL6GXXKKF4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -872,7 +872,7 @@
 			baseConfigurationReference = DEFEB05092ADAB09FF940464 /* Pods-FretX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 32NXMZVVF5;
+				DEVELOPMENT_TEAM = QL6GXXKKF4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",
@@ -891,7 +891,7 @@
 			baseConfigurationReference = 7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 32NXMZVVF5;
+				DEVELOPMENT_TEAM = QL6GXXKKF4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",
