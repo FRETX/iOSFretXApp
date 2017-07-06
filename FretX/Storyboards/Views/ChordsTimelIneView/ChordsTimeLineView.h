@@ -21,4 +21,6 @@
 
 - (void)moveToTime:(float)time;
 
+- (void)setupChordsAdvance:(float)advance;
+
 @end

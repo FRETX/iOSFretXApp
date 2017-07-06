@@ -56,14 +56,21 @@
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"self.timeMs <= %f",time];
     NSArray* filteredArray = [self.punches filteredArrayUsingPredicate:predicate];
     
+    if (filteredArray.count <= 0)
+        return nil;
+    
     NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"timeMs" ascending:YES];
     NSArray* sortedArray = [filteredArray sortedArrayUsingDescriptors:@[descriptor]];
+    
+    if (sortedArray.count <= 0)
+        return nil;
+    
     Chord* clossestChord = sortedArray.lastObject;
     Chord* resultChord = [self chordNextToChord:clossestChord];
-    
-    if (resultChord)
-        return resultChord;
-    else
+
+//    if (resultChord)
+//        return resultChord;
+//    else
         return clossestChord;
 }
 

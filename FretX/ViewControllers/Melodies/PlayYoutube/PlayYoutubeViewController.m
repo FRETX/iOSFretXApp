@@ -14,16 +14,18 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "AdditionalControlsView.h"
-#import "VideoEditor.h"
+#import "CompletionPopupView.h"
 #import "ChordsTimeLineView.h"
 #import "PlayerControlsView.h"
 #import "GuitarNeckView.h"
 #import "RequestManager.h"
 #import "YTPlayerView.h"
+#import "VideoEditor.h"
 #import "Lesson.h"
 #import "Chord.h"
 
-@interface PlayYoutubeViewController () <YTPlayerViewDelegate, PlayerControlsViewDelegate, AdditionalControlsViewDelegate, VideoEditorDelegate>
+@interface PlayYoutubeViewController () <YTPlayerViewDelegate, PlayerControlsViewDelegate,
+AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate>
 
 //ui
 @property (nonatomic, weak) IBOutlet UILabel* songFullNameLabel;
@@ -36,6 +38,8 @@
 @property (nonatomic, weak) ChordsTimeLineView* timeLineView;
 @property (nonatomic, weak) IBOutlet UIView* additionalControlsContainerView;
 @property (nonatomic, weak) AdditionalControlsView* additionalControlsView;
+
+@property (nonatomic, weak) CompletionPopupView* completionPopupView;
 
 @property (weak) IBOutlet NSLayoutConstraint* additionalControlsBottomConstraint;
 
@@ -119,22 +123,31 @@
 }
 
 - (void)playFromTime:(float)time{
-#warning TEST
+
     [self.playerView pauseVideo];
     [self.playerView seekToSeconds:time allowSeekAhead:YES];
-    [self resumeSongVideo];
     
+#warning TEST
+    Chord* nextChord = [self.lesson chordClosestToTime:time];
+    if (nextChord)
+        [self layoutChord:nextChord];
+    
+    [self resumeSongVideo];
+}
+
+- (float)currentTime{
+    
+    float delay = self.videoEditor.delay;
+    float currentTime = self.playerView.currentTime*1000 + delay;
+    return currentTime;
 }
 
 #pragma mark - Update all controls
 
 - (void)layoutStartPlayingVideoLesson{
     
-    float currentTime = self.playerView.currentTime*1000;
-#warning TEST
-    Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
-    [self layoutChord:nextChord];
-    
+    float currentTime = [self currentTime];
+
     [self.timeLineView moveToTime:currentTime];
     [self startChordsTimer];
     [self.playerControlsView setupState:ControlsStatePlaying];
@@ -155,6 +168,7 @@
     [self addFretBoard];
     [self addControlsView];
     [self addAdditionalControlsView];
+    [self addCompletionPopupView];
 
     [self layoutLesson:self.lesson];
     
@@ -166,10 +180,10 @@
 - (void)layoutLesson:(Lesson*)lesson{
     
     self.songFullNameLabel.text = lesson.melodyTitle;
-    if (lesson.punches.count > 0) {
-        
-        [self layoutChord:lesson.punches[0]];
-    }
+//    if (lesson.punches.count > 0) {
+//        
+//        [self layoutChord:lesson.punches[0]];
+//    }
 }
 
 - (void)layoutChord:(Chord*)chord{
@@ -243,13 +257,30 @@
     [self.view layoutIfNeeded];
 }
 
+- (void)addCompletionPopupView{
+    
+    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"CompletionPopupView"
+                                                      owner:self
+                                                    options:nil];
+    
+    self.completionPopupView = [nibViews firstObject];
+    [self.completionPopupView hideCompletionPopupAnimated:NO];
+    CGRect bounds = self.view.bounds;
+    [self.completionPopupView setFrame:bounds];
+    [self.view addSubview:self.completionPopupView];
+    
+    self.completionPopupView.delegate = self;
+    
+    [self.completionPopupView setupWithSongName:self.lesson.songName nextVideoLessonYoutubeID:self.lesson.nextLessonYoutubeID];
+    
+    [self.view layoutIfNeeded];
+}
+
 #pragma mark -
 
 - (void)setupPlayerView{
     
     self.playerView.delegate = self;
-    
-//    [self.playerControlsView.
     
     NSDictionary* playerParams = @{
                                    @"controls"    : @0,
@@ -259,7 +290,7 @@
                                    @"playsinline" : @1};
     
     NSString* videoID = self.lesson.youtubeVideoId;
-    [self.playerView loadWithVideoId:videoID playerVars:playerParams];//@"M7lc1UVf-VE"
+    [self.playerView loadWithVideoId:videoID playerVars:playerParams];
 }
 
 
@@ -289,8 +320,7 @@
     
     [self stopChordsTimer];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(onFiredChordsTimer:) userInfo:nil repeats:YES];
-  
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(onFiredChordsTimer:) userInfo:nil repeats:YES];
 }
 
 - (void)stopChordsTimer{
@@ -302,18 +332,26 @@
 
 - (void)onFiredChordsTimer:(NSTimer*)timer{
     
-    float currentTime = self.playerView.currentTime * 1000;
-    if (self.currentChord.timeMs <= 0 || self.currentChord.timeMs <= currentTime ) {
-        
-        Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
-        [self layoutChord:nextChord];
-        //stop if last
-        if ([self.lesson.punches.lastObject isEqual:nextChord]) {
-            [self stopChordsTimer];
-            [self.timeLineView stop];
-        }
-    }
+    float currentTime = [self currentTime];
     
+    Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
+    if (nextChord && nextChord.index > self.currentChord.index)
+        [self layoutChord:nextChord];
+    
+    return;
+    
+//    BOOL timeToFirstChord = !self.currentChord && currentTime >= self.lesson.punches.firstObject.timeMs;
+//    BOOL timeToNextChord = self.currentChord && currentTime >= self.currentChord.timeMs;
+//    BOOL needToStopTimer = self.playerView.playerState != kYTPlayerStatePlaying;
+//    
+//    BOOL layoutNextChord = timeToFirstChord || timeToNextChord;
+//    if (layoutNextChord) {
+//        
+//        Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
+//        if (nextChord)
+//            [self layoutChord:nextChord];
+//
+//    }
 }
 
 #pragma mark -  PlayerControlsViewDelegate
@@ -329,7 +367,11 @@
 
 - (void)didSeekNewTimePosition:(float)newTime{
     
-    [self playFromTime:newTime/1000];
+    if (newTime > (self.playerView.duration * 1000)*0.99 ) {
+        [self playFromTime: (self.playerView.duration * 1000)*0.999];
+    } else{
+        [self playFromTime:newTime/1000];
+    }
 }
 
 #pragma mark - YTPlayerViewDelegate
@@ -337,15 +379,13 @@
 - (void)playerViewDidBecomeReady:(nonnull YTPlayerView *)playerView{
     
     NSLog(@"playerViewDidBecomeReady");
-    
-    [self.timeLineView setupWithDuration:self.playerView.duration chords:self.lesson.punches];
+    [self.timeLineView setupWithDuration:self.playerView.duration*1000 chords:self.lesson.punches];
     [self.playerControlsView setupWithDuration:playerView.duration*1000];
     [self playSongVideo];
 }
 
 - (void)playerView:(nonnull YTPlayerView *)playerView didPlayTime:(float)playTime{
-//    NSLog(@"didPlayTime");
-//    NSLog(@"didPlayTime = %f", playTime);
+
     [self.playerControlsView setupCurrentTime:playTime*1000];
     [self.videoEditor setCurrentPlayerTime:playTime*1000];
 }
@@ -356,6 +396,10 @@
         [self layoutStartPlayingVideoLesson];
     } else {
         [self layoutStopPlayingVideoLesson];
+    }
+    
+    if (state == kYTPlayerStateEnded) {
+        [self.completionPopupView showCompletionPopupAnimated:YES];
     }
 
     NSString* strState = @"";
@@ -462,6 +506,39 @@
 
 - (void)additionalControls:(AdditionalControlsView*)additionalControlsView didTapTimeDelay:(TimeDelay)timeDelay{
     
+    float videoDelay = 0;
+    switch (timeDelay) {
+        case TimeDelayNone:
+            videoDelay = 0;
+            break;
+        case TimeDelayQuarterSecond:
+            videoDelay = 250;
+            break;
+        case TimeDelayHalfSecond:
+            videoDelay = 500;
+            break;
+        case TimeDelayOneSecond:
+            videoDelay = 1000;
+            break;
+        default:
+            break;
+    }
+    self.videoEditor.delay = videoDelay;
+    [self.timeLineView setupChordsAdvance:videoDelay];
+}
+
+#pragma mark - CompletionPopupViewDelegate
+
+- (void)didTapReplayCompletionPopup:(CompletionPopupView*)completionPopupView{
+    [self.completionPopupView hideCompletionPopupAnimated:YES];
+    [self playFromTime:0];
+}
+
+- (void)didTapBackCompletionPopup:(CompletionPopupView*)completionPopupView{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)didTapPlayAnotherCompletionPopup:(CompletionPopupView*)completionPopupView{
     
 }
 

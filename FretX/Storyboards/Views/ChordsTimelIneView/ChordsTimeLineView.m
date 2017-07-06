@@ -22,7 +22,11 @@
 @property (nonatomic, strong) NSArray<Chord*>* chords;
 @property (assign) NSUInteger currentChordIndex;
 @property (nonatomic, strong) NSTimer* timer;
+@property (assign) float duration;
 
+@property (assign) float advance;
+
+@property (assign) float firstChordInset;;
 @end
 
 @implementation ChordsTimeLineView
@@ -34,7 +38,7 @@
     // Drawing code
     
     self.currentChordIndex = 0;
-    
+    self.advance = 0;
 //    self.collectionView.delegate = self;
 //    self.collectionView.dataSource = self;
     
@@ -55,16 +59,19 @@
     if (chords.count <= 0) {
         return;
     }
+
+    self.chords = chords;
+    self.duration = duration;
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"self.timeMs > 0"];
-    NSArray<Chord*>* filteredChords = [chords filteredArrayUsingPredicate:predicate];
-    self.chords = filteredChords;
-//    self.chords = chords;
+    float initialInset = [self offsetFromMSTime: chords.firstObject.timeMs];
+    self.firstChordInset = initialInset;
     
     [self.collectionView reloadData];
 
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.005 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setHorizontalOffset:-initialInset];
+    });
 }
-
 
 - (void)move{
     if (self.chords.count > 0) {
@@ -80,10 +87,16 @@
 
 - (void)moveToTime:(float)time{
     
-    float offset = (time/1000) * kOneSecondWidth;
-    self.collectionView.contentOffset = CGPointMake(offset, 0);
+#warning TEST
+    float offset = [self offsetFromMSTime:time] - self.firstChordInset + [self offsetFromMSTime:self.advance];
+//    float offset = [self offsetFromMSTime:time];
+    [self setHorizontalOffset:offset];
     
     [self move];
+}
+
+- (void)setupChordsAdvance:(float)advance{
+    self.advance = advance;
 }
 
 #pragma mark -
@@ -108,42 +121,37 @@
 - (void)onFiredChordsTimer:(NSTimer*)timer{
 
     CGPoint currentPoint = self.collectionView.contentOffset;
-    self.collectionView.contentOffset = CGPointMake(currentPoint.x + 1, currentPoint.y);
-    
+    [self setHorizontalOffset:currentPoint.x + 1];
 }
 
 #pragma mark - Private
+
+- (void)setHorizontalOffset:(float)offset{
+    self.collectionView.contentOffset = CGPointMake(offset, 0);
+}
+
+- (float)offsetFromMSTime:(float)time{
+    float offset = (time/1000) * kOneSecondWidth;
+    return offset;
+}
 
 - (float)chordViewWidthForIndex:(NSUInteger)index{
     
     Chord* chord = [self.chords objectAtIndex:index];
     
-    Chord* prevChord;
-    if (index >= self.chords.count || index == 0) {
-        prevChord = nil;
+    Chord* nextChord;
+    if (index >= (self.chords.count-1) ) {
+        nextChord = nil;
     } else{
-        prevChord = [self.chords objectAtIndex:index-1];
+        nextChord = [self.chords objectAtIndex:index+1];
     }
     
-    float timeMS = prevChord ? chord.timeMs - prevChord.timeMs : chord.timeMs;
+    float timeMS = nextChord ? nextChord.timeMs - chord.timeMs : (self.duration - chord.timeMs);
     
     float width = (timeMS/1000) * kOneSecondWidth;
     
     return width;
 }
-
-//- (void)moveToChordAtIndex:(NSUInteger)index{
-//    
-//    float offset = 0;
-//    for (int i = 0; i < index; i++) {
-//        
-//        Chord* chord = self.chords[i];
-//        offset = offset + [self chordViewWidthForIndex:i];
-//    }
-//    self.collectionView.contentOffset = CGPointMake(offset, 0);
-//    
-//    [self move];
-//}
 
 #pragma mark - UICollectionView
 
@@ -168,13 +176,13 @@
     
     NSIndexPath *nextIndexPath = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
     ChordCollectionViewCell* nextCell = (ChordCollectionViewCell*)[collectionView cellForItemAtIndexPath:nextIndexPath];
-    [nextCell setSelected:YES];
+    [nextCell setSelectedStatus:YES];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     float width = [self chordViewWidthForIndex:indexPath.row];
-    return CGSizeMake(width, self.frame.size.height);
+    return CGSizeMake(width, self.collectionView.frame.size.height);
 }
 
 
