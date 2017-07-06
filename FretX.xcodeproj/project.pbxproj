@@ -40,6 +40,8 @@
 		8B0EC44F1F0548B100EE1489 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC44E1F0548B100EE1489 /* BaseViewController.m */; };
 		8B0EC4521F05565F00EE1489 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4511F05565F00EE1489 /* SettingsViewController.m */; };
 		8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4541F05566F00EE1489 /* TunerViewController.m */; };
+		8B135DFF1F0E4B4500402817 /* CompletionPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B135DFD1F0E4B4500402817 /* CompletionPopupView.m */; };
+		8B135E001F0E4B4500402817 /* CompletionPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B135DFE1F0E4B4500402817 /* CompletionPopupView.xib */; };
 		8B1A94BE1F0397B900E18BB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94BD1F0397B900E18BB7 /* main.m */; };
 		8B1A94C11F0397B900E18BB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94C01F0397B900E18BB7 /* AppDelegate.m */; };
 		8B1A94C91F0397B900E18BB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B1A94C81F0397B900E18BB7 /* Assets.xcassets */; };
@@ -137,6 +139,9 @@
 		8B0EC4511F05565F00EE1489 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		8B0EC4531F05566F00EE1489 /* TunerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TunerViewController.h; sourceTree = "<group>"; };
 		8B0EC4541F05566F00EE1489 /* TunerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TunerViewController.m; sourceTree = "<group>"; };
+		8B135DFC1F0E4B4500402817 /* CompletionPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionPopupView.h; sourceTree = "<group>"; };
+		8B135DFD1F0E4B4500402817 /* CompletionPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionPopupView.m; sourceTree = "<group>"; };
+		8B135DFE1F0E4B4500402817 /* CompletionPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletionPopupView.xib; sourceTree = "<group>"; };
 		8B1A94B91F0397B900E18BB7 /* FretX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FretX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B1A94BD1F0397B900E18BB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8B1A94BF1F0397B900E18BB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -290,6 +295,7 @@
 		8B0EC4281F0509CD00EE1489 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B135DFB1F0E4B4500402817 /* CompletionPopupView */,
 				8B8F05A71F0CD5D300BAADAC /* AdditionalControlsView */,
 				8BFB17021F0B8DF3008A48C7 /* ChordsTimelIneView */,
 				8BFB17031F0B8DF3008A48C7 /* PlayerControlsView */,
@@ -382,6 +388,16 @@
 				8B0EC44E1F0548B100EE1489 /* BaseViewController.m */,
 			);
 			path = BaseController;
+			sourceTree = "<group>";
+		};
+		8B135DFB1F0E4B4500402817 /* CompletionPopupView */ = {
+			isa = PBXGroup;
+			children = (
+				8B135DFC1F0E4B4500402817 /* CompletionPopupView.h */,
+				8B135DFD1F0E4B4500402817 /* CompletionPopupView.m */,
+				8B135DFE1F0E4B4500402817 /* CompletionPopupView.xib */,
+			);
+			path = CompletionPopupView;
 			sourceTree = "<group>";
 		};
 		8B1A08D61F0694BB0070F9D8 /* FretsProgressView */ = {
@@ -685,6 +701,7 @@
 				6CD1BF441F0A7A7F000D8819 /* Roboto-Regular.ttf in Resources */,
 				6CD1BF421F0A7A7F000D8819 /* Roboto-Italic.ttf in Resources */,
 				8B0EC42E1F050EFC00EE1489 /* GuitarNeckView.xib in Resources */,
+				8B135E001F0E4B4500402817 /* CompletionPopupView.xib in Resources */,
 				8BFB17081F0B8EAE008A48C7 /* PlayerControlsView.xib in Resources */,
 				8BFB17201F0BE7EC008A48C7 /* ChordsTimeLineView.xib in Resources */,
 			);
@@ -746,6 +763,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B049C411F0A8364008BE4DC /* PlayYoutubeViewController.m in Sources */,
+				8B135DFF1F0E4B4500402817 /* CompletionPopupView.m in Sources */,
 				8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */,
 				8B0EC44F1F0548B100EE1489 /* BaseViewController.m in Sources */,
 				8B0EC4271F05080700EE1489 /* MelodyChordsViewController.m in Sources */,

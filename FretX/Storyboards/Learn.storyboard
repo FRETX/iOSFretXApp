@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +15,7 @@
                     <tabBarItem key="tabBarItem" title="LEARN" image="TabIconLearnBlack" selectedImage="TabIconLearn" id="utn-Yo-I3c"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hV2-aq-5Pj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hV2-aq-5Pj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.96470588235294119" green="0.26666666666666666" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
@@ -29,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="-769" y="145"/>
         </scene>
-        <!--View Controller-->
+        <!--Learn Programms View Controller-->
         <scene sceneID="rKR-KF-7fm">
             <objects>
-                <viewController id="oeV-AE-O3d" sceneMemberID="viewController">
+                <viewController id="oeV-AE-O3d" customClass="LearnProgrammsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Z6f-rV-vO8"/>
                         <viewControllerLayoutGuide type="bottom" id="ccV-WP-EpJ"/>

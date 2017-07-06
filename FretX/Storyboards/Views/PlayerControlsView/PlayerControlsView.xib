@@ -56,7 +56,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="gRI-37-wfJ"/>
                                     </constraints>
-                                    <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="thumbTintColor" red="0.96470588239999999" green="0.2666666667" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="onChangeValueTimeSlider:" destination="NvS-6L-Emt" eventType="touchUpInside" id="vXX-pC-nZp"/>
                                     </connections>

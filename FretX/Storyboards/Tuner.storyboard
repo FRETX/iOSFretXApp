@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="-825" y="145"/>
         </scene>
-        <!--View Controller-->
+        <!--Tuner View Controller-->
         <scene sceneID="MC7-Cq-cjJ">
             <objects>
-                <viewController id="UlJ-ao-OoP" sceneMemberID="viewController">
+                <viewController id="UlJ-ao-OoP" customClass="TunerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P9o-25-Sv7"/>
                         <viewControllerLayoutGuide type="bottom" id="pEc-rh-6Mz"/>

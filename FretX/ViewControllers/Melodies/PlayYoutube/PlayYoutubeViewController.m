@@ -130,12 +130,12 @@
 
 - (void)layoutStartPlayingVideoLesson{
     
+    float currentTime = self.playerView.currentTime*1000;
 #warning TEST
-    Chord* nextChord = [self.lesson chordClosestToTime:self.playerView.currentTime*1000];
+    Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
     [self layoutChord:nextChord];
     
-
-    [self.timeLineView moveToChordAtIndex:nextChord.index];
+    [self.timeLineView moveToTime:currentTime];
     [self startChordsTimer];
     [self.playerControlsView setupState:ControlsStatePlaying];
 }
@@ -307,14 +307,11 @@
         
         Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
         [self layoutChord:nextChord];
-//        NSLog(@"nextChord = %@",nextChord);
-        
-#warning TEST
-//        Chord* nextChord = [self.lesson chordNextToChord:self.currentChord];
-//        if (nextChord)
-//            [self layoutChord:nextChord];
-        
-//        NSLog(@"didPlayTime = %f", currentTime);
+        //stop if last
+        if ([self.lesson.punches.lastObject isEqual:nextChord]) {
+            [self stopChordsTimer];
+            [self.timeLineView stop];
+        }
     }
     
 }
