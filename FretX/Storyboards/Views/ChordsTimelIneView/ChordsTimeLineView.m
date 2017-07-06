@@ -65,6 +65,7 @@
 
 }
 
+
 - (void)move{
     if (self.chords.count > 0) {
         [self startChordsTimer];
@@ -121,6 +122,32 @@
     float width = (timeMS/1000) * kOneSecondWidth;
     
     return width;
+}
+
+- (void)moveToChordAtIndex:(NSUInteger)index{
+    
+    float offset = 0;
+    for (int i = 0; i < index; i++) {
+        
+        Chord* chord = self.chords[i];
+        offset = offset + [self chordViewWidthForIndex:i];
+    }
+    self.collectionView.contentOffset = CGPointMake(offset, 0);
+    
+    [self move];
+}
+
+- (void)moveToTime:(float)time{
+    
+    float offset = 0;
+    for (int i = 0; i < index; i++) {
+        
+        Chord* chord = self.chords[i];
+        offset = offset + [self chordViewWidthForIndex:i];
+    }
+    self.collectionView.contentOffset = CGPointMake(offset, 0);
+    
+    [self move];
 }
 
 #pragma mark - UICollectionView

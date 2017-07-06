@@ -13,4 +13,9 @@
 
 @interface BaseViewController : UIViewController
 
+//implement below methods in appropriate subclasses
+/*
+- (void)onGuitarHeadButton:(UIBarButtonItem*)sender;
+*/
+
 @end

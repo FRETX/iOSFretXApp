@@ -27,7 +27,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6E-Gn-bn1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-774" y="139"/>
+            <point key="canvasLocation" x="-846" y="137"/>
         </scene>
         <!--Melodies View Controller-->
         <scene sceneID="tne-QT-ifu">

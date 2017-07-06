@@ -135,7 +135,7 @@
     [self layoutChord:nextChord];
     
 
-    [self.timeLineView move];
+    [self.timeLineView moveToChordAtIndex:nextChord.index];
     [self startChordsTimer];
     [self.playerControlsView setupState:ControlsStatePlaying];
 }

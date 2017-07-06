@@ -44,6 +44,7 @@
     if (![self.navigationController.viewControllers[0] isEqual:self]) {
         [self addLeftBarItem];
     }
+    [self addRightBarItems];
 }
 
 - (void)setupNavigationItem{
@@ -59,8 +60,15 @@
     UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"WhiteBackIcon"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self action:@selector(onBackButton:)];
-//    backItem.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = backItem;
+}
+
+- (void)addRightBarItems{
+    
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"GuitarHeadDeselected"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self action:@selector(onGuitarHeadButton:)];
+    self.navigationItem.rightBarButtonItem = backItem;
 }
 
 #pragma mark - Override
@@ -71,6 +79,13 @@
 }
 
 #pragma mark - Actions
+
+- (void)onGuitarHeadButton:(UIBarButtonItem*)sender{
+    
+    if ([self respondsToSelector:@selector(guitarHeadButtonTapped:)]) {
+        [self performSelector:@selector(guitarHeadButtonTapped:) withObject:sender];
+    }
+}
 
 - (void)onBackButton:(id)sender{
     

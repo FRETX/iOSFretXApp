@@ -103,7 +103,10 @@
 
 #pragma mark - Actions
 
-
+- (void)guitarHeadButtonTapped:(UIBarButtonItem*)sender{
+#warning guitar head button usage
+    NSLog(@"guitarHeadButtonTapped:");
+}
 
 #pragma mark - UITableView
 

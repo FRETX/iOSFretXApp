@@ -14,8 +14,11 @@
 
 - (void)setupWithDuration:(float)duration chords:(NSArray<Chord*>*)chords;
 
+/* start timeline movement */
 - (void)move;
 
 - (void)stop;
+
+- (void)moveToChordAtIndex:(NSUInteger)index;
 
 @end

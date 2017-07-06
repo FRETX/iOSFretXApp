@@ -72,19 +72,7 @@ typedef enum{
 
 
 #pragma mark - UITabBarControllerDelegate
-//
-//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController NS_AVAILABLE_IOS(3_0){
-//    for(UITabBarItem * tabBarItem in self.tabBar.items){
-//        tabBarItem.imageInsets = UIEdgeInsetsMake(3, 3, 3, 3);
-//    }
-//    return YES;
-//}
-//
-//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
-//    for(UITabBarItem * tabBarItem in self.tabBar.items){
-//        tabBarItem.imageInsets = UIEdgeInsetsMake(3, 3, 3, 3);
-//    }
-//}
+
 
 
 @end
