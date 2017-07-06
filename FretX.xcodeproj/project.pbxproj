@@ -16,6 +16,8 @@
 		6CD1BF4B1F0A7AA9000D8819 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF491F0A7AA9000D8819 /* UIViewController+Alerts.m */; };
 		6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF4E1F0A86F2000D8819 /* LoginActivity.m */; };
 		6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF501F0A86F2000D8819 /* SplashScreens.m */; };
+		77FF16A11F0E3DCA0013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; };
+		77FF16A21F0E3DCA0013B09F /* FretxBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */; };
 		8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B049C3C1F0A3C90008BE4DC /* FretsProgressView.xib */; };
 		8B049C411F0A8364008BE4DC /* PlayYoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C401F0A8364008BE4DC /* PlayYoutubeViewController.m */; };
@@ -63,6 +65,20 @@
 		A97BCAC99CF665B1BC703DC6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		77FF16A31F0E3DCA0013B09F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				77FF16A21F0E3DCA0013B09F /* FretxBLE.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6CD1BF3D1F0A7A7F000D8819 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6CD1BF3E1F0A7A7F000D8819 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
@@ -76,6 +92,7 @@
 		6CD1BF4E1F0A86F2000D8819 /* LoginActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginActivity.m; path = SplashAndLogin/LoginActivity.m; sourceTree = "<group>"; };
 		6CD1BF4F1F0A86F2000D8819 /* SplashScreens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashScreens.h; path = SplashAndLogin/SplashScreens.h; sourceTree = "<group>"; };
 		6CD1BF501F0A86F2000D8819 /* SplashScreens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashScreens.m; path = SplashAndLogin/SplashScreens.m; sourceTree = "<group>"; };
+		77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretxBLE.framework; sourceTree = "<group>"; };
 		7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretX.release.xcconfig"; path = "Pods/Target Support Files/Pods-FretX/Pods-FretX.release.xcconfig"; sourceTree = "<group>"; };
 		812D127868654BE666A0B042 /* Pods_FretX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FretX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B049C391F0A3C50008BE4DC /* FretsProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretsProgressView.h; sourceTree = "<group>"; };
@@ -163,6 +180,7 @@
 			files = (
 				335F36C14EDF58C27D68420D /* Pods_FretX.framework in Frameworks */,
 				8B41D7421F066F50004EAFB7 /* FretXAudioProcessing.framework in Frameworks */,
+				77FF16A11F0E3DCA0013B09F /* FretxBLE.framework in Frameworks */,
 				A97BCAC99CF665B1BC703DC6 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,6 +590,7 @@
 		C2E7F2135872EE37F2A5CD7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */,
 				812D127868654BE666A0B042 /* Pods_FretX.framework */,
 				8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */,
 			);
@@ -600,6 +619,7 @@
 				8B1A94B71F0397B900E18BB7 /* Resources */,
 				6A1E31B6CD2B6B34BFBB8AC1 /* [CP] Embed Pods Frameworks */,
 				8F8A1A49A1CA2C2C7CAE6AA9 /* [CP] Copy Pods Resources */,
+				77FF16A31F0E3DCA0013B09F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -621,7 +641,7 @@
 				TargetAttributes = {
 					8B1A94B81F0397B900E18BB7 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = QL6GXXKKF4;
+						DevelopmentTeam = FWWN2RQ9Y2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -700,7 +720,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8F8A1A49A1CA2C2C7CAE6AA9 /* [CP] Copy Pods Resources */ = {
@@ -872,7 +892,7 @@
 			baseConfigurationReference = DEFEB05092ADAB09FF940464 /* Pods-FretX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QL6GXXKKF4;
+				DEVELOPMENT_TEAM = FWWN2RQ9Y2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",
@@ -891,7 +911,7 @@
 			baseConfigurationReference = 7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QL6GXXKKF4;
+				DEVELOPMENT_TEAM = FWWN2RQ9Y2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",

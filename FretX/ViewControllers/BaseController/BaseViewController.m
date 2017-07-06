@@ -7,20 +7,29 @@
 //
 
 #import "BaseViewController.h"
+#import <FretXBLE/FretXBLE-Swift.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @class MelodiesViewController, LearnProgrammsViewController, TunerViewController, SettingsViewController;
 
-@interface BaseViewController ()
-
+@interface BaseViewController () <FretxProtocol>
+@property FretxBLE* bluetooth;
+@property Boolean bluetoothConnected;
 @end
 
 @implementation BaseViewController
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self setupNavigation];
+    _bluetooth = [FretxBLE sharedInstance];
+    [_bluetooth verboseOn];
+    _bluetooth.delegate = self;
+    _bluetoothConnected = false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,11 +73,16 @@
 }
 
 - (void)addRightBarItems{
-    
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"GuitarHeadDeselected"]
+    NSString *imageName;
+    if(_bluetoothConnected) {
+        imageName =  @"GuitarHeadSelected";
+    } else {
+        imageName = @"GuitarHeadDeselected";
+    }
+    UIBarButtonItem* btItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self action:@selector(onGuitarHeadButton:)];
-    self.navigationItem.rightBarButtonItem = backItem;
+    self.navigationItem.rightBarButtonItem = btItem;
 }
 
 #pragma mark - Override
@@ -81,16 +95,48 @@
 #pragma mark - Actions
 
 - (void)onGuitarHeadButton:(UIBarButtonItem*)sender{
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [activityIndicator startAnimating];
+    UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    self.navigationItem.rightBarButtonItem = activityItem;
     
-    if ([self respondsToSelector:@selector(guitarHeadButtonTapped:)]) {
-        [self performSelector:@selector(guitarHeadButtonTapped:) withObject:sender];
+    if(_bluetoothConnected){
+        [_bluetooth disconnect];
+    } else {
+        [_bluetooth connect];
     }
+    
+//    if ([self respondsToSelector:@selector(guitarHeadButtonTapped:)]) {
+//        [self performSelector:@selector(guitarHeadButtonTapped:) withObject:sender];
+//    }
 }
 
-- (void)onBackButton:(id)sender{
+#pragma mark - Bluetooth delegate methods
+
+- (void) didConnect{
+    _bluetoothConnected = true;
+    [self addRightBarItems];
+}
+
+- (void) didBLEStateChangeWithState:(CBManagerState)state{
     
+}
+
+- (void) didDisconnect{
+    _bluetoothConnected = false;
+    [self addRightBarItems];
+}
+
+- (void) didScanTimeout{
+    _bluetoothConnected = false;
+    [self addRightBarItems];
+}
+
+
+- (void)onBackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 
 
