@@ -19,6 +19,6 @@
 
 - (void)stop;
 
-- (void)moveToChordAtIndex:(NSUInteger)index;
+- (void)moveToTime:(float)time;
 
 @end
