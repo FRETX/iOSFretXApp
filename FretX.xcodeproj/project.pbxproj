@@ -16,8 +16,8 @@
 		6CD1BF4B1F0A7AA9000D8819 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF491F0A7AA9000D8819 /* UIViewController+Alerts.m */; };
 		6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF4E1F0A86F2000D8819 /* LoginActivity.m */; };
 		6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF501F0A86F2000D8819 /* SplashScreens.m */; };
-		77FF16A11F0E3DCA0013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; };
-		77FF16A21F0E3DCA0013B09F /* FretxBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; };
+		77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */; };
 		8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B049C3C1F0A3C90008BE4DC /* FretsProgressView.xib */; };
 		8B049C411F0A8364008BE4DC /* PlayYoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C401F0A8364008BE4DC /* PlayYoutubeViewController.m */; };
@@ -64,17 +64,16 @@
 		8BFB17131F0BDEC1008A48C7 /* ChordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB17121F0BDEC1008A48C7 /* ChordCollectionViewCell.xib */; };
 		8BFB17191F0BE5FC008A48C7 /* ChordsTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17171F0BE5FC008A48C7 /* ChordsTimeLineView.m */; };
 		8BFB17201F0BE7EC008A48C7 /* ChordsTimeLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB171F1F0BE7EC008A48C7 /* ChordsTimeLineView.xib */; };
-		A97BCAC99CF665B1BC703DC6 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		77FF16A31F0E3DCA0013B09F /* Embed Frameworks */ = {
+		77FF16A61F0E5D340013B09F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				77FF16A21F0E3DCA0013B09F /* FretxBLE.framework in Embed Frameworks */,
+				77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,9 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				335F36C14EDF58C27D68420D /* Pods_FretX.framework in Frameworks */,
+				77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */,
 				8B41D7421F066F50004EAFB7 /* FretXAudioProcessing.framework in Frameworks */,
-				77FF16A11F0E3DCA0013B09F /* FretxBLE.framework in Frameworks */,
-				A97BCAC99CF665B1BC703DC6 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,7 +633,7 @@
 				8B1A94B71F0397B900E18BB7 /* Resources */,
 				6A1E31B6CD2B6B34BFBB8AC1 /* [CP] Embed Pods Frameworks */,
 				8F8A1A49A1CA2C2C7CAE6AA9 /* [CP] Copy Pods Resources */,
-				77FF16A31F0E3DCA0013B09F /* Embed Frameworks */,
+				77FF16A61F0E5D340013B09F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -914,6 +912,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",
+					"$(PROJECT_DIR)/FretX/Framework",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FretX/Info.plist;
@@ -933,6 +932,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FretX",
+					"$(PROJECT_DIR)/FretX/Framework",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FretX/Info.plist;

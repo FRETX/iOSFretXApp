@@ -71,16 +71,26 @@
 }
 
 - (void)addRightBarItems{
-    NSString *imageName;
-    if(_bluetooth.isConnected) {
-        imageName =  @"GuitarHeadSelected";
+
+    if(_bluetooth.isScanning){
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [activityIndicator startAnimating];
+        UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+        self.navigationItem.rightBarButtonItem = activityItem;
     } else {
-        imageName = @"GuitarHeadDeselected";
+        NSString *imageName;
+        if(_bluetooth.isConnected) {
+            imageName =  @"GuitarHeadSelected";
+        } else {
+            imageName = @"GuitarHeadDeselected";
+        }
+        UIBarButtonItem* btItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self action:@selector(onGuitarHeadButton:)];
+        self.navigationItem.rightBarButtonItem = btItem;
     }
-    UIBarButtonItem* btItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self action:@selector(onGuitarHeadButton:)];
-    self.navigationItem.rightBarButtonItem = btItem;
+    
+    
 }
 
 #pragma mark - Override
@@ -93,10 +103,7 @@
 #pragma mark - Actions
 
 - (void)onGuitarHeadButton:(UIBarButtonItem*)sender{
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [activityIndicator startAnimating];
-    UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-    self.navigationItem.rightBarButtonItem = activityItem;
+    [self addRightBarItems];
     
     if(_bluetooth.isConnected){
         [_bluetooth disconnect];

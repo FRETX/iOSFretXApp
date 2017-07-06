@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-
+@property (nonatomic, retain) NSString *mUserName;
+@property (nonatomic, retain) UIImage *mProfile;
+- (void) initialize;
 @end
 

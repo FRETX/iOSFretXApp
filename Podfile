@@ -17,5 +17,10 @@ target 'FretX' do
      pod 'FBSDKCoreKit'
      pod 'FBSDKLoginKit'
      pod 'MBProgressHUD'
-    pod 'youtube-ios-player-helper', '~> 0.1.4'
+     
+     # Pods for Intercom
+     pod 'Intercom'
+	
+     # Pods for Youtube
+     pod 'youtube-ios-player-helper', '~> 0.1.4'
 end

@@ -69,6 +69,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.10)
   - GTMSessionFetcher/Full (1.1.10):
     - GTMSessionFetcher/Core (= 1.1.10)
+  - Intercom (3.2.8)
   - MBProgressHUD (1.0.0)
   - youtube-ios-player-helper (0.1.6)
 
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - GoogleSignIn
+  - Intercom
   - MBProgressHUD
   - youtube-ios-player-helper (~> 0.1.4)
 
@@ -99,9 +101,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  Intercom: cd2e7d259f23fa75d239ecc03e67a7d93e18fdfe
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: b5c0f28371028b34fa5a552dd56fb473088cd0a1
+PODFILE CHECKSUM: 2d3ae9d854cb9a032b8ba40af1986a5740403f5a
 
 COCOAPODS: 1.2.1
