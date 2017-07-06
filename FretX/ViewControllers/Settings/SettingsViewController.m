@@ -18,15 +18,18 @@
 {
     
     __weak IBOutlet UIImageView *imv_profile;
-    __weak IBOutlet UISwitch *sw_handness;
     AppDelegate *app;
     NSData *mDataOfProfileImage;
     FIRDatabaseReference *dbRef;
     __weak IBOutlet UILabel *lb_userName;
     MBProgressHUD *hud;
-    __weak IBOutlet UISwitch *sw_handeness;
     NSString *mlogin_type;
-    NSString *mHandeness;
+    
+    // segmented control
+    __weak IBOutlet UISegmentedControl *s_hand;
+    __weak IBOutlet UISegmentedControl *s_guitar;
+    __weak IBOutlet UISegmentedControl *s_skill;
+    
 }
 @end
 
@@ -51,22 +54,9 @@
     imv_profile.layer.masksToBounds = YES;
     imv_profile.layer.borderColor=[[UIColor whiteColor] CGColor];
     
-    // retrieve data
-//    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    NSString *currentEmail = [userDefaults objectForKey: @"user_email"];
-//    
     NSString *currentUID = [[[FIRAuth auth] currentUser] uid];
     dbRef = [[[[FIRDatabase database] reference] child: @"users"] child: currentUID];
-//    if (currentEmail == nil) {
-//        
-//    } else
-//    {
-//        NSString *profilePictureStr = [userDefaults objectForKey: @"profile_image_data"];
-//        mDataOfProfileImage = [[NSData alloc] initWithBase64EncodedString: profilePictureStr options: 0];
-//        imv_profile.image = [UIImage imageWithData: mDataOfProfileImage];
-//        currentEmail = [userDefaults objectForKey: @"user_email"];
-//        [Intercom registerUserWithEmail:currentEmail];
-//    }
+
     [self showLoading: @"Loading..."];
     [dbRef observeSingleEventOfType: FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *dic = snapshot.value;
@@ -83,11 +73,26 @@
         mlogin_type = [dic objectForKey: @"login_type"];
         
         NSDictionary *pref_dic = [dic objectForKey: @"prefs"];
-        mHandeness = [pref_dic objectForKey: @"hand"];
-        if ([mHandeness isEqualToString: @"left"]) {
-            [sw_handness setOn: YES];
+        NSString *mHandedness = [pref_dic objectForKey: @"hand"];
+        if ([mHandedness isEqualToString: @"right"]) {
+            [s_hand setSelectedSegmentIndex: 0];
         } else
-            [sw_handness setOn: NO];
+            [s_hand setSelectedSegmentIndex: 1];
+        
+        NSString *mGuitar = [pref_dic objectForKey: @"guitar"];
+        if ([mGuitar isEqualToString: @"classical"]) {
+            [s_guitar setSelectedSegmentIndex: 0];
+        } else if ([mGuitar isEqualToString: @"electric"])
+            [s_guitar setSelectedSegmentIndex: 1];
+        else
+            [s_guitar setSelectedSegmentIndex: 2];
+            
+        
+        NSString *mLevel = [pref_dic objectForKey: @"level"];
+        if ([mLevel isEqualToString: @"beginner"]) {
+            [s_skill setSelectedSegmentIndex: 0];
+        } else
+            [s_skill setSelectedSegmentIndex: 1];
         
     }];
     
@@ -99,15 +104,43 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.label.text = message;
 }
-
-- (IBAction)didChangeHandSwitch:(id)sender {
-    if ([sw_handness isOn]) {
-        [sw_handness setOn: NO];
-        [[[dbRef child: @"prefs"] child: @"hand"] setValue: @"right"];
-    } else
-    {
-        [sw_handness setOn: YES];
-        [[[dbRef child: @"prefs"] child: @"hand"] setValue: @"left"];
+- (IBAction)didChangeValueOfPrefs:(id)sender {
+    UISegmentedControl *selectedControll = (UISegmentedControl *) sender;
+    switch (selectedControll.tag) {
+        case 1:
+            // change Handedness
+            if (selectedControll.selectedSegmentIndex == 0) {
+                [[[dbRef child: @"prefs"] child: @"hand"] setValue: @"right"];
+            } else
+            {
+                [[[dbRef child: @"prefs"] child: @"hand"] setValue: @"left"];
+            }
+            break;
+        case 2:
+            // change Guitar Type
+            switch (selectedControll.selectedSegmentIndex) {
+                case 0:
+                    [[[dbRef child: @"prefs"] child: @"guitar"] setValue: @"classical"];
+                    break;
+                case 1:
+                    [[[dbRef child: @"prefs"] child: @"guitar"] setValue: @"electric"];
+                    break;
+                case 2:
+                    [[[dbRef child: @"prefs"] child: @"guitar"] setValue: @"acoustic"];
+                    break;
+                 
+            }
+            break;
+        case 3:
+            // change Skill Level
+            if (selectedControll.selectedSegmentIndex == 0) {
+                [[[dbRef child: @"prefs"] child: @"level"] setValue: @"beginner"];
+            } else
+            {
+                [[[dbRef child: @"prefs"] child: @"level"] setValue: @"player"];
+            }
+            break;
+        
     }
 }
 
