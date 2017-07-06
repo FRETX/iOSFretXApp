@@ -14,7 +14,6 @@
 
 @interface BaseViewController () <FretxProtocol>
 @property FretxBLE* bluetooth;
-@property Boolean bluetoothConnected;
 @end
 
 @implementation BaseViewController
@@ -29,7 +28,6 @@
     _bluetooth = [FretxBLE sharedInstance];
     [_bluetooth verboseOn];
     _bluetooth.delegate = self;
-    _bluetoothConnected = false;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,7 +72,7 @@
 
 - (void)addRightBarItems{
     NSString *imageName;
-    if(_bluetoothConnected) {
+    if(_bluetooth.isConnected) {
         imageName =  @"GuitarHeadSelected";
     } else {
         imageName = @"GuitarHeadDeselected";
@@ -100,7 +98,7 @@
     UIBarButtonItem *activityItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
     self.navigationItem.rightBarButtonItem = activityItem;
     
-    if(_bluetoothConnected){
+    if(_bluetooth.isConnected){
         [_bluetooth disconnect];
     } else {
         [_bluetooth connect];
@@ -113,24 +111,24 @@
 
 #pragma mark - Bluetooth delegate methods
 
-- (void) didConnect{
-    _bluetoothConnected = true;
-    [self addRightBarItems];
-}
-
 - (void) didBLEStateChangeWithState:(CBManagerState)state{
     
 }
 
+- (void) didConnect{
+    [self addRightBarItems];
+}
+
 - (void) didDisconnect{
-    _bluetoothConnected = false;
     [self addRightBarItems];
 }
 
 - (void) didScanTimeout{
-    _bluetoothConnected = false;
     [self addRightBarItems];
 }
+
+
+
 
 
 - (void)onBackButton:(id)sender{
