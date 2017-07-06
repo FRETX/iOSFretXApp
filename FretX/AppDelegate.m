@@ -56,7 +56,7 @@
     // intercom integrate
     
     [Intercom setApiKey:INTERCOM_API_KEY forAppId:INTERCOM_APP_ID];
-    [Intercom setLauncherVisible:YES];
+    [Intercom setLauncherVisible:NO];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

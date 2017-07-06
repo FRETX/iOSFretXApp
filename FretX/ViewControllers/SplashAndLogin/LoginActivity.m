@@ -65,6 +65,12 @@
     [app initialize];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -168,8 +174,7 @@
                 [userDefaults synchronize];
                 [[dbRef child: currentUserID] setValue: dicToStoreInFirebaseUser];
                 
-                MainTabBarController *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
-                [self.navigationController pushViewController: mLogin animated: YES];
+                [self openMainScreen];
                 
             } else if (mLoginType == 1)
             {
@@ -178,8 +183,7 @@
             } else if (mLoginType == 3)
             {
                 hud.hidden = YES;
-                MainTabBarController *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
-                [self.navigationController pushViewController: mLogin animated: YES];
+                [self openMainScreen];
             }
             
             
@@ -218,8 +222,7 @@
                                                                nil];
                      [[dbRef child: currentUserID] setValue: dicToStoreInFirebaseUser];
                      hud.hidden = YES;
-                     MainTabBarController *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
-                     [self.navigationController pushViewController: mLogin animated: YES];
+                     [self openMainScreen];
                  });
              });
              
@@ -234,6 +237,14 @@
 - (IBAction)didSelectOtherSignin:(id)sender {
     vCustomLogin.hidden = NO;
     btn_back.hidden = NO;
+}
+
+- (void) openMainScreen
+{
+    MainTabBarController *mMain = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
+    [mMain setModalPresentationStyle:UIModalPresentationCustom];
+    [mMain setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentViewController:mMain animated:YES completion:nil];
 }
 
 - (IBAction)didSelectSigninWithGoogle:(id)sender {

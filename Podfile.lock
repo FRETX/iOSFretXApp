@@ -69,6 +69,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.10)
   - GTMSessionFetcher/Full (1.1.10):
     - GTMSessionFetcher/Core (= 1.1.10)
+  - Intercom (3.2.8)
   - MBProgressHUD (1.0.0)
 
 DEPENDENCIES:
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - GoogleSignIn
+  - Intercom
   - MBProgressHUD
 
 SPEC CHECKSUMS:
@@ -97,8 +99,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  Intercom: cd2e7d259f23fa75d239ecc03e67a7d93e18fdfe
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
 
-PODFILE CHECKSUM: cf62f45ca6a6521b5a4254c2c67124b406c341b6
+PODFILE CHECKSUM: cedb829ae87db74459b8e1aa84149a0853cb2a45
 
 COCOAPODS: 1.2.0.rc.1

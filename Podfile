@@ -17,4 +17,7 @@ target 'FretX' do
      pod 'FBSDKCoreKit'
      pod 'FBSDKLoginKit'
      pod 'MBProgressHUD'
+     
+     # Pods for Intercom
+     pod 'Intercom'
 end
