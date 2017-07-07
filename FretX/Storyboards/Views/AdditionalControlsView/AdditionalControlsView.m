@@ -112,6 +112,14 @@
     [self setupButton:self.zeroSecondButton selected:NO];
 }
 
+- (void)toggleView{
+    if (self.collapsed) {
+        [self notifyToExpandView];
+    } else{
+        [self notifyToCollapseView];
+    }
+}
+
 #pragma mark - Actions
 
 - (IBAction)onCutPointButton:(UIButton*)sender{
@@ -150,11 +158,12 @@
 
 - (IBAction)onArrowUpButton:(UIButton*)sender{
     
-    if (self.collapsed) {
-        [self notifyToExpandView];
-    } else{
-        [self notifyToCollapseView];
-    }
+    [self toggleView];
+}
+
+- (IBAction)onVerticalSwipeGesture:(UISwipeGestureRecognizer*)sender{
+
+    [self toggleView];
 }
 
 @end

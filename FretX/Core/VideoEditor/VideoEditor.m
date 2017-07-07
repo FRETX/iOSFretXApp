@@ -40,6 +40,10 @@
         if (currentPlayerTime >= self.timePointB.floatValue) {
             [self notifyAboutEndOfTimeSnippet];
         }
+        
+        if (currentPlayerTime < self.timePointA.floatValue) {
+            [self notifyAboutEndOfTimeSnippet];
+        }
     }
 }
 
