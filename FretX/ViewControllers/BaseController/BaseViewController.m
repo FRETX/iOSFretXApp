@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import <FretXBLE/FretXBLE-Swift.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 #import "NavigationManager.h"
 
@@ -21,11 +23,17 @@
 
 @implementation BaseViewController
 
+
+
 - (void)viewDidLoad {
-    [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [super viewDidLoad];
     [self setupNavigation];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    FretxBLE.sharedInstance.delegate = self;
+    [self updateBluetoothButton];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,7 +57,6 @@
     if (![self.navigationController.viewControllers[0] isEqual:self]) {
         [self addLeftBarItem];
     }
-    [self addRightBarItems];
 }
 
 - (void)setupNavigationItem{
@@ -119,17 +126,24 @@
 #pragma mark - Override
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
-    
     return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Actions
 
 - (void)onGuitarHeadButton:(UIBarButtonItem*)sender{
-    
-    if ([self respondsToSelector:@selector(guitarHeadButtonTapped:)]) {
-        [self performSelector:@selector(guitarHeadButtonTapped:) withObject:sender];
+    if(FretxBLE.sharedInstance.isScanning){
+        return;
     }
+    if(FretxBLE.sharedInstance.isConnected){
+        [FretxBLE.sharedInstance disconnect];
+    } else {
+        [FretxBLE.sharedInstance connect];
+    }
+    
+//    if ([self respondsToSelector:@selector(guitarHeadButtonTapped:)]) {
+//        [self performSelector:@selector(guitarHeadButtonTapped:) withObject:sender];
+//    }
 }
 
 - (void)onEyeButton:(UIBarButtonItem*)sender{
@@ -140,8 +154,28 @@
 
 - (void)onBackButton:(id)sender{
     
+}
+
+- (void) didStartScan{
+    [self updateBluetoothButton];
+}
+
+- (void) didConnect{
+    [self updateBluetoothButton];
+}
+
+- (void) didDisconnect{
+    [self updateBluetoothButton];
+}
+
+- (void) didScanTimeout{
+    [self updateBluetoothButton];
+}
+
+- (void)onBackButton:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 
 

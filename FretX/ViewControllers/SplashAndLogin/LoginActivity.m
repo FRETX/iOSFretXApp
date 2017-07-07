@@ -11,6 +11,7 @@
 #import "UIViewController+Alerts.h"
 #import "MainTabBarController.h"
 #import "MBProgressHUD.h"
+#import "AppDelegate.h"
 
 #define profilePermission @"public_profile"
 #define emailPermission @"email"
@@ -38,6 +39,10 @@
     __weak IBOutlet UITextField *tf_emailForgotPassword;
     __weak IBOutlet UIButton *btn_back;
     MBProgressHUD *hud;
+    NSUserDefaults *userDefaults;
+    AppDelegate *app;
+    NSString *imageDataString;
+    int mLoginType;
 }
 @end
 
@@ -56,9 +61,14 @@
     dbRef = [[[FIRDatabase database] reference] child: @"users"];
     [self.navigationController setNavigationBarHidden:YES];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:nil forKey:@"uid"];
-    [defaults synchronize];
+    app = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    [app initialize];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,7 +101,7 @@
             [self showLoading:@"Logging in..."];
             
             if ([FBSDKAccessToken currentAccessToken]) {
-                
+                mLoginType = 1;
                 [self signInFirebase: [FBSDKAccessToken currentAccessToken].tokenString];
                 
             }
@@ -130,29 +140,111 @@
     NSLog(@"--------- %@", credential);
     [[FIRAuth auth] signInWithCredential: credential completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
         button.userInteractionEnabled = YES;
-        hud.hidden = YES;
+        
         if (error) {
+            hud.hidden = YES;
             [self showMessagePrompt: error.localizedDescription];
             tf_emailCustomLogin.text = @"";
             tf_passwordCustomLogin.text = @"";
         } else
         {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            NSString *uid = [[[FIRAuth auth] currentUser] uid];
-            [defaults setObject:uid forKey:@"uid"];
-            [defaults synchronize];
+            // store profile info in firebase
             
-            MainTabBarController *mLogin = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
-            [self.navigationController pushViewController: mLogin animated: YES];
+            NSString *currentUserID = [[FIRAuth auth] currentUser].uid;
+            NSString *currentEmail = [[FIRAuth auth] currentUser].email;
+            userDefaults = [NSUserDefaults standardUserDefaults];
+            imageDataString = nil;
+            if (mLoginType == 2) {
+                hud.hidden = YES;
+                NSString *currentUserName = [[FIRAuth auth] currentUser].displayName;
+                
+                if ([[GIDSignIn sharedInstance] currentUser] != nil && [[[[GIDSignIn sharedInstance] currentUser] profile] hasImage]) {
+                    NSURL *imageURL = [[[[GIDSignIn sharedInstance] currentUser] profile] imageURLWithDimension: 100];
+                    NSData *data = [NSData dataWithContentsOfURL:imageURL];
+                    imageDataString = [data base64EncodedStringWithOptions: 0];
+                }
+                dicToStoreInFirebaseUser = [NSDictionary dictionaryWithObjectsAndKeys:
+                                            currentUserName, @"user_name",
+                                            @"google", @"login_type",
+                                            imageDataString, @"profile_image_data",
+                                            nil];
+                [userDefaults setObject: imageDataString forKey: @"profile_image_data"];
+                [userDefaults setObject: currentUserName forKey: @"user_name"];
+                [userDefaults setObject: currentEmail forKey: @"user_email"];
+                [userDefaults synchronize];
+                [[dbRef child: currentUserID] setValue: dicToStoreInFirebaseUser];
+                
+                [self openMainScreen];
+                
+            } else if (mLoginType == 1)
+            {
+                [self handleWithFB];
+                
+            } else if (mLoginType == 3)
+            {
+                hud.hidden = YES;
+                [self openMainScreen];
+            }
+            
+            
         }
     }];
     
    
 }
 
+- (void) handleWithFB
+{
+    imageDataString = nil;
+    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+     startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+         
+         if (!error) {
+             
+             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=normal",result[@"id"]]];
+             NSString *userName;
+             (result[@"name"]) ? userName = result[@"name"] : @"";
+             
+             dispatch_async(dispatch_get_global_queue(0,0), ^{
+                 NSData *data = [NSData dataWithContentsOfURL:url];
+                 imageDataString = [data base64EncodedStringWithOptions: 0];
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     // WARNING: is the cell still using the same data by this point??
+                     [userDefaults setObject: imageDataString forKey: @"profile_image_data"];
+                     [userDefaults setObject: userName forKey: @"user_name"];
+                     [userDefaults synchronize];
+                     // store in firebase
+                     NSString *currentUserID = [[[FIRAuth auth] currentUser] uid];
+                     dicToStoreInFirebaseUser = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                               userName, @"user_name",
+                                                                @"facebook", @"login_type",
+                                                               imageDataString, @"profile_image_data",
+                                                               nil];
+                     [[dbRef child: currentUserID] setValue: dicToStoreInFirebaseUser];
+                     hud.hidden = YES;
+                     [self openMainScreen];
+                 });
+             });
+             
+         } else {
+             hud.hidden = YES;
+             [self showMessagePrompt: error.localizedDescription];
+         }
+         
+     }];
+}
+
 - (IBAction)didSelectOtherSignin:(id)sender {
     vCustomLogin.hidden = NO;
     btn_back.hidden = NO;
+}
+
+- (void) openMainScreen
+{
+    MainTabBarController *mMain = [self.storyboard instantiateViewControllerWithIdentifier: @"mainActivity"];
+    [mMain setModalPresentationStyle:UIModalPresentationCustom];
+    [mMain setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentViewController:mMain animated:YES completion:nil];
 }
 
 - (IBAction)didSelectSigninWithGoogle:(id)sender {
@@ -170,6 +262,7 @@
         
         if ([self NSStringIsValidEmail: mEmail]) {
             FIRAuthCredential *credential = [FIREmailAuthProvider credentialWithEmail: mEmail password: mPassword];
+            mLoginType = 3;
             [self gotoMainViewController:credential];
             
             
@@ -244,20 +337,22 @@
                     [self showMessagePrompt:error.localizedDescription];
                 } else
                 {
+                    mLoginType = 3;
+//                    [self storeProfile];
                     NSString *currentUserID = [[FIRAuth auth] currentUser].uid;
                     NSString *currentEmail = [[FIRAuth auth] currentUser].email;
-                    
-                    [self storeEmail: currentEmail userID:currentUserID];
-                    
                     dicToStoreInFirebaseUser = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                currentEmail, @"user_email",
                                                 mUserName, @"user_name",
+                                                @"custom", @"login_type",
                                                 nil];
                     
                     [[dbRef child: currentUserID] setValue: dicToStoreInFirebaseUser];
+                    
                     v_register.hidden = YES;
                     vCustomLogin.hidden = NO;
-                    [self showMessagePrompt: @"User registered successfully."];
+                    
+                    FIRAuthCredential *credential = [FIREmailAuthProvider credentialWithEmail: mEmail password: mPassword];
+                    [self gotoMainViewController:credential];
                 }
             }];
         } else
@@ -279,11 +374,13 @@
         [FIRGoogleAuthProvider credentialWithIDToken:authentication.idToken
                                          accessToken:authentication.accessToken];
         
+        mLoginType = 2;
         [self gotoMainViewController:credential];
         
     } else {
         button.userInteractionEnabled = YES;
         // ...
+        
         [self showMessagePrompt:error.localizedDescription];
     }
 }
@@ -293,16 +390,6 @@
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.label.text = message;
-}
-
-- (void) storeEmail: (NSString *) mEmail userID: (NSString *) mUserID
-{
-    // store the credential to remove current user later
-    
-    NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-    [userdefaults setObject:mEmail forKey:@"userEmail"];
-    [userdefaults setObject: mUserID forKey: @"user_id"];
-    [userdefaults synchronize];
 }
 
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user

@@ -7,7 +7,12 @@
 //
 
 #import "MainTabBarController.h"
+#import "AppDelegate.h"
+#import "MBProgressHUD.h"
+#import "UIViewController+Alerts.h"
 @import Firebase;
+@import FBSDKCoreKit;
+@import FBSDKLoginKit;
 
 typedef enum{
     TabIconMelodies,
@@ -17,7 +22,13 @@ typedef enum{
 }TabIcon;
 
 @interface MainTabBarController () <UITabBarControllerDelegate, UITabBarDelegate>
-
+{
+    FIRDatabaseReference *dbRef;
+    NSString *currentUID;
+    AppDelegate *app;
+    MBProgressHUD *hud;
+    
+}
 @end
 
 @implementation MainTabBarController
@@ -27,9 +38,34 @@ typedef enum{
     // Do any additional setup after loading the view.
     
     self.delegate = self;
+    
+    [self storePrefs];
+    
     [self hideNavigationBarbutton];
     [self customizeTabBarItems];
-    NSString *asd =[[[FIRAuth auth]currentUser]uid];
+  
+}
+
+- (void) storePrefs
+{
+    // default values Handedness=right , skill level=beginner , guitar type=classical
+    currentUID =[[[FIRAuth auth]currentUser]uid];
+    dbRef = [[[[[FIRDatabase database] reference] child: @"users"] child: currentUID] child:@"prefs"];
+    if (dbRef == nil) {
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                             @"right", @"hand",
+                             @"classical", @"guitar",
+                             @"beginner", @"level", nil];
+        [dbRef setValue: dic];
+    }
+    
+}
+
+- (void) showLoading: (NSString *) message
+{
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.label.text = message;
 }
 
 - (void)didReceiveMemoryWarning {

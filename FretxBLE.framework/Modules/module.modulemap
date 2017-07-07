@@ -1,0 +1,10 @@
+framework module FretxBLE {
+  umbrella header "FretxBLE.h"
+
+  export *
+  module * { export * }
+}
+
+module FretxBLE.Swift {
+    header "FretxBLE-Swift.h"
+}

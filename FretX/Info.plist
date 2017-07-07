@@ -55,6 +55,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Upload photos with Intercom Messenger</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
