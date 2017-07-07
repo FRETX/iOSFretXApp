@@ -16,4 +16,7 @@
 
 - (void)layoutDotImageForString:(int)string fret:(int)fret;
 
+//left hand position
+//self.labelShowdata.transform = CGAffineTransformMakeScale(-1., 1);
+
 @end
