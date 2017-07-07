@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class Chord;
+@class SongPunch;
 
 @interface Lesson : NSObject
 
@@ -19,13 +19,13 @@
 @property (nonatomic, strong) NSString* youtubeVideoId;
 @property (nonatomic, strong) NSString* fretxID;
 @property (strong) NSString* artistName;
-@property(strong) NSArray<Chord*>* punches;
+@property(strong) NSArray<SongPunch*>* punches;
 
 @property (strong) NSString* nextLessonYoutubeID;
 
 - (void)setValuesWithInfo:(NSDictionary*)info;
 
-- (Chord*)chordNextToChord:(Chord*)chord;
-- (Chord*)chordClosestToTime:(float)time;
+- (SongPunch*)chordNextToChord:(SongPunch*)chord;
+- (SongPunch*)chordClosestToTime:(float)time;
 
 @end

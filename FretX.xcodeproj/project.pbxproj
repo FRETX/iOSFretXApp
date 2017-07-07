@@ -16,6 +16,7 @@
 		6CD1BF4B1F0A7AA9000D8819 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF491F0A7AA9000D8819 /* UIViewController+Alerts.m */; };
 		6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF4E1F0A86F2000D8819 /* LoginActivity.m */; };
 		6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF501F0A86F2000D8819 /* SplashScreens.m */; };
+		77AAEA1E1F10087500206552 /* FretXAudioProcessing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; };
 		77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */; };
@@ -33,7 +34,7 @@
 		8B0EC42E1F050EFC00EE1489 /* GuitarNeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B0EC42D1F050EFC00EE1489 /* GuitarNeckView.xib */; };
 		8B0EC4341F051A3100EE1489 /* Melody.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4331F051A3100EE1489 /* Melody.m */; };
 		8B0EC4371F051A7200EE1489 /* Lesson.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4361F051A7200EE1489 /* Lesson.m */; };
-		8B0EC43A1F051A7E00EE1489 /* Chord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4391F051A7E00EE1489 /* Chord.m */; };
+		8B0EC43A1F051A7E00EE1489 /* SongPunch.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4391F051A7E00EE1489 /* SongPunch.m */; };
 		8B0EC43E1F0529C200EE1489 /* UIView+Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC43D1F0529C200EE1489 /* UIView+Activity.m */; };
 		8B0EC4481F05480800EE1489 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4471F05480800EE1489 /* MainTabBarController.m */; };
 		8B0EC44B1F05485800EE1489 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC44A1F05485800EE1489 /* BaseNavigationController.m */; };
@@ -75,6 +76,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				77AAEA1E1F10087500206552 /* FretXAudioProcessing.framework in Embed Frameworks */,
 				77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -126,8 +128,8 @@
 		8B0EC4331F051A3100EE1489 /* Melody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Melody.m; sourceTree = "<group>"; };
 		8B0EC4351F051A7200EE1489 /* Lesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lesson.h; sourceTree = "<group>"; };
 		8B0EC4361F051A7200EE1489 /* Lesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lesson.m; sourceTree = "<group>"; };
-		8B0EC4381F051A7E00EE1489 /* Chord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chord.h; sourceTree = "<group>"; };
-		8B0EC4391F051A7E00EE1489 /* Chord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chord.m; sourceTree = "<group>"; };
+		8B0EC4381F051A7E00EE1489 /* SongPunch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongPunch.h; sourceTree = "<group>"; };
+		8B0EC4391F051A7E00EE1489 /* SongPunch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongPunch.m; sourceTree = "<group>"; };
 		8B0EC43C1F0529C200EE1489 /* UIView+Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Activity.h"; sourceTree = "<group>"; };
 		8B0EC43D1F0529C200EE1489 /* UIView+Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Activity.m"; sourceTree = "<group>"; };
 		8B0EC4461F05480800EE1489 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
@@ -335,8 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				8B0DF59A1F063D8000DB79B8 /* FingerPosition */,
-				8B0EC4381F051A7E00EE1489 /* Chord.h */,
-				8B0EC4391F051A7E00EE1489 /* Chord.m */,
+				8B0EC4381F051A7E00EE1489 /* SongPunch.h */,
+				8B0EC4391F051A7E00EE1489 /* SongPunch.m */,
 			);
 			path = Chord;
 			sourceTree = "<group>";
@@ -761,7 +763,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8F8A1A49A1CA2C2C7CAE6AA9 /* [CP] Copy Pods Resources */ = {
@@ -794,7 +796,7 @@
 				8B0EC4271F05080700EE1489 /* MelodyChordsViewController.m in Sources */,
 				8BFB17191F0BE5FC008A48C7 /* ChordsTimeLineView.m in Sources */,
 				8B0EC4241F04F6C900EE1489 /* NSMutableDictionary+Safe.m in Sources */,
-				8B0EC43A1F051A7E00EE1489 /* Chord.m in Sources */,
+				8B0EC43A1F051A7E00EE1489 /* SongPunch.m in Sources */,
 				8BFB17061F0B8E25008A48C7 /* PlayerControlsView.m in Sources */,
 				8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */,
 				8B1A94DF1F039C0200E18BB7 /* MelodiesViewController.m in Sources */,

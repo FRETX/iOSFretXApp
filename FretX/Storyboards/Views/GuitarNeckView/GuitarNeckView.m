@@ -8,7 +8,7 @@
 
 #import "GuitarNeckView.h"
 
-#import "Chord.h"
+#import "SongPunch.h"
 #import "FingerPosition.h"
 #import "FretsProgressView.h"
 
@@ -40,7 +40,7 @@
 @property (nonatomic, strong) FretsProgressView* fretsProgressView;
 
 //Data
-@property (strong) Chord* chord;
+@property (strong) SongPunch* chord;
 
 @end
 
@@ -95,7 +95,7 @@
 
 #pragma mark - Public
 
-- (void)layoutChord:(Chord*)chord{
+- (void)layoutChord:(SongPunch*)chord{
 
     self.chord = chord;
 
@@ -122,6 +122,7 @@
     [self.fretsProgressView showAnimation];
     
     [self layoutIfNeeded];
+    
 }
 
 #pragma mark -

@@ -17,7 +17,8 @@
 #import "ContentManager.h"
 #import "Lesson.h"
 #import "Melody.h"
-#import "Chord.h"
+#import "SongPunch.h"
+#import <FretXBLE/FretXBLE-Swift.h>
 
 @interface MelodiesViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -41,6 +42,10 @@
     
     [self.view showActivity];
     [self getContent];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    [FretxBLE.sharedInstance clear];
 }
 
 - (void)didReceiveMemoryWarning {
