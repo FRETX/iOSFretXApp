@@ -218,7 +218,7 @@
                                     <constraint firstAttribute="width" secondItem="6nu-4Y-VVB" secondAttribute="height" multiplier="160:41" id="IaD-ON-HN6"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYM-sN-HQ5">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYM-sN-HQ5">
                                 <rect key="frame" x="203" y="433" width="117" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="117" id="mmx-Ys-aEg"/>

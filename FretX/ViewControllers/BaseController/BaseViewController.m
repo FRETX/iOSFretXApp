@@ -14,7 +14,7 @@
 
 @class MelodiesViewController, LearnProgrammsViewController, TunerViewController, SettingsViewController;
 
-@interface BaseViewController ()
+@interface BaseViewController () <FretxProtocol>
 
 @property (strong) UIBarButtonItem* guitarItem;
 @property (strong) UIBarButtonItem* eyeItem;
@@ -57,12 +57,13 @@
     if (![self.navigationController.viewControllers[0] isEqual:self]) {
         [self addLeftBarItem];
     }
+    [self setRightBarItems];
 }
 
 - (void)setupNavigationItem{
     
     //titleView
-    UIImageView* titleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 76, 44)];
+    UIImageView* titleImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 69, 40)];
     titleImageView.image = [UIImage imageNamed:@"WhiteBarFretxLogo"];
     self.navigationItem.titleView = titleImageView;
 }
@@ -75,7 +76,7 @@
     self.navigationItem.leftBarButtonItem = backItem;
 }
 
-- (void)addRightBarItems{
+- (void)setRightBarItems{
     
     NSArray* rightItems;
     
@@ -93,15 +94,33 @@
     self.navigationItem.rightBarButtonItems = rightItems;
 }
 
+- (void)updateBluetoothButton{
+    [self setRightBarItems];
+}
+
 #pragma mark - 
 
 - (UIBarButtonItem*)getGuitarItem{
-    UIImage* image = nil;
-    image = [UIImage imageNamed:@"GuitarHeadDeselected"];
     
-    UIBarButtonItem* guitarItem = [[UIBarButtonItem alloc] initWithImage:image
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self action:@selector(onGuitarHeadButton:)];
+    UIBarButtonItem* guitarItem;
+    if(FretxBLE.sharedInstance.isScanning){
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [activityIndicator startAnimating];
+        guitarItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+        NSLog(@"attempting to set scanning animation");
+//        self.navigationItem.rightBarButtonItem = activityItem;
+    } else {
+        NSString *imageName;
+        if(FretxBLE.sharedInstance.isConnected) {
+            imageName =  @"GuitarHeadSelected";
+        } else {
+            imageName = @"GuitarHeadDeselected";
+        }
+        guitarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self action:@selector(onGuitarHeadButton:)];
+//        self.navigationItem.rightBarButtonItem = btItem;
+    }
     return guitarItem;
 }
 
@@ -141,9 +160,6 @@
         [FretxBLE.sharedInstance connect];
     }
     
-//    if ([self respondsToSelector:@selector(guitarHeadButtonTapped:)]) {
-//        [self performSelector:@selector(guitarHeadButtonTapped:) withObject:sender];
-//    }
 }
 
 - (void)onEyeButton:(UIBarButtonItem*)sender{
@@ -153,6 +169,12 @@
 }
 
 - (void)onBackButton:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Bluetooth delegate methods
+
+- (void) didBLEStateChangeWithState:(CBManagerState)state{
     
 }
 
@@ -171,12 +193,5 @@
 - (void) didScanTimeout{
     [self updateBluetoothButton];
 }
-
-- (void)onBackButton:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-
 
 @end

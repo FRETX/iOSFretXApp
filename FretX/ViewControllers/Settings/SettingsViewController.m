@@ -66,6 +66,9 @@
             imv_profile.image = [UIImage imageWithData: mDataOfProfileImage];
         }
         
+        if (!dic || [dic isEqual:[NSNull null]]) {
+            return;
+        }
         
         NSString *mUserName = [dic objectForKey: @"user_name"];
         lb_userName.text = mUserName;
