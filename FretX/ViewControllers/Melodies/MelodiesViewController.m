@@ -10,9 +10,11 @@
 
 #import "MelodyChordsViewController.h"
 #import "PlayYoutubeViewController.h"
+#import "NavigationManager.h"
 #import "MelodyTableCell.h"
 #import "UIView+Activity.h"
 #import "RequestManager.h"
+#import "ContentManager.h"
 #import "Lesson.h"
 #import "Melody.h"
 #import "Chord.h"
@@ -77,22 +79,14 @@
 - (void)getContent{
     
     __weak typeof(self) weakSelf = self;
-    [[RequestManager defaultManager] loadAllMelodiesWithBlock:^(NSArray<Melody*>* result, NSError *error) {
+    [[ContentManager defaultManager] getAllSongsWithBlock:^(NSArray<Melody*>* result, NSError *error) {
         
         [self.view hideActivity];
         if (!error) {
-            weakSelf.melodies = [weakSelf sortedArrayWithArray:result];
-            
+            weakSelf.melodies = result;
             [weakSelf.tableView reloadData];
         }
     }];
-}
-
-- (NSArray<Melody*>*)sortedArrayWithArray:(NSArray<Melody*>*)array{
-    
-    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO];
-    NSArray* sortedArray = [array sortedArrayUsingDescriptors:@[sortDescriptor]];
-    return sortedArray;
 }
 
 - (void)reloadContent{
@@ -101,6 +95,16 @@
 
 - (void)resetSelectedMelody{
     self.mellodyLesson = nil;
+}
+
+- (void)openLesson:(Lesson*)lesson{
+    
+    self.mellodyLesson = lesson;
+    if ([NavigationManager defaultManager].needToOpenYoutubeScreen) {
+        [self performSegueWithIdentifier:kOpenPlayYoutubeSegueID sender:self];
+    } else{
+        [self performSegueWithIdentifier:kMelodyLessonSegue sender:self];
+    }
 }
 
 #pragma mark - Actions
@@ -133,37 +137,34 @@
     Melody* melody = self.melodies[indexPath.row];
     
     [self.view showActivity];
-    [[RequestManager defaultManager] getLessonForMelody:melody withBlock:^(Lesson* lesson, NSError *error) {
+    [[ContentManager defaultManager] getLessonForSong:melody withBlock:^(Lesson* lesson, NSError *error) {
         
         if (lesson) {
-            weakSelf.mellodyLesson = lesson;
-            weakSelf.mellodyLesson.nextLessonYoutubeID = [weakSelf nextLessonYoutubeIDForLesson:lesson];
-            
-            [weakSelf performSegueWithIdentifier:kMelodyLessonSegue sender:weakSelf];
+            [self openLesson:lesson];
         }
         [weakSelf.view hideActivity];
     }];
 }
 
-- (NSString*)nextLessonYoutubeIDForLesson:(Lesson*)lesson{
-    
-    NSString* lessonFretxID = lesson.fretxID;
-    
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"self.fretxID like[c] %@",lessonFretxID];
-    NSArray* filteredArray = [self.melodies filteredArrayUsingPredicate:predicate];
-    
-    Melody* song;
-    if (filteredArray.count > 0) {
-        song = filteredArray.firstObject;
-    }
-    
-    NSUInteger nextIndex = [self.melodies indexOfObject:song] + 1;
-    if (song && nextIndex < self.melodies.count) {
-        Melody* nextSong = [self.melodies objectAtIndex:nextIndex];
-        return nextSong.youtubeVideoId;
-    } else{
-        return self.melodies.firstObject.youtubeVideoId;
-    }
-}
+//- (NSString*)nextLessonYoutubeIDForLesson:(Lesson*)lesson{
+//    
+//    NSString* lessonFretxID = lesson.fretxID;
+//    
+//    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"self.fretxID like[c] %@",lessonFretxID];
+//    NSArray* filteredArray = [self.melodies filteredArrayUsingPredicate:predicate];
+//    
+//    Melody* song;
+//    if (filteredArray.count > 0) {
+//        song = filteredArray.firstObject;
+//    }
+//    
+//    NSUInteger nextIndex = [self.melodies indexOfObject:song] + 1;
+//    if (song && nextIndex < self.melodies.count) {
+//        Melody* nextSong = [self.melodies objectAtIndex:nextIndex];
+//        return nextSong.youtubeVideoId;
+//    } else{
+//        return self.melodies.firstObject.youtubeVideoId;
+//    }
+//}
 
 @end

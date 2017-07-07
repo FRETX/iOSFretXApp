@@ -39,7 +39,9 @@
 @property (nonatomic, weak) IBOutlet UIView* progressContainerView;
 @property (nonatomic, strong) FretsProgressView* fretsProgressView;
 
-//@property (nonatomic, weak) IBOutletCollection(UIImageView) *dotsImageViews;
+//Data
+@property (strong) Chord* chord;
+
 @end
 
 @implementation GuitarNeckView
@@ -51,6 +53,9 @@
     // Drawing code
     [self layoutIfNeeded];
     [self addFretsProgressView];
+    
+    if (!self.chord)
+        [self hideAllDots];
 }
 
 - (void)addFretsProgressView{
@@ -92,10 +97,13 @@
 
 - (void)layoutChord:(Chord*)chord{
 
-    [self.dotsImageViews enumerateObjectsUsingBlock:^(UIImageView*  _Nonnull dotView, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        dotView.hidden = YES;
-    }];
+    self.chord = chord;
+
+    [self hideAllDots];
+    
+    if (!chord) {
+        return;
+    }
 
     //set horizontal positions
     [chord.fingering enumerateObjectsUsingBlock:^(FingerPosition * _Nonnull fingerPos, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -177,6 +185,13 @@
             break;
     }
     return nil;
+}
+
+- (void)hideAllDots{
+    [self.dotsImageViews enumerateObjectsUsingBlock:^(UIImageView*  _Nonnull dotView, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        dotView.hidden = YES;
+    }];
 }
 
 #pragma mark - Vertical Position

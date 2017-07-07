@@ -8,9 +8,14 @@
 
 #import "BaseViewController.h"
 
+#import "NavigationManager.h"
+
 @class MelodiesViewController, LearnProgrammsViewController, TunerViewController, SettingsViewController;
 
 @interface BaseViewController ()
+
+@property (strong) UIBarButtonItem* guitarItem;
+@property (strong) UIBarButtonItem* eyeItem;
 
 @end
 
@@ -65,10 +70,50 @@
 
 - (void)addRightBarItems{
     
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"GuitarHeadDeselected"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self action:@selector(onGuitarHeadButton:)];
-    self.navigationItem.rightBarButtonItem = backItem;
+    NSArray* rightItems;
+    
+    UIBarButtonItem* guitarItem = [self getGuitarItem];
+    self.guitarItem = guitarItem;
+    
+    if ([self.navigationController.viewControllers[0] isEqual:self]) {
+        UIBarButtonItem* eyeItem = [self getEyeItem];
+        self.eyeItem = eyeItem;
+        rightItems = @[guitarItem,eyeItem];
+    }else{
+        rightItems = @[guitarItem];
+    }
+    
+    self.navigationItem.rightBarButtonItems = rightItems;
+}
+
+#pragma mark - 
+
+- (UIBarButtonItem*)getGuitarItem{
+    UIImage* image = nil;
+    image = [UIImage imageNamed:@"GuitarHeadDeselected"];
+    
+    UIBarButtonItem* guitarItem = [[UIBarButtonItem alloc] initWithImage:image
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self action:@selector(onGuitarHeadButton:)];
+    return guitarItem;
+}
+
+- (UIBarButtonItem*)getEyeItem{
+    UIImage* image = [self eyeIconImage];
+    UIBarButtonItem* eyeItem = [[UIBarButtonItem alloc] initWithImage:image
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self action:@selector(onEyeButton:)];
+    return eyeItem;
+}
+
+- (UIImage*)eyeIconImage{
+    UIImage* image = nil;
+    if ([NavigationManager defaultManager].needToOpenYoutubeScreen) {
+        image = [UIImage imageNamed:@"EyeIconSelected"];
+    } else{
+        image = [UIImage imageNamed:@"EyeIconDeselected"];
+    }
+    return image;
 }
 
 #pragma mark - Override
@@ -85,6 +130,12 @@
     if ([self respondsToSelector:@selector(guitarHeadButtonTapped:)]) {
         [self performSelector:@selector(guitarHeadButtonTapped:) withObject:sender];
     }
+}
+
+- (void)onEyeButton:(UIBarButtonItem*)sender{
+    
+    [NavigationManager defaultManager].needToOpenYoutubeScreen = ![NavigationManager defaultManager].needToOpenYoutubeScreen;
+    self.eyeItem.image = [self eyeIconImage];
 }
 
 - (void)onBackButton:(id)sender{

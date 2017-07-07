@@ -12,7 +12,6 @@
 
 @interface CompletionPopupView ()
 
-@property (weak) IBOutlet UIButton* thumbImageButton;
 @property (weak) IBOutlet UILabel* messageLabel;
 @property (nonatomic, weak) IBOutlet UIImageView* songThumbImageView;
 @end
@@ -101,8 +100,8 @@
 
 - (IBAction)onPlayAnotherButton:(UIButton*)sender{
     
-    if ([self.delegate respondsToSelector:@selector(didTapBackCompletionPopup:)]) {
-        [self.delegate didTapBackCompletionPopup:self];
+    if ([self.delegate respondsToSelector:@selector(didTapPlayAnotherCompletionPopup:)]) {
+        [self.delegate didTapPlayAnotherCompletionPopup:self];
     }
 }
 

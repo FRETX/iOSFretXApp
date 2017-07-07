@@ -52,6 +52,8 @@
 		8B1A94F01F039EE500E18BB7 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B1A94EF1F039EE400E18BB7 /* Settings.storyboard */; };
 		8B1A94F21F039EF300E18BB7 /* Tuner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B1A94F11F039EF300E18BB7 /* Tuner.storyboard */; };
 		8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94F51F03D02000E18BB7 /* MelodyTableCell.m */; };
+		8B2AD7021F0F78B9000E7D33 /* ContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AD7011F0F78B9000E7D33 /* ContentManager.m */; };
+		8B2AD7061F0F8DE6000E7D33 /* NavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AD7051F0F8DE6000E7D33 /* NavigationManager.m */; };
 		8B41D7421F066F50004EAFB7 /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */; };
 		8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */; };
@@ -143,6 +145,10 @@
 		8B1A94F11F039EF300E18BB7 /* Tuner.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Tuner.storyboard; sourceTree = "<group>"; };
 		8B1A94F41F03D02000E18BB7 /* MelodyTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodyTableCell.h; sourceTree = "<group>"; };
 		8B1A94F51F03D02000E18BB7 /* MelodyTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodyTableCell.m; sourceTree = "<group>"; };
+		8B2AD7001F0F78B9000E7D33 /* ContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentManager.h; sourceTree = "<group>"; };
+		8B2AD7011F0F78B9000E7D33 /* ContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentManager.m; sourceTree = "<group>"; };
+		8B2AD7041F0F8DE6000E7D33 /* NavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationManager.h; sourceTree = "<group>"; };
+		8B2AD7051F0F8DE6000E7D33 /* NavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationManager.m; sourceTree = "<group>"; };
 		8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretXAudioProcessing.framework; sourceTree = "<group>"; };
 		8B8F05A81F0CD5FD00BAADAC /* AdditionalControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalControlsView.h; sourceTree = "<group>"; };
 		8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalControlsView.m; sourceTree = "<group>"; };
@@ -218,6 +224,8 @@
 		8B0EC40D1F04E10500EE1489 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				8B2AD7031F0F8DD6000E7D33 /* NavigationManager */,
+				8B2AD6FF1F0F78B9000E7D33 /* ContentManager */,
 				8B0EC40E1F04E10500EE1489 /* RequestManager */,
 			);
 			path = Managers;
@@ -535,6 +543,24 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
+		8B2AD6FF1F0F78B9000E7D33 /* ContentManager */ = {
+			isa = PBXGroup;
+			children = (
+				8B2AD7001F0F78B9000E7D33 /* ContentManager.h */,
+				8B2AD7011F0F78B9000E7D33 /* ContentManager.m */,
+			);
+			path = ContentManager;
+			sourceTree = "<group>";
+		};
+		8B2AD7031F0F8DD6000E7D33 /* NavigationManager */ = {
+			isa = PBXGroup;
+			children = (
+				8B2AD7041F0F8DE6000E7D33 /* NavigationManager.h */,
+				8B2AD7051F0F8DE6000E7D33 /* NavigationManager.m */,
+			);
+			path = NavigationManager;
+			sourceTree = "<group>";
+		};
 		8B8F05A71F0CD5D300BAADAC /* AdditionalControlsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,6 +770,7 @@
 			files = (
 				8B049C411F0A8364008BE4DC /* PlayYoutubeViewController.m in Sources */,
 				8B135DFF1F0E4B4500402817 /* CompletionPopupView.m in Sources */,
+				8B2AD7021F0F78B9000E7D33 /* ContentManager.m in Sources */,
 				8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */,
 				8B0EC44F1F0548B100EE1489 /* BaseViewController.m in Sources */,
 				8B0EC4271F05080700EE1489 /* MelodyChordsViewController.m in Sources */,
@@ -766,6 +793,7 @@
 				8B0EC4481F05480800EE1489 /* MainTabBarController.m in Sources */,
 				6CD1BF4B1F0A7AA9000D8819 /* UIViewController+Alerts.m in Sources */,
 				8B0EC4231F04F6C900EE1489 /* NSMutableArray+Safe.m in Sources */,
+				8B2AD7061F0F8DE6000E7D33 /* NavigationManager.m in Sources */,
 				8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */,
 				8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */,
 				8B1A94DC1F039BDF00E18BB7 /* LearnProgrammsViewController.m in Sources */,

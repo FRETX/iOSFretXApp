@@ -17,17 +17,24 @@
 #import "CompletionPopupView.h"
 #import "ChordsTimeLineView.h"
 #import "PlayerControlsView.h"
+#import "UIView+Activity.h"
 #import "GuitarNeckView.h"
-#import "RequestManager.h"
+#import "ContentManager.h"
 #import "YTPlayerView.h"
 #import "VideoEditor.h"
 #import "Lesson.h"
 #import "Chord.h"
 
+#import "UIImageView+AFNetworking.h"
+
 @interface PlayYoutubeViewController () <YTPlayerViewDelegate, PlayerControlsViewDelegate,
 AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate>
 
 //ui
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView* indicatorView;
+@property (nonatomic, weak) IBOutlet UIView* videoContainerView;
+@property (nonatomic, weak) IBOutlet UIImageView* thumbImageView;
+
 @property (nonatomic, weak) IBOutlet UILabel* songFullNameLabel;
 @property (nonatomic, weak) IBOutlet UIView* fretsContainerView;
 @property (nonatomic, weak) GuitarNeckView* guitarNeckView;
@@ -125,14 +132,16 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 - (void)playFromTime:(float)time{
 
     [self.playerView pauseVideo];
-    [self.playerView seekToSeconds:time allowSeekAhead:YES];
+    [self.playerView seekToSeconds:time/1000 allowSeekAhead:YES];
     
 #warning TEST
     Chord* nextChord = [self.lesson chordClosestToTime:time];
-    if (nextChord)
-        [self layoutChord:nextChord];
+    NSLog(@"playFromTime nextChord = %@",nextChord);
+    [self layoutChord:nextChord];
     
-    [self resumeSongVideo];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self resumeSongVideo];
+    });
 }
 
 - (float)currentTime{
@@ -154,6 +163,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 }
 
 - (void)layoutStopPlayingVideoLesson{
+    
     [self.timeLineView stop];
     [self stopChordsTimer];
     [self.playerControlsView setupState:ControlsStatePaused];
@@ -172,9 +182,18 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 
     [self layoutLesson:self.lesson];
     
+    //layout video thumb
+    NSString * youtubeID = self.lesson.youtubeVideoId;
+    NSURL *youtubeURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://img.youtube.com/vi/%@/0.jpg",youtubeID]];
+    [self.thumbImageView setImageWithURL:youtubeURL placeholderImage:[UIImage imageNamed:@"DefaultThumb"]];
+    
+    //setup player
     [self setupPlayerView];
     
+    //initilly hide advance controls
+    static BOOL additionalControlsAnimated = NO;
     [self hideAdditionalControlsAnimated:NO];
+    additionalControlsAnimated = YES;
 }
 
 - (void)layoutLesson:(Lesson*)lesson{
@@ -198,6 +217,10 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 
 - (void)addFretBoard{
     
+    if (self.guitarNeckView) {
+        [self.guitarNeckView removeFromSuperview];
+    }
+    
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"GuitarNeckView"
                                                       owner:self
                                                     options:nil];
@@ -211,6 +234,10 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 }
 
 - (void)addControlsView{
+    
+    if (self.playerControlsView) {
+        [self.playerControlsView removeFromSuperview];
+    }
     
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"PlayerControlsView"
                                                       owner:self
@@ -228,6 +255,10 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 
 - (void)addChordsTimeLineView{
     
+    if (self.timeLineView) {
+        [self.timeLineView removeFromSuperview];
+    }
+    
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"ChordsTimeLineView"
                                                       owner:self
                                                     options:nil];
@@ -241,6 +272,10 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 }
 
 - (void)addAdditionalControlsView{
+    
+    if (self.additionalControlsView) {
+        [self.additionalControlsView removeFromSuperview];
+    }
     
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"AdditionalControlsView"
                                                       owner:self
@@ -258,6 +293,10 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 }
 
 - (void)addCompletionPopupView{
+    
+    if (self.completionPopupView) {
+        [self.completionPopupView removeFromSuperview];
+    }
     
     NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"CompletionPopupView"
                                                       owner:self
@@ -279,6 +318,8 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 #pragma mark -
 
 - (void)setupPlayerView{
+
+    [self.indicatorView startAnimating];
     
     self.playerView.delegate = self;
     
@@ -335,7 +376,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     float currentTime = [self currentTime];
     
     Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
-    if (nextChord && nextChord.index > self.currentChord.index)
+    if (nextChord && (nextChord.index > self.currentChord.index || !self.currentChord))
         [self layoutChord:nextChord];
     
     return;
@@ -370,7 +411,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     if (newTime > (self.playerView.duration * 1000)*0.99 ) {
         [self playFromTime: (self.playerView.duration * 1000)*0.999];
     } else{
-        [self playFromTime:newTime/1000];
+        [self playFromTime:newTime];
     }
 }
 
@@ -378,6 +419,9 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 
 - (void)playerViewDidBecomeReady:(nonnull YTPlayerView *)playerView{
     
+    [self.indicatorView stopAnimating];
+#warning TEST
+    self.playerView.hidden = NO;
     NSLog(@"playerViewDidBecomeReady");
     [self.timeLineView setupWithDuration:self.playerView.duration*1000 chords:self.lesson.punches];
     [self.playerControlsView setupWithDuration:playerView.duration*1000];
@@ -399,6 +443,8 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     }
     
     if (state == kYTPlayerStateEnded) {
+#warning TEST
+        [self layoutChord:nil];
         [self.completionPopupView showCompletionPopupAnimated:YES];
     }
 
@@ -471,7 +517,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 
 - (void)didReachedEndingTimePointVideoEditor:(VideoEditor*)videoEditor{
     
-    float startTimePoint = videoEditor.pointA / 1000;
+    float startTimePoint = videoEditor.pointA;
     [self playFromTime:startTimePoint];
     
 }
@@ -540,6 +586,18 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 
 - (void)didTapPlayAnotherCompletionPopup:(CompletionPopupView*)completionPopupView{
     
+    [self.completionPopupView hideCompletionPopupAnimated:YES];
+    
+    [self.view showActivity];
+    __weak typeof(self) weakSelf = self;
+    [[ContentManager defaultManager] nextLessonForLesson:self.lesson withBlock:^(Lesson *lesson, NSError *error) {
+        [weakSelf.view hideActivity];
+        
+        if (lesson) {
+            [weakSelf setupLesson:lesson];
+            [weakSelf layout];
+        }
+    }];
 }
 
 #pragma mark - Notifications

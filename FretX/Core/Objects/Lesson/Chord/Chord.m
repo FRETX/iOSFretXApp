@@ -71,7 +71,7 @@
 
 - (NSString*)description{
     
-    NSString* description = [NSString stringWithFormat:@"%@. %@",[super description], self.chordName];
+    NSString* description = [NSString stringWithFormat:@"%@. %@. index = %ld",[super description], self.chordName, self.index];
     return description;
 }
 
