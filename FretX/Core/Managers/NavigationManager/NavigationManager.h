@@ -12,6 +12,6 @@
 
 + (instancetype)defaultManager;
 
-@property (assign) BOOL needToOpenYoutubeScreen;
+@property (assign) BOOL needToOpenPreviewScreen;
 
 @end

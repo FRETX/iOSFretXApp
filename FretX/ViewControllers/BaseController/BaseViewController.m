@@ -12,6 +12,8 @@
 
 #import "NavigationManager.h"
 
+#import "MelodiesViewController.h"
+
 @class MelodiesViewController, LearnProgrammsViewController, TunerViewController, SettingsViewController;
 
 @interface BaseViewController () <FretxProtocol>
@@ -83,7 +85,7 @@
     UIBarButtonItem* guitarItem = [self getGuitarItem];
     self.guitarItem = guitarItem;
     
-    if ([self.navigationController.viewControllers[0] isEqual:self]) {
+    if ([self.navigationController.viewControllers[0] isKindOfClass:[MelodiesViewController class]]) {
         UIBarButtonItem* eyeItem = [self getEyeItem];
         self.eyeItem = eyeItem;
         rightItems = @[guitarItem,eyeItem];
@@ -134,7 +136,7 @@
 
 - (UIImage*)eyeIconImage{
     UIImage* image = nil;
-    if ([NavigationManager defaultManager].needToOpenYoutubeScreen) {
+    if ([NavigationManager defaultManager].needToOpenPreviewScreen) {
         image = [UIImage imageNamed:@"EyeIconSelected"];
     } else{
         image = [UIImage imageNamed:@"EyeIconDeselected"];
@@ -164,7 +166,7 @@
 
 - (void)onEyeButton:(UIBarButtonItem*)sender{
     
-    [NavigationManager defaultManager].needToOpenYoutubeScreen = ![NavigationManager defaultManager].needToOpenYoutubeScreen;
+    [NavigationManager defaultManager].needToOpenPreviewScreen = ![NavigationManager defaultManager].needToOpenPreviewScreen;
     self.eyeItem.image = [self eyeIconImage];
 }
 

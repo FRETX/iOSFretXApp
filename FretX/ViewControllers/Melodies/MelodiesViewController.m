@@ -100,10 +100,10 @@
 - (void)openLesson:(Lesson*)lesson{
     
     self.mellodyLesson = lesson;
-    if ([NavigationManager defaultManager].needToOpenYoutubeScreen) {
-        [self performSegueWithIdentifier:kOpenPlayYoutubeSegueID sender:self];
-    } else{
+    if ([NavigationManager defaultManager].needToOpenPreviewScreen) {
         [self performSegueWithIdentifier:kMelodyLessonSegue sender:self];
+    } else{
+        [self performSegueWithIdentifier:kOpenPlayYoutubeSegueID sender:self];
     }
 }
 
