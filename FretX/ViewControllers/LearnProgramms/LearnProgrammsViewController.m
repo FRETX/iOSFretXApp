@@ -8,8 +8,15 @@
 
 #import "LearnProgrammsViewController.h"
 #import <FretXBLE/FretXBLE-Swift.h>
+#import <FretXAudioProcessing/FretXAudioProcessing.h>
 
-@interface LearnProgrammsViewController ()
+@interface LearnProgrammsViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak) IBOutlet UITableView* tableView;
+
+//data
+@property (strong) NSArray* programmTitles;
+@property (strong) NSArray* programmSubtitles;
 
 @end
 
@@ -18,6 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    Scale * sc = [Scale new];
+    Chord* ch = [Chord alloc] init;
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -38,5 +48,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)layout{
+    
+    self.programmTitles = @[@"", @"",@"", @""];
+    self.programmSubtitles = @[@"", @"",@"", @""];
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - UITableView
+
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//}
+
+
+
+
 
 @end
