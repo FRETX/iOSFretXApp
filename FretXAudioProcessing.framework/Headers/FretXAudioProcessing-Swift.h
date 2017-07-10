@@ -169,11 +169,16 @@ SWIFT_CLASS("_TtC20FretXAudioProcessing15AudioProcessing")
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
+@class FretboardPosition;
 
 SWIFT_CLASS("_TtC20FretXAudioProcessing5Chord")
 @interface Chord : NSObject
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull ALL_ROOT_NOTES;
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull ALL_CHORD_TYPES;
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull NOISE_CLASS_ROOT_AND_TYPE;
 @property (nonatomic, readonly, copy) NSString * _Nonnull name;
 - (nonnull instancetype)initWithRoot:(NSString * _Nonnull)root type:(NSString * _Nonnull)type OBJC_DESIGNATED_INITIALIZER;
+- (NSArray<FretboardPosition *> * _Nonnull)getFingering SWIFT_WARN_UNUSED_RESULT;
 - (NSArray<NSNumber *> * _Nonnull)getNotes SWIFT_WARN_UNUSED_RESULT;
 - (NSArray<NSString *> * _Nonnull)getNoteNames SWIFT_WARN_UNUSED_RESULT;
 - (NSArray<NSNumber *> * _Nonnull)getMidiNotes SWIFT_WARN_UNUSED_RESULT;
@@ -249,7 +254,10 @@ SWIFT_CLASS("_TtC20FretXAudioProcessing13PitchDetector")
 
 SWIFT_CLASS("_TtC20FretXAudioProcessing5Scale")
 @interface Scale : NSObject
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull ALL_ROOT_NOTES;
+@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull ALL_SCALE_TYPES;
 - (nonnull instancetype)initWithRoot:(NSString * _Nonnull)root type:(NSString * _Nonnull)type OBJC_DESIGNATED_INITIALIZER;
+- (NSArray<FretboardPosition *> * _Nonnull)getFingering SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
