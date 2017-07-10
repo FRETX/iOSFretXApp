@@ -15,7 +15,9 @@
 #import "GuitarNeckView.h"
 #import "RequestManager.h"
 #import "Lesson.h"
-#import "Chord.h"
+#import "SongPunch.h"
+#import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+#import <FretXBLE/FretXBLE-Swift.h>
 
 @interface MelodyChordsViewController ()
 
@@ -31,7 +33,7 @@
 
 //Data
 @property (strong, nonatomic) Lesson* lesson;
-@property (strong) Chord* currentChord;
+@property (strong) SongPunch* currentChord;
 @end
 
 @implementation MelodyChordsViewController
@@ -82,7 +84,7 @@
     }
 }
 
-- (void)layoutChord:(Chord*)chord{
+- (void)layoutChord:(SongPunch*)chord{
     
     self.currentChord = chord;
     
@@ -93,11 +95,13 @@
     
     [self.guitarNeckView layoutChord:self.currentChord];
     [self layoutProgressForLesson:self.lesson];
+    Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
+    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
 }
 
 - (void)setupNextChord{
     
-    Chord* nextChord = [self.lesson chordNextToChord:self.currentChord];
+    SongPunch* nextChord = [self.lesson chordNextToChord:self.currentChord];
     if (nextChord)
         [self layoutChord:nextChord];
 }

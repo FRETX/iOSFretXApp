@@ -9,7 +9,7 @@
 #import "Lesson.h"
 
 #import "SafeCategories.h"
-#import "Chord.h"
+#import "SongPunch.h"
 
 @implementation Lesson
 
@@ -27,11 +27,11 @@
 
 - (NSArray*)chordsWithInfo:(NSDictionary*)info{
     
-    NSMutableArray<Chord*>* mutChords = [NSMutableArray new];
+    NSMutableArray<SongPunch*>* mutChords = [NSMutableArray new];
     NSArray<NSDictionary*>* punchesInfo = [info safeArrayObjectForKey:@"punches"];
     [punchesInfo enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        Chord* chord =  [Chord new];
+        SongPunch* chord =  [SongPunch new];
         [chord setValues:obj];
         chord.index = idx;
         [mutChords addObject:chord];
@@ -41,9 +41,9 @@
     return chords;
 }
 
-- (Chord*)chordNextToChord:(Chord*)chord{
+- (SongPunch*)chordNextToChord:(SongPunch*)chord{
     
-    Chord* nexthord;
+    SongPunch* nexthord;
     if (chord && chord.index < (self.punches.count-1)) {
         NSUInteger nextIndex = chord.index + 1;
         nexthord = [self.punches objectAtIndex:nextIndex];
@@ -51,7 +51,7 @@
     return nexthord;
 }
 
-- (Chord*)chordClosestToTime:(float)time{
+- (SongPunch*)chordClosestToTime:(float)time{
     
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"self.timeMs <= %f",time];
     NSArray* filteredArray = [self.punches filteredArrayUsingPredicate:predicate];
@@ -65,8 +65,8 @@
     if (sortedArray.count <= 0)
         return nil;
     
-    Chord* clossestChord = sortedArray.lastObject;
-    Chord* resultChord = [self chordNextToChord:clossestChord];
+    SongPunch* clossestChord = sortedArray.lastObject;
+    SongPunch* resultChord = [self chordNextToChord:clossestChord];
 
 //    if (resultChord)
 //        return resultChord;

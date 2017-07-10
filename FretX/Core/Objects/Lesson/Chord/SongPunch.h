@@ -10,7 +10,7 @@
 
 @class FingerPosition;
 
-@interface Chord : NSObject
+@interface SongPunch : NSObject
 
 @property (strong) NSArray<FingerPosition*>* fingering;
 @property (strong) NSString* chordName;

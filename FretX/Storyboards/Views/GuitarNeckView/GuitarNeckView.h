@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Chord;
+@class SongPunch;
 
 @interface GuitarNeckView : UIView
 
-- (void)layoutChord:(Chord*)chord;
+- (void)layoutChord:(SongPunch*)chord;
 
 - (void)layoutDotImageForString:(int)string fret:(int)fret;
 

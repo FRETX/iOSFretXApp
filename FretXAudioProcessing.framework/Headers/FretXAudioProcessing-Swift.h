@@ -132,8 +132,125 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # define SWIFT_DEPRECATED_MSG(...) __attribute__((deprecated(__VA_ARGS__)))
 #endif
 #if defined(__has_feature) && __has_feature(modules)
+@import ObjectiveC;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+@class ParameterAnalyzer;
+@class AudioData;
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing13AudioAnalyzer")
+@interface AudioAnalyzer : NSObject
+- (void)addParameterAnalyzerWithPa:(ParameterAnalyzer * _Nonnull)pa;
+- (void)removeParameterAnalyzerAtIndex:(NSInteger)index;
+- (void)processWithAudioData:(AudioData * _Nonnull)audioData;
+- (void)enable;
+- (void)disable;
+- (BOOL)isEnabled SWIFT_WARN_UNUSED_RESULT;
++ (float)medianWithM:(NSArray<NSNumber *> * _Nonnull)m SWIFT_WARN_UNUSED_RESULT;
++ (float)findMaxValueWithArray:(NSArray<NSNumber *> * _Nonnull)array beginIndex:(NSInteger)beginIndex endIndex:(NSInteger)endIndex SWIFT_WARN_UNUSED_RESULT;
++ (NSInteger)findMaxIndexWithArray:(NSArray<NSNumber *> * _Nonnull)array SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing9AudioData")
+@interface AudioData : NSObject
+- (nonnull instancetype)initWithSampleRate:(float)sampleRate audioBuffer:(NSArray<NSNumber *> * _Nonnull)audioBuffer OBJC_DESIGNATED_INITIALIZER;
+- (void)normalize;
+- (float)getSignalPower SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing15AudioProcessing")
+@interface AudioProcessing : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing5Chord")
+@interface Chord : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull name;
+- (nonnull instancetype)initWithRoot:(NSString * _Nonnull)root type:(NSString * _Nonnull)type OBJC_DESIGNATED_INITIALIZER;
+- (NSArray<NSNumber *> * _Nonnull)getNotes SWIFT_WARN_UNUSED_RESULT;
+- (NSArray<NSString *> * _Nonnull)getNoteNames SWIFT_WARN_UNUSED_RESULT;
+- (NSArray<NSNumber *> * _Nonnull)getMidiNotes SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing13ChordDetector")
+@interface ChordDetector : AudioAnalyzer
+- (nonnull instancetype)initWithSampleRate:(float)sampleRate frameShift:(NSInteger)frameShift frameLength:(NSInteger)frameLength targetChords:(NSArray<Chord *> * _Nonnull)targetChords OBJC_DESIGNATED_INITIALIZER;
+- (void)setTargetChordsWithChords:(NSArray<Chord *> * _Nonnull)chords;
+- (float)getChordSimilarity SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing15FingerPositions")
+@interface FingerPositions : NSObject
+- (nonnull instancetype)initWithName:(NSString * _Nonnull)name baseFret:(NSInteger)baseFret string6:(NSInteger)string6 string5:(NSInteger)string5 string4:(NSInteger)string4 string3:(NSInteger)string3 string2:(NSInteger)string2 string1:(NSInteger)string1 OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing17FretboardPosition")
+@interface FretboardPosition : NSObject
+- (nonnull instancetype)initWithString:(NSInteger)string fret:(NSInteger)fret OBJC_DESIGNATED_INITIALIZER;
+- (uint8_t)getByteCode SWIFT_WARN_UNUSED_RESULT;
+- (NSInteger)toMidi SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing10MusicUtils")
+@interface MusicUtils : NSObject
++ (NSInteger)noteNameToSemitoneNumberWithNoteName:(NSString * _Nonnull)noteName SWIFT_WARN_UNUSED_RESULT;
++ (NSString * _Nonnull)semitoneNumberToNoteNameWithNumber:(NSInteger)number SWIFT_WARN_UNUSED_RESULT;
++ (NSString * _Nonnull)validateNoteNameWithName:(NSString * _Nonnull)name SWIFT_WARN_UNUSED_RESULT;
++ (double)hzToMidiNoteWithHertz:(double)hertz SWIFT_WARN_UNUSED_RESULT;
++ (double)midiNoteToHzWithNote:(NSInteger)note SWIFT_WARN_UNUSED_RESULT;
++ (NSString * _Nonnull)midiNoteToNameWithNote:(NSInteger)note SWIFT_WARN_UNUSED_RESULT;
++ (NSArray<NSNumber *> * _Nonnull)noteNameToMidiNotesWithName:(NSString * _Nonnull)name SWIFT_WARN_UNUSED_RESULT;
++ (FretboardPosition * _Nonnull)midiNoteToFretboardPositionWithNote:(NSInteger)note SWIFT_WARN_UNUSED_RESULT;
++ (double)hzToCentWithHz:(double)hz SWIFT_WARN_UNUSED_RESULT;
++ (double)centToHzWithCent:(double)cent SWIFT_WARN_UNUSED_RESULT;
++ (float)frequencyFromIntervalWithBaseNote:(float)baseNote intervalInSemitones:(NSInteger)intervalInSemitones SWIFT_WARN_UNUSED_RESULT;
++ (FingerPositions * _Nullable)getFingeringWithChordName:(NSString * _Nonnull)chordName SWIFT_WARN_UNUSED_RESULT;
++ (NSArray<NSNumber *> * _Nonnull)getBluetoothArrayFromChordWithChordName:(NSString * _Nonnull)chordName SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing17ParameterAnalyzer")
+@interface ParameterAnalyzer : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+- (void)processWithInput:(float)input;
+- (void)addParameterAnalyzerWithPa:(ParameterAnalyzer * _Nonnull)pa;
+- (void)removeParameterAnalyzerAtIndex:(NSInteger)index;
+- (void)enable;
+- (void)disable;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing20PitchDetectionResult")
+@interface PitchDetectionResult : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing13PitchDetector")
+@interface PitchDetector : AudioAnalyzer
+- (nonnull instancetype)initWithSampleRate:(float)sampleRate frameShift:(NSInteger)frameShift frameLength:(NSInteger)frameLength threshold:(float)threshold OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing5Scale")
+@interface Scale : NSObject
+- (nonnull instancetype)initWithRoot:(NSString * _Nonnull)root type:(NSString * _Nonnull)type OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+@end
+
 #pragma clang diagnostic pop

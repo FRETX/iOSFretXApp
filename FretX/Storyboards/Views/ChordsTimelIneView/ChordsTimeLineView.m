@@ -9,7 +9,7 @@
 #import "ChordsTimeLineView.h"
 
 #import "ChordCollectionViewCell.h"
-#import "Chord.h"
+#import "SongPunch.h"
 
 #define kOneSecondWidth 85.f // pixels per 1 second
 
@@ -19,7 +19,7 @@
 @property (weak) IBOutlet UICollectionView* collectionView;
 
 //data
-@property (nonatomic, strong) NSArray<Chord*>* chords;
+@property (nonatomic, strong) NSArray<SongPunch*>* chords;
 @property (assign) NSUInteger currentChordIndex;
 @property (nonatomic, strong) NSTimer* timer;
 @property (assign) float duration;
@@ -54,7 +54,7 @@
 
 #pragma mark - Public
 
-- (void)setupWithDuration:(float)duration chords:(NSArray<Chord*>*)chords{
+- (void)setupWithDuration:(float)duration chords:(NSArray<SongPunch*>*)chords{
     
     if (chords.count <= 0) {
         return;
@@ -137,9 +137,9 @@
 
 - (float)chordViewWidthForIndex:(NSUInteger)index{
     
-    Chord* chord = [self.chords objectAtIndex:index];
+    SongPunch* chord = [self.chords objectAtIndex:index];
     
-    Chord* nextChord;
+    SongPunch* nextChord;
     if (index >= (self.chords.count-1) ) {
         nextChord = nil;
     } else{
@@ -163,7 +163,7 @@
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    Chord* chord = self.chords[indexPath.row];
+    SongPunch* chord = self.chords[indexPath.row];
     static NSString* identifier = @"ChordCollectionViewCell";
     ChordCollectionViewCell* cell = (ChordCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     

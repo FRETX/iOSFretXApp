@@ -6,12 +6,12 @@
 //  Copyright © 2017 Developer. All rights reserved.
 //
 
-#import "Chord.h"
+#import "SongPunch.h"
 
 #import "SafeCategories.h"
 #import "FingerPosition.h"
 
-@implementation Chord
+@implementation SongPunch
 
 - (void)setValues:(NSDictionary*)info{
     

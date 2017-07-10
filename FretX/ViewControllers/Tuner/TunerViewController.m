@@ -7,6 +7,7 @@
 //
 
 #import "TunerViewController.h"
+#import <FretXBLE/FretXBLE-Swift.h>
 
 @interface TunerViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    [FretxBLE.sharedInstance clear];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Chord;
+@class SongPunch;
 
 @interface ChordsTimeLineView : UIView
 
-- (void)setupWithDuration:(float)duration chords:(NSArray<Chord*>*)chords;
+- (void)setupWithDuration:(float)duration chords:(NSArray<SongPunch*>*)chords;
 
 /* start timeline movement */
 - (void)move;

@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import "UIViewController+Alerts.h"
 #import "LoginActivity.h"
+#import <FretXBLE/FretXBLE-Swift.h>
 @import Firebase;
 
 @interface SettingsViewController ()
@@ -40,6 +41,10 @@
     NSString *mUID = [[[FIRAuth auth] currentUser] uid];
     [Intercom registerUserWithEmail: mUID];
     [self getProfileInfo];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    [FretxBLE.sharedInstance clear];
 }
 
 - (void) getProfileInfo

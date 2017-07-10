@@ -23,7 +23,9 @@
 #import "YTPlayerView.h"
 #import "VideoEditor.h"
 #import "Lesson.h"
-#import "Chord.h"
+#import "SongPunch.h"
+#import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+#import <FretXBLE/FretXBLE-Swift.h>
 
 #import "UIImageView+AFNetworking.h"
 
@@ -54,7 +56,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 
 //Data
 @property (strong, nonatomic) Lesson* lesson;
-@property (strong) Chord* currentChord;
+@property (strong) SongPunch* currentChord;
 @property (nonatomic, strong) NSTimer* timer;
 @property (strong) VideoEditor* videoEditor;
 
@@ -135,7 +137,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     [self.playerView seekToSeconds:time/1000 allowSeekAhead:YES];
     
 #warning TEST
-    Chord* nextChord = [self.lesson chordClosestToTime:time];
+    SongPunch* nextChord = [self.lesson chordClosestToTime:time];
     NSLog(@"playFromTime nextChord = %@",nextChord);
     [self layoutChord:nextChord];
     
@@ -205,7 +207,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 //    }
 }
 
-- (void)layoutChord:(Chord*)chord{
+- (void)layoutChord:(SongPunch*)chord{
     
     self.currentChord = chord;
     
@@ -213,6 +215,9 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     self.testChordNameLabel.text = chord.chordName;
     
     [self.guitarNeckView layoutChord:self.currentChord];
+    
+    Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
+    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
 }
 
 - (void)addFretBoard{
@@ -375,7 +380,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     
     float currentTime = [self currentTime];
     
-    Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
+    SongPunch* nextChord = [self.lesson chordClosestToTime:currentTime];
     if (nextChord && (nextChord.index > self.currentChord.index || !self.currentChord))
         [self layoutChord:nextChord];
     
