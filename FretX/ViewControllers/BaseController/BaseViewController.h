@@ -15,7 +15,7 @@
 
 //implement below methods in appropriate subclasses
 /*
-- (void)onGuitarHeadButton:(UIBarButtonItem*)sender;
+- (void)onSearchButton:(UIBarButtonItem*)sender;
 */
 
 @end

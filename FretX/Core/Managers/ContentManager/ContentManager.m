@@ -43,7 +43,7 @@
         
         NSArray<Melody*>* sortedResult;
         if (!error) {
-            sortedResult = [weakSelf sortedSongsArrayWithArray:result];
+            sortedResult = [weakSelf sortedSongsByCreationDateWithArray:result];
             self.allSongs = sortedResult;
         }
         
@@ -89,9 +89,48 @@
     }];
 }
 
+- (void)searchSongsForTitle:(NSString*)title withBlock:(void(^)(NSArray<Melody*>* result, NSError *error))block{
+    
+    if (self.allSongs.count > 0){
+        if (block) {
+            NSArray* searchedResult = [self searchSongsForTitle:title];
+            block(searchedResult, nil);
+        }
+    } else{
+        [self getAllSongsWithBlock:^(NSArray<Melody *> *result, NSError *error) {
+            
+            if (!error && result.count > 0) {
+                if (block) {
+                    NSArray* searchedResult = [self searchSongsForTitle:title];
+                    block(searchedResult, nil);
+                }
+            } else{
+                block(nil, nil);
+            }
+        }];
+    }
+}
+
 #pragma mark -
 
-- (NSArray<Melody*>*)sortedSongsArrayWithArray:(NSArray<Melody*>*)array{
+- (NSArray<Melody*>*)searchSongsForTitle:(NSString*)title{
+    NSArray* filteredArray = [self filteredSongsByTitle:title];
+    NSArray* sortedResult = [self sortedSongsByCreationDateWithArray:filteredArray];
+    return sortedResult;
+}
+
+- (NSArray<Melody*>*)filteredSongsByTitle:(NSString*)title{
+    
+    if (!title || title.length <= 0) {
+        return self.allSongs;
+    } else {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"self.songTitle contains[c] %@",title];
+        NSArray<Melody*>* filteredArray = [self.allSongs filteredArrayUsingPredicate:predicate];
+        return filteredArray;
+    }
+}
+
+- (NSArray<Melody*>*)sortedSongsByCreationDateWithArray:(NSArray<Melody*>*)array{
     
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO];
     NSArray* sortedArray = [array sortedArrayUsingDescriptors:@[sortDescriptor]];

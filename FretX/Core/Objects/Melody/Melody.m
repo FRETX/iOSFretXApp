@@ -19,22 +19,22 @@
 /*
 "youtube_id" = "0q1_AfQzcJM";
 },
-{
-    artist = "Nick LeDuc";
-    "created_at" = "2017-03-06T18:10:02.585Z";
-    difficulty = "<null>";
-    "fretx_id" = "0tsOIxDq-d8-132";
-    genre = "<null>";
-    id = 132;
-    promotion = 0;
-    published = 1;
-    "song_title" = "New York City";
-    title = "New York City";
-    "updated_at" = "2017-03-06T20:35:12.630Z";
-    "uploaded_by" = 49;
-    "uploaded_on" = "2017-02-21T16:51:57.445Z";
-    "youtube_id" = "0tsOIxDq-d8";
-},
+ {
+ artist = "Taylor Swift";
+ "created_at" = "2017-03-06T18:03:57.092Z";
+ difficulty = "<null>";
+ "fretx_id" = "zIOVMHMNfJ4-51";
+ genre = "<null>";
+ id = 51;
+ promotion = 0;
+ published = 1;
+ "song_title" = "Shake It Off";
+ title = "Shake It Off (With Lyrics) - Taylor Swift";
+ "updated_at" = "2017-03-06T18:03:57.092Z";
+ "uploaded_by" = 15;
+ "uploaded_on" = "2016-11-16T10:39:42.837Z";
+ "youtube_id" = zIOVMHMNfJ4;
+ },
 {
     artist = "Bob Dylan";
 */
@@ -59,7 +59,7 @@
     self.youtubeVideoId = [info safeStringObjectForKey:@"youtube_id"];
     self.fretxID = [info safeStringObjectForKey:@"fretx_id"];
     
-    self.melodyTitle = [info safeStringObjectForKey:@"title"];
+    self.songTitle = [info safeStringObjectForKey:@"title"];
     
     NSString* creationDateString = [info safeStringObjectForKey:@"created_at"];
     self.creationDate = [self.dateFormatter dateFromString:creationDateString];

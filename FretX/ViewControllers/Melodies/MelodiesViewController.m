@@ -19,12 +19,13 @@
 #import "Melody.h"
 #import "Chord.h"
 
-@interface MelodiesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MelodiesViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 //UI
 @property (nonatomic, weak) IBOutlet UITableView* tableView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView* activityView;
-
+@property (nonatomic, weak) IBOutlet UISearchBar* searchBar;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint* searchBarTopConstraint;
 //Data
 @property (nonatomic, strong) NSArray<Melody*>* melodies;
 //@property (assign) NSInteger selectedMelodyRowIndex;
@@ -40,6 +41,7 @@
     // Do any additional setup after loading the view.
     
     [self.view showActivity];
+    [self hideSearchBarAnimated:NO];
     [self getContent];
 }
 
@@ -107,11 +109,59 @@
     }
 }
 
+- (void)searchForTitle:(NSString*)title{
+    
+    __weak typeof(self) weakSelf = self;
+    [[ContentManager defaultManager] searchSongsForTitle:title withBlock:^(NSArray<Melody *> *result, NSError *error) {
+        
+        weakSelf.melodies = result;
+        [weakSelf reloadContent];
+    }];
+}
+
+- (void)showSearchBarAnimated:(BOOL)animated{
+    
+    self.searchBar.hidden = NO;
+    self.searchBarTopConstraint.constant = 0;
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)hideSearchBarAnimated:(BOOL)animated{
+    
+    self.searchBarTopConstraint.constant = -self.searchBar.frame.size.height;
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        self.searchBar.hidden = YES;
+        [self.view endEditing:YES];
+    }];
+}
+
 #pragma mark - Actions
 
-- (void)guitarHeadButtonTapped:(UIBarButtonItem*)sender{
-#warning guitar head button usage
-    NSLog(@"guitarHeadButtonTapped:");
+- (void)onSearchButton:(UIBarButtonItem*)sender{
+    
+    if (self.searchBar.hidden) {
+        [self showSearchBarAnimated:YES];
+    } else{
+        [self hideSearchBarAnimated:YES];
+    }
+}
+
+#pragma mark - UISearchBar
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
+    [self searchForTitle:searchText];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+//    [self hideSearchBarAnimated:YES];
+    [self.view endEditing:YES];
 }
 
 #pragma mark - UITableView
@@ -132,6 +182,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self.view endEditing:YES];
     
     __weak typeof(self) weakSelf = self;
     Melody* melody = self.melodies[indexPath.row];

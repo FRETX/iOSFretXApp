@@ -42,7 +42,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NlP-zO-puE">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="Qc8-f3-hMO">
@@ -111,19 +111,38 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ajS-QD-anX"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHK-s1-tWx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="xGO-LL-wCN"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="W4q-Td-0AN"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NlP-zO-puE" secondAttribute="bottom" id="2t8-aU-Xev"/>
                             <constraint firstItem="NlP-zO-puE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Bfr-9k-7gK"/>
+                            <constraint firstItem="HHK-s1-tWx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DCK-fM-8lA"/>
+                            <constraint firstItem="NlP-zO-puE" firstAttribute="top" secondItem="HHK-s1-tWx" secondAttribute="bottom" id="KXA-Ek-6Vb"/>
                             <constraint firstAttribute="trailing" secondItem="NlP-zO-puE" secondAttribute="trailing" id="itY-V5-LyL"/>
-                            <constraint firstItem="NlP-zO-puE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="l8Z-Zc-hwE"/>
+                            <constraint firstAttribute="trailing" secondItem="HHK-s1-tWx" secondAttribute="trailing" id="iuL-9F-Q6x"/>
+                            <constraint firstItem="HHK-s1-tWx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ou4-BX-awm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2Zh-Ig-ay9">
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="HHK-s1-tWx" id="R3E-tx-5me"/>
+                        <outlet property="searchBarTopConstraint" destination="ou4-BX-awm" id="5e2-jT-LPa"/>
                         <outlet property="tableView" destination="NlP-zO-puE" id="v5B-VY-sfF"/>
                         <segue destination="euD-ck-oRZ" kind="show" identifier="MelodyLessonSegue" id="FU1-SE-y04"/>
                         <segue destination="DdI-8i-BfS" kind="show" identifier="OpenPlayYoutubeSegue" id="wcZ-Ye-55C"/>
@@ -131,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="138"/>
+            <point key="canvasLocation" x="-69.375" y="137.32394366197184"/>
         </scene>
         <!--Play Youtube View Controller-->
         <scene sceneID="Pdb-Ex-37J">

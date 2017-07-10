@@ -36,6 +36,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     FretxBLE.sharedInstance.delegate = self;
     [self updateBluetoothButton];
+    
+    [self setRightBarItems];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +61,7 @@
     if (![self.navigationController.viewControllers[0] isEqual:self]) {
         [self addLeftBarItem];
     }
-    [self setRightBarItems];
+//    [self setRightBarItems];
 }
 
 - (void)setupNavigationItem{
@@ -86,9 +88,17 @@
     self.guitarItem = guitarItem;
     
     if ([self.navigationController.viewControllers[0] isKindOfClass:[MelodiesViewController class]]) {
+        
         UIBarButtonItem* eyeItem = [self getEyeItem];
         self.eyeItem = eyeItem;
-        rightItems = @[guitarItem,eyeItem];
+        //rightItems = @[guitarItem, eyeItem, searchItem];
+        UIBarButtonItem* searchItem = [self isKindOfClass:[MelodiesViewController class]] ? [self getSearchItem] : nil;
+        
+        if (searchItem) {
+            rightItems = @[guitarItem, eyeItem, searchItem];
+        } else{
+            rightItems = @[guitarItem, eyeItem];
+        }
     }else{
         rightItems = @[guitarItem];
     }
@@ -144,13 +154,24 @@
     return image;
 }
 
-#pragma mark - Override
-
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
+- (UIBarButtonItem*)getSearchItem{
+    UIBarButtonItem* searchItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SearchIconSelected"]
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self action:@selector(onTapSearchButton:)];
+    return searchItem;
 }
 
+#pragma mark - Override
+
+
 #pragma mark - Actions
+
+- (void)onTapSearchButton:(UIBarButtonItem*)sender{
+    
+    if ([self respondsToSelector:@selector(onSearchButton:)]) {
+        [self performSelector:@selector(onSearchButton:) withObject:sender];
+    }
+}
 
 - (void)onGuitarHeadButton:(UIBarButtonItem*)sender{
     if(FretxBLE.sharedInstance.isScanning){

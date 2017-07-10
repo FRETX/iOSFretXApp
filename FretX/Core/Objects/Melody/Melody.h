@@ -10,7 +10,7 @@
 
 @interface Melody : NSObject
 
-@property (nonatomic, strong) NSString* melodyTitle;
+@property (nonatomic, strong) NSString* songTitle;
 @property (nonatomic, strong) NSString* songName;
 @property (nonatomic, strong) NSString* artistName;
 @property (nonatomic, strong) NSString* backendID;
