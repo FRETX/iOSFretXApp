@@ -31,7 +31,6 @@
 
 //Data
 @property (strong) SongPunch* chord;
-@property (assign) BOOL punchAnimationEnabled;
 @end
 
 @implementation GuitarNeckView
@@ -41,7 +40,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-    self.punchAnimationEnabled = YES;
+   
     [self layoutIfNeeded];
     [self addFretsProgressView];
     
@@ -113,11 +112,6 @@
     
     [self layoutIfNeeded];
     
-}
-
-- (void)setPunchAnimationEnabled:(BOOL)enabled{
-    
-    self.punchAnimationEnabled = enabled;
 }
 
 #pragma mark - Private
