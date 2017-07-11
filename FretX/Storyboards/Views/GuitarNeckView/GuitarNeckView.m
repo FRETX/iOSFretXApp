@@ -17,22 +17,12 @@
 
 @interface GuitarNeckView ()
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot1YCenterConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot2YCenterConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot3YCenterConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot4YCenterConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot5YCenterConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot6YCenterConstraint;
 
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot1LeftConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot2LeftConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot3LeftConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot4LeftConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot5LeftConstraint;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint* dot6LeftConstraint;
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray<NSLayoutConstraint*> *dotsYCenterConstraints;
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray<NSLayoutConstraint*> *dotsLeftConstraints;
 
 @property (nonatomic, weak) IBOutlet UIImageView* fretImageView;
-@property (nonatomic, weak) IBOutlet UIImageView* dotImageView;//it's first dot
+//@property (nonatomic, weak) IBOutlet UIImageView* dotImageView;//it's first dot
 
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *dotsImageViews;
 
@@ -41,7 +31,7 @@
 
 //Data
 @property (strong) SongPunch* chord;
-
+@property (assign) BOOL punchAnimationEnabled;
 @end
 
 @implementation GuitarNeckView
@@ -51,6 +41,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
+    self.punchAnimationEnabled = YES;
     [self layoutIfNeeded];
     [self addFretsProgressView];
     
@@ -97,45 +88,53 @@
 
 - (void)layoutChord:(SongPunch*)chord{
 
-    self.chord = chord;
+    [self layoutChord:chord withPunchAnimation:YES];
+    
+}
 
+- (void)layoutChord:(SongPunch*)chord withPunchAnimation:(BOOL)enabled{
+    
+    self.chord = chord;
+    
     [self hideAllDots];
     
     if (!chord) {
         return;
     }
-
+    
     //set horizontal positions
     [chord.fingering enumerateObjectsUsingBlock:^(FingerPosition * _Nonnull fingerPos, NSUInteger idx, BOOL * _Nonnull stop) {
         
         [self layoutDotImageForString:fingerPos.string fret:fingerPos.fret];
     }];
-
     
-    //adjust vertical
-    for (int i = 1; i <= StringsCount; i++) {
-        
-        NSLayoutConstraint* dotYCenterConstraint = [self centerYConstrintForDot:i];
-        dotYCenterConstraint.constant = [self centerYPositionForString:i];
-    }
-    
-    [self.fretsProgressView showAnimation];
+    if (enabled)
+        [self.fretsProgressView showAnimation];
     
     [self layoutIfNeeded];
     
 }
 
-#pragma mark -
+- (void)setPunchAnimationEnabled:(BOOL)enabled{
+    
+    self.punchAnimationEnabled = enabled;
+}
+
+#pragma mark - Private
 
 - (void)layoutDotImageForString:(int)string fret:(int)fret{
     
-    UIImageView* dot = [self viewWithTag:string];
+    UIImageView* dot = [self dotImageViewForString:string fret:fret];
     dot.hidden = NO;
     dot.image = [self imageForFret:fret];
-    //set position
-    NSLayoutConstraint* dotLeftConstraint = [self constraintForString:string];
+    
+    //set left position
+    NSLayoutConstraint* dotLeftConstraint = [self leftConstraintForString:string fret:fret];
     dotLeftConstraint.constant = [self leftSpacingForFret:fret];
-//    [self layoutIfNeeded];
+
+    //adjust vertical
+    NSLayoutConstraint* dotYCenterConstraint = [self centerYConstraintForString:string fret:fret];
+    dotYCenterConstraint.constant = [self centerYPositionForString:string];
 }
 
 - (UIImage*)imageForFret:(int)fret{
@@ -160,32 +159,46 @@
     return leftSpaing;
 }
 
-- (NSLayoutConstraint*)constraintForString:(int)string{
+- (NSLayoutConstraint*)leftConstraintForString:(int)string fret:(int)fret{
     
-    switch (string) {
-        case 1:
-            return self.dot1LeftConstraint;
-            break;
-        case 2:
-            return self.dot2LeftConstraint;
-            break;
-        case 3:
-            return self.dot3LeftConstraint;
-            break;
-        case 4:
-            return self.dot4LeftConstraint;
-            break;
-        case 5:
-            return self.dot5LeftConstraint;
-            break;
-        case 6:
-            return self.dot6LeftConstraint;
-            break;
-            
-        default:
-            break;
-    }
-    return nil;
+    int wantedDotTag = [self dotTagForString:string fret:fret];
+    
+    __block NSLayoutConstraint* wantedCnstraint = nil;
+    [self.dotsLeftConstraints enumerateObjectsUsingBlock:^(NSLayoutConstraint * _Nonnull constraint, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        for (id item in @[constraint.firstItem, constraint.secondItem]) {
+            if ([item isKindOfClass:[UIImageView class]]) {
+                UIImageView* imageView = (UIImageView*)item;
+                if (imageView.tag == wantedDotTag)
+                    wantedCnstraint = constraint;
+            }
+        }
+    }];
+    
+//    switch (string) {
+//        case 1:
+//            return self.dot1LeftConstraint;
+//            break;
+//        case 2:
+//            return self.dot2LeftConstraint;
+//            break;
+//        case 3:
+//            return self.dot3LeftConstraint;
+//            break;
+//        case 4:
+//            return self.dot4LeftConstraint;
+//            break;
+//        case 5:
+//            return self.dot5LeftConstraint;
+//            break;
+//        case 6:
+//            return self.dot6LeftConstraint;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    return wantedCnstraint;
 }
 
 - (void)hideAllDots{
@@ -193,6 +206,25 @@
         
         dotView.hidden = YES;
     }];
+}
+
+- (int)dotTagForString:(int)string fret:(int)fret{
+    
+    NSString* stringTag = [NSString stringWithFormat:@"%d%d",string,fret+1];
+    return stringTag.intValue;
+}
+
+- (UIImageView*)dotImageViewForString:(int)string fret:(int)fret{
+    
+    UIImageView* result = nil;
+    
+    int wantedDotTag = [self dotTagForString:string fret:fret];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"self.tag == %d",wantedDotTag];
+    NSArray* filteredArray = [self.dotsImageViews filteredArrayUsingPredicate:predicate];
+    if (filteredArray.count > 0) {
+        result = filteredArray.firstObject;
+    }
+    return result;
 }
 
 #pragma mark - Vertical Position
@@ -227,38 +259,46 @@
     return centerYPosition;
 }
 
-- (NSLayoutConstraint*)centerYConstrintForDot:(int)dotIndex{
+- (NSLayoutConstraint*)centerYConstraintForString:(int)string fret:(int)fret{
+  
+    int wantedDotTag = [self dotTagForString:string fret:fret];
     
-//    dot1YCenterConstraint
-//    dot2YCenterConstraint
-//    dot3YCenterConstraint
-//    dot4YCenterConstraint
-//    dot5YCenterConstraint
-//    dot6YCenterConstraint
-    switch (dotIndex) {
-        case 1:
-            return self.dot1YCenterConstraint;
-            break;
-        case 2:
-            return self.dot2YCenterConstraint;
-            break;
-        case 3:
-            return self.dot3YCenterConstraint;
-            break;
-        case 4:
-            return self.dot4YCenterConstraint;
-            break;
-        case 5:
-            return self.dot5YCenterConstraint;
-            break;
-        case 6:
-            return self.dot6YCenterConstraint;
-            break;
-            
-        default:
-            break;
-    }
-    return nil;
+    __block NSLayoutConstraint* wantedCnstraint = nil;
+    [self.dotsYCenterConstraints enumerateObjectsUsingBlock:^(NSLayoutConstraint * _Nonnull constraint, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        for (id item in @[constraint.firstItem, constraint.secondItem]) {
+            if ([item isKindOfClass:[UIImageView class]]) {
+                UIImageView* imageView = (UIImageView*)item;
+                if (imageView.tag == wantedDotTag)
+                    wantedCnstraint = constraint;
+            }
+        }
+    }];
+    
+//    switch (dotIndex) {
+//        case 1:
+//            return self.dot1YCenterConstraint;
+//            break;
+//        case 2:
+//            return self.dot2YCenterConstraint;
+//            break;
+//        case 3:
+//            return self.dot3YCenterConstraint;
+//            break;
+//        case 4:
+//            return self.dot4YCenterConstraint;
+//            break;
+//        case 5:
+//            return self.dot5YCenterConstraint;
+//            break;
+//        case 6:
+//            return self.dot6YCenterConstraint;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    return wantedCnstraint;
 }
 
 

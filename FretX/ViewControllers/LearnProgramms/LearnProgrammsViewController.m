@@ -8,15 +8,25 @@
 
 #import "LearnProgrammsViewController.h"
 #import <FretXBLE/FretXBLE-Swift.h>
-#import <FretXAudioProcessing/FretXAudioProcessing.h>
+#import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+
+#import "ProgrammTableCell.h"
+
+//Chord Exercicises", @"Custom Chord Exercices",@"Chords", @"Scale Exercicises"];
+typedef enum {
+    ProgrammChordExercicises,
+    ProgrammCustomChordExercices,
+    ProgrammChords,
+    ProgrammScaleExercicises
+}Programm;
 
 @interface LearnProgrammsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak) IBOutlet UITableView* tableView;
 
 //data
-@property (strong) NSArray* programmTitles;
-@property (strong) NSArray* programmSubtitles;
+@property (strong) NSArray<NSString*>* programmTitles;
+@property (strong) NSArray<NSString*>* programmSubtitles;
 
 @end
 
@@ -26,8 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    Scale * sc = [Scale new];
-    Chord* ch = [Chord alloc] init;
+    [self layout];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -51,24 +60,81 @@
 
 - (void)layout{
     
-    self.programmTitles = @[@"", @"",@"", @""];
-    self.programmSubtitles = @[@"", @"",@"", @""];
+    self.programmTitles = @[@"Chord Exercicises", @"Custom Chord Exercices",@"Chords", @"Scale Exercicises"];
+    self.programmSubtitles = @[@"Start learning with our guided exercises",
+                               @"Build your own training session",
+                               @"Learn all chords",
+                               @"Practice scales and improvisation"];
     
     [self.tableView reloadData];
 }
 
+- (UIImage*)imageForIndexPath:(NSIndexPath*)indexPath{
+    
+    UIImage* image = nil;
+    switch (indexPath.row) {
+        case ProgrammChordExercicises:
+            image = [UIImage imageNamed:@"ChordExercisesBG"];
+            break;
+        case ProgrammCustomChordExercices:
+            image = [UIImage imageNamed:@"CustomChordBG"];
+            break;
+        case ProgrammChords:
+            image = [UIImage imageNamed:@"ChordsBG"];
+            break;
+        case ProgrammScaleExercicises:
+            image = [UIImage imageNamed:@"ScaleExercisesBG"];
+            break;
+        default:
+            break;
+    }
+    
+    return image;
+}
+
 #pragma mark - UITableView
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return self.programmTitles.count;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSString* title = self.programmTitles[indexPath.row];
+    NSString* subtitle = self.programmSubtitles[indexPath.row];
+    
+    static NSString* cellID = @"ProgrammTableCell";
+    ProgrammTableCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    [cell setTitle:title subtitle:subtitle image:[self imageForIndexPath:indexPath]];
+    return cell;
+}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    switch (indexPath.row) {
+        case ProgrammChordExercicises:
+            [self performSegueWithIdentifier:kChordExercisesSegue sender:self];
+            break;
+        case ProgrammCustomChordExercices:
+            [self performSegueWithIdentifier:kCustomChordSegue sender:self];
+            break;
+        case ProgrammChords:
+            [self performSegueWithIdentifier:kChordsSegue sender:self];
+            break;
+        case ProgrammScaleExercicises:
+            [self performSegueWithIdentifier:kScaleExercisesSegue sender:self];
+            break;
+        default:
+            break;
+    }
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return tableView.frame.size.height/self.programmTitles.count;
+}
 
 
 @end

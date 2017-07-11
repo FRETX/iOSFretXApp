@@ -16,8 +16,7 @@
 		6CD1BF4B1F0A7AA9000D8819 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF491F0A7AA9000D8819 /* UIViewController+Alerts.m */; };
 		6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF4E1F0A86F2000D8819 /* LoginActivity.m */; };
 		6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF501F0A86F2000D8819 /* SplashScreens.m */; };
-		77AAEA1E1F10087500206552 /* FretXAudioProcessing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; };
+		77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */; };
 		8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B049C3C1F0A3C90008BE4DC /* FretsProgressView.xib */; };
@@ -57,10 +56,26 @@
 		8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94F51F03D02000E18BB7 /* MelodyTableCell.m */; };
 		8B2AD7021F0F78B9000E7D33 /* ContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AD7011F0F78B9000E7D33 /* ContentManager.m */; };
 		8B2AD7061F0F8DE6000E7D33 /* NavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AD7051F0F8DE6000E7D33 /* NavigationManager.m */; };
-		8B41D7421F066F50004EAFB7 /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */; };
 		8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */; };
 		8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */; };
+		8BEF699D1F1387A4005603C0 /* ProgrammTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF699C1F1387A4005603C0 /* ProgrammTableCell.m */; };
+		8BEF69A01F138BD9005603C0 /* ChordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF699F1F138BD9005603C0 /* ChordsViewController.m */; };
+		8BEF69A31F138BF2005603C0 /* ScaleExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF69A21F138BF2005603C0 /* ScaleExercisesViewController.m */; };
+		8BEF69A91F13927D005603C0 /* ItemsCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BEF69A81F13927D005603C0 /* ItemsCollectionView.xib */; };
+		8BEF69AC1F139321005603C0 /* ItemCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF69AB1F139321005603C0 /* ItemCollectionCell.m */; };
+		8BEF69AE1F139332005603C0 /* ItemCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BEF69AD1F139332005603C0 /* ItemCollectionCell.xib */; };
+		8BEF69B11F13ADF9005603C0 /* SongPunch+AudioProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF69B01F13ADF9005603C0 /* SongPunch+AudioProcessing.m */; };
+		8BEF69B61F13CCF8005603C0 /* ItemsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF69B51F13CCF8005603C0 /* ItemsCollectionView.m */; };
+		8BF3504B1F14B41200F920FA /* GuidedChordExercises.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BF3504A1F14B41200F920FA /* GuidedChordExercises.json */; };
+		8BF3504F1F14B54600F920FA /* ChordExercise.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF3504E1F14B54600F920FA /* ChordExercise.m */; };
+		8BF350521F14BD8700F920FA /* ChordExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF350511F14BD8700F920FA /* ChordExercisesViewController.m */; };
+		8BF350561F14C04700F920FA /* ChordExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF350551F14C04700F920FA /* ChordExerciseViewController.m */; };
+		8BF3505A1F14C0D100F920FA /* ExerciseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF350591F14C0D100F920FA /* ExerciseTableCell.m */; };
+		8BF350661F14F23C00F920FA /* ExercisesPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF350651F14F23C00F920FA /* ExercisesPopupView.m */; };
+		8BF350681F14F26300F920FA /* ExercisesPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF350671F14F26300F920FA /* ExercisesPopupView.xib */; };
+		8BF3506B1F14F6A600F920FA /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8BF3506C1F14F6A600F920FA /* FretXAudioProcessing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BFB17061F0B8E25008A48C7 /* PlayerControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */; };
 		8BFB17081F0B8EAE008A48C7 /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */; };
 		8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17101F0BC894008A48C7 /* ChordCollectionViewCell.m */; };
@@ -76,7 +91,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				77AAEA1E1F10087500206552 /* FretXAudioProcessing.framework in Embed Frameworks */,
+				8BF3506C1F14F6A600F920FA /* FretXAudioProcessing.framework in Embed Frameworks */,
 				77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -167,12 +182,38 @@
 		8B2AD7011F0F78B9000E7D33 /* ContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentManager.m; sourceTree = "<group>"; };
 		8B2AD7041F0F8DE6000E7D33 /* NavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationManager.h; sourceTree = "<group>"; };
 		8B2AD7051F0F8DE6000E7D33 /* NavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationManager.m; sourceTree = "<group>"; };
-		8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretXAudioProcessing.framework; sourceTree = "<group>"; };
 		8B8F05A81F0CD5FD00BAADAC /* AdditionalControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalControlsView.h; sourceTree = "<group>"; };
 		8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalControlsView.m; sourceTree = "<group>"; };
 		8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdditionalControlsView.xib; sourceTree = "<group>"; };
 		8B8F05AE1F0D131A00BAADAC /* VideoEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoEditor.h; sourceTree = "<group>"; };
 		8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoEditor.m; sourceTree = "<group>"; };
+		8BEF699B1F1387A4005603C0 /* ProgrammTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgrammTableCell.h; sourceTree = "<group>"; };
+		8BEF699C1F1387A4005603C0 /* ProgrammTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgrammTableCell.m; sourceTree = "<group>"; };
+		8BEF699E1F138BD9005603C0 /* ChordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordsViewController.h; sourceTree = "<group>"; };
+		8BEF699F1F138BD9005603C0 /* ChordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordsViewController.m; sourceTree = "<group>"; };
+		8BEF69A11F138BF2005603C0 /* ScaleExercisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleExercisesViewController.h; sourceTree = "<group>"; };
+		8BEF69A21F138BF2005603C0 /* ScaleExercisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleExercisesViewController.m; sourceTree = "<group>"; };
+		8BEF69A81F13927D005603C0 /* ItemsCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemsCollectionView.xib; sourceTree = "<group>"; };
+		8BEF69AA1F139321005603C0 /* ItemCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCollectionCell.h; sourceTree = "<group>"; };
+		8BEF69AB1F139321005603C0 /* ItemCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCollectionCell.m; sourceTree = "<group>"; };
+		8BEF69AD1F139332005603C0 /* ItemCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCollectionCell.xib; sourceTree = "<group>"; };
+		8BEF69AF1F13ADF9005603C0 /* SongPunch+AudioProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SongPunch+AudioProcessing.h"; sourceTree = "<group>"; };
+		8BEF69B01F13ADF9005603C0 /* SongPunch+AudioProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SongPunch+AudioProcessing.m"; sourceTree = "<group>"; };
+		8BEF69B41F13CCF8005603C0 /* ItemsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsCollectionView.h; sourceTree = "<group>"; };
+		8BEF69B51F13CCF8005603C0 /* ItemsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsCollectionView.m; sourceTree = "<group>"; };
+		8BF3504A1F14B41200F920FA /* GuidedChordExercises.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GuidedChordExercises.json; sourceTree = "<group>"; };
+		8BF3504D1F14B54600F920FA /* ChordExercise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordExercise.h; sourceTree = "<group>"; };
+		8BF3504E1F14B54600F920FA /* ChordExercise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordExercise.m; sourceTree = "<group>"; };
+		8BF350501F14BD8700F920FA /* ChordExercisesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordExercisesViewController.h; sourceTree = "<group>"; };
+		8BF350511F14BD8700F920FA /* ChordExercisesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordExercisesViewController.m; sourceTree = "<group>"; };
+		8BF350541F14C04700F920FA /* ChordExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordExerciseViewController.h; sourceTree = "<group>"; };
+		8BF350551F14C04700F920FA /* ChordExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordExerciseViewController.m; sourceTree = "<group>"; };
+		8BF350581F14C0D100F920FA /* ExerciseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseTableCell.h; sourceTree = "<group>"; };
+		8BF350591F14C0D100F920FA /* ExerciseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseTableCell.m; sourceTree = "<group>"; };
+		8BF350641F14F23C00F920FA /* ExercisesPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExercisesPopupView.h; sourceTree = "<group>"; };
+		8BF350651F14F23C00F920FA /* ExercisesPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExercisesPopupView.m; sourceTree = "<group>"; };
+		8BF350671F14F26300F920FA /* ExercisesPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExercisesPopupView.xib; sourceTree = "<group>"; };
+		8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretXAudioProcessing.framework; sourceTree = "<group>"; };
 		8BFB17041F0B8E25008A48C7 /* PlayerControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControlsView.h; sourceTree = "<group>"; };
 		8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlsView.m; sourceTree = "<group>"; };
 		8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -192,7 +233,7 @@
 			files = (
 				335F36C14EDF58C27D68420D /* Pods_FretX.framework in Frameworks */,
 				77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */,
-				8B41D7421F066F50004EAFB7 /* FretXAudioProcessing.framework in Frameworks */,
+				8BF3506B1F14F6A600F920FA /* FretXAudioProcessing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +344,8 @@
 		8B0EC4281F0509CD00EE1489 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8BF350631F14F1FA00F920FA /* ExercisesPopupView */,
+				8BEF69A41F139251005603C0 /* ItemsCollectionView */,
 				8B135DFB1F0E4B4500402817 /* CompletionPopupView */,
 				8B8F05A71F0CD5D300BAADAC /* AdditionalControlsView */,
 				8BFB17021F0B8DF3008A48C7 /* ChordsTimelIneView */,
@@ -339,6 +382,8 @@
 				8B0DF59A1F063D8000DB79B8 /* FingerPosition */,
 				8B0EC4381F051A7E00EE1489 /* SongPunch.h */,
 				8B0EC4391F051A7E00EE1489 /* SongPunch.m */,
+				8BEF69AF1F13ADF9005603C0 /* SongPunch+AudioProcessing.h */,
+				8BEF69B01F13ADF9005603C0 /* SongPunch+AudioProcessing.m */,
 			);
 			path = Chord;
 			sourceTree = "<group>";
@@ -463,6 +508,7 @@
 		8B1A94BC1F0397B900E18BB7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8BF3504A1F14B41200F920FA /* GuidedChordExercises.json */,
 				8B1A94BD1F0397B900E18BB7 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -494,8 +540,10 @@
 		8B1A94D61F039B4500E18BB7 /* LearnProgramms */ = {
 			isa = PBXGroup;
 			children = (
+				8BEF69961F13873F005603C0 /* Programms */,
 				8B1A94DA1F039BDF00E18BB7 /* LearnProgrammsViewController.h */,
 				8B1A94DB1F039BDF00E18BB7 /* LearnProgrammsViewController.m */,
+				8BEF69951F13873F005603C0 /* Cell */,
 			);
 			path = LearnProgramms;
 			sourceTree = "<group>";
@@ -555,6 +603,7 @@
 		8B1A94F71F03D2C300E18BB7 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				8BF3504C1F14B4DF00F920FA /* ChordExercise */,
 				8B0EC42F1F051A3100EE1489 /* Lesson */,
 				8B0EC4311F051A3100EE1489 /* Melody */,
 			);
@@ -598,6 +647,112 @@
 			path = VideoEditor;
 			sourceTree = "<group>";
 		};
+		8BEF69951F13873F005603C0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF699B1F1387A4005603C0 /* ProgrammTableCell.h */,
+				8BEF699C1F1387A4005603C0 /* ProgrammTableCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8BEF69961F13873F005603C0 /* Programms */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF69971F13873F005603C0 /* ChordExercises */,
+				8BEF69981F13873F005603C0 /* Chords */,
+				8BEF69991F13873F005603C0 /* CustomChordExercise */,
+				8BEF699A1F13873F005603C0 /* ScaleExercises */,
+			);
+			path = Programms;
+			sourceTree = "<group>";
+		};
+		8BEF69971F13873F005603C0 /* ChordExercises */ = {
+			isa = PBXGroup;
+			children = (
+				8BF350531F14C01B00F920FA /* ChordExercise */,
+				8BF350501F14BD8700F920FA /* ChordExercisesViewController.h */,
+				8BF350511F14BD8700F920FA /* ChordExercisesViewController.m */,
+				8BF350571F14C0A100F920FA /* Cell */,
+			);
+			path = ChordExercises;
+			sourceTree = "<group>";
+		};
+		8BEF69981F13873F005603C0 /* Chords */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF699E1F138BD9005603C0 /* ChordsViewController.h */,
+				8BEF699F1F138BD9005603C0 /* ChordsViewController.m */,
+			);
+			path = Chords;
+			sourceTree = "<group>";
+		};
+		8BEF69991F13873F005603C0 /* CustomChordExercise */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomChordExercise;
+			sourceTree = "<group>";
+		};
+		8BEF699A1F13873F005603C0 /* ScaleExercises */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF69A11F138BF2005603C0 /* ScaleExercisesViewController.h */,
+				8BEF69A21F138BF2005603C0 /* ScaleExercisesViewController.m */,
+			);
+			path = ScaleExercises;
+			sourceTree = "<group>";
+		};
+		8BEF69A41F139251005603C0 /* ItemsCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8BEF69B41F13CCF8005603C0 /* ItemsCollectionView.h */,
+				8BEF69B51F13CCF8005603C0 /* ItemsCollectionView.m */,
+				8BEF69A81F13927D005603C0 /* ItemsCollectionView.xib */,
+				8BEF69AA1F139321005603C0 /* ItemCollectionCell.h */,
+				8BEF69AB1F139321005603C0 /* ItemCollectionCell.m */,
+				8BEF69AD1F139332005603C0 /* ItemCollectionCell.xib */,
+			);
+			path = ItemsCollectionView;
+			sourceTree = "<group>";
+		};
+		8BF3504C1F14B4DF00F920FA /* ChordExercise */ = {
+			isa = PBXGroup;
+			children = (
+				8BF3504D1F14B54600F920FA /* ChordExercise.h */,
+				8BF3504E1F14B54600F920FA /* ChordExercise.m */,
+			);
+			path = ChordExercise;
+			sourceTree = "<group>";
+		};
+		8BF350531F14C01B00F920FA /* ChordExercise */ = {
+			isa = PBXGroup;
+			children = (
+				8BF350541F14C04700F920FA /* ChordExerciseViewController.h */,
+				8BF350551F14C04700F920FA /* ChordExerciseViewController.m */,
+			);
+			path = ChordExercise;
+			sourceTree = "<group>";
+		};
+		8BF350571F14C0A100F920FA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8BF350581F14C0D100F920FA /* ExerciseTableCell.h */,
+				8BF350591F14C0D100F920FA /* ExerciseTableCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8BF350631F14F1FA00F920FA /* ExercisesPopupView */ = {
+			isa = PBXGroup;
+			children = (
+				8BF350641F14F23C00F920FA /* ExercisesPopupView.h */,
+				8BF350651F14F23C00F920FA /* ExercisesPopupView.m */,
+				8BF350671F14F26300F920FA /* ExercisesPopupView.xib */,
+			);
+			path = ExercisesPopupView;
+			sourceTree = "<group>";
+		};
 		8BFB17021F0B8DF3008A48C7 /* ChordsTimelIneView */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,9 +787,9 @@
 		C2E7F2135872EE37F2A5CD7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */,
 				77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */,
 				812D127868654BE666A0B042 /* Pods_FretX.framework */,
-				8B41D7411F066F50004EAFB7 /* FretXAudioProcessing.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -720,11 +875,15 @@
 				8B1A94F21F039EF300E18BB7 /* Tuner.storyboard in Resources */,
 				8B1A94F01F039EE500E18BB7 /* Settings.storyboard in Resources */,
 				8BFB17131F0BDEC1008A48C7 /* ChordCollectionViewCell.xib in Resources */,
+				8BEF69A91F13927D005603C0 /* ItemsCollectionView.xib in Resources */,
+				8BF3504B1F14B41200F920FA /* GuidedChordExercises.json in Resources */,
 				8B1A94C91F0397B900E18BB7 /* Assets.xcassets in Resources */,
 				6CD1BF411F0A7A7F000D8819 /* GoogleService-Info.plist in Resources */,
 				6CD1BF431F0A7A7F000D8819 /* Roboto-Medium.ttf in Resources */,
 				8B1A94EC1F039EBB00E18BB7 /* Main.storyboard in Resources */,
 				6CD1BF441F0A7A7F000D8819 /* Roboto-Regular.ttf in Resources */,
+				8BF350681F14F26300F920FA /* ExercisesPopupView.xib in Resources */,
+				8BEF69AE1F139332005603C0 /* ItemCollectionCell.xib in Resources */,
 				6CD1BF421F0A7A7F000D8819 /* Roboto-Italic.ttf in Resources */,
 				8B0EC42E1F050EFC00EE1489 /* GuitarNeckView.xib in Resources */,
 				8B135E001F0E4B4500402817 /* CompletionPopupView.xib in Resources */,
@@ -763,7 +922,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8F8A1A49A1CA2C2C7CAE6AA9 /* [CP] Copy Pods Resources */ = {
@@ -788,7 +947,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF350561F14C04700F920FA /* ChordExerciseViewController.m in Sources */,
 				8B049C411F0A8364008BE4DC /* PlayYoutubeViewController.m in Sources */,
+				8BEF699D1F1387A4005603C0 /* ProgrammTableCell.m in Sources */,
+				8BEF69B11F13ADF9005603C0 /* SongPunch+AudioProcessing.m in Sources */,
 				8B135DFF1F0E4B4500402817 /* CompletionPopupView.m in Sources */,
 				8B2AD7021F0F78B9000E7D33 /* ContentManager.m in Sources */,
 				8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */,
@@ -799,13 +961,17 @@
 				8B0EC43A1F051A7E00EE1489 /* SongPunch.m in Sources */,
 				8BFB17061F0B8E25008A48C7 /* PlayerControlsView.m in Sources */,
 				8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */,
+				8BEF69B61F13CCF8005603C0 /* ItemsCollectionView.m in Sources */,
 				8B1A94DF1F039C0200E18BB7 /* MelodiesViewController.m in Sources */,
 				6CD1BF4A1F0A7AA9000D8819 /* ToastHelper.m in Sources */,
 				8B0EC43E1F0529C200EE1489 /* UIView+Activity.m in Sources */,
+				8BEF69A31F138BF2005603C0 /* ScaleExercisesViewController.m in Sources */,
 				8B0EC4211F04F6C900EE1489 /* NSArray+Safe.m in Sources */,
 				8B0EC4521F05565F00EE1489 /* SettingsViewController.m in Sources */,
 				8B0EC4221F04F6C900EE1489 /* NSDictionary+Safe.m in Sources */,
 				8B1A94C11F0397B900E18BB7 /* AppDelegate.m in Sources */,
+				8BF3504F1F14B54600F920FA /* ChordExercise.m in Sources */,
+				8BF350521F14BD8700F920FA /* ChordExercisesViewController.m in Sources */,
 				8B0EC42C1F0509ED00EE1489 /* GuitarNeckView.m in Sources */,
 				8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */,
 				6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */,
@@ -814,11 +980,15 @@
 				6CD1BF4B1F0A7AA9000D8819 /* UIViewController+Alerts.m in Sources */,
 				8B0EC4231F04F6C900EE1489 /* NSMutableArray+Safe.m in Sources */,
 				8B2AD7061F0F8DE6000E7D33 /* NavigationManager.m in Sources */,
+				8BEF69A01F138BD9005603C0 /* ChordsViewController.m in Sources */,
+				8BF3505A1F14C0D100F920FA /* ExerciseTableCell.m in Sources */,
+				8BEF69AC1F139321005603C0 /* ItemCollectionCell.m in Sources */,
 				8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */,
 				8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */,
 				8B1A94DC1F039BDF00E18BB7 /* LearnProgrammsViewController.m in Sources */,
 				8B0EC44B1F05485800EE1489 /* BaseNavigationController.m in Sources */,
 				8B0EC4371F051A7200EE1489 /* Lesson.m in Sources */,
+				8BF350661F14F23C00F920FA /* ExercisesPopupView.m in Sources */,
 				8B0EC4111F04E16300EE1489 /* RequestManager.m in Sources */,
 				8B0EC4341F051A3100EE1489 /* Melody.m in Sources */,
 				6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */,
@@ -937,7 +1107,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DEFEB05092ADAB09FF940464 /* Pods-FretX.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FWWN2RQ9Y2;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -952,6 +1121,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rocks.fretx.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -959,7 +1129,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FWWN2RQ9Y2;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -974,6 +1143,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = rocks.fretx.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};

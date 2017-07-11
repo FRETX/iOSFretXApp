@@ -17,12 +17,12 @@
 @property (strong) NSString* quality;
 @property (strong) NSString* root;
 @property (assign) int rootval;
-
-@property (assign) unsigned long timeMs; //time_ms" = 0;
+@property (assign) unsigned long timeMs;
 
 - (void)setValues:(NSDictionary*)info;
 
 @property (assign) BOOL isEmpty;
 @property (assign) NSUInteger index;
+
 
 @end
