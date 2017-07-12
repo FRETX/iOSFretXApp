@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+
 
 @class SongPunch;
 
@@ -27,5 +29,5 @@
 
 - (SongPunch*)chordNextToChord:(SongPunch*)chord;
 - (SongPunch*)chordClosestToTime:(float)time;
-
+- (NSArray<Chord *>*)getUniqueChords;
 @end

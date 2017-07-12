@@ -10,6 +10,8 @@
 
 #import "SafeCategories.h"
 #import "SongPunch.h"
+#import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+
 
 @implementation Lesson
 
@@ -30,7 +32,6 @@
     NSMutableArray<SongPunch*>* mutChords = [NSMutableArray new];
     NSArray<NSDictionary*>* punchesInfo = [info safeArrayObjectForKey:@"punches"];
     [punchesInfo enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
         SongPunch* chord =  [SongPunch new];
         [chord setValues:obj];
         chord.index = idx;
@@ -73,5 +74,25 @@
 //    else
         return clossestChord;
 }
+
+- (NSMutableArray<Chord *>*)getUniqueChords{
+    NSMutableSet<Chord *> *uniqueChords = [[NSMutableSet alloc] init];
+    for (SongPunch *sp in self.punches) {
+        Chord *tmpChord = [[Chord alloc] initWithRoot:sp.root type:sp.quality];
+        if(![tmpChord.getRoot isEqualToString:@""]){
+            [uniqueChords addObject:tmpChord];
+        }
+    }
+    
+    NSMutableArray<Chord *> *chords = [[NSMutableArray alloc] init];
+    
+    for (Chord* ch in uniqueChords) {
+        [chords addObject:ch];
+    }
+    
+    return chords;
+}
+
+
 
 @end

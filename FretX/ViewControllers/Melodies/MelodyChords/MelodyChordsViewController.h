@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "BaseViewController.h"
+#import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 @class Lesson;
 
 @interface MelodyChordsViewController : BaseViewController

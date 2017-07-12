@@ -19,7 +19,7 @@
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 #import <FretXBLE/FretXBLE-Swift.h>
 
-@interface MelodyChordsViewController ()
+@interface MelodyChordsViewController () <AudioListener>
 
 //UI
 @property (nonatomic, weak) IBOutlet UILabel* songFullNameLabel;
@@ -41,8 +41,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     [self layout];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [Audio.shared stop];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +54,26 @@
     
 }
 
+- (void)onProgress {
+    float progress = [Audio.shared getProgress];
+    NSLog(@"progress: %f",progress);
+    if(progress >= 100){
+        
+        [self setupNextChord];
+    }
+}
+
+- (void)onTimeout{
+    
+}
+
+- (void)onLowVolume{
+    
+}
+
+- (void)onHighVolume{
+    
+}
 
 #pragma mark - Navigation
 
@@ -71,6 +94,10 @@
 - (void)setupLesson:(Lesson*)lesson{
     
     self.lesson = lesson;
+    [Audio.shared setAudioListenerWithListener:self];
+    [Audio.shared setTargetChordsWithChords:[self.lesson getUniqueChords]];
+    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:lesson.punches[0].root type:lesson.punches[0].quality]];
+    [Audio.shared start];
 }
 
 #pragma mark - Private
@@ -81,6 +108,7 @@
     if (lesson.punches.count > 0) {
         
         [self layoutChord:lesson.punches[0]];
+        
     }
 }
 
@@ -97,13 +125,20 @@
     [self layoutProgressForLesson:self.lesson];
     Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
     [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
+    
+    //update next chord
+    
 }
 
 - (void)setupNextChord{
     
     SongPunch* nextChord = [self.lesson chordNextToChord:self.currentChord];
-    if (nextChord)
+    if (nextChord){
         [self layoutChord:nextChord];
+        [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
+    }
+    
+    
 }
 
 - (void)layoutProgressForLesson:(Lesson*)lesson{

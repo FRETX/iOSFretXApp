@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *mUID = [[[FIRAuth auth] currentUser] uid];
-    [Intercom registerUserWithEmail: mUID];
+    [Intercom registerUserWithUserId:mUID];
     [self getProfileInfo];
 }
 
@@ -61,7 +61,7 @@
     
     NSString *currentUID = [[[FIRAuth auth] currentUser] uid];
     dbRef = [[[[FIRDatabase database] reference] child: @"users"] child: currentUID];
-
+    
     [self showLoading: @"Loading..."];
     [dbRef observeSingleEventOfType: FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *dic = snapshot.value;
