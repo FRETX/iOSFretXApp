@@ -168,30 +168,7 @@
             }
         }
     }];
-    
-//    switch (string) {
-//        case 1:
-//            return self.dot1LeftConstraint;
-//            break;
-//        case 2:
-//            return self.dot2LeftConstraint;
-//            break;
-//        case 3:
-//            return self.dot3LeftConstraint;
-//            break;
-//        case 4:
-//            return self.dot4LeftConstraint;
-//            break;
-//        case 5:
-//            return self.dot5LeftConstraint;
-//            break;
-//        case 6:
-//            return self.dot6LeftConstraint;
-//            break;
-//            
-//        default:
-//            break;
-//    }
+
     return wantedCnstraint;
 }
 
@@ -268,30 +245,7 @@
             }
         }
     }];
-    
-//    switch (dotIndex) {
-//        case 1:
-//            return self.dot1YCenterConstraint;
-//            break;
-//        case 2:
-//            return self.dot2YCenterConstraint;
-//            break;
-//        case 3:
-//            return self.dot3YCenterConstraint;
-//            break;
-//        case 4:
-//            return self.dot4YCenterConstraint;
-//            break;
-//        case 5:
-//            return self.dot5YCenterConstraint;
-//            break;
-//        case 6:
-//            return self.dot6YCenterConstraint;
-//            break;
-//            
-//        default:
-//            break;
-//    }
+
     return wantedCnstraint;
 }
 

@@ -128,59 +128,105 @@
 - (NSArray<NSString*>*)allChordRoots{
     
     NSArray<NSString*>* allChordRoots = [Chord ALL_ROOT_NOTES];
-    
-//    : public static let ALL_ROOT_NOTES = @[@"A", @"Bb", @"B", @"C", @"C#", @"D", @"Eb", @"E", @"F", @"F#", @"G", @"G#"]
-//    public static let ALL_CHORD_TYPES = @[@"maj", @"m", @"maj7", @"m7", @"5", @"7", @"9", @"sus2", @"sus4", @"7sus4", @"7#9", @"add9", @"aug", @"dim", @"dim7"]
-//    
-//    : public static let ALL_ROOT_NOTES = @["C", @"C#", @"D", @"Eb", @"E", @"F", @"F#", @"G", @"G#", @"A", @"Bb", @"B"]
-//    public static let ALL_SCALE_TYPES = @["Major",@"Minor",@"Major Pentatonic",@"Minor Pentatonic",@"Blues",@"Melodic Minor",@"Ionian",@"Dorian",@"Phrygian",@"Lydian",@"Mixolydian",@"Aeolian",@"Locrian",@"Whole Tone"]
-    
-//    NSArray<NSString*>* allChordRoots = @[@"A", @"Bb", @"B", @"C", @"C#", @"D", @"Eb", @"E", @"F", @"F#", @"G", @"G#"];
-
     return allChordRoots;
 }
 
 - (NSArray<NSString*>*)allChordTypes{
     
-    NSArray<NSString*>* allChordTypes = [Chord ALL_CHORD_TYPES];// @[@"maj", @"m", @"maj7", @"m7", @"5", @"7", @"9", @"sus2", @"sus4", @"7sus4", @"7#9", @"add9", @"aug", @"dim", @"dim7"];
+    NSArray<NSString*>* allChordTypes = [Chord ALL_CHORD_TYPES];
     return allChordTypes;
 }
 
 - (NSArray<NSString*>*)allScaleRoots{
     
-    NSArray<NSString*>* allScaleRoots = [Scale ALL_ROOT_NOTES];// @[@"C", @"C#", @"D", @"Eb", @"E", @"F", @"F#", @"G", @"G#", @"A", @"Bb", @"B"];//
+    NSArray<NSString*>* allScaleRoots = [Scale ALL_ROOT_NOTES];
     return allScaleRoots;
 }
 
 - (NSArray<NSString*>*)allScaleTypes{
     
-    NSArray<NSString*>* allScaleTypes = [Scale ALL_SCALE_TYPES];// @[@"Major",@"Minor",@"Major Pentatonic",@"Minor Pentatonic",@"Blues",@"Melodic Minor",@"Ionian",@"Dorian",@"Phrygian",@"Lydian",@"Mixolydian",@"Aeolian",@"Locrian",@"Whole Tone"];//
+    NSArray<NSString*>* allScaleTypes = [Scale ALL_SCALE_TYPES];
     return allScaleTypes;
 }
 
 - (NSArray<ChordExercise*>*)defaultChordsExercises{
     
-//    {
-//        "name" : "Exercise 1",
-//        "id": "",
-//        "chords" : [
-//                    {
-//                        "root": "C",
-//                        "type" : "maj7"
-//                    },
-//                    {
-//                        "root": "D",
-//                        "type" : "sus2"
-//                    }
-//                    ],
-//        "nRepetitions" : 10
-//    },
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"GuidedChordExercises" ofType:@"json"];
+    NSArray<ChordExercise*>* chordsExercises = [self defaultChordsExercisesFromPath:filePath];
+    return chordsExercises;
+}
+
+- (NSArray<ChordExercise*>*)customChordsExercises{
+    
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CustomExercises" ofType:@"plist"];
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"CustomExercises"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSArray<ChordExercise*>* chordsExercises = [self customChordsExercisesFromFile];
+        
+        NSSortDescriptor* desc = [NSSortDescriptor sortDescriptorWithKey:@"exerciseID" ascending:NO];
+        NSArray<ChordExercise*>* sortedChordsExercises = [chordsExercises sortedArrayUsingDescriptors:@[desc]];
+        
+        return sortedChordsExercises;
+    } else{
+        return nil;
+    }
+}
+
+- (void)saveCustomChords:(NSArray<ChordExercise*>*)chordExercises{
+    
+    NSMutableArray* mutChordsExercises = [NSMutableArray new];
+    
+    [chordExercises enumerateObjectsUsingBlock:^(ChordExercise * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSDictionary* exerciseValues = [obj plistValues];
+        [mutChordsExercises addObject:exerciseValues];
+    }];
+    
+    NSArray<NSDictionary*>* chordExercisesInfos = [NSArray arrayWithArray:mutChordsExercises];
+    
+    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"CustomExercises"];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
+        [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+    
+    BOOL success = [chordExercisesInfos writeToFile:path atomically:YES];
+//    if (success)
+//        NSLog(@"exercises saved");
+}
+
+
+#pragma mark - Private
+
+- (NSArray<ChordExercise*>*)customChordsExercisesFromFile{
+    
+    NSString *fileName = @"/CustomExercises";
+    NSURL *documentsFolderURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString *filePath = [documentsFolderURL.path stringByAppendingString:fileName];
+    
+    NSArray<NSDictionary*>* jsonArray = [NSArray arrayWithContentsOfFile:filePath];
+    
+    NSMutableArray* mutResult = [NSMutableArray new];
+    [jsonArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull exerciseInfo, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        ChordExercise* chordExercise = [ChordExercise exerciseWithDictionary:exerciseInfo];
+        [mutResult addObject:chordExercise];
+    }];
+    
+    NSArray<ChordExercise*>* chordsExercises = [NSArray arrayWithArray:mutResult];
+    return chordsExercises;
+    
+    return chordsExercises;
+}
+
+- (NSArray<ChordExercise*>*)defaultChordsExercisesFromPath:(NSString*)filePath{
     
     NSMutableArray* mutResult = [NSMutableArray new];
     
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"GuidedChordExercises" ofType:@"json"];
+    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CustomExercises" ofType:@"plist"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
-    NSArray<NSDictionary*> *exercises = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    NSError* error = nil;
+    NSArray<NSDictionary*> *exercises = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];//NSJSONReadingAllowFragments //kNilOptions
     
     [exercises enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull exerciseInfo, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -191,8 +237,6 @@
     NSArray<ChordExercise*>* chordsExercises = [NSArray arrayWithArray:mutResult];
     return chordsExercises;
 }
-
-#pragma mark - Private
 
 - (NSArray<Melody*>*)searchSongsForTitle:(NSString*)title{
     NSArray* filteredArray = [self filteredSongsByTitle:title];

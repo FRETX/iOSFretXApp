@@ -126,6 +126,8 @@
     self.currentChordLabel.text = chord.chordName;// self.currentChord.chordName;
     if ([self.chordExercise chordNextToChord:self.currentChord]) {
         self.nextChordLabel.text = [self.chordExercise chordNextToChord:self.currentChord].chordName;
+    } else{
+        self.nextChordLabel.text = @"";
     }
     
     [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
