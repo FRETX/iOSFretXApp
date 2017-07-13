@@ -137,6 +137,28 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+@class Chord;
+@protocol AudioListener;
+
+SWIFT_CLASS("_TtC20FretXAudioProcessing5Audio")
+@interface Audio : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Audio * _Nonnull shared;)
++ (Audio * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
+- (void)start;
+- (void)stop;
+- (void)optimizeForTuner;
+- (void)optimizeForChord;
+- (float)getPitch SWIFT_WARN_UNUSED_RESULT;
+- (float)getProgress SWIFT_WARN_UNUSED_RESULT;
+- (void)setTargetChordWithChord:(Chord * _Nonnull)chord;
+- (void)setTargetChordsWithChords:(NSArray<Chord *> * _Nonnull)chords;
+- (void)setAudioListenerWithListener:(id <AudioListener> _Nonnull)listener;
+- (void)updateTimer;
+- (void)startListening;
+- (void)stopListening;
+@end
+
 @class ParameterAnalyzer;
 @class AudioData;
 
@@ -164,8 +186,25 @@ SWIFT_CLASS("_TtC20FretXAudioProcessing9AudioData")
 @end
 
 
+SWIFT_PROTOCOL("_TtP20FretXAudioProcessing13AudioListener_")
+@protocol AudioListener
+- (void)onProgress;
+- (void)onLowVolume;
+- (void)onHighVolume;
+- (void)onTimeout;
+@end
+
+
 SWIFT_CLASS("_TtC20FretXAudioProcessing15AudioProcessing")
 @interface AudioProcessing : NSObject
+- (nonnull instancetype)initWithBufferSize:(double)bufferSize OBJC_DESIGNATED_INITIALIZER;
+- (BOOL)isInitialized SWIFT_WARN_UNUSED_RESULT;
+- (void)startRecording;
+- (void)stopRecording;
+- (Chord * _Nonnull)getChord SWIFT_WARN_UNUSED_RESULT;
+- (void)setTargetChordsWithChords:(NSArray<Chord *> * _Nonnull)chords;
+- (NSArray<Chord *> * _Nonnull)getTargetChords SWIFT_WARN_UNUSED_RESULT;
+- (float)getPitch SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
@@ -177,7 +216,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSArray<NSStri
 + (NSArray<NSString *> * _Nonnull)ALL_ROOT_NOTES SWIFT_WARN_UNUSED_RESULT;
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSArray<NSString *> * _Nonnull ALL_CHORD_TYPES;)
 + (NSArray<NSString *> * _Nonnull)ALL_CHORD_TYPES SWIFT_WARN_UNUSED_RESULT;
-@property (nonatomic, readonly, copy) NSArray<NSString *> * _Nonnull NOISE_CLASS_ROOT_AND_TYPE;
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSArray<NSString *> * _Nonnull NOISE_CLASS_ROOT_AND_TYPE;)
++ (NSArray<NSString *> * _Nonnull)NOISE_CLASS_ROOT_AND_TYPE SWIFT_WARN_UNUSED_RESULT;
 @property (nonatomic, readonly, copy) NSString * _Nonnull name;
 - (nonnull instancetype)initWithRoot:(NSString * _Nonnull)root type:(NSString * _Nonnull)type OBJC_DESIGNATED_INITIALIZER;
 - (NSArray<FretboardPosition *> * _Nonnull)getFingering SWIFT_WARN_UNUSED_RESULT;
@@ -187,6 +227,8 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSArray<NSStri
 - (NSArray<NSNumber *> * _Nonnull)getNotes SWIFT_WARN_UNUSED_RESULT;
 - (NSArray<NSString *> * _Nonnull)getNoteNames SWIFT_WARN_UNUSED_RESULT;
 - (NSArray<NSNumber *> * _Nonnull)getMidiNotes SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)isEqual:(id _Nullable)object SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly) NSUInteger hash;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
