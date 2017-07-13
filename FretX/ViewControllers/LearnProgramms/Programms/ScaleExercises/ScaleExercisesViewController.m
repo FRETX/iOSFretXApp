@@ -9,6 +9,7 @@
 #import "ScaleExercisesViewController.h"
 
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+#import <FretXBLE/FretXBLE-Swift.h>
 
 #import "ItemsCollectionView.h"
 #import "ContentManager.h"
@@ -92,6 +93,8 @@
 
     SongPunch *newChord = [SongPunch initScaleWithRoot:self.currentRoot type:self.currentType];
     [self layoutChord:newChord];
+    Scale *tmpScale = [[Scale alloc] initWithRoot:self.currentRoot type:self.currentType];
+    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromScaleWithScale:tmpScale]];
 }
 
 - (void)layoutChord:(SongPunch*)chord{
