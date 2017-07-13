@@ -22,6 +22,7 @@ typedef enum {
 @interface ExercisesPopupView () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 //ui
+@property (weak) IBOutlet UIView* exercisesContainerView;
 @property (weak) IBOutlet UIView* containerView;
 @property (weak) IBOutlet UITableView* chordsTableView;
 @property (weak) IBOutlet UITableView* exercisesTableView;
@@ -43,30 +44,23 @@ typedef enum {
 
 @implementation ExercisesPopupView
 
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
+#warning TEST
+    [self hideExercisesTableAnimated:NO];
 }
-*/
 
 - (void)awakeFromNib{
     [super awakeFromNib];
     
-    self.exercisesTableView.layer.cornerRadius = 3;
-    self.exercisesTableView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.exercisesTableView.layer.shadowOffset = CGSizeMake(0.5, 4.0); //Here your control your spread
-    self.exercisesTableView.layer.shadowOpacity = 0.5;
-    self.exercisesTableView.layer.shadowRadius = 5.0;
-    self.exercisesTableView.clipsToBounds = NO;
-    self.exercisesTableView.layer.masksToBounds = NO;
+    self.exercisesTableView.tableFooterView = [UIView new];
+    self.chordsTableView.tableFooterView = [UIView new];
     
-    self.savingView.layer.cornerRadius = 3;
-    self.savingView.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.savingView.layer.shadowOffset = CGSizeMake(0.5, 4.0); //Here your control your spread
-    self.savingView.layer.shadowOpacity = 0.5;
-    self.savingView.layer.shadowRadius = 5.0;
+    [self addExercisesListShadow];
+    [self addSavingViewShadow];
     
     [self layoutIfNeeded];
     [self hideSavingViewAnimated:NO];
@@ -87,9 +81,9 @@ typedef enum {
     self.chordExercises = chordExercises;
     if (chordExercises.count > 0)
         [self setupSelectedExercise:chordExercises[0]];
+    else
+        [self setupSelectedExercise:nil];
     
-    [self.chordsTableView reloadData];
-    [self.exercisesTableView reloadData];
 }
 
 //- (void)removeSelected
@@ -110,6 +104,13 @@ typedef enum {
         self.selectedExerciseLabel.text = @"";
     }
 
+    [self.chordsTableView reloadData];
+    [self.exercisesTableView reloadData];
+    
+    //update execrises table if opened already
+    if (self.exercisesListOpened) {
+        [self showExercisesTableAnimated:YES];
+    }
 }
 
 - (void)deleteChord:(SongPunch*)song{
@@ -132,7 +133,7 @@ typedef enum {
     
     self.exercisesBottomConstraint.constant = [self bottomForExercisesTable];
     
-    self.exercisesTableView.hidden = NO;
+    self.exercisesContainerView.hidden = NO;
     
     float duration = animated ? 0.2f : 0;
     [UIView animateWithDuration:duration animations:^{
@@ -145,9 +146,10 @@ typedef enum {
 }
 
 - (void)hideExercisesTableAnimated:(BOOL)animated{
+    
     self.arrowImageView.image = [UIImage imageNamed:@"DownArrowIcon"];
 
-    self.exercisesBottomConstraint.constant = self.containerView.frame.size.height - self.exercisesTableView.frame.origin.y;
+    self.exercisesBottomConstraint.constant = self.containerView.frame.size.height - self.exercisesContainerView.frame.origin.y;
     
     float duration = animated ? 0.2f : 0;
     [UIView animateWithDuration:duration animations:^{
@@ -156,7 +158,7 @@ typedef enum {
     } completion:^(BOOL finished) {
         
         self.exercisesListOpened = NO;
-        self.exercisesTableView.hidden = YES;
+        self.exercisesContainerView.hidden = YES;
     }];
 }
 
@@ -195,19 +197,42 @@ typedef enum {
     self.emptyMessageLabel.hidden = YES;
 }
 
+- (void)addExercisesListShadow{
+    
+    self.exercisesContainerView.layer.cornerRadius = 3;
+    self.exercisesContainerView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.exercisesContainerView.layer.shadowOffset = CGSizeMake(0.5, 4.0); //Here your control your spread
+    self.exercisesContainerView.layer.shadowOpacity = 0.5;
+    self.exercisesContainerView.layer.shadowRadius = 5.0;
+    self.exercisesContainerView.clipsToBounds = NO;
+    self.exercisesContainerView.layer.masksToBounds = NO;
+}
+
+- (void)addSavingViewShadow{
+    
+    self.savingView.layer.cornerRadius = 3;
+    self.savingView.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.savingView.layer.shadowOffset = CGSizeMake(0.5, 4.0); //Here your control your spread
+    self.savingView.layer.shadowOpacity = 0.5;
+    self.savingView.layer.shadowRadius = 5.0;
+}
+
 #pragma mark -
 
 - (float)bottomForExercisesTable{
     
+    float bottomSpace;
+    
     if (self.chordExercises.count <= 0) {
-        return 0.f;
+        bottomSpace = self.containerView.frame.size.height - self.exercisesContainerView.frame.origin.y;
+        return bottomSpace;
     }
     
     float height = ExerciseRowHeight * self.chordExercises.count;
     
-    float bottomSpace = self.containerView.frame.size.height - (height + self.exercisesTableView.frame.origin.y);
+    bottomSpace = self.containerView.frame.size.height - (height + self.exercisesContainerView.frame.origin.y);
     if (bottomSpace  < ExerciseListMinBottomSpace) {
-        bottomSpace = self.containerView.frame.size.height - self.exercisesTableView.frame.origin.y - ExerciseListMinBottomSpace;
+        bottomSpace = self.containerView.frame.size.height - self.exercisesContainerView.frame.origin.y - ExerciseListMinBottomSpace;
     }
     
     return bottomSpace;
@@ -231,6 +256,7 @@ typedef enum {
         }
         //self.selectedChordExercise = nil;
     }
+    
     [self endEditing:YES];
 }
 

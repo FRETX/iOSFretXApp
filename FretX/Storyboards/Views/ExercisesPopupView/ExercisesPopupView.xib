@@ -159,15 +159,27 @@
                                 <action selector="onSaveAsButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="5sK-Rj-PYV"/>
                             </connections>
                         </button>
-                        <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-81-pg8" userLabel="ExeTable View">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuQ-R3-YBF" userLabel="ExercisesContainerView">
                             <rect key="frame" x="0.0" y="46" width="169" height="320"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bjz-81-pg8" userLabel="ExeTable View">
+                                    <rect key="frame" x="0.0" y="0.0" width="169" height="320"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="iN0-l3-epB" id="XDZ-Hf-YfW"/>
+                                        <outlet property="delegate" destination="iN0-l3-epB" id="hJh-SF-igX"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <connections>
-                                <outlet property="dataSource" destination="iN0-l3-epB" id="XDZ-Hf-YfW"/>
-                                <outlet property="delegate" destination="iN0-l3-epB" id="hJh-SF-igX"/>
-                            </connections>
-                        </tableView>
+                            <constraints>
+                                <constraint firstItem="bjz-81-pg8" firstAttribute="top" secondItem="nuQ-R3-YBF" secondAttribute="top" id="DSb-8y-fmr"/>
+                                <constraint firstItem="bjz-81-pg8" firstAttribute="leading" secondItem="nuQ-R3-YBF" secondAttribute="leading" id="EaF-DV-hm5"/>
+                                <constraint firstAttribute="bottom" secondItem="bjz-81-pg8" secondAttribute="bottom" id="sZL-RI-rdt"/>
+                                <constraint firstAttribute="trailing" secondItem="bjz-81-pg8" secondAttribute="trailing" id="y0u-3p-FJe"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DwV-aX-jcK">
                             <rect key="frame" x="40" y="121" width="211" height="162"/>
                             <subviews>
@@ -189,6 +201,12 @@
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <outlet property="delegate" destination="iN0-l3-epB" id="0IB-nH-n1i"/>
                                     </connections>
@@ -218,6 +236,7 @@
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                             <integer key="value" value="5"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -238,25 +257,25 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="nuQ-R3-YBF" firstAttribute="top" secondItem="LZN-uD-03M" secondAttribute="bottom" id="0uY-Ii-SS6"/>
                         <constraint firstItem="Kfk-hL-tvj" firstAttribute="top" secondItem="3D7-OA-KvI" secondAttribute="bottom" constant="14" id="0x6-IK-Ctu"/>
                         <constraint firstAttribute="bottom" secondItem="h6M-ys-ohx" secondAttribute="bottom" constant="7" id="4Th-yb-NMC"/>
                         <constraint firstItem="LZN-uD-03M" firstAttribute="top" secondItem="zSa-mO-b5W" secondAttribute="top" id="6Hy-wr-kYJ"/>
                         <constraint firstItem="h6M-ys-ohx" firstAttribute="leading" secondItem="zSa-mO-b5W" secondAttribute="leading" constant="23" id="6UY-lQ-oFK"/>
                         <constraint firstAttribute="trailing" secondItem="3D7-OA-KvI" secondAttribute="trailing" id="7eN-vl-PM0"/>
+                        <constraint firstItem="nuQ-R3-YBF" firstAttribute="width" secondItem="wwa-0M-xCN" secondAttribute="width" id="AQu-pW-Y3m"/>
                         <constraint firstAttribute="trailing" secondItem="LZN-uD-03M" secondAttribute="trailing" id="EDM-Cj-YY7"/>
                         <constraint firstItem="DwV-aX-jcK" firstAttribute="centerX" secondItem="zSa-mO-b5W" secondAttribute="centerX" constant="4.5" id="Guv-We-HTC"/>
                         <constraint firstItem="Kfk-hL-tvj" firstAttribute="leading" secondItem="h6M-ys-ohx" secondAttribute="trailing" constant="26" id="M9R-jj-6br"/>
-                        <constraint firstItem="bjz-81-pg8" firstAttribute="width" secondItem="wwa-0M-xCN" secondAttribute="width" id="Niw-6F-RID"/>
                         <constraint firstItem="Kfk-hL-tvj" firstAttribute="width" secondItem="h6M-ys-ohx" secondAttribute="width" id="PCj-D6-LqL"/>
-                        <constraint firstAttribute="bottom" secondItem="bjz-81-pg8" secondAttribute="bottom" constant="115" id="UTF-yN-3og"/>
                         <constraint firstItem="3D7-OA-KvI" firstAttribute="top" secondItem="LZN-uD-03M" secondAttribute="bottom" id="Vod-1a-7z8"/>
                         <constraint firstItem="3D7-OA-KvI" firstAttribute="leading" secondItem="zSa-mO-b5W" secondAttribute="leading" id="bEX-sc-5jJ"/>
                         <constraint firstItem="LZN-uD-03M" firstAttribute="leading" secondItem="zSa-mO-b5W" secondAttribute="leading" id="bit-eF-P3E"/>
-                        <constraint firstItem="bjz-81-pg8" firstAttribute="top" secondItem="LZN-uD-03M" secondAttribute="bottom" id="csB-Py-CIe"/>
                         <constraint firstItem="DwV-aX-jcK" firstAttribute="centerY" secondItem="zSa-mO-b5W" secondAttribute="centerY" constant="-38.5" id="hjy-KQ-vTJ"/>
+                        <constraint firstItem="nuQ-R3-YBF" firstAttribute="leading" secondItem="zSa-mO-b5W" secondAttribute="leading" id="iBC-Lp-PpY"/>
                         <constraint firstAttribute="bottom" secondItem="Kfk-hL-tvj" secondAttribute="bottom" constant="7" id="itr-Ma-srv"/>
                         <constraint firstAttribute="trailing" secondItem="Kfk-hL-tvj" secondAttribute="trailing" constant="23" id="jtX-ja-WSo"/>
-                        <constraint firstItem="bjz-81-pg8" firstAttribute="leading" secondItem="zSa-mO-b5W" secondAttribute="leading" id="yHc-nT-vBT"/>
+                        <constraint firstAttribute="bottom" secondItem="nuQ-R3-YBF" secondAttribute="bottom" constant="115" id="pVq-fa-QkD"/>
                     </constraints>
                 </view>
             </subviews>
@@ -277,7 +296,8 @@
                 <outlet property="chordsTableView" destination="3D7-OA-KvI" id="YvI-JN-Get"/>
                 <outlet property="containerView" destination="zSa-mO-b5W" id="w6w-LK-qxI"/>
                 <outlet property="emptyMessageLabel" destination="gen-Rv-tIQ" id="hju-q1-DmE"/>
-                <outlet property="exercisesBottomConstraint" destination="UTF-yN-3og" id="q0B-4C-8aB"/>
+                <outlet property="exercisesBottomConstraint" destination="pVq-fa-QkD" id="PoS-KC-lAQ"/>
+                <outlet property="exercisesContainerView" destination="nuQ-R3-YBF" id="GIt-lb-2e6"/>
                 <outlet property="exercisesTableView" destination="bjz-81-pg8" id="cks-vZ-jB5"/>
                 <outlet property="nameTextField" destination="48U-vR-edi" id="f6N-Bk-8Yy"/>
                 <outlet property="savingView" destination="DwV-aX-jcK" id="PiL-mW-7AY"/>

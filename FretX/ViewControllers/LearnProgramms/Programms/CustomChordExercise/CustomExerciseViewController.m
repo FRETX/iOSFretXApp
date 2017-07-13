@@ -58,13 +58,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self reloadExerciseList];
+}
+
+- (void)reloadExerciseList{
     if ([[ContentManager defaultManager] customChordsExercises].count > 0 ) {
         self.chordExercises = [[[ContentManager defaultManager] customChordsExercises] mutableCopy];
     } else{
         self.chordExercises = [@[[self newEmptyChordExercise]] mutableCopy];
     }
 }
-
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -246,6 +249,7 @@
     if ([self.chordExercises containsObject:chordExercise]) {
         [self.chordExercises removeObject:chordExercise];
     }
+    [self.exercisesPopupView setupChordExercises:self.chordExercises];
 }
 
 - (void)showExercisesPopupAnimated:(BOOL)animated{
@@ -339,6 +343,9 @@
     ChordExercise* chordExercise = [self newEmptyChordExercise];
     [self.chordExercises addObject:chordExercise];
     
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"exerciseID" ascending:NO];
+    [self.chordExercises sortUsingDescriptors:@[sortDescriptor]]; // @[sortDescriptor]
+    
     [self.exercisesPopupView setupChordExercises:self.chordExercises];
 }
 
@@ -349,7 +356,8 @@
 - (void)exercisesPopupView:(ExercisesPopupView*)exercisesPopupView didSelectForSaveExercise:(ChordExercise*)chordExercise{
 
     [[ContentManager defaultManager] saveCustomChords:self.chordExercises];
-    
+    [self reloadExerciseList];
+    [self.exercisesPopupView setupChordExercises:self.chordExercises];
     [self.view endEditing:YES];
 }
 

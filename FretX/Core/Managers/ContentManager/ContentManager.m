@@ -186,13 +186,12 @@
     NSArray<NSDictionary*>* chordExercisesInfos = [NSArray arrayWithArray:mutChordsExercises];
     
     NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"CustomExercises"];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path])
-        [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
-    
+
     BOOL success = [chordExercisesInfos writeToFile:path atomically:YES];
 //    if (success)
 //        NSLog(@"exercises saved");
+//    else
+//        NSLog(@"exercises not saved");
 }
 
 

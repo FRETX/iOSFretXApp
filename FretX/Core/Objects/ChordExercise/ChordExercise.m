@@ -160,10 +160,18 @@
     }];
     
     if (result.count <= 0) {
-        return [NSNull null];
+        return @[];
     } else{
         return [NSArray arrayWithArray:result];
     }
+}
+
+#pragma mark -
+
+- (NSString*)description{
+    
+    NSString* description = [NSString stringWithFormat:@"%@. Name = %@ ID = %d chords.count = %ld",[super description],self.exerciseName, self.exerciseID, self.chords.count];
+    return description;
 }
 
 @end
