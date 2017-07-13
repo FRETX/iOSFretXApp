@@ -147,11 +147,14 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) Audio * _Non
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 - (void)start;
 - (void)stop;
+- (void)optimizeForTuner;
+- (void)optimizeForChord;
 - (float)getPitch SWIFT_WARN_UNUSED_RESULT;
 - (float)getProgress SWIFT_WARN_UNUSED_RESULT;
 - (void)setTargetChordWithChord:(Chord * _Nonnull)chord;
 - (void)setTargetChordsWithChords:(NSArray<Chord *> * _Nonnull)chords;
 - (void)setAudioListenerWithListener:(id <AudioListener> _Nonnull)listener;
+- (void)updateTimer;
 - (void)startListening;
 - (void)stopListening;
 @end

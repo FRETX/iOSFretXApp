@@ -44,6 +44,13 @@
     [self layout];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [Audio.shared setAudioListenerWithListener:self];
+    [Audio.shared setTargetChordsWithChords:[self.lesson getUniqueChords]];
+    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
+    [Audio.shared start];
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [Audio.shared stop];
 }
@@ -56,7 +63,7 @@
 
 - (void)onProgress {
     float progress = [Audio.shared getProgress];
-    NSLog(@"progress: %f",progress);
+//    NSLog(@"progress: %f",progress);
     if(progress >= 100){
         
         [self setupNextChord];
@@ -92,12 +99,8 @@
 #pragma mark - Public
 
 - (void)setupLesson:(Lesson*)lesson{
-    
     self.lesson = lesson;
-    [Audio.shared setAudioListenerWithListener:self];
-    [Audio.shared setTargetChordsWithChords:[self.lesson getUniqueChords]];
     [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:lesson.punches[0].root type:lesson.punches[0].quality]];
-    [Audio.shared start];
 }
 
 #pragma mark - Private
