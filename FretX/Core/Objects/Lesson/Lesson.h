@@ -27,7 +27,7 @@
 
 - (void)setValuesWithInfo:(NSDictionary*)info;
 
-- (SongPunch*)chordNextToChord:(SongPunch*)chord;
+- (SongPunch*)chordNextToChord:(SongPunch*)chord allowEmpty:(BOOL)allowEmpty;
 - (SongPunch*)chordClosestToTime:(float)time;
 - (NSArray<Chord *>*)getUniqueChords;
 @end

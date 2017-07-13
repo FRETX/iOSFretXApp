@@ -11,6 +11,12 @@
 #import "SafeCategories.h"
 #import "FingerPosition.h"
 
+@interface SongPunch ()
+
+@property (assign) BOOL isEmpty;
+
+@end
+
 @implementation SongPunch
 
 - (void)setValues:(NSDictionary*)info{
@@ -45,7 +51,7 @@
     [self setFingeringPositions:fingering];
     
     if (fingering.count <= 0 ) {
-        self.isEmpty = NO;
+        self.isEmpty = YES;
     }
     //
     NSNumber* time_ms = [info safeNSNumberObjectForKey:@"time_ms"];
