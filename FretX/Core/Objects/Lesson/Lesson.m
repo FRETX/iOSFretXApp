@@ -41,14 +41,28 @@
     return chords;
 }
 
-- (SongPunch*)chordNextToChord:(SongPunch*)chord{
+- (SongPunch*)chordNextToChord:(SongPunch*)chord allowEmpty:(BOOL)allowEmpty{
     
-    SongPunch* nexthord;
-    if (chord && chord.index < (self.punches.count-1)) {
-        NSUInteger nextIndex = chord.index + 1;
-        nexthord = [self.punches objectAtIndex:nextIndex];
+    if (!chord)
+        return nil;
+    
+    NSUInteger nextIndex = chord.index + 1;
+    SongPunch* nextChord;
+    while (!nextChord && nextIndex < self.punches.count) {
+        
+        SongPunch* chord = [self.punches objectAtIndex:nextIndex];
+        if ((!chord.isEmpty && !allowEmpty) || (allowEmpty))
+            nextChord = [self.punches objectAtIndex:nextIndex];
+        else
+            nextIndex++;
     }
-    return nexthord;
+    
+//    SongPunch* nexthord;
+//    if (chord && chord.index < (self.punches.count-1)) {
+//        NSUInteger nextIndex = chord.index + 1;
+//        nexthord = [self.punches objectAtIndex:nextIndex];
+//    }
+    return nextChord;
 }
 
 - (SongPunch*)chordClosestToTime:(float)time{
@@ -66,7 +80,7 @@
         return nil;
     
     SongPunch* clossestChord = sortedArray.lastObject;
-    SongPunch* resultChord = [self chordNextToChord:clossestChord];
+    SongPunch* resultChord = [self chordNextToChord:clossestChord allowEmpty:YES];
 
 //    if (resultChord)
 //        return resultChord;

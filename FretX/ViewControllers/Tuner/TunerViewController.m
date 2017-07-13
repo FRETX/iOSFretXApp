@@ -9,7 +9,18 @@
 #import "TunerViewController.h"
 #import <FretXBLE/FretXBLE-Swift.h>
 
+typedef enum {
+    StringTypeA,
+    StringTypeB,
+    StringTypeD,
+    StringTypeG,
+    StringTypeELeft,
+    StringTypeERight
+}StringType;
+
 @interface TunerViewController ()
+
+@property (weak) IBOutlet UIImageView* imageView;
 
 @end
 
@@ -38,5 +49,38 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - 
+
+- (UIImage*)imageForString:(StringType)stringType{
+    
+    NSString* imageName = @"";
+    UIImage* image = nil;
+    switch (stringType) {
+        case StringTypeA:
+            imageName = @"A";
+            break;
+        case StringTypeB:
+            imageName = @"B";
+            break;
+        case StringTypeD:
+            imageName = @"D";
+            break;
+        case StringTypeG:
+            imageName = @"G";
+            break;
+        case StringTypeELeft:
+            imageName = @"Eleft";
+            break;
+        case StringTypeERight:
+            imageName = @"Eright";
+            break;
+            
+        default:
+            break;
+    }
+    image = [UIImage imageNamed:imageName];
+    return image;
+}
 
 @end

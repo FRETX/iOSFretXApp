@@ -68,4 +68,10 @@
     self.published = published.boolValue;
 }
 
+- (NSString*)description{
+    
+    NSString* description = [NSString stringWithFormat:@"%@. song=%@ published=%@ creationDate=%@",[super description], self.songName, self.published?@"YES":@"NO", self.creationDate];
+    return description;
+}
+
 @end
