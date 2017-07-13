@@ -284,6 +284,7 @@
     int newID = customExercises.count > 0 ? (customExercises.lastObject.exerciseID + 1) : 1;
     chordsExercise.exerciseID = newID;
     chordsExercise.exerciseName = @"New";
+    chordsExercise.repetitionsCount = 2;
     
     return chordsExercise;
 }
@@ -308,8 +309,19 @@
 
 - (IBAction)onStartButton:(UIButton*)sender{
     
-    if (self.currentExercise) {
-        [self performSegueWithIdentifier:kPickedExerciseSegue sender:self];
+    if (self.currentExercise ) {
+        if (self.currentExercise.chords.count > 0)
+            [self performSegueWithIdentifier:kPickedExerciseSegue sender:self];
+        else{
+            NSString* message = @"This exercise is empty. Add some chords to start.";
+            UIAlertController* alertController = [UIAlertController alertControllerWithTitle:self.currentExercise.exerciseName
+                                                                                     message:message
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* agreeAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+            [alertController addAction:agreeAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
     }
 }
 

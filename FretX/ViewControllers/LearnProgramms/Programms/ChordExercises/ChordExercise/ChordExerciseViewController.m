@@ -145,7 +145,7 @@
 - (void)layoutProgressForChordExercise:(ChordExercise*)exercise{
     
     NSUInteger currentIndex = self.currentChord.index;
-    NSUInteger chordsCount = self.chordExercise.repetitionsCount;
+    NSUInteger chordsCount = self.chordExercise.chords.count;
     float progress = (float)currentIndex / (float)chordsCount;
     [self.fretsProgressView setupProgress:progress];
 }
