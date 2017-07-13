@@ -15,9 +15,11 @@
 #import "FretsProgressView.h"
 #import "GuitarNeckView.h"
 
-@interface ChordExerciseViewController ()
+@interface ChordExerciseViewController () <AudioListener>
 
 @property (strong) ChordExercise* chordExercise;
+@property (strong) NSMutableArray<SongPunch *>* exercisePunches;
+@property int punchIndex;
 
 //ui
 @property (nonatomic, weak) IBOutlet UILabel* currentChordLabel;
@@ -47,10 +49,44 @@
     [self layoutChord:self.currentChord];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [Audio.shared setAudioListenerWithListener:self];
+    [Audio.shared setTargetChordsWithChords:[self.chordExercise getUniqueChords]];
+    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
+    [Audio.shared start];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [Audio.shared stop];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)onProgress {
+    float progress = [Audio.shared getProgress];
+    //    NSLog(@"progress: %f",progress);
+    if(progress >= 100){
+        [self setupNextChord];
+    }
+}
+
+- (void)onTimeout{
+    
+}
+
+- (void)onLowVolume{
+    
+}
+
+- (void)onHighVolume{
+    
+}
+
+
 
 /*
 #pragma mark - Navigation
@@ -67,6 +103,14 @@
 - (void)setupChordExercise:(ChordExercise*)chordExercise{
     
     self.chordExercise = chordExercise;
+    self.punchIndex = 0;
+    self.exercisePunches = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i<self.chordExercise.repetitionsCount; i++) {
+        for (SongPunch* sp in self.chordExercise.chords) {
+            [self.exercisePunches addObject:sp];
+        }
+    }
 }
 
 #pragma mark - Layout
@@ -111,10 +155,9 @@
 
 
 - (void)layoutExercise:(ChordExercise*)chordExercise{
-    
+    //TODO: redo this with exercisePunches
     self.currentChordLabel.text = chordExercise.exerciseName;
     if (chordExercise.chords.count > 0) {
-        
         [self layoutChord:chordExercise.chords[0]];
     }
 }
@@ -132,24 +175,41 @@
     
     [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
     [self layoutProgressForChordExercise:self.chordExercise];
+    Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
+    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
     
 }
 
 - (void)setupNextChord{
-    
-    SongPunch* nextChord = [self.chordExercise chordNextToChord:self.currentChord];
-    if (nextChord)
+    self.punchIndex++;
+    if(self.punchIndex < [self.exercisePunches count]){
+        SongPunch* nextChord = self.exercisePunches[self.punchIndex];
+        self.currentChord = nextChord;
         [self layoutChord:nextChord];
+        [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
+    } else {
+        //TODO: pop up end of exercise dialog
+        [self layoutProgressForChordExercise:self.chordExercise];
+        [self didFinishExercise];
+    }
+    
+//    SongPunch* nextChord = [self.chordExercise chordNextToChord:self.currentChord];
+//    if (nextChord)
+    
+    
 }
 
 - (void)layoutProgressForChordExercise:(ChordExercise*)exercise{
     
-    NSUInteger currentIndex = self.currentChord.index;
-    NSUInteger chordsCount = self.chordExercise.chords.count;
+    NSUInteger currentIndex = self.punchIndex;
+    NSUInteger chordsCount = self.exercisePunches.count;
     float progress = (float)currentIndex / (float)chordsCount;
     [self.fretsProgressView setupProgress:progress];
 }
 
-
+- (void) didFinishExercise{
+    [Audio.shared stop];
+    NSLog(@"End of Exercise");
+}
 
 @end

@@ -65,7 +65,6 @@
     float progress = [Audio.shared getProgress];
 //    NSLog(@"progress: %f",progress);
     if(progress >= 100){
-        
         [self setupNextChord];
     }
 }

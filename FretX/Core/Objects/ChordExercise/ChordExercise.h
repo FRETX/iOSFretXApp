@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "SongPunch.h"
+#import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 
 @interface ChordExercise : NSObject
 
@@ -22,6 +23,8 @@
 
 - (void)addChord:(SongPunch*)chord;
 - (void)removeChord:(SongPunch*)chord;
+
+- (NSArray<Chord *>*)getUniqueChords;
 
 - (NSDictionary*)plistValues;
 

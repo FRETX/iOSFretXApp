@@ -39,6 +39,7 @@ typedef enum {
     [self layout];
 }
 
+
 - (void) viewDidAppear:(BOOL)animated{
     [FretxBLE.sharedInstance clear];
 }
