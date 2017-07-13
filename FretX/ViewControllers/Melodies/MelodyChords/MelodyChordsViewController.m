@@ -33,6 +33,7 @@
 
 //Data
 @property (strong, nonatomic) Lesson* lesson;
+@property (strong, nonatomic) NSArray<SongPunch*>* chords;
 @property (strong) SongPunch* currentChord;
 @end
 
@@ -71,6 +72,11 @@
 - (void)setupLesson:(Lesson*)lesson{
     
     self.lesson = lesson;
+    
+    NSArray* chords = [NSArray arrayWithArray:lesson.punches];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"self.isEmpty == 0"];
+    NSArray* filteredArray = [chords filteredArrayUsingPredicate:predicate];
+    self.chords = filteredArray;
 }
 
 #pragma mark - Private
@@ -78,9 +84,9 @@
 - (void)layoutLesson:(Lesson*)lesson{
     
     self.songFullNameLabel.text = lesson.melodyTitle;
-    if (lesson.punches.count > 0) {
+    if (self.chords.count > 0) {
         
-        [self layoutChord:lesson.punches[0]];
+        [self layoutChord:self.chords[0]];
     }
 }
 
@@ -89,8 +95,10 @@
     self.currentChord = chord;
     
     self.currentChordLabel.text = chord.chordName;// self.currentChord.chordName;
-    if ([self.lesson chordNextToChord:self.currentChord]) {
-        self.nextChordLabel.text = [self.lesson chordNextToChord:self.currentChord].chordName;
+    if ([self.lesson chordNextToChord:self.currentChord allowEmpty:NO]) {
+        self.nextChordLabel.text = [self.lesson chordNextToChord:self.currentChord allowEmpty:NO].chordName;
+    } else{
+        self.nextChordLabel.text = @"";
     }
     
     [self.guitarNeckView layoutChord:self.currentChord];
@@ -101,15 +109,15 @@
 
 - (void)setupNextChord{
     
-    SongPunch* nextChord = [self.lesson chordNextToChord:self.currentChord];
+    SongPunch* nextChord = [self.lesson chordNextToChord:self.currentChord allowEmpty:NO];
     if (nextChord)
         [self layoutChord:nextChord];
 }
 
 - (void)layoutProgressForLesson:(Lesson*)lesson{
     
-    NSUInteger currentIndex = [self.lesson.punches indexOfObject:self.currentChord];
-    NSUInteger chordsCount = self.lesson.punches.count;
+    NSUInteger currentIndex = [self.chords indexOfObject:self.currentChord];
+    NSUInteger chordsCount = self.chords.count;
     float progress = (float)currentIndex / (float)chordsCount;
     [self.fretsProgressView setupProgress:progress];
 }

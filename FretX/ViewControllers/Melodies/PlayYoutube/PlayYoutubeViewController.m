@@ -383,19 +383,6 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
         [self layoutChord:nextChord];
     
     return;
-    
-//    BOOL timeToFirstChord = !self.currentChord && currentTime >= self.lesson.punches.firstObject.timeMs;
-//    BOOL timeToNextChord = self.currentChord && currentTime >= self.currentChord.timeMs;
-//    BOOL needToStopTimer = self.playerView.playerState != kYTPlayerStatePlaying;
-//    
-//    BOOL layoutNextChord = timeToFirstChord || timeToNextChord;
-//    if (layoutNextChord) {
-//        
-//        Chord* nextChord = [self.lesson chordClosestToTime:currentTime];
-//        if (nextChord)
-//            [self layoutChord:nextChord];
-//
-//    }
 }
 
 #pragma mark -  PlayerControlsViewDelegate
