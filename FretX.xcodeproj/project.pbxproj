@@ -82,6 +82,10 @@
 		8BFB17131F0BDEC1008A48C7 /* ChordCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB17121F0BDEC1008A48C7 /* ChordCollectionViewCell.xib */; };
 		8BFB17191F0BE5FC008A48C7 /* ChordsTimeLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17171F0BE5FC008A48C7 /* ChordsTimeLineView.m */; };
 		8BFB17201F0BE7EC008A48C7 /* ChordsTimeLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB171F1F0BE7EC008A48C7 /* ChordsTimeLineView.xib */; };
+		8BFB72C21F160483000E9041 /* ChordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB72C11F160483000E9041 /* ChordTableCell.m */; };
+		8BFB72C61F1604BD000E9041 /* ChordTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB72C51F1604BD000E9041 /* ChordTableCell.xib */; };
+		8BFB72C91F162044000E9041 /* CustomExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB72C81F162044000E9041 /* CustomExerciseViewController.m */; };
+		8BFB72CB1F163DE6000E9041 /* CustomExercises.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB72CA1F163DE6000E9041 /* CustomExercises.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -223,6 +227,12 @@
 		8BFB17161F0BE5FC008A48C7 /* ChordsTimeLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordsTimeLineView.h; sourceTree = "<group>"; };
 		8BFB17171F0BE5FC008A48C7 /* ChordsTimeLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordsTimeLineView.m; sourceTree = "<group>"; };
 		8BFB171F1F0BE7EC008A48C7 /* ChordsTimeLineView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChordsTimeLineView.xib; sourceTree = "<group>"; };
+		8BFB72C01F160483000E9041 /* ChordTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordTableCell.h; sourceTree = "<group>"; };
+		8BFB72C11F160483000E9041 /* ChordTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChordTableCell.m; sourceTree = "<group>"; };
+		8BFB72C51F1604BD000E9041 /* ChordTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChordTableCell.xib; sourceTree = "<group>"; };
+		8BFB72C71F162044000E9041 /* CustomExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomExerciseViewController.h; sourceTree = "<group>"; };
+		8BFB72C81F162044000E9041 /* CustomExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomExerciseViewController.m; sourceTree = "<group>"; };
+		8BFB72CA1F163DE6000E9041 /* CustomExercises.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CustomExercises.plist; sourceTree = "<group>"; };
 		DEFEB05092ADAB09FF940464 /* Pods-FretX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FretX/Pods-FretX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -510,6 +520,7 @@
 			children = (
 				8BF3504A1F14B41200F920FA /* GuidedChordExercises.json */,
 				8B1A94BD1F0397B900E18BB7 /* main.m */,
+				8BFB72CA1F163DE6000E9041 /* CustomExercises.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -690,6 +701,8 @@
 		8BEF69991F13873F005603C0 /* CustomChordExercise */ = {
 			isa = PBXGroup;
 			children = (
+				8BFB72C71F162044000E9041 /* CustomExerciseViewController.h */,
+				8BFB72C81F162044000E9041 /* CustomExerciseViewController.m */,
 			);
 			path = CustomChordExercise;
 			sourceTree = "<group>";
@@ -746,6 +759,7 @@
 		8BF350631F14F1FA00F920FA /* ExercisesPopupView */ = {
 			isa = PBXGroup;
 			children = (
+				8BFB72BF1F16043D000E9041 /* Cell */,
 				8BF350641F14F23C00F920FA /* ExercisesPopupView.h */,
 				8BF350651F14F23C00F920FA /* ExercisesPopupView.m */,
 				8BF350671F14F26300F920FA /* ExercisesPopupView.xib */,
@@ -780,6 +794,16 @@
 				8BFB170F1F0BC894008A48C7 /* ChordCollectionViewCell.h */,
 				8BFB17101F0BC894008A48C7 /* ChordCollectionViewCell.m */,
 				8BFB17121F0BDEC1008A48C7 /* ChordCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8BFB72BF1F16043D000E9041 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8BFB72C01F160483000E9041 /* ChordTableCell.h */,
+				8BFB72C11F160483000E9041 /* ChordTableCell.m */,
+				8BFB72C51F1604BD000E9041 /* ChordTableCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -878,6 +902,7 @@
 				8BFB17131F0BDEC1008A48C7 /* ChordCollectionViewCell.xib in Resources */,
 				8BEF69A91F13927D005603C0 /* ItemsCollectionView.xib in Resources */,
 				8BF3504B1F14B41200F920FA /* GuidedChordExercises.json in Resources */,
+				8BFB72C61F1604BD000E9041 /* ChordTableCell.xib in Resources */,
 				8B1A94C91F0397B900E18BB7 /* Assets.xcassets in Resources */,
 				6CD1BF411F0A7A7F000D8819 /* GoogleService-Info.plist in Resources */,
 				6CD1BF431F0A7A7F000D8819 /* Roboto-Medium.ttf in Resources */,
@@ -887,6 +912,7 @@
 				8BEF69AE1F139332005603C0 /* ItemCollectionCell.xib in Resources */,
 				6CD1BF421F0A7A7F000D8819 /* Roboto-Italic.ttf in Resources */,
 				8B0EC42E1F050EFC00EE1489 /* GuitarNeckView.xib in Resources */,
+				8BFB72CB1F163DE6000E9041 /* CustomExercises.plist in Resources */,
 				8B135E001F0E4B4500402817 /* CompletionPopupView.xib in Resources */,
 				8BFB17081F0B8EAE008A48C7 /* PlayerControlsView.xib in Resources */,
 				8BFB17201F0BE7EC008A48C7 /* ChordsTimeLineView.xib in Resources */,
@@ -953,6 +979,7 @@
 				8BEF699D1F1387A4005603C0 /* ProgrammTableCell.m in Sources */,
 				8BEF69B11F13ADF9005603C0 /* SongPunch+AudioProcessing.m in Sources */,
 				8B135DFF1F0E4B4500402817 /* CompletionPopupView.m in Sources */,
+				8BFB72C91F162044000E9041 /* CustomExerciseViewController.m in Sources */,
 				8B2AD7021F0F78B9000E7D33 /* ContentManager.m in Sources */,
 				8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */,
 				8B0EC44F1F0548B100EE1489 /* BaseViewController.m in Sources */,
@@ -983,6 +1010,7 @@
 				8B2AD7061F0F8DE6000E7D33 /* NavigationManager.m in Sources */,
 				8BEF69A01F138BD9005603C0 /* ChordsViewController.m in Sources */,
 				8BF3505A1F14C0D100F920FA /* ExerciseTableCell.m in Sources */,
+				8BFB72C21F160483000E9041 /* ChordTableCell.m in Sources */,
 				8BEF69AC1F139321005603C0 /* ItemCollectionCell.m in Sources */,
 				8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */,
 				8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */,
@@ -1015,6 +1043,7 @@
 		8B1A94CE1F0397B900E18BB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1064,6 +1093,7 @@
 		8B1A94CF1F0397B900E18BB7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

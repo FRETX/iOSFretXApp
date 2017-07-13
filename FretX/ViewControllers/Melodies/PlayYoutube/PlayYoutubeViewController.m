@@ -136,7 +136,6 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     [self.playerView pauseVideo];
     [self.playerView seekToSeconds:time/1000 allowSeekAhead:YES];
     
-#warning TEST
     SongPunch* nextChord = [self.lesson chordClosestToTime:time];
     NSLog(@"playFromTime nextChord = %@",nextChord);
     [self layoutChord:nextChord];
@@ -211,7 +210,6 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     
     self.currentChord = chord;
     
-#warning TEST
     self.testChordNameLabel.text = chord.chordName;
     
     [self.guitarNeckView layoutChord:self.currentChord];
@@ -425,7 +423,7 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
 - (void)playerViewDidBecomeReady:(nonnull YTPlayerView *)playerView{
     
     [self.indicatorView stopAnimating];
-#warning TEST
+
     self.playerView.hidden = NO;
     NSLog(@"playerViewDidBecomeReady");
     [self.timeLineView setupWithDuration:self.playerView.duration*1000 chords:self.lesson.punches];
@@ -448,7 +446,6 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     }
     
     if (state == kYTPlayerStateEnded) {
-#warning TEST
         [self layoutChord:nil];
         [self.completionPopupView showCompletionPopupAnimated:YES];
     }

@@ -12,11 +12,17 @@
 
 @interface ChordExercise : NSObject
 
+@property (assign) int exerciseID;
 @property (strong) NSString* exerciseName;
-@property (strong) NSArray<SongPunch*>* chords;
+@property (strong,readonly) NSMutableArray<SongPunch*>* chords;
 @property (assign) NSUInteger repetitionsCount;
 
 + (instancetype)exerciseWithDictionary:(NSDictionary*)dictionary;
 - (SongPunch*)chordNextToChord:(SongPunch*)chord;
+
+- (void)addChord:(SongPunch*)chord;
+- (void)removeChord:(SongPunch*)chord;
+
+- (NSDictionary*)plistValues;
 
 @end

@@ -18,7 +18,7 @@
 
 //@property (copy) void(^tapNextVideoForSelectedBlock)(Lesson* currentLesson);
 
-#pragma mark -
+#pragma mark - Songs
 
 - (void)getAllSongsWithBlock:(void(^)(NSArray<Melody*>* result, NSError *error))block;
 
@@ -35,6 +35,12 @@
 - (NSArray<NSString*>*)allChordTypes;
 - (NSArray<NSString*>*)allScaleRoots;
 - (NSArray<NSString*>*)allScaleTypes;
+
+
 - (NSArray<ChordExercise*>*)defaultChordsExercises;
+- (NSArray<ChordExercise*>*)customChordsExercises;
+- (void)saveCustomChords:(NSArray<ChordExercise*>*)chordExercises;
+
+- (ChordExercise*)newEmptyChordExercise;
 
 @end

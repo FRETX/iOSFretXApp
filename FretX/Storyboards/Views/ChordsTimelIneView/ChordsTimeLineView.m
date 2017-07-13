@@ -87,7 +87,6 @@
 
 - (void)moveToTime:(float)time{
     
-#warning TEST
     float offset = [self offsetFromMSTime:time] - self.firstChordInset + [self offsetFromMSTime:self.advance];
 //    float offset = [self offsetFromMSTime:time];
     [self setHorizontalOffset:offset];

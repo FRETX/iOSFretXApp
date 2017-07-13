@@ -14,7 +14,21 @@
 #import "SongPunch.h"
 #import "SongPunch+AudioProcessing.h"
 
+@interface ChordExercise ()
+
+@property (strong) NSMutableArray<SongPunch*>* chords;
+
+@end
+
 @implementation ChordExercise
+
+- (id)init{
+    self = [super init];
+    if (self) {
+        self.chords = [NSMutableArray new];
+    }
+    return self;
+}
 
 //    {
 //        "name" : "Exercise 1",
@@ -54,7 +68,7 @@
     self.repetitionsCount = repeats.unsignedIntegerValue;
     
     NSArray* chordsInfos = [info safeArrayObjectForKey:@"chords"];
-    self.chords = [self chordsWithDictionary:chordsInfos];
+    self.chords = [NSMutableArray arrayWithArray:[self chordsWithDictionary:chordsInfos]];
     
 }
 
@@ -87,5 +101,77 @@
     return nexthord;
 }
 
+- (void)addChord:(SongPunch*)chord{
+    
+    
+    NSSortDescriptor* descr = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
+    [self.chords sortUsingDescriptors:@[descr]];
+    
+    NSUInteger newIndex = self.chords.lastObject.index + 1;
+    chord.index = newIndex;
+    
+    [self.chords addObject:chord];
+}
+
+- (void)removeChord:(SongPunch*)chord{
+    
+    if ([self.chords containsObject:chord]) {
+        [self.chords removeObject:chord];
+    }
+    
+}
+
+//    {
+//        "name" : "Exercise 1",
+//        "id": "",
+//        "chords" : [
+//                    {
+//                        "root": "C",
+//                        "type" : "maj7"
+//                    },
+//                    {
+//                        "root": "D",
+//                        "type" : "sus2"
+//                    }
+//                    ],
+//        "nRepetitions" : 10
+//    },
+
+- (NSDictionary*)plistValues{
+    
+    NSDictionary* values = @{ @"id" : @(self.exerciseID),
+                              @"name" : self.exerciseName,
+                              @"chords" : [self chordsDictionary],
+                              @"nRepetitions" : @(self.repetitionsCount) };
+    
+    return values;
+}
+
+#pragma mark - Private
+
+- (NSArray*)chordsDictionary{
+    
+    NSMutableArray *result = [NSMutableArray new];
+    
+    [self.chords enumerateObjectsUsingBlock:^(SongPunch * _Nonnull chord, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSDictionary* chordInfo = @{@"root" : chord.root, @"type" : chord.quality};
+        [result addObject:chordInfo];
+    }];
+    
+    if (result.count <= 0) {
+        return @[];
+    } else{
+        return [NSArray arrayWithArray:result];
+    }
+}
+
+#pragma mark -
+
+- (NSString*)description{
+    
+    NSString* description = [NSString stringWithFormat:@"%@. Name = %@ ID = %d chords.count = %ld",[super description],self.exerciseName, self.exerciseID, self.chords.count];
+    return description;
+}
 
 @end
