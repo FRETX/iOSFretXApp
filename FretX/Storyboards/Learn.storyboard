@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -289,7 +290,7 @@
                                     <constraint firstAttribute="width" secondItem="89C-1G-od7" secondAttribute="height" multiplier="320:217" id="ApA-Eo-f9y"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaJ-fd-gpB">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaJ-fd-gpB">
                                 <rect key="frame" x="136" y="376.5" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="apA-no-rdc"/>
@@ -620,6 +621,6 @@
         <image name="TabIconLearnBlack" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cGQ-9g-ikb"/>
+        <segue reference="4K0-F8-edA"/>
     </inferredMetricsTieBreakers>
 </document>
