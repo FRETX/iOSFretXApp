@@ -9,6 +9,7 @@
 #import "ChordsViewController.h"
 
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+#import <FretXBLE/FretXBLE-Swift.h>
 
 #import "ItemsCollectionView.h"
 #import "ContentManager.h"
@@ -52,13 +53,14 @@
     [super viewWillAppear:animated];
     
     [self layout];
+    [self updateChord];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self updateChord];
-}
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -110,6 +112,8 @@
     
     SongPunch* currentChord = [SongPunch initChordWithRoot:self.currentRoot type:self.currentType];
     [self layoutChord:currentChord];
+    Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
+    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
 }
 
 - (void)layoutChord:(SongPunch*)chord{

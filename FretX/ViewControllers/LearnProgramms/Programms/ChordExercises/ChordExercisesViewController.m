@@ -13,6 +13,9 @@
 #import "ContentManager.h"
 #import "ChordExercise.h"
 
+#import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+#import <FretXBLE/FretXBLE-Swift.h>
+
 @interface ChordExercisesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak) IBOutlet UITableView* tableView;
