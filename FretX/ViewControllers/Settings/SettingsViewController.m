@@ -40,6 +40,10 @@
     [super viewDidLoad];
     NSString *mUID = [[[FIRAuth auth] currentUser] uid];
     [Intercom registerUserWithUserId:mUID];
+    ICMUserAttributes *userAttributes = [ICMUserAttributes new];
+    userAttributes.name = [[[FIRAuth auth] currentUser] displayName];
+    userAttributes.userId = mUID;
+    [Intercom updateUser:userAttributes];
     [self getProfileInfo];
 }
 
