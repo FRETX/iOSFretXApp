@@ -10,6 +10,7 @@
 #import <FretXBLE/FretXBLE-Swift.h>
 
 typedef enum {
+    StringTypNone = 0,
     StringTypeA,
     StringTypeB,
     StringTypeD,
@@ -29,6 +30,8 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setupString:StringTypNone];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -54,7 +57,7 @@ typedef enum {
 
 - (UIImage*)imageForString:(StringType)stringType{
     
-    NSString* imageName = @"";
+    NSString* imageName = @"EmptyGuitarHeadBG";
     UIImage* image = nil;
     switch (stringType) {
         case StringTypeA:
@@ -81,6 +84,20 @@ typedef enum {
     }
     image = [UIImage imageNamed:imageName];
     return image;
+}
+
+- (void)setupString:(StringType)stringType{
+    
+    UIImage* image = [self imageForString:stringType];
+    self.imageView.image = image;
+}
+
+#pragma mark - Actions
+
+- (IBAction)onStringSetButton:(UIButton*)sender{
+    
+    StringType stringType = (StringType)sender.tag;
+    [self setupString:stringType];
 }
 
 @end

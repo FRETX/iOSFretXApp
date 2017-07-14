@@ -59,6 +59,7 @@
 		8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */; };
 		8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */; };
 		8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */; };
+		8BA738A01F18ACCA0000D6D8 /* TimeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA7389F1F18ACCA0000D6D8 /* TimeConverter.m */; };
 		8BEF699D1F1387A4005603C0 /* ProgrammTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF699C1F1387A4005603C0 /* ProgrammTableCell.m */; };
 		8BEF69A01F138BD9005603C0 /* ChordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF699F1F138BD9005603C0 /* ChordsViewController.m */; };
 		8BEF69A31F138BF2005603C0 /* ScaleExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF69A21F138BF2005603C0 /* ScaleExercisesViewController.m */; };
@@ -76,6 +77,12 @@
 		8BF350681F14F26300F920FA /* ExercisesPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF350671F14F26300F920FA /* ExercisesPopupView.xib */; };
 		8BF3506B1F14F6A600F920FA /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8BF3506C1F14F6A600F920FA /* FretXAudioProcessing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8BF49A7B1F17B78E003565DD /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF49A7A1F17B78E003565DD /* Onboarding.storyboard */; };
+		8BF49A841F17B9B3003565DD /* MainSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF49A831F17B9B3003565DD /* MainSettingsViewController.m */; };
+		8BF49A871F17B9D3003565DD /* FretxKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF49A861F17B9D3003565DD /* FretxKitViewController.m */; };
+		8BF49A8A1F17B9F0003565DD /* VideoTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF49A891F17B9F0003565DD /* VideoTutorialViewController.m */; };
+		8BF49A8D1F17BA15003565DD /* BLEConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF49A8C1F17BA15003565DD /* BLEConnectionViewController.m */; };
+		8BF49A901F17BA55003565DD /* LightsTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF49A8F1F17BA55003565DD /* LightsTutorialViewController.m */; };
 		8BFB17061F0B8E25008A48C7 /* PlayerControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */; };
 		8BFB17081F0B8EAE008A48C7 /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */; };
 		8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB17101F0BC894008A48C7 /* ChordCollectionViewCell.m */; };
@@ -191,6 +198,8 @@
 		8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdditionalControlsView.xib; sourceTree = "<group>"; };
 		8B8F05AE1F0D131A00BAADAC /* VideoEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoEditor.h; sourceTree = "<group>"; };
 		8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoEditor.m; sourceTree = "<group>"; };
+		8BA7389E1F18ACCA0000D6D8 /* TimeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeConverter.h; sourceTree = "<group>"; };
+		8BA7389F1F18ACCA0000D6D8 /* TimeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeConverter.m; sourceTree = "<group>"; };
 		8BEF699B1F1387A4005603C0 /* ProgrammTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgrammTableCell.h; sourceTree = "<group>"; };
 		8BEF699C1F1387A4005603C0 /* ProgrammTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgrammTableCell.m; sourceTree = "<group>"; };
 		8BEF699E1F138BD9005603C0 /* ChordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordsViewController.h; sourceTree = "<group>"; };
@@ -218,6 +227,17 @@
 		8BF350651F14F23C00F920FA /* ExercisesPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExercisesPopupView.m; sourceTree = "<group>"; };
 		8BF350671F14F26300F920FA /* ExercisesPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExercisesPopupView.xib; sourceTree = "<group>"; };
 		8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretXAudioProcessing.framework; sourceTree = "<group>"; };
+		8BF49A7A1F17B78E003565DD /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		8BF49A821F17B9B3003565DD /* MainSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSettingsViewController.h; sourceTree = "<group>"; };
+		8BF49A831F17B9B3003565DD /* MainSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainSettingsViewController.m; sourceTree = "<group>"; };
+		8BF49A851F17B9D3003565DD /* FretxKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretxKitViewController.h; sourceTree = "<group>"; };
+		8BF49A861F17B9D3003565DD /* FretxKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretxKitViewController.m; sourceTree = "<group>"; };
+		8BF49A881F17B9F0003565DD /* VideoTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTutorialViewController.h; sourceTree = "<group>"; };
+		8BF49A891F17B9F0003565DD /* VideoTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTutorialViewController.m; sourceTree = "<group>"; };
+		8BF49A8B1F17BA15003565DD /* BLEConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEConnectionViewController.h; sourceTree = "<group>"; };
+		8BF49A8C1F17BA15003565DD /* BLEConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEConnectionViewController.m; sourceTree = "<group>"; };
+		8BF49A8E1F17BA55003565DD /* LightsTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightsTutorialViewController.h; sourceTree = "<group>"; };
+		8BF49A8F1F17BA55003565DD /* LightsTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightsTutorialViewController.m; sourceTree = "<group>"; };
 		8BFB17041F0B8E25008A48C7 /* PlayerControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControlsView.h; sourceTree = "<group>"; };
 		8BFB17051F0B8E25008A48C7 /* PlayerControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControlsView.m; sourceTree = "<group>"; };
 		8BFB17071F0B8EAE008A48C7 /* PlayerControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -321,6 +341,7 @@
 		8B0EC4151F04F6C900EE1489 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8BA7389D1F18ACB20000D6D8 /* TimeConverter */,
 				8B0EC43B1F0529C200EE1489 /* UIView+Activity */,
 				8B0EC4161F04F6C900EE1489 /* Categories */,
 			);
@@ -354,6 +375,7 @@
 		8B0EC4281F0509CD00EE1489 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8BF49A911F17BDEA003565DD /* TutorialStateView */,
 				8BF350631F14F1FA00F920FA /* ExercisesPopupView */,
 				8BEF69A41F139251005603C0 /* ItemsCollectionView */,
 				8B135DFB1F0E4B4500402817 /* CompletionPopupView */,
@@ -538,6 +560,7 @@
 		8B1A94D51F039B4500E18BB7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8BF49A7C1F17B96E003565DD /* Onboarding */,
 				8B0EC44C1F05487900EE1489 /* BaseController */,
 				6CD1BF4C1F0A86D8000D8819 /* SplashAndLogin */,
 				8B1A94D71F039B4500E18BB7 /* Melodies */,
@@ -598,6 +621,7 @@
 				8B1A94ED1F039ED700E18BB7 /* Learn.storyboard */,
 				8B1A94EF1F039EE400E18BB7 /* Settings.storyboard */,
 				8B1A94F11F039EF300E18BB7 /* Tuner.storyboard */,
+				8BF49A7A1F17B78E003565DD /* Onboarding.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -656,6 +680,15 @@
 				8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */,
 			);
 			path = VideoEditor;
+			sourceTree = "<group>";
+		};
+		8BA7389D1F18ACB20000D6D8 /* TimeConverter */ = {
+			isa = PBXGroup;
+			children = (
+				8BA7389E1F18ACCA0000D6D8 /* TimeConverter.h */,
+				8BA7389F1F18ACCA0000D6D8 /* TimeConverter.m */,
+			);
+			path = TimeConverter;
 			sourceTree = "<group>";
 		};
 		8BEF69951F13873F005603C0 /* Cell */ = {
@@ -765,6 +798,70 @@
 				8BF350671F14F26300F920FA /* ExercisesPopupView.xib */,
 			);
 			path = ExercisesPopupView;
+			sourceTree = "<group>";
+		};
+		8BF49A7C1F17B96E003565DD /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				8BF49A801F17B96E003565DD /* MainSettings */,
+				8BF49A7E1F17B96E003565DD /* FretxKit */,
+				8BF49A811F17B96E003565DD /* VideoTutorial */,
+				8BF49A7D1F17B96E003565DD /* BLEConnection */,
+				8BF49A7F1F17B96E003565DD /* LightsTutorial */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		8BF49A7D1F17B96E003565DD /* BLEConnection */ = {
+			isa = PBXGroup;
+			children = (
+				8BF49A8B1F17BA15003565DD /* BLEConnectionViewController.h */,
+				8BF49A8C1F17BA15003565DD /* BLEConnectionViewController.m */,
+			);
+			path = BLEConnection;
+			sourceTree = "<group>";
+		};
+		8BF49A7E1F17B96E003565DD /* FretxKit */ = {
+			isa = PBXGroup;
+			children = (
+				8BF49A851F17B9D3003565DD /* FretxKitViewController.h */,
+				8BF49A861F17B9D3003565DD /* FretxKitViewController.m */,
+			);
+			path = FretxKit;
+			sourceTree = "<group>";
+		};
+		8BF49A7F1F17B96E003565DD /* LightsTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				8BF49A8E1F17BA55003565DD /* LightsTutorialViewController.h */,
+				8BF49A8F1F17BA55003565DD /* LightsTutorialViewController.m */,
+			);
+			path = LightsTutorial;
+			sourceTree = "<group>";
+		};
+		8BF49A801F17B96E003565DD /* MainSettings */ = {
+			isa = PBXGroup;
+			children = (
+				8BF49A821F17B9B3003565DD /* MainSettingsViewController.h */,
+				8BF49A831F17B9B3003565DD /* MainSettingsViewController.m */,
+			);
+			path = MainSettings;
+			sourceTree = "<group>";
+		};
+		8BF49A811F17B96E003565DD /* VideoTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				8BF49A881F17B9F0003565DD /* VideoTutorialViewController.h */,
+				8BF49A891F17B9F0003565DD /* VideoTutorialViewController.m */,
+			);
+			path = VideoTutorial;
+			sourceTree = "<group>";
+		};
+		8BF49A911F17BDEA003565DD /* TutorialStateView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TutorialStateView;
 			sourceTree = "<group>";
 		};
 		8BFB17021F0B8DF3008A48C7 /* ChordsTimelIneView */ = {
@@ -893,6 +990,7 @@
 				8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */,
 				8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */,
 				8B1A94E81F039CCB00E18BB7 /* LaunchScreen.storyboard in Resources */,
+				8BF49A7B1F17B78E003565DD /* Onboarding.storyboard in Resources */,
 				8B1A94EA1F039E7500E18BB7 /* Melody.storyboard in Resources */,
 				8B0EC4131F04E4A400EE1489 /* Podfile in Resources */,
 				8B1A94EE1F039ED700E18BB7 /* Learn.storyboard in Resources */,
@@ -981,11 +1079,13 @@
 				8BFB72C91F162044000E9041 /* CustomExerciseViewController.m in Sources */,
 				8B2AD7021F0F78B9000E7D33 /* ContentManager.m in Sources */,
 				8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */,
+				8BA738A01F18ACCA0000D6D8 /* TimeConverter.m in Sources */,
 				8B0EC44F1F0548B100EE1489 /* BaseViewController.m in Sources */,
 				8B0EC4271F05080700EE1489 /* MelodyChordsViewController.m in Sources */,
 				8BFB17191F0BE5FC008A48C7 /* ChordsTimeLineView.m in Sources */,
 				8B0EC4241F04F6C900EE1489 /* NSMutableDictionary+Safe.m in Sources */,
 				8B0EC43A1F051A7E00EE1489 /* SongPunch.m in Sources */,
+				8BF49A871F17B9D3003565DD /* FretxKitViewController.m in Sources */,
 				8BFB17061F0B8E25008A48C7 /* PlayerControlsView.m in Sources */,
 				8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */,
 				8BEF69B61F13CCF8005603C0 /* ItemsCollectionView.m in Sources */,
@@ -993,8 +1093,10 @@
 				6CD1BF4A1F0A7AA9000D8819 /* ToastHelper.m in Sources */,
 				8B0EC43E1F0529C200EE1489 /* UIView+Activity.m in Sources */,
 				8BEF69A31F138BF2005603C0 /* ScaleExercisesViewController.m in Sources */,
+				8BF49A901F17BA55003565DD /* LightsTutorialViewController.m in Sources */,
 				8B0EC4211F04F6C900EE1489 /* NSArray+Safe.m in Sources */,
 				8B0EC4521F05565F00EE1489 /* SettingsViewController.m in Sources */,
+				8BF49A841F17B9B3003565DD /* MainSettingsViewController.m in Sources */,
 				8B0EC4221F04F6C900EE1489 /* NSDictionary+Safe.m in Sources */,
 				8B1A94C11F0397B900E18BB7 /* AppDelegate.m in Sources */,
 				8BF3504F1F14B54600F920FA /* ChordExercise.m in Sources */,
@@ -1013,6 +1115,7 @@
 				8BEF69AC1F139321005603C0 /* ItemCollectionCell.m in Sources */,
 				8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */,
 				8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */,
+				8BF49A8A1F17B9F0003565DD /* VideoTutorialViewController.m in Sources */,
 				8B1A94DC1F039BDF00E18BB7 /* LearnProgrammsViewController.m in Sources */,
 				8B0EC44B1F05485800EE1489 /* BaseNavigationController.m in Sources */,
 				8B0EC4371F051A7200EE1489 /* Lesson.m in Sources */,
@@ -1021,6 +1124,7 @@
 				8B0EC4341F051A3100EE1489 /* Melody.m in Sources */,
 				6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */,
 				8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */,
+				8BF49A8D1F17BA15003565DD /* BLEConnectionViewController.m in Sources */,
 				8B0DF59D1F063D8000DB79B8 /* FingerPosition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
