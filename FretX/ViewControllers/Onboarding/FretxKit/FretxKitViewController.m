@@ -34,4 +34,17 @@
 }
 */
 
+
+#pragma mark - Actions
+
+- (IBAction)onReadyButton:(UIButton*)sender{
+    
+    [self performSegueWithIdentifier:kOpenVideoScreensSegue sender:self];
+}
+
+- (IBAction)onDoItLaterButton:(UIButton*)sender{
+    
+    
+}
+
 @end

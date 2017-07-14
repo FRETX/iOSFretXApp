@@ -15,6 +15,8 @@
 #import <FretXBLE/FretXBLE-Swift.h>
 @import Firebase;
 
+#import "MainSettingsViewController.h"
+
 @interface SettingsViewController ()
 {
     
@@ -181,6 +183,11 @@
 }
 
 - (IBAction)didSelectOnboarding:(id)sender {
+    
+    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
+    MainSettingsViewController *mainSettingsController = [onboardingStoryboard instantiateViewControllerWithIdentifier:@"MainSettingsViewController"];
+    
+    [self.navigationController pushViewController:mainSettingsController animated:YES];
 }
 
 - (IBAction)didSelectLeaveMessage:(id)sender {

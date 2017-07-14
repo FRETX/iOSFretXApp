@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorialStateView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qZH-M7-fzL" userLabel="MainView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shX-5H-G9E" userLabel="LineView">
+                            <rect key="frame" x="0.0" y="12" width="375" height="2"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="eaa-Cv-dgh"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTi-70-SJw" userLabel="RedLineView">
+                            <rect key="frame" x="0.0" y="12" width="0.0" height="2"/>
+                            <color key="backgroundColor" red="0.96470588239999999" green="0.14251334157684731" blue="0.10609960578078817" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="Mry-6O-Qw1"/>
+                                <constraint firstAttribute="width" id="za7-E5-c3N"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="VTi-70-SJw" firstAttribute="leading" secondItem="qZH-M7-fzL" secondAttribute="leading" id="JTd-tN-bzO"/>
+                        <constraint firstItem="shX-5H-G9E" firstAttribute="centerY" secondItem="qZH-M7-fzL" secondAttribute="centerY" id="U4Z-S0-pDD"/>
+                        <constraint firstAttribute="trailing" secondItem="shX-5H-G9E" secondAttribute="trailing" id="VGb-GF-IF7"/>
+                        <constraint firstItem="VTi-70-SJw" firstAttribute="centerY" secondItem="qZH-M7-fzL" secondAttribute="centerY" id="fYE-7k-T5t"/>
+                        <constraint firstItem="shX-5H-G9E" firstAttribute="leading" secondItem="qZH-M7-fzL" secondAttribute="leading" id="vrB-x7-N9b"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="qZH-M7-fzL" secondAttribute="bottom" id="jus-Qa-AbL"/>
+                <constraint firstItem="qZH-M7-fzL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nCK-bO-WFi"/>
+                <constraint firstItem="qZH-M7-fzL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="u38-sX-S24"/>
+                <constraint firstAttribute="trailing" secondItem="qZH-M7-fzL" secondAttribute="trailing" id="yvA-6g-pDW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="grayLineView" destination="shX-5H-G9E" id="ZX1-XZ-t0P"/>
+                <outlet property="mainView" destination="qZH-M7-fzL" id="30s-yG-xNg"/>
+                <outlet property="redLineView" destination="VTi-70-SJw" id="ZYw-ry-yTt"/>
+                <outlet property="redLineWidthConstraint" destination="za7-E5-c3N" id="9JJ-9g-jMF"/>
+            </connections>
+            <point key="canvasLocation" x="-4.5" y="-149"/>
+        </view>
+    </objects>
+</document>

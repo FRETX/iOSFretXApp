@@ -34,4 +34,19 @@
 }
 */
 
+#pragma mark -  Actions
+
+- (IBAction)onPressConnectionButton:(id)sender{
+    
+}
+
+- (IBAction)onPressDoItLaterButton:(id)sender{
+    
+    [self performSegueWithIdentifier:kLightsIndicatorsSegue sender:self];
+}
+
+- (IBAction)onNeedAssistanceButton:(id)sender{
+    
+}
+
 @end

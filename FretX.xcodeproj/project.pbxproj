@@ -60,6 +60,10 @@
 		8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */; };
 		8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */; };
 		8BA738A01F18ACCA0000D6D8 /* TimeConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA7389F1F18ACCA0000D6D8 /* TimeConverter.m */; };
+		8BA738A31F18C25B0000D6D8 /* TutorialStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA738A21F18C25B0000D6D8 /* TutorialStateView.m */; };
+		8BA738A51F18C2AD0000D6D8 /* TutorialStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA738A41F18C2AD0000D6D8 /* TutorialStateView.xib */; };
+		8BA738A91F18D5760000D6D8 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA738A81F18D5760000D6D8 /* DLRadioButton.m */; };
+		8BA738AE1F190A4E0000D6D8 /* LedON.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8BA738AD1F190A4E0000D6D8 /* LedON.gif */; };
 		8BEF699D1F1387A4005603C0 /* ProgrammTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF699C1F1387A4005603C0 /* ProgrammTableCell.m */; };
 		8BEF69A01F138BD9005603C0 /* ChordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF699F1F138BD9005603C0 /* ChordsViewController.m */; };
 		8BEF69A31F138BF2005603C0 /* ScaleExercisesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BEF69A21F138BF2005603C0 /* ScaleExercisesViewController.m */; };
@@ -200,6 +204,12 @@
 		8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoEditor.m; sourceTree = "<group>"; };
 		8BA7389E1F18ACCA0000D6D8 /* TimeConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeConverter.h; sourceTree = "<group>"; };
 		8BA7389F1F18ACCA0000D6D8 /* TimeConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeConverter.m; sourceTree = "<group>"; };
+		8BA738A11F18C25B0000D6D8 /* TutorialStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialStateView.h; sourceTree = "<group>"; };
+		8BA738A21F18C25B0000D6D8 /* TutorialStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialStateView.m; sourceTree = "<group>"; };
+		8BA738A41F18C2AD0000D6D8 /* TutorialStateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialStateView.xib; sourceTree = "<group>"; };
+		8BA738A71F18D5760000D6D8 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
+		8BA738A81F18D5760000D6D8 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
+		8BA738AD1F190A4E0000D6D8 /* LedON.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = LedON.gif; sourceTree = "<group>"; };
 		8BEF699B1F1387A4005603C0 /* ProgrammTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgrammTableCell.h; sourceTree = "<group>"; };
 		8BEF699C1F1387A4005603C0 /* ProgrammTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgrammTableCell.m; sourceTree = "<group>"; };
 		8BEF699E1F138BD9005603C0 /* ChordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChordsViewController.h; sourceTree = "<group>"; };
@@ -341,6 +351,7 @@
 		8B0EC4151F04F6C900EE1489 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8BA738A61F18D5760000D6D8 /* DLRadioButton */,
 				8BA7389D1F18ACB20000D6D8 /* TimeConverter */,
 				8B0EC43B1F0529C200EE1489 /* UIView+Activity */,
 				8B0EC4161F04F6C900EE1489 /* Categories */,
@@ -540,6 +551,7 @@
 		8B1A94BC1F0397B900E18BB7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8BA738AA1F190A0E0000D6D8 /* Content */,
 				8BF3504A1F14B41200F920FA /* GuidedChordExercises.json */,
 				8B1A94BD1F0397B900E18BB7 /* main.m */,
 				8BFB72CA1F163DE6000E9041 /* CustomExercises.plist */,
@@ -560,13 +572,13 @@
 		8B1A94D51F039B4500E18BB7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8BF49A7C1F17B96E003565DD /* Onboarding */,
 				8B0EC44C1F05487900EE1489 /* BaseController */,
 				6CD1BF4C1F0A86D8000D8819 /* SplashAndLogin */,
 				8B1A94D71F039B4500E18BB7 /* Melodies */,
 				8B1A94D61F039B4500E18BB7 /* LearnProgramms */,
 				8B1A94D81F039B4500E18BB7 /* Settings */,
 				8B1A94D91F039B4500E18BB7 /* Tuner */,
+				8BF49A7C1F17B96E003565DD /* Onboarding */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -689,6 +701,23 @@
 				8BA7389F1F18ACCA0000D6D8 /* TimeConverter.m */,
 			);
 			path = TimeConverter;
+			sourceTree = "<group>";
+		};
+		8BA738A61F18D5760000D6D8 /* DLRadioButton */ = {
+			isa = PBXGroup;
+			children = (
+				8BA738A71F18D5760000D6D8 /* DLRadioButton.h */,
+				8BA738A81F18D5760000D6D8 /* DLRadioButton.m */,
+			);
+			path = DLRadioButton;
+			sourceTree = "<group>";
+		};
+		8BA738AA1F190A0E0000D6D8 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				8BA738AD1F190A4E0000D6D8 /* LedON.gif */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 		8BEF69951F13873F005603C0 /* Cell */ = {
@@ -860,6 +889,9 @@
 		8BF49A911F17BDEA003565DD /* TutorialStateView */ = {
 			isa = PBXGroup;
 			children = (
+				8BA738A11F18C25B0000D6D8 /* TutorialStateView.h */,
+				8BA738A21F18C25B0000D6D8 /* TutorialStateView.m */,
+				8BA738A41F18C2AD0000D6D8 /* TutorialStateView.xib */,
 			);
 			path = TutorialStateView;
 			sourceTree = "<group>";
@@ -993,6 +1025,8 @@
 				8BF49A7B1F17B78E003565DD /* Onboarding.storyboard in Resources */,
 				8B1A94EA1F039E7500E18BB7 /* Melody.storyboard in Resources */,
 				8B0EC4131F04E4A400EE1489 /* Podfile in Resources */,
+				8BA738A51F18C2AD0000D6D8 /* TutorialStateView.xib in Resources */,
+				8BA738AE1F190A4E0000D6D8 /* LedON.gif in Resources */,
 				8B1A94EE1F039ED700E18BB7 /* Learn.storyboard in Resources */,
 				8B1A94F21F039EF300E18BB7 /* Tuner.storyboard in Resources */,
 				8B1A94F01F039EE500E18BB7 /* Settings.storyboard in Resources */,
@@ -1102,6 +1136,7 @@
 				8BF3504F1F14B54600F920FA /* ChordExercise.m in Sources */,
 				8BF350521F14BD8700F920FA /* ChordExercisesViewController.m in Sources */,
 				8B0EC42C1F0509ED00EE1489 /* GuitarNeckView.m in Sources */,
+				8BA738A91F18D5760000D6D8 /* DLRadioButton.m in Sources */,
 				8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */,
 				6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */,
 				8B1A94BE1F0397B900E18BB7 /* main.m in Sources */,
@@ -1125,6 +1160,7 @@
 				6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */,
 				8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */,
 				8BF49A8D1F17BA15003565DD /* BLEConnectionViewController.m in Sources */,
+				8BA738A31F18C25B0000D6D8 /* TutorialStateView.m in Sources */,
 				8B0DF59D1F063D8000DB79B8 /* FingerPosition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

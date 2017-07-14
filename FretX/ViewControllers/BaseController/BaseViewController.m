@@ -40,6 +40,13 @@
     [self setRightBarItems];
 }
 
+#pragma mark - Public
+
+- (void)popViewController{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -76,7 +83,7 @@
     //left
     UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"WhiteBackIcon"]
                                                                  style:UIBarButtonItemStylePlain
-                                                                target:self action:@selector(onBackButton:)];
+                                                                target:self action:@selector(onBaseBackButton:)];
     self.navigationItem.leftBarButtonItem = backItem;
 }
 
@@ -191,8 +198,14 @@
     self.eyeItem.image = [self eyeIconImage];
 }
 
-- (void)onBackButton:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)onBaseBackButton:(UIBarButtonItem*)sender{
+    
+    
+    if ([self respondsToSelector:@selector(onBackButton:)]) {
+        [self performSelector:@selector(onBackButton:) withObject:sender];
+    } else{
+        [self popViewController];
+    }
 }
 
 #pragma mark - Bluetooth delegate methods
