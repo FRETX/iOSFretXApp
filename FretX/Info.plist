@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>4</string>
 	<key>FacebookAppID</key>
 	<string>138549566723585</string>
 	<key>FacebookDisplayName</key>
@@ -55,6 +55,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Used for connecting to the FretX device with BLE</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Used for chord recognition and tuner</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -82,7 +84,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Used for connecting to the FretX device with BLE</string>
 </dict>
 </plist>
