@@ -112,6 +112,9 @@
     SongPunch* nextChord = [self.lesson chordNextToChord:self.currentChord allowEmpty:NO];
     if (nextChord)
         [self layoutChord:nextChord];
+    else{
+        
+    }
 }
 
 - (void)layoutProgressForLesson:(Lesson*)lesson{
