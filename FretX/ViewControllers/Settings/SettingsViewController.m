@@ -45,6 +45,11 @@
     [self getProfileInfo];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void) viewDidAppear:(BOOL)animated{
     [FretxBLE.sharedInstance clear];
 }
@@ -114,6 +119,7 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.label.text = message;
 }
+
 - (IBAction)didChangeValueOfPrefs:(id)sender {
     UISegmentedControl *selectedControll = (UISegmentedControl *) sender;
     switch (selectedControll.tag) {
@@ -150,7 +156,6 @@
                 [[[dbRef child: @"prefs"] child: @"level"] setValue: @"player"];
             }
             break;
-        
     }
 }
 
@@ -186,7 +191,7 @@
     
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
     MainSettingsViewController *mainSettingsController = [onboardingStoryboard instantiateViewControllerWithIdentifier:@"MainSettingsViewController"];
-    
+    mainSettingsController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:mainSettingsController animated:YES];
 }
 

@@ -25,7 +25,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTi-70-SJw" userLabel="RedLineView">
-                            <rect key="frame" x="0.0" y="12" width="0.0" height="2"/>
+                            <rect key="frame" x="5" y="12" width="0.0" height="2"/>
                             <color key="backgroundColor" red="0.96470588239999999" green="0.14251334157684731" blue="0.10609960578078817" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="Mry-6O-Qw1"/>
@@ -35,7 +35,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="VTi-70-SJw" firstAttribute="leading" secondItem="qZH-M7-fzL" secondAttribute="leading" id="JTd-tN-bzO"/>
+                        <constraint firstItem="VTi-70-SJw" firstAttribute="leading" secondItem="qZH-M7-fzL" secondAttribute="leading" constant="5" id="JTd-tN-bzO"/>
                         <constraint firstItem="shX-5H-G9E" firstAttribute="centerY" secondItem="qZH-M7-fzL" secondAttribute="centerY" id="U4Z-S0-pDD"/>
                         <constraint firstAttribute="trailing" secondItem="shX-5H-G9E" secondAttribute="trailing" id="VGb-GF-IF7"/>
                         <constraint firstItem="VTi-70-SJw" firstAttribute="centerY" secondItem="qZH-M7-fzL" secondAttribute="centerY" id="fYE-7k-T5t"/>
@@ -50,6 +50,7 @@
                 <constraint firstItem="qZH-M7-fzL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="u38-sX-S24"/>
                 <constraint firstAttribute="trailing" secondItem="qZH-M7-fzL" secondAttribute="trailing" id="yvA-6g-pDW"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="grayLineView" destination="shX-5H-G9E" id="ZX1-XZ-t0P"/>

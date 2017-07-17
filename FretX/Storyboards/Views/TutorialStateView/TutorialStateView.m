@@ -49,7 +49,7 @@
         [self.mainView addSubview:view];
     }
     
-    [self bringLinesToFront];
+//    [self bringLinesToFront];
 }
 
 - (void)selectState:(int)state{
@@ -65,16 +65,16 @@
     
     [self updateRedLineWidthForState:state];
     
-    [self bringLinesToFront];
+//    [self bringLinesToFront];
 }
 
 #pragma mark - Private
 
-- (void)bringLinesToFront{
-    
- //   [self.mainView bringSubviewToFront:self.grayLineView];
-    [self.mainView bringSubviewToFront:self.redLineView];
-}
+//- (void)bringLinesToFront{
+//    
+// //   [self.mainView bringSubviewToFront:self.grayLineView];
+//    [self.mainView bringSubviewToFront:self.redLineView];
+//}
 
 - (void)updateRedLineWidthForState:(int)state{
 

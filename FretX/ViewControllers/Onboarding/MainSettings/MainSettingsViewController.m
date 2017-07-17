@@ -8,6 +8,7 @@
 
 #import "MainSettingsViewController.h"
 
+#import "NotSureViewController.h"
 #import "TutorialStateView.h"
 
 typedef enum{
@@ -40,6 +41,8 @@ typedef enum{
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBarHidden = YES;
     
     self.state = 1;
 
@@ -142,7 +145,6 @@ typedef enum{
         default:
             break;
     }
-   
 }
 
 #pragma mark - Actions
@@ -176,7 +178,6 @@ typedef enum{
     
 }
 
-
 - (IBAction)onNextStateButton:(id)sender{
     
     if (self.state >= SettingStateSkill) {
@@ -189,5 +190,9 @@ typedef enum{
  
 }
 
+- (IBAction)onNotSure:(id)sender {
+    NotSureViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([NotSureViewController class])];
+    [controller showForViewController:self];
+}
 
 @end

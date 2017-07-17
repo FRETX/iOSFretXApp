@@ -93,6 +93,18 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    
+    if(_isLanscapeMode)
+        return UIInterfaceOrientationMaskLandscape;
+    else
+        return UIInterfaceOrientationMaskPortrait;
+}
+
+- (void)setIsLanscapeMode:(BOOL)isLanscapeMode {
+    _isLanscapeMode = isLanscapeMode;
+}
+
 #pragma GoogleSignin
 - (BOOL)application:(nonnull UIApplication *)application
             openURL:(nonnull NSURL *)url

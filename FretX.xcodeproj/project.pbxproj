@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		335F36C14EDF58C27D68420D /* Pods_FretX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812D127868654BE666A0B042 /* Pods_FretX.framework */; };
+		335F36C14EDF58C27D68420D /* Pods_FretX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 812D127868654BE666A0B042 /* Pods_FretX.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6CD1BF411F0A7A7F000D8819 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD1BF3D1F0A7A7F000D8819 /* GoogleService-Info.plist */; };
 		6CD1BF421F0A7A7F000D8819 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD1BF3E1F0A7A7F000D8819 /* Roboto-Italic.ttf */; };
 		6CD1BF431F0A7A7F000D8819 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CD1BF3F1F0A7A7F000D8819 /* Roboto-Medium.ttf */; };
@@ -16,8 +16,9 @@
 		6CD1BF4B1F0A7AA9000D8819 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF491F0A7AA9000D8819 /* UIViewController+Alerts.m */; };
 		6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF4E1F0A86F2000D8819 /* LoginActivity.m */; };
 		6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF501F0A86F2000D8819 /* SplashScreens.m */; };
-		77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8552E5E41F1CC3410050EB4A /* NotSureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8552E5E31F1CC3410050EB4A /* NotSureViewController.m */; };
 		8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */; };
 		8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B049C3C1F0A3C90008BE4DC /* FretsProgressView.xib */; };
 		8B049C411F0A8364008BE4DC /* PlayYoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C401F0A8364008BE4DC /* PlayYoutubeViewController.m */; };
@@ -130,6 +131,8 @@
 		77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretxBLE.framework; sourceTree = "<group>"; };
 		7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretX.release.xcconfig"; path = "Pods/Target Support Files/Pods-FretX/Pods-FretX.release.xcconfig"; sourceTree = "<group>"; };
 		812D127868654BE666A0B042 /* Pods_FretX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FretX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8552E5E21F1CC3410050EB4A /* NotSureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSureViewController.h; sourceTree = "<group>"; };
+		8552E5E31F1CC3410050EB4A /* NotSureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSureViewController.m; sourceTree = "<group>"; };
 		8B049C391F0A3C50008BE4DC /* FretsProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretsProgressView.h; sourceTree = "<group>"; };
 		8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretsProgressView.m; sourceTree = "<group>"; };
 		8B049C3C1F0A3C90008BE4DC /* FretsProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FretsProgressView.xib; sourceTree = "<group>"; };
@@ -300,6 +303,15 @@
 				6CD1BF501F0A86F2000D8819 /* SplashScreens.m */,
 			);
 			name = SplashAndLogin;
+			sourceTree = "<group>";
+		};
+		8552E5E11F1CC2A70050EB4A /* NotSure */ = {
+			isa = PBXGroup;
+			children = (
+				8552E5E21F1CC3410050EB4A /* NotSureViewController.h */,
+				8552E5E31F1CC3410050EB4A /* NotSureViewController.m */,
+			);
+			path = NotSure;
 			sourceTree = "<group>";
 		};
 		8B049C3E1F0A7F1A008BE4DC /* PlayYoutube */ = {
@@ -871,6 +883,7 @@
 		8BF49A801F17B96E003565DD /* MainSettings */ = {
 			isa = PBXGroup;
 			children = (
+				8552E5E11F1CC2A70050EB4A /* NotSure */,
 				8BF49A821F17B9B3003565DD /* MainSettingsViewController.h */,
 				8BF49A831F17B9B3003565DD /* MainSettingsViewController.m */,
 			);
@@ -1138,6 +1151,7 @@
 				8B0EC42C1F0509ED00EE1489 /* GuitarNeckView.m in Sources */,
 				8BA738A91F18D5760000D6D8 /* DLRadioButton.m in Sources */,
 				8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */,
+				8552E5E41F1CC3410050EB4A /* NotSureViewController.m in Sources */,
 				6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */,
 				8B1A94BE1F0397B900E18BB7 /* main.m in Sources */,
 				8B0EC4481F05480800EE1489 /* MainTabBarController.m in Sources */,
@@ -1275,6 +1289,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DEFEB05092ADAB09FF940464 /* Pods-FretX.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FWWN2RQ9Y2;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1297,6 +1312,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FWWN2RQ9Y2;
 				FRAMEWORK_SEARCH_PATHS = (
