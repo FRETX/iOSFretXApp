@@ -42,12 +42,12 @@
     [super viewDidLoad];
     NSString *mUID = [[[FIRAuth auth] currentUser] uid];
     [Intercom registerUserWithEmail: mUID];
-    [self getProfileInfo];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    [self getProfileInfo];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -83,7 +83,7 @@
         }
         
         NSString *mUserName = [dic objectForKey: @"user_name"];
-        lb_userName.text = mUserName;
+        app.mUserName = lb_userName.text = mUserName;
         
         mlogin_type = [dic objectForKey: @"login_type"];
         

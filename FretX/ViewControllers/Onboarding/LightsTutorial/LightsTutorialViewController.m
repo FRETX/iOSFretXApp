@@ -7,8 +7,9 @@
 //
 
 #import "LightsTutorialViewController.h"
-
+#import "UIImage+animatedGIF.h"
 #import "TutorialStateView.h"
+#import <Intercom/Intercom.h>
 
 typedef enum{
     LightsStateON = 1,
@@ -21,6 +22,12 @@ typedef enum{
 
 @property (weak) TutorialStateView* tutorialStatesView;
 @property (weak) IBOutlet UIView* statesContainerView;
+@property (weak) IBOutlet UIView* troubleshotingView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
+
+@property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
 
 //data
 @property (assign) int state;
@@ -35,6 +42,11 @@ typedef enum{
     
     self.state = LightsStateON;
     [self layout];
+    [self layoutState:self.state];
+    
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onHideHelp)];
+    [self.view addGestureRecognizer:self.tapGesture];
+    [self.tapGesture setEnabled:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -45,21 +57,6 @@ typedef enum{
     
     [self.tutorialStatesView selectState:1];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)layout{
     
@@ -80,11 +77,72 @@ typedef enum{
     [self.view layoutIfNeeded];
 }
 
+#pragma mark - Screens Settings
+
+
+- (NSString*)questionForState:(LightsState)state{
+    
+    NSString* question = @""; NSData *data = nil;
+    switch (state) {
+        case LightsStateON:
+             data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"on_light" ofType:@"gif"]];
+
+            question = @"When your device is \"ON\"";
+            break;
+        case LightsStateConnected:
+            data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"light1" ofType:@"gif"]];
+            
+            question = @"When your device is \"Connected\"";
+            break;
+        case LightsStateSuccessHit:
+            data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"light2" ofType:@"gif"]];
+            
+            question = @"When you hit \"SUCCESS\"";
+            break;
+        case LightsStateOFF:
+            data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"light3" ofType:@"gif"]];
+            
+            question = @"Turning your device \"OFF\"";
+            break;
+        default:
+            break;
+    }
+    
+    self.imageView.image = [UIImage animatedImageWithAnimatedGIFData:data];
+    
+    return question;
+}
+
 #pragma mark - Actions
 
-- (IBAction)onUnderStoodButton:(UIButton*)sender{
+//LightsStateON
+//LightsStateConnected
+//LightsStateSuccessHit
+//LightsStateOFF
+
+- (void)layoutState:(LightsState)state{
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    self.questionLabel.text = [self questionForState:state];
+    [self.tutorialStatesView selectState:state];
+}
+
+- (IBAction)onUnderStoodButton:(UIButton*)sender{
+    if (self.state >= LightsStateOFF) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else{
+        self.state++;
+        [self layoutState:self.state];
+    }
+}
+
+- (IBAction)onNeedHelp:(id)sender{
+    [self.troubleshotingView setHidden:NO];
+    [self.tapGesture setEnabled:YES];
+}
+
+- (void)onHideHelp{
+    [self.troubleshotingView setHidden:YES];
+    [self.tapGesture setEnabled:NO];
 }
 
 @end

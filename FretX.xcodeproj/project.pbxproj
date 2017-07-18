@@ -18,6 +18,13 @@
 		6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF501F0A86F2000D8819 /* SplashScreens.m */; };
 		77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		85015B3D1F1E494E0090BB5F /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 85015B3C1F1E494E0090BB5F /* UIImage+animatedGIF.m */; };
+		85015B441F1E499B0090BB5F /* light0.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85015B3F1F1E499B0090BB5F /* light0.gif */; };
+		85015B451F1E499B0090BB5F /* light1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85015B401F1E499B0090BB5F /* light1.gif */; };
+		85015B461F1E499B0090BB5F /* light2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85015B411F1E499B0090BB5F /* light2.gif */; };
+		85015B471F1E499B0090BB5F /* light3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85015B421F1E499B0090BB5F /* light3.gif */; };
+		85015B481F1E499B0090BB5F /* on_light.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85015B431F1E499B0090BB5F /* on_light.gif */; };
+		85015B4C1F1E670A0090BB5F /* TroubleshootingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85015B4B1F1E670A0090BB5F /* TroubleshootingViewController.m */; };
 		8552E5E41F1CC3410050EB4A /* NotSureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8552E5E31F1CC3410050EB4A /* NotSureViewController.m */; };
 		8B049C3B1F0A3C50008BE4DC /* FretsProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B049C3A1F0A3C50008BE4DC /* FretsProgressView.m */; };
 		8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B049C3C1F0A3C90008BE4DC /* FretsProgressView.xib */; };
@@ -131,6 +138,15 @@
 		77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretxBLE.framework; sourceTree = "<group>"; };
 		7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretX.release.xcconfig"; path = "Pods/Target Support Files/Pods-FretX/Pods-FretX.release.xcconfig"; sourceTree = "<group>"; };
 		812D127868654BE666A0B042 /* Pods_FretX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FretX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85015B3B1F1E494E0090BB5F /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
+		85015B3C1F1E494E0090BB5F /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
+		85015B3F1F1E499B0090BB5F /* light0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = light0.gif; sourceTree = "<group>"; };
+		85015B401F1E499B0090BB5F /* light1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = light1.gif; sourceTree = "<group>"; };
+		85015B411F1E499B0090BB5F /* light2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = light2.gif; sourceTree = "<group>"; };
+		85015B421F1E499B0090BB5F /* light3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = light3.gif; sourceTree = "<group>"; };
+		85015B431F1E499B0090BB5F /* on_light.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = on_light.gif; sourceTree = "<group>"; };
+		85015B4A1F1E670A0090BB5F /* TroubleshootingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TroubleshootingViewController.h; sourceTree = "<group>"; };
+		85015B4B1F1E670A0090BB5F /* TroubleshootingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TroubleshootingViewController.m; sourceTree = "<group>"; };
 		8552E5E21F1CC3410050EB4A /* NotSureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSureViewController.h; sourceTree = "<group>"; };
 		8552E5E31F1CC3410050EB4A /* NotSureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSureViewController.m; sourceTree = "<group>"; };
 		8B049C391F0A3C50008BE4DC /* FretsProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretsProgressView.h; sourceTree = "<group>"; };
@@ -305,6 +321,37 @@
 			name = SplashAndLogin;
 			sourceTree = "<group>";
 		};
+		85015B3A1F1E494E0090BB5F /* GIF */ = {
+			isa = PBXGroup;
+			children = (
+				85015B3B1F1E494E0090BB5F /* UIImage+animatedGIF.h */,
+				85015B3C1F1E494E0090BB5F /* UIImage+animatedGIF.m */,
+			);
+			name = GIF;
+			path = Categories/GIF;
+			sourceTree = "<group>";
+		};
+		85015B3E1F1E499B0090BB5F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85015B3F1F1E499B0090BB5F /* light0.gif */,
+				85015B401F1E499B0090BB5F /* light1.gif */,
+				85015B411F1E499B0090BB5F /* light2.gif */,
+				85015B421F1E499B0090BB5F /* light3.gif */,
+				85015B431F1E499B0090BB5F /* on_light.gif */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		85015B491F1E670A0090BB5F /* Troubleshooting */ = {
+			isa = PBXGroup;
+			children = (
+				85015B4A1F1E670A0090BB5F /* TroubleshootingViewController.h */,
+				85015B4B1F1E670A0090BB5F /* TroubleshootingViewController.m */,
+			);
+			path = Troubleshooting;
+			sourceTree = "<group>";
+		};
 		8552E5E11F1CC2A70050EB4A /* NotSure */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +410,7 @@
 		8B0EC4151F04F6C900EE1489 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				85015B3A1F1E494E0090BB5F /* GIF */,
 				8BA738A61F18D5760000D6D8 /* DLRadioButton */,
 				8BA7389D1F18ACB20000D6D8 /* TimeConverter */,
 				8B0EC43B1F0529C200EE1489 /* UIView+Activity */,
@@ -555,6 +603,7 @@
 				6CD1BF3E1F0A7A7F000D8819 /* Roboto-Italic.ttf */,
 				6CD1BF3F1F0A7A7F000D8819 /* Roboto-Medium.ttf */,
 				6CD1BF401F0A7A7F000D8819 /* Roboto-Regular.ttf */,
+				85015B3E1F1E499B0090BB5F /* Resources */,
 				8B1A94BC1F0397B900E18BB7 /* Supporting Files */,
 			);
 			path = FretX;
@@ -874,6 +923,7 @@
 		8BF49A7F1F17B96E003565DD /* LightsTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				85015B491F1E670A0090BB5F /* Troubleshooting */,
 				8BF49A8E1F17BA55003565DD /* LightsTutorialViewController.h */,
 				8BF49A8F1F17BA55003565DD /* LightsTutorialViewController.m */,
 			);
@@ -1033,6 +1083,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B049C3D1F0A3C90008BE4DC /* FretsProgressView.xib in Resources */,
+				85015B451F1E499B0090BB5F /* light1.gif in Resources */,
 				8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */,
 				8B1A94E81F039CCB00E18BB7 /* LaunchScreen.storyboard in Resources */,
 				8BF49A7B1F17B78E003565DD /* Onboarding.storyboard in Resources */,
@@ -1041,6 +1092,7 @@
 				8BA738A51F18C2AD0000D6D8 /* TutorialStateView.xib in Resources */,
 				8BA738AE1F190A4E0000D6D8 /* LedON.gif in Resources */,
 				8B1A94EE1F039ED700E18BB7 /* Learn.storyboard in Resources */,
+				85015B461F1E499B0090BB5F /* light2.gif in Resources */,
 				8B1A94F21F039EF300E18BB7 /* Tuner.storyboard in Resources */,
 				8B1A94F01F039EE500E18BB7 /* Settings.storyboard in Resources */,
 				8BFB17131F0BDEC1008A48C7 /* ChordCollectionViewCell.xib in Resources */,
@@ -1051,9 +1103,12 @@
 				6CD1BF411F0A7A7F000D8819 /* GoogleService-Info.plist in Resources */,
 				6CD1BF431F0A7A7F000D8819 /* Roboto-Medium.ttf in Resources */,
 				8B1A94EC1F039EBB00E18BB7 /* Main.storyboard in Resources */,
+				85015B481F1E499B0090BB5F /* on_light.gif in Resources */,
 				6CD1BF441F0A7A7F000D8819 /* Roboto-Regular.ttf in Resources */,
 				8BF350681F14F26300F920FA /* ExercisesPopupView.xib in Resources */,
 				8BEF69AE1F139332005603C0 /* ItemCollectionCell.xib in Resources */,
+				85015B441F1E499B0090BB5F /* light0.gif in Resources */,
+				85015B471F1E499B0090BB5F /* light3.gif in Resources */,
 				6CD1BF421F0A7A7F000D8819 /* Roboto-Italic.ttf in Resources */,
 				8B0EC42E1F050EFC00EE1489 /* GuitarNeckView.xib in Resources */,
 				8BFB72CB1F163DE6000E9041 /* CustomExercises.plist in Resources */,
@@ -1126,6 +1181,7 @@
 				8BFB72C91F162044000E9041 /* CustomExerciseViewController.m in Sources */,
 				8B2AD7021F0F78B9000E7D33 /* ContentManager.m in Sources */,
 				8BFB17111F0BC894008A48C7 /* ChordCollectionViewCell.m in Sources */,
+				85015B3D1F1E494E0090BB5F /* UIImage+animatedGIF.m in Sources */,
 				8BA738A01F18ACCA0000D6D8 /* TimeConverter.m in Sources */,
 				8B0EC44F1F0548B100EE1489 /* BaseViewController.m in Sources */,
 				8B0EC4271F05080700EE1489 /* MelodyChordsViewController.m in Sources */,
@@ -1146,6 +1202,7 @@
 				8BF49A841F17B9B3003565DD /* MainSettingsViewController.m in Sources */,
 				8B0EC4221F04F6C900EE1489 /* NSDictionary+Safe.m in Sources */,
 				8B1A94C11F0397B900E18BB7 /* AppDelegate.m in Sources */,
+				85015B4C1F1E670A0090BB5F /* TroubleshootingViewController.m in Sources */,
 				8BF3504F1F14B54600F920FA /* ChordExercise.m in Sources */,
 				8BF350521F14BD8700F920FA /* ChordExercisesViewController.m in Sources */,
 				8B0EC42C1F0509ED00EE1489 /* GuitarNeckView.m in Sources */,
