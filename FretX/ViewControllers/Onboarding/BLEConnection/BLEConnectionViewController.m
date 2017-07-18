@@ -55,22 +55,23 @@
 
 - (void) didStartScan{
 //    [self showMessage:@"Device start scan" withTitle:@""];
-    self.statusLabel.text = @"Searching device";
+    self.statusLabel.text = @"Searching for FretX";
 }
 
 - (void) didConnect{
 //    [self showMessage:@"Device conected"];
-    self.statusLabel.text = @"Device conected";
+    self.statusLabel.text = @"FretX connected";
+    [self performSegueWithIdentifier:kLightsIndicatorsSegue sender:self];
 }
 
 - (void) didDisconnect{
-    [self showMessage:@"Device disconected"];
-    self.statusLabel.text = @"Couldn't connect your Fretx";
+//    [self showMessage:@"Device disconnected"];
+    self.statusLabel.text = @"Couldn't connect to your Fretx";
 }
 
 - (void)didScanTimeout{
-    [self showMessage:@"Couldn't connect your Fretx"];
-    self.statusLabel.text = @"Couldn't connect your Fretx";
+    [self showMessage:@"Couldn't connect to your Fretx"];
+    self.statusLabel.text = @"Couldn't connect to your Fretx";
 }
 
 - (void)didBLEStateChangeWithState:(CBManagerState)state {}
