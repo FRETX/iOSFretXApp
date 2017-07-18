@@ -20,11 +20,23 @@
 
 #define kPickedExerciseSegue  @"PickedExerciseSegue"
 
+//onboarding
+
+#define kOpenFretxKitSegue  @"OpenFretxKitSegue"
+#define kOpenVideoScreensSegue  @"OpenVideoScreensSegue"
+#define kBLEConnectionSegue @"BLEConnectionSegue"
+#define kLightsIndicatorsSegue @"LightsIndicatorsSegue"
+
 @interface BaseViewController : UIViewController
 
+//
 //implement below methods in appropriate subclasses
 /*
 - (void)onSearchButton:(UIBarButtonItem*)sender;
+ 
+- (void)onBackButton:(UIBarButtonItem*)sender;
 */
+
+- (void)popViewController;
 
 @end

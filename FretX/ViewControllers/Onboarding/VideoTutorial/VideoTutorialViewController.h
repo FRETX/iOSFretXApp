@@ -10,4 +10,7 @@
 
 @interface VideoTutorialViewController : BaseViewController
 
+//idx = 1 - 4
+- (void)showSingleViedeo:(int)idx;
+
 @end

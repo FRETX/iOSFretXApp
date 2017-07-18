@@ -25,6 +25,7 @@
 @synthesize mUserName, mProfile;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     // Override point for customization after application launch.
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
@@ -91,6 +92,18 @@
 }
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    
+    if(_isLanscapeMode)
+        return UIInterfaceOrientationMaskLandscape;
+    else
+        return UIInterfaceOrientationMaskPortrait;
+}
+
+- (void)setIsLanscapeMode:(BOOL)isLanscapeMode {
+    _isLanscapeMode = isLanscapeMode;
 }
 
 #pragma GoogleSignin
