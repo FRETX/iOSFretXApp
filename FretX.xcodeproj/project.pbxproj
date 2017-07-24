@@ -16,6 +16,8 @@
 		6CD1BF4B1F0A7AA9000D8819 /* UIViewController+Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF491F0A7AA9000D8819 /* UIViewController+Alerts.m */; };
 		6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF4E1F0A86F2000D8819 /* LoginActivity.m */; };
 		6CD1BF521F0A86F2000D8819 /* SplashScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD1BF501F0A86F2000D8819 /* SplashScreens.m */; };
+		7701BE741F26026F0018C4A2 /* TunerBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7701BE731F26026F0018C4A2 /* TunerBarView.m */; };
+		777C76711F228E9C0064EBDB /* TunerBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 777C76701F228E9C0064EBDB /* TunerBarView.xib */; };
 		77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85015B3D1F1E494E0090BB5F /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 85015B3C1F1E494E0090BB5F /* UIImage+animatedGIF.m */; };
@@ -135,6 +137,9 @@
 		6CD1BF4E1F0A86F2000D8819 /* LoginActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginActivity.m; path = SplashAndLogin/LoginActivity.m; sourceTree = "<group>"; };
 		6CD1BF4F1F0A86F2000D8819 /* SplashScreens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashScreens.h; path = SplashAndLogin/SplashScreens.h; sourceTree = "<group>"; };
 		6CD1BF501F0A86F2000D8819 /* SplashScreens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashScreens.m; path = SplashAndLogin/SplashScreens.m; sourceTree = "<group>"; };
+		7701BE721F26026F0018C4A2 /* TunerBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TunerBarView.h; path = TunerBarView/TunerBarView.h; sourceTree = "<group>"; };
+		7701BE731F26026F0018C4A2 /* TunerBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TunerBarView.m; path = TunerBarView/TunerBarView.m; sourceTree = "<group>"; };
+		777C76701F228E9C0064EBDB /* TunerBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TunerBarView.xib; sourceTree = "<group>"; };
 		77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretxBLE.framework; sourceTree = "<group>"; };
 		7C91B822DE9AABBA4E976CDB /* Pods-FretX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretX.release.xcconfig"; path = "Pods/Target Support Files/Pods-FretX/Pods-FretX.release.xcconfig"; sourceTree = "<group>"; };
 		812D127868654BE666A0B042 /* Pods_FretX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FretX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -321,6 +326,16 @@
 			name = SplashAndLogin;
 			sourceTree = "<group>";
 		};
+		77269AC81F1EAA8E00E1DE1C /* TunerBarView */ = {
+			isa = PBXGroup;
+			children = (
+				777C76701F228E9C0064EBDB /* TunerBarView.xib */,
+				7701BE721F26026F0018C4A2 /* TunerBarView.h */,
+				7701BE731F26026F0018C4A2 /* TunerBarView.m */,
+			);
+			name = TunerBarView;
+			sourceTree = "<group>";
+		};
 		85015B3A1F1E494E0090BB5F /* GIF */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +461,7 @@
 		8B0EC4281F0509CD00EE1489 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				77269AC81F1EAA8E00E1DE1C /* TunerBarView */,
 				8BF49A911F17BDEA003565DD /* TutorialStateView */,
 				8BF350631F14F1FA00F920FA /* ExercisesPopupView */,
 				8BEF69A41F139251005603C0 /* ItemsCollectionView */,
@@ -1055,6 +1071,7 @@
 					8B1A94B81F0397B900E18BB7 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = FWWN2RQ9Y2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1115,6 +1132,7 @@
 				8B135E001F0E4B4500402817 /* CompletionPopupView.xib in Resources */,
 				8BFB17081F0B8EAE008A48C7 /* PlayerControlsView.xib in Resources */,
 				8BFB17201F0BE7EC008A48C7 /* ChordsTimeLineView.xib in Resources */,
+				777C76711F228E9C0064EBDB /* TunerBarView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,6 +1227,7 @@
 				8BA738A91F18D5760000D6D8 /* DLRadioButton.m in Sources */,
 				8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */,
 				8552E5E41F1CC3410050EB4A /* NotSureViewController.m in Sources */,
+				7701BE741F26026F0018C4A2 /* TunerBarView.m in Sources */,
 				6CD1BF511F0A86F2000D8819 /* LoginActivity.m in Sources */,
 				8B1A94BE1F0397B900E18BB7 /* main.m in Sources */,
 				8B0EC4481F05480800EE1489 /* MainTabBarController.m in Sources */,
@@ -1350,6 +1369,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FWWN2RQ9Y2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1358,10 +1378,13 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FretX/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rocks.fretx.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FretX/Storyboards/Views/FretX-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -1373,6 +1396,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = FWWN2RQ9Y2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1381,10 +1405,12 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = FretX/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = rocks.fretx.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FretX/Storyboards/Views/FretX-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
