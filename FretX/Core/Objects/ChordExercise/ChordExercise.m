@@ -94,12 +94,21 @@
 
 - (SongPunch*)chordNextToChord:(SongPunch*)chord{
     
-    SongPunch* nexthord;
-    if (chord && chord.index < (self.chords.count-1)) {
-        NSUInteger nextIndex = chord.index + 1;
-        nexthord = [self.chords objectAtIndex:nextIndex];
+    NSUInteger curIndex = [self.chords indexOfObject:chord];
+    NSUInteger nextIndex = curIndex + 1;
+    if (nextIndex < self.chords.count) {
+        SongPunch* nextChord = self.chords[nextIndex];
+        return nextChord;
+    } else{
+        return nil;
     }
-    return nexthord;
+    
+//    SongPunch* nexthord;
+//    if (chord && chord.index < self.chords.count) {
+//        NSUInteger nextIndex = chord.index + 1;
+//        nexthord = [self.chords objectAtIndex:nextIndex-1];
+//    }
+//    return nexthord;
 }
 
 - (void)addChord:(SongPunch*)chord{

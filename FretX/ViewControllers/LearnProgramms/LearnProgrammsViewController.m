@@ -60,8 +60,8 @@ typedef enum {
 */
 
 - (void)layout{
-    
-    self.programmTitles = @[@"Chord Exercises", @"Custom Chord Exercises",@"Chords", @"Scale Exercises"];
+    self.programmTitles = @[@"Chord Exercises", @"Custom Chord Exercises",@"Chord Library", @"Scale Library"];
+
     self.programmSubtitles = @[@"Start learning with our guided exercises",
                                @"Build your own training session",
                                @"Learn all chords",

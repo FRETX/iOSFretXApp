@@ -15,6 +15,8 @@
 #import <FretXBLE/FretXBLE-Swift.h>
 @import Firebase;
 
+#import "MainSettingsViewController.h"
+
 @interface SettingsViewController ()
 {
     
@@ -44,6 +46,12 @@
     userAttributes.name = [[[FIRAuth auth] currentUser] displayName];
     userAttributes.userId = mUID;
     [Intercom updateUser:userAttributes];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
     [self getProfileInfo];
 }
 
@@ -80,7 +88,7 @@
         }
         
         NSString *mUserName = [dic objectForKey: @"user_name"];
-        lb_userName.text = mUserName;
+        app.mUserName = lb_userName.text = mUserName;
         
         mlogin_type = [dic objectForKey: @"login_type"];
         
@@ -116,6 +124,7 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.label.text = message;
 }
+
 - (IBAction)didChangeValueOfPrefs:(id)sender {
     UISegmentedControl *selectedControll = (UISegmentedControl *) sender;
     switch (selectedControll.tag) {
@@ -152,7 +161,6 @@
                 [[[dbRef child: @"prefs"] child: @"level"] setValue: @"player"];
             }
             break;
-        
     }
 }
 
@@ -185,6 +193,11 @@
 }
 
 - (IBAction)didSelectOnboarding:(id)sender {
+    
+    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
+    MainSettingsViewController *mainSettingsController = [onboardingStoryboard instantiateViewControllerWithIdentifier:@"MainSettingsViewController"];
+    mainSettingsController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:mainSettingsController animated:YES];
 }
 
 - (IBAction)didSelectLeaveMessage:(id)sender {

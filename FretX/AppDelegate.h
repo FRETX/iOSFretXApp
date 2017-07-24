@@ -14,6 +14,9 @@
 
 @property (nonatomic, retain) NSString *mUserName;
 @property (nonatomic, retain) UIImage *mProfile;
+@property (nonatomic, assign) BOOL isLanscapeMode;
+
 - (void) initialize;
+
 @end
 

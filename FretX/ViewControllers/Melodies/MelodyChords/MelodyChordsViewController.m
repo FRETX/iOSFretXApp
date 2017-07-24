@@ -144,8 +144,7 @@
         [self layoutChord:nextChord];
         [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
     }
-    
-    
+
 }
 
 - (void)layoutProgressForLesson:(Lesson*)lesson{
