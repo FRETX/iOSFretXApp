@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -92,6 +93,7 @@
                                             <segment title="Right"/>
                                             <segment title="Left"/>
                                         </segments>
+                                        <color key="tintColor" red="0.98060482740402222" green="0.3625328540802002" blue="0.27281686663627625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="didChangeValueOfPrefs:" destination="iHi-Zu-SVE" eventType="valueChanged" id="EQa-3s-OCR"/>
                                         </connections>
@@ -103,6 +105,7 @@
                                             <segment title="Electric"/>
                                             <segment title="Acoustic"/>
                                         </segments>
+                                        <color key="tintColor" red="0.98060482739999999" green="0.36253285410000002" blue="0.27281686659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="didChangeValueOfPrefs:" destination="iHi-Zu-SVE" eventType="valueChanged" id="vEK-Nl-F1g"/>
                                         </connections>
@@ -116,6 +119,7 @@
                                             <segment title="Beginner"/>
                                             <segment title="Player"/>
                                         </segments>
+                                        <color key="tintColor" red="0.98060482739999999" green="0.36253285410000002" blue="0.27281686659999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="didChangeValueOfPrefs:" destination="iHi-Zu-SVE" eventType="valueChanged" id="i9D-Fz-Kfl"/>
                                         </connections>
