@@ -18,7 +18,7 @@
 @property CGFloat currentPos;
 @property float rightmostPitch;
 @property float leftmostPitch;
-
+@property CGFloat barMarginVertical;
 -(void) setPitch:(float) pitch;
 -(void) setTargetPitch:(float)targetPitch leftPitch:(float)leftPitch rightPitch:(float)rightPitch;
 @end

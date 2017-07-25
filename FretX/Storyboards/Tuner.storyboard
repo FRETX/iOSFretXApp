@@ -200,6 +200,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="qYo-iG-HsR" id="Rie-EJ-WAO"/>
+                        <outlet property="tunerBarView" destination="Jh7-yf-xua" id="dtn-NI-sNs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UAH-hp-fzI" userLabel="First Responder" sceneMemberID="firstResponder"/>

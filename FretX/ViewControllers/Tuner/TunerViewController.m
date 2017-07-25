@@ -25,6 +25,7 @@ typedef enum {
 
 @property (weak) IBOutlet UIImageView* imageView;
 @property (weak, nonatomic) IBOutlet TunerBarView *tunerBarView;
+
 @property NSTimer* timer;
 @end
 
@@ -34,11 +35,13 @@ typedef enum {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setupString:StringTypNone];
+    [self setupString:StringTypeELeft];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [FretxBLE.sharedInstance clear];
+    [Audio.shared start];
     _timer = [NSTimer timerWithTimeInterval:0.01f target:self selector:@selector(updatePitch) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
@@ -53,11 +56,14 @@ typedef enum {
         [_timer invalidate];
         _timer = nil;
     }
+    [Audio.shared stop];
 }
 
 -(void) updatePitch{
 //    NSLog(@"updating pitch");
     [_tunerBarView setPitch:[Audio.shared getPitch]];
+//    [_tunerBarView setNeedsDisplay];
+//    NSLog(@"pitch: %f",[Audio.shared getPitch]);
 }
 
 /*
