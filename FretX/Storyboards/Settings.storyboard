@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Npc-7P-o5z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Npc-7P-o5z">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -46,7 +46,7 @@
                         <viewControllerLayoutGuide type="top" id="cjS-OT-ljW"/>
                         <viewControllerLayoutGuide type="bottom" id="yo4-BD-ulP"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wk7-ZK-fpe">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="wk7-ZK-fpe">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -64,28 +64,28 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4vF-P8-d1C" userLabel="buttonView">
-                                <rect key="frame" x="0.0" y="211" width="375" height="343"/>
+                                <rect key="frame" x="0.0" y="208" width="375" height="346"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handedness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMq-Va-TyM">
-                                        <rect key="frame" x="12" y="20" width="101" height="21"/>
+                                        <rect key="frame" x="12" y="20" width="101" height="22"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guitar Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRN-LK-NtS">
-                                        <rect key="frame" x="12" y="56" width="91" height="21"/>
+                                        <rect key="frame" x="12" y="57" width="91" height="22"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skill Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1u-lk-E49">
-                                        <rect key="frame" x="12" y="92" width="79" height="21"/>
+                                        <rect key="frame" x="12" y="94" width="79" height="22"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="A9A-Xv-xyS">
-                                        <rect key="frame" x="137" y="16.5" width="230" height="29"/>
+                                        <rect key="frame" x="137" y="18" width="230" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="230" id="8Ce-ih-bgm"/>
                                         </constraints>
@@ -99,7 +99,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="i1r-lx-p6H">
-                                        <rect key="frame" x="137" y="52.5" width="230" height="29"/>
+                                        <rect key="frame" x="137" y="55" width="230" height="29"/>
                                         <segments>
                                             <segment title="Classical"/>
                                             <segment title="Electric"/>
@@ -111,7 +111,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lUJ-cR-jTS">
-                                        <rect key="frame" x="137" y="89" width="230" height="29"/>
+                                        <rect key="frame" x="137" y="92" width="230" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="230" id="0Sv-ET-OTM"/>
                                         </constraints>
@@ -125,7 +125,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRA-dK-WpW">
-                                        <rect key="frame" x="19" y="138" width="338" height="55"/>
+                                        <rect key="frame" x="19" y="141" width="338" height="55"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="c0E-0d-NCi"/>
@@ -139,7 +139,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n21-dw-MvP">
-                                        <rect key="frame" x="19" y="203" width="338" height="55"/>
+                                        <rect key="frame" x="19" y="206" width="338" height="55"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="Afx-Ve-N2A"/>
@@ -153,7 +153,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zH5-O5-Hue">
-                                        <rect key="frame" x="19" y="268" width="338" height="55"/>
+                                        <rect key="frame" x="19" y="271" width="338" height="55"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="EhD-Ym-yx0"/>
