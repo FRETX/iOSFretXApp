@@ -51,6 +51,7 @@
 		8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4541F05566F00EE1489 /* TunerViewController.m */; };
 		8B0F25D01F31C4ED00703AED /* MIDIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F25CF1F31C4ED00703AED /* MIDIPlayer.m */; };
 		8B0F25D21F31D7F300703AED /* chime_bell_ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8B0F25D11F31D7F300703AED /* chime_bell_ding.wav */; };
+		8B0F25D61F31E39D00703AED /* FretxAudioListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F25D51F31E39D00703AED /* FretxAudioListener.m */; };
 		8B135DFF1F0E4B4500402817 /* CompletionPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B135DFD1F0E4B4500402817 /* CompletionPopupView.m */; };
 		8B135E001F0E4B4500402817 /* CompletionPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B135DFE1F0E4B4500402817 /* CompletionPopupView.xib */; };
 		8B1A94BE1F0397B900E18BB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94BD1F0397B900E18BB7 /* main.m */; };
@@ -198,6 +199,8 @@
 		8B0F25CE1F31C4ED00703AED /* MIDIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIPlayer.h; sourceTree = "<group>"; };
 		8B0F25CF1F31C4ED00703AED /* MIDIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIDIPlayer.m; sourceTree = "<group>"; };
 		8B0F25D11F31D7F300703AED /* chime_bell_ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime_bell_ding.wav; sourceTree = "<group>"; };
+		8B0F25D41F31E39D00703AED /* FretxAudioListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretxAudioListener.h; sourceTree = "<group>"; };
+		8B0F25D51F31E39D00703AED /* FretxAudioListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretxAudioListener.m; sourceTree = "<group>"; };
 		8B135DFC1F0E4B4500402817 /* CompletionPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionPopupView.h; sourceTree = "<group>"; };
 		8B135DFD1F0E4B4500402817 /* CompletionPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionPopupView.m; sourceTree = "<group>"; };
 		8B135DFE1F0E4B4500402817 /* CompletionPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletionPopupView.xib; sourceTree = "<group>"; };
@@ -562,6 +565,15 @@
 			path = MidiPlayer;
 			sourceTree = "<group>";
 		};
+		8B0F25D31F31E38A00703AED /* FretxAudioListener */ = {
+			isa = PBXGroup;
+			children = (
+				8B0F25D41F31E39D00703AED /* FretxAudioListener.h */,
+				8B0F25D51F31E39D00703AED /* FretxAudioListener.m */,
+			);
+			path = FretxAudioListener;
+			sourceTree = "<group>";
+		};
 		8B135DFB1F0E4B4500402817 /* CompletionPopupView */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +651,7 @@
 		8B1A94D31F039B4500E18BB7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8B0F25D31F31E38A00703AED /* FretxAudioListener */,
 				8B0F25CD1F31C46700703AED /* MidiPlayer */,
 				8B8F05AD1F0D12E800BAADAC /* VideoEditor */,
 				8B0EC40D1F04E10500EE1489 /* Managers */,
@@ -1214,6 +1227,7 @@
 				8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */,
 				8BEF69B61F13CCF8005603C0 /* ItemsCollectionView.m in Sources */,
 				8B1A94DF1F039C0200E18BB7 /* MelodiesViewController.m in Sources */,
+				8B0F25D61F31E39D00703AED /* FretxAudioListener.m in Sources */,
 				6CD1BF4A1F0A7AA9000D8819 /* ToastHelper.m in Sources */,
 				8B0EC43E1F0529C200EE1489 /* UIView+Activity.m in Sources */,
 				8BEF69A31F138BF2005603C0 /* ScaleExercisesViewController.m in Sources */,
