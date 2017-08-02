@@ -296,6 +296,9 @@
                                     <constraint firstAttribute="height" constant="48" id="eo2-ev-sEy"/>
                                 </constraints>
                                 <state key="normal" image="SpeakerIconDefault"/>
+                                <connections>
+                                    <action selector="onPlayChordButton:" destination="XGw-W7-YNN" eventType="touchUpInside" id="Fwv-VB-R2h"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7y-HJ-QSo">
                                 <rect key="frame" x="63" y="98" width="195" height="53"/>

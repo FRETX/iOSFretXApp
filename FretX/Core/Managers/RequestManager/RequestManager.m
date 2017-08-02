@@ -20,6 +20,8 @@
 #define kAPI_AllSongs              @"songs/index.json" // http://player.fretx.rocks/api/v1/
 #define kAPI_MelodyLesson(fertxID) ApiCall(@"songs/%@.json", fertxID)  //http://player.fretx.rocks/api/v1/  //  @"songs/<fretx_id>.json"
 
+//gs://fretxappios.appspot.com/guided_chord_exercises_json
+
 @interface RequestManager ()
 
 @property (nonatomic, strong) AFHTTPSessionManager* manager;

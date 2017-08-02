@@ -14,13 +14,14 @@
 
 @property (strong) NSArray<FingerPosition*>* fingering;
 @property (strong) NSString* chordName;
-@property (strong) NSString* quality;
+@property (strong) NSString* quality;//type
 @property (strong) NSString* root;
 @property (assign) int rootval;
 @property (assign) unsigned long timeMs;
 
 - (void)setValues:(NSDictionary*)info;
 
+@property (nonatomic, strong) NSArray<NSNumber*>* midiNotes;
 @property (assign,readonly) BOOL isEmpty;
 @property (assign) NSUInteger index;
 
