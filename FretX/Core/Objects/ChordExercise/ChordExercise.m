@@ -156,6 +156,20 @@
     return values;
 }
 
+- (NSArray<Chord *>*)getUniqueAudioProcChords{
+    NSMutableSet<Chord *> *uniqueChords = [[NSMutableSet alloc] init];
+    for (SongPunch *sp in self.chords) {
+        Chord *tmpChord = [[Chord alloc] initWithRoot:sp.root type:sp.quality];
+        if(![tmpChord.getRoot isEqualToString:@""]){
+            [uniqueChords addObject:tmpChord];
+        }
+    }
+    
+    NSArray<Chord *> *chords = [NSArray arrayWithArray:uniqueChords.allObjects];
+    
+    return chords;
+}
+
 #pragma mark - Private
 
 - (NSArray*)chordsDictionary{

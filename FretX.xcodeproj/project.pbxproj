@@ -52,6 +52,9 @@
 		8B0F25D01F31C4ED00703AED /* MIDIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F25CF1F31C4ED00703AED /* MIDIPlayer.m */; };
 		8B0F25D21F31D7F300703AED /* chime_bell_ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8B0F25D11F31D7F300703AED /* chime_bell_ding.wav */; };
 		8B0F25D61F31E39D00703AED /* FretxAudioListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F25D51F31E39D00703AED /* FretxAudioListener.m */; };
+		8B0F25DC1F31FD7D00703AED /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8B0F25DD1F31FD8900703AED /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */; };
+		8B0F25DE1F31FD8900703AED /* FretXAudioProcessing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B135DFF1F0E4B4500402817 /* CompletionPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B135DFD1F0E4B4500402817 /* CompletionPopupView.m */; };
 		8B135E001F0E4B4500402817 /* CompletionPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B135DFE1F0E4B4500402817 /* CompletionPopupView.xib */; };
 		8B1A94BE1F0397B900E18BB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94BD1F0397B900E18BB7 /* main.m */; };
@@ -91,8 +94,6 @@
 		8BF3505A1F14C0D100F920FA /* ExerciseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF350591F14C0D100F920FA /* ExerciseTableCell.m */; };
 		8BF350661F14F23C00F920FA /* ExercisesPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF350651F14F23C00F920FA /* ExercisesPopupView.m */; };
 		8BF350681F14F26300F920FA /* ExercisesPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BF350671F14F26300F920FA /* ExercisesPopupView.xib */; };
-		8BF3506B1F14F6A600F920FA /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		8BF3506C1F14F6A600F920FA /* FretXAudioProcessing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BF49A7B1F17B78E003565DD /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF49A7A1F17B78E003565DD /* Onboarding.storyboard */; };
 		8BF49A841F17B9B3003565DD /* MainSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF49A831F17B9B3003565DD /* MainSettingsViewController.m */; };
 		8BF49A871F17B9D3003565DD /* FretxKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF49A861F17B9D3003565DD /* FretxKitViewController.m */; };
@@ -118,7 +119,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8BF3506C1F14F6A600F920FA /* FretXAudioProcessing.framework in Embed Frameworks */,
+				8B0F25DE1F31FD8900703AED /* FretXAudioProcessing.framework in Embed Frameworks */,
 				77FF16A51F0E5D340013B09F /* FretxBLE.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -201,6 +202,7 @@
 		8B0F25D11F31D7F300703AED /* chime_bell_ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime_bell_ding.wav; sourceTree = "<group>"; };
 		8B0F25D41F31E39D00703AED /* FretxAudioListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretxAudioListener.h; sourceTree = "<group>"; };
 		8B0F25D51F31E39D00703AED /* FretxAudioListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretxAudioListener.m; sourceTree = "<group>"; };
+		8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretXAudioProcessing.framework; sourceTree = "<group>"; };
 		8B135DFC1F0E4B4500402817 /* CompletionPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionPopupView.h; sourceTree = "<group>"; };
 		8B135DFD1F0E4B4500402817 /* CompletionPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionPopupView.m; sourceTree = "<group>"; };
 		8B135DFE1F0E4B4500402817 /* CompletionPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletionPopupView.xib; sourceTree = "<group>"; };
@@ -265,7 +267,6 @@
 		8BF350641F14F23C00F920FA /* ExercisesPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExercisesPopupView.h; sourceTree = "<group>"; };
 		8BF350651F14F23C00F920FA /* ExercisesPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExercisesPopupView.m; sourceTree = "<group>"; };
 		8BF350671F14F26300F920FA /* ExercisesPopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExercisesPopupView.xib; sourceTree = "<group>"; };
-		8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretXAudioProcessing.framework; sourceTree = "<group>"; };
 		8BF49A7A1F17B78E003565DD /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		8BF49A821F17B9B3003565DD /* MainSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSettingsViewController.h; sourceTree = "<group>"; };
 		8BF49A831F17B9B3003565DD /* MainSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainSettingsViewController.m; sourceTree = "<group>"; };
@@ -302,7 +303,8 @@
 			files = (
 				335F36C14EDF58C27D68420D /* Pods_FretX.framework in Frameworks */,
 				77FF16A41F0E5D340013B09F /* FretxBLE.framework in Frameworks */,
-				8BF3506B1F14F6A600F920FA /* FretXAudioProcessing.framework in Frameworks */,
+				8B0F25DD1F31FD8900703AED /* FretXAudioProcessing.framework in Frameworks */,
+				8B0F25DC1F31FD7D00703AED /* FretXAudioProcessing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1035,7 +1037,7 @@
 		C2E7F2135872EE37F2A5CD7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8BF350691F14F69D00F920FA /* FretXAudioProcessing.framework */,
+				8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */,
 				77FF16A01F0E3DCA0013B09F /* FretxBLE.framework */,
 				812D127868654BE666A0B042 /* Pods_FretX.framework */,
 			);

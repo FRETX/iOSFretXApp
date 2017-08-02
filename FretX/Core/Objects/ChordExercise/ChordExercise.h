@@ -10,6 +10,8 @@
 
 #import "SongPunch.h"
 
+@class Chord;
+
 @interface ChordExercise : NSObject
 
 @property (assign) int exerciseID;
@@ -24,5 +26,7 @@
 - (void)removeChord:(SongPunch*)chord;
 
 - (NSDictionary*)plistValues;
+
+- (NSArray<Chord *>*)getUniqueAudioProcChords;
 
 @end

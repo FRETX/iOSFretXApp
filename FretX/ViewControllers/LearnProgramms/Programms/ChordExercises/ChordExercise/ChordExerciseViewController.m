@@ -15,10 +15,13 @@
 #import "FretsProgressView.h"
 #import "GuitarNeckView.h"
 #import "TimeConverter.h"
+#import "MIDIPlayer.h"
 
-@interface ChordExerciseViewController ()
+@interface ChordExerciseViewController () <AudioListener>
 
 @property (strong) ChordExercise* chordExercise;
+@property (strong) NSMutableArray<SongPunch *>* exercisePunches;
+@property int punchIndex;
 
 //ui
 @property (nonatomic, weak) IBOutlet UILabel* currentChordLabel;
@@ -40,6 +43,9 @@
 @property (assign) float exerciseInterval;
 
 @property (assign) int currentRepetition;
+
+@property (strong) MIDIPlayer* midiPlayer;
+
 @end
 
 @implementation ChordExerciseViewController
@@ -56,10 +62,25 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    [self layoutChord:self.currentChord];
-    
-    [self addPopup];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self.midiPlayer playChimeBell];
+//    });
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self layoutChord:self.currentChord];
+    [self addPopup];
+    [self.fretsProgressView setupProgress:0];
+
+//    self.midiPlayer = [MIDIPlayer new];
+    
+    [self setupAudioListening];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [Audio.shared stop];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -67,25 +88,69 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Public
 
 - (void)setupChordExercise:(ChordExercise*)chordExercise{
     
-    self.chordExercise = chordExercise;
-    
     NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
     [self.chordExercise.chords sortUsingDescriptors:@[sortDescriptor]];
+    
+    self.chordExercise = chordExercise;
+    self.punchIndex = 0;
+    self.exercisePunches = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i<self.chordExercise.repetitionsCount; i++) {
+        for (SongPunch* sp in self.chordExercise.chords) {
+            [self.exercisePunches addObject:sp];
+        }
+    }
+    
+}
+
+#pragma mark - Audio processing
+
+- (void)setupAudioListening{
+    
+    [Audio.shared setAudioListenerWithListener:self];
+    [Audio.shared setTargetChordsWithChords:[self.chordExercise getUniqueAudioProcChords]];
+    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
+    [Audio.shared start];
 
 }
+
+#pragma mark - Audio listening delegate
+
+- (void)onProgress {
+    float progress = [Audio.shared getProgress];
+    //    NSLog(@"progress: %f",progress);
+    if(progress >= 100){
+        [self setupNextChord];
+        
+        [self.midiPlayer playChimeBell];
+    }
+}
+
+- (void)onTimeout{
+    
+}
+
+- (void)onLowVolume{
+    
+}
+
+- (void)onHighVolume{
+    
+}
+
 
 #pragma mark - private
 
@@ -123,20 +188,26 @@
     [self.view addSubview:self.popupContainer];
     
     [self hidePopup];
-  
+    
 }
 
 - (void)showPopup{
-    
+    NSLog(@"showing popup");
     self.popupContainer.hidden = NO;
 }
 
 - (void)hidePopup{
-    
     self.popupContainer.hidden = YES;
 }
 
 #pragma mark - Actions
+
+- (IBAction)onPlayChordButton:(id)sender{
+    
+    [self.midiPlayer playChimeBell];
+    
+//    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
+}
 
 - (IBAction)onTapBackToMenu:(id)sender{
     
@@ -146,12 +217,14 @@
 
 - (IBAction)onTapRetry:(id)sender{
     
-    self.currentChordIndexInAllSession = 0;
-    self.currentRepetition = 1;
+    //    self.currentChordIndexInAllSession = 0;
+    //    self.currentRepetition = 1;
+    _punchIndex = 0;
     [self layoutExercise:self.chordExercise];
     
     self.exerciseInterval = 0;
     [self hidePopup];
+    [self.fretsProgressView setupProgress:0];
     [self startExeTimer];
 }
 
@@ -165,6 +238,8 @@
 
 - (void)layout{
     [self.view layoutIfNeeded];
+    
+//    self.midiPlayer = [MIDIPlayer new];
     
     [self addFretBoard];
     [self addFretsProgressView];
@@ -204,10 +279,9 @@
 
 
 - (void)layoutExercise:(ChordExercise*)chordExercise{
-    
-//    self.currentChordLabel.text = chordExercise.exerciseName;
+    //TODO: redo this with exercisePunches
+    self.currentChordLabel.text = chordExercise.exerciseName;
     if (chordExercise.chords.count > 0) {
-        
         [self layoutChord:chordExercise.chords[0]];
     }
 }
@@ -217,46 +291,51 @@
     self.currentChord = chord;
     
     self.currentChordLabel.text = chord.chordName;// self.currentChord.chordName;
-    if ([self.chordExercise chordNextToChord:self.currentChord]) {
-        self.nextChordLabel.text = [self.chordExercise chordNextToChord:self.currentChord].chordName;
-    } else{
+    if(_punchIndex+1 < [self.exercisePunches count]){
+        self.nextChordLabel.text = _exercisePunches[_punchIndex+1].chordName;
+    } else {
         self.nextChordLabel.text = @"";
-
     }
     
-    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
-    [self layoutProgressForChordExercise:self.chordExercise];
+    //    if ([self.chordExercise chordNextToChord:self.currentChord]) {
+    //        self.nextChordLabel.text = [self.chordExercise chordNextToChord:self.currentChord].chordName;
+    //    } else{
+    //        self.nextChordLabel.text = @"";
+    //
+    //    }
     
+    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
+    //    [self layoutProgressForChordExercise:self.chordExercise];
     Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
     [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
 }
 
 - (void)setupNextChord{
-    
-    SongPunch* nextChord = [self.chordExercise chordNextToChord:self.currentChord];
-    if (nextChord)
-        [self layoutChord:nextChord];
-    else{
+    self.punchIndex++;
+    [self.fretsProgressView setupProgress:((float)_punchIndex/(float)[_exercisePunches count])];
+    if(self.punchIndex < [self.exercisePunches count]){
+        SongPunch* nextChord = self.exercisePunches[self.punchIndex];
+        [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
+        self.currentChord = nextChord;
         
-        if (self.currentRepetition < self.chordExercise.repetitionsCount) {
-            self.currentRepetition++;
-            [self layoutExercise:self.chordExercise];
-        } else {
-            [self stopExeTimer];
-            [self showPopup];
-        }
+        [self layoutChord:nextChord];
+        
+    } else{
+        //        if (self.currentRepetition < self.chordExercise.repetitionsCount) {
+        //            self.currentRepetition++;
+        //            [self layoutExercise:self.chordExercise];
+        //        } else {
+        [self stopExeTimer];
+        [Audio.shared stop];
+        [self showPopup];
+        //        }
     }
 }
 
-- (void)layoutProgressForChordExercise:(ChordExercise*)exercise{
-    
-    float repeats = (float)self.chordExercise.repetitionsCount;
-    float chordsCount = (float)self.chordExercise.chords.count;
-    float progress = self.currentChordIndexInAllSession / (chordsCount * repeats) ;
-    [self.fretsProgressView setupProgress:progress];
-    self.currentChordIndexInAllSession++;
+
+- (void) didFinishExercise{
+    [Audio.shared stop];
+    NSLog(@"End of Exercise");
 }
-
-
 
 @end

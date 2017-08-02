@@ -65,7 +65,7 @@
         fingerPosition.string = (int)[fretPosition getString];
         fingerPosition.fret = (int)[fretPosition getFret];
         
-        NSLog(@"tap=%ld string=%d fret=%d ", idx, fingerPosition.string, fingerPosition.fret);
+       // NSLog(@"tap=%ld string=%d fret=%d ", idx, fingerPosition.string, fingerPosition.fret);
         
         [mutResult addObject:fingerPosition];
     }];

@@ -25,12 +25,48 @@
     return listener;
 }
 
-//- (void)setupAudioListenerWithDelegate:(id<AudioListener>)delegate{
-//    
-//    [Audio.shared setAudioListenerWithListener:delegate];
-//    [Audio.shared setTargetChordsWithChords:[self.chordExercise getUniqueChords]];
-//    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
-//    [Audio.shared start];
+- (void)setupAudioListenerWithDelegate:(id<AudioListener>)delegate chords:(NSArray<Chord *>*)chords{
+    
+    [Audio.shared setAudioListenerWithListener:delegate];
+    [Audio.shared setTargetChordsWithChords:chords];
+    [Audio.shared start];
+}
+
+- (void)setupChord:(Chord*)chord{
+    
+    [Audio.shared setTargetChordWithChord:chord];
+}
+
+- (void)startListener{
+    
+    [Audio.shared startListening];
+}
+
+- (void)stopListener{
+    
+    [Audio.shared stopListening];
+}
+
+
+//- (void)onProgress {
+//    float progress = [Audio.shared getProgress];
+//    //    NSLog(@"progress: %f",progress);
+//    if(progress >= 100){
+//        [self setupNextChord];
+//    }
 //}
+//
+//- (void)onTimeout{
+//    
+//}
+//
+//- (void)onLowVolume{
+//    
+//}
+//
+//- (void)onHighVolume{
+//    
+//}
+
 
 @end

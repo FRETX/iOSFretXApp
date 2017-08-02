@@ -543,6 +543,16 @@
                                     <constraint firstAttribute="width" constant="45" id="QQk-pe-ld3"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXi-Pd-9ry" userLabel="PlayChordButton">
+                                <rect key="frame" x="137.5" y="346" width="45" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="5jS-YL-AF0"/>
+                                    <constraint firstAttribute="width" constant="45" id="HtJ-Jr-ZHY"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onPlayChordButton:" destination="FBi-4C-WFx" eventType="touchUpInside" id="fp8-ol-37c"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="88Y-Wu-g0Z" userLabel="MicView">
                                 <rect key="frame" x="138.5" y="296" width="43" height="43"/>
                                 <subviews>
@@ -612,12 +622,14 @@
                             <constraint firstItem="rFS-HA-PNU" firstAttribute="leading" secondItem="qQh-pG-r40" secondAttribute="leading" id="e79-H8-00h"/>
                             <constraint firstAttribute="trailing" secondItem="oCl-Yc-11Y" secondAttribute="trailing" constant="82" id="eSG-4J-B2c"/>
                             <constraint firstAttribute="trailing" secondItem="n9T-AI-t0A" secondAttribute="trailing" constant="8.5" id="eYR-4z-TTi"/>
+                            <constraint firstItem="uXi-Pd-9ry" firstAttribute="top" secondItem="E98-X6-m1H" secondAttribute="bottom" constant="-48" id="hTC-vr-q7Q"/>
                             <constraint firstItem="wFi-t6-HI0" firstAttribute="leading" secondItem="qQh-pG-r40" secondAttribute="leading" id="n00-mR-zXN"/>
                             <constraint firstItem="E98-X6-m1H" firstAttribute="top" secondItem="88Y-Wu-g0Z" secondAttribute="bottom" constant="7" id="pEU-Kg-cjW"/>
                             <constraint firstAttribute="trailing" secondItem="wFi-t6-HI0" secondAttribute="trailing" id="prC-pj-Zkz"/>
                             <constraint firstItem="oCl-Yc-11Y" firstAttribute="leading" secondItem="qQh-pG-r40" secondAttribute="leading" constant="83" id="rHy-2G-NGg"/>
                             <constraint firstItem="k9H-ih-rgY" firstAttribute="top" secondItem="rFS-HA-PNU" secondAttribute="bottom" constant="14" id="rIk-x0-lyE"/>
                             <constraint firstItem="88Y-Wu-g0Z" firstAttribute="centerX" secondItem="qQh-pG-r40" secondAttribute="centerX" id="u95-h9-0Af"/>
+                            <constraint firstItem="uXi-Pd-9ry" firstAttribute="leading" secondItem="E98-X6-m1H" secondAttribute="trailing" constant="-45" id="x7F-61-ubU"/>
                         </constraints>
                     </view>
                     <connections>

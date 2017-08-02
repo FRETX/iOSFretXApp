@@ -59,13 +59,16 @@
 - (void)initAudioSources{
     
     AVAudioEngine* audioEngine = [AVAudioEngine new];
+    
+//    AudioOutputUnitStop(audioEngine.inputNode.audioUnit);
+//    AudioUnitUninitialize(audioEngine.inputNode.audioUnit);
+    
     self.audioEngine = audioEngine;
     
     self.sampler = [AVAudioUnitSampler new];
     [audioEngine attachNode:self.sampler];
-    [audioEngine connect:self.sampler to:audioEngine.outputNode format:nil]; //engine connect(self.sampler!, to: engine.outputNode, format: nil)
+    [audioEngine connect:self.sampler to:audioEngine.outputNode format:nil];
     
-    //    NSURL* soundbankURL = NSBundle.mainBundle().URLForResource("gs_instruments", withExtension: "dls")
     NSURL* soundbankURL = [[NSBundle mainBundle] URLForResource:@"gs_instruments" withExtension:@"dls"];
     
     if (!soundbankURL) {
@@ -85,8 +88,10 @@
     //    }
     
     NSError* engineError = nil;
-    [audioEngine prepare];
-    [audioEngine startAndReturnError:&engineError];
+#warning TEST
+//    [audioEngine prepare];
+//    [audioEngine startAndReturnError:&engineError];
+    
     if (engineError) {
         NSLog(@"audioEngine error");
     }
@@ -110,8 +115,8 @@
 
 - (void)playMIDI{
     
-    if (!self.audioEngine.running)
-        [self.audioEngine startAndReturnError:nil];
+//    if (!self.audioEngine.running)
+//        [self.audioEngine startAndReturnError:nil];
     
     self.currentNoteIndex = 0;
     [self startTimer];

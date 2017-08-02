@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+//@protocol FretxAudioListener <NSObject>
+//
+//-
+//
+//@end
+
 @interface FretxAudioListener : NSObject
 
 @end
