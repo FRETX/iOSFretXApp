@@ -14,10 +14,13 @@
 
 @interface ChordExercise : NSObject
 
-@property (assign) int exerciseID;
+@property (strong) NSString* exerciseID;
+@property (strong) NSString* youtubeId;
 @property (strong) NSString* exerciseName;
 @property (strong,readonly) NSMutableArray<SongPunch*>* chords;
 @property (assign) NSUInteger repetitionsCount;
+
+@property (assign) BOOL guided;//else custom
 
 + (instancetype)exerciseWithDictionary:(NSDictionary*)dictionary;
 - (SongPunch*)chordNextToChord:(SongPunch*)chord;

@@ -11,13 +11,15 @@
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 #import <FretXBLE/FretXBLE-Swift.h>
 
+#import "VideoPlayerViewController.h"
+#import "ContentManager.h"
 #import "ChordExercise.h"
 #import "FretsProgressView.h"
 #import "GuitarNeckView.h"
 #import "TimeConverter.h"
 #import "MIDIPlayer.h"
 
-@interface ChordExerciseViewController () <AudioListener>
+@interface ChordExerciseViewController () <AudioListener, MIDIPlayerDelegate>
 
 @property (strong) ChordExercise* chordExercise;
 @property (strong) NSMutableArray<SongPunch *>* exercisePunches;
@@ -31,6 +33,7 @@
 @property (nonatomic, weak) IBOutlet UIView* progressContainerView;
 @property (nonatomic, weak) FretsProgressView* fretsProgressView;
 @property (nonatomic, weak) IBOutlet UIView* popupContainer;
+@property (nonatomic, weak) IBOutlet UIImageView* microphoneImageView;
 
 //data
 @property (nonatomic, weak) IBOutlet UILabel* popupTimeLabel;
@@ -59,26 +62,24 @@
     [self layout];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self.midiPlayer playChimeBell];
-//    });
-}
-
 - (void)viewWillAppear:(BOOL)animated{
+    
+    self.midiPlayer = [[MIDIPlayer alloc] initWithDelegate:self];
+    
     [self layoutChord:self.currentChord];
     [self addPopup];
     [self.fretsProgressView setupProgress:0];
-
-//    self.midiPlayer = [MIDIPlayer new];
     
-    [self setupAudioListening];
+    #warning TEST
+//    [self setupAudioListening];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    [Audio.shared stop];
+    [super viewWillDisappear:animated];
+    
+    #warning TEST
+//    [Audio.shared stop];
 }
 
 
@@ -113,7 +114,16 @@
             [self.exercisePunches addObject:sp];
         }
     }
-    
+}
+
+- (void)presentVideo{
+
+    UIStoryboard* mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    VideoPlayerViewController* videoPlayerController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"VideoPlayerViewController"];
+    __weak typeof(self) weakSelf = self;
+    [videoPlayerController playOnTargetController:self youtubeVideoID:self.chordExercise.youtubeId completion:^{
+        [weakSelf startExeTimer];
+    }];
 }
 
 #pragma mark - Audio processing
@@ -145,10 +155,12 @@
 
 - (void)onLowVolume{
     
+    self.microphoneImageView.image = [UIImage imageNamed:@"MicrophoneIconDefault"];
 }
 
 - (void)onHighVolume{
     
+    self.microphoneImageView.image = [UIImage imageNamed:@"MicrophoneIconGreen"];
 }
 
 
@@ -192,6 +204,11 @@
 }
 
 - (void)showPopup{
+    
+    if (self.didPassedGuidedExerciseBlock) {
+        self.didPassedGuidedExerciseBlock(self.chordExercise, self.exerciseInterval);
+    }
+    
     NSLog(@"showing popup");
     self.popupContainer.hidden = NO;
 }
@@ -204,9 +221,10 @@
 
 - (IBAction)onPlayChordButton:(id)sender{
     
-    [self.midiPlayer playChimeBell];
+#warning TEST
+//    [Audio.shared stop];
     
-//    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
+    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
 }
 
 - (IBAction)onTapBackToMenu:(id)sender{
@@ -228,10 +246,11 @@
     [self startExeTimer];
 }
 
-#warning TEST
+
 - (IBAction)onTestNextChord:(id)sender{
     
     [self setupNextChord];
+    [self.midiPlayer playChimeBell];
 }
 
 #pragma mark - Layout
@@ -246,7 +265,11 @@
     
     [self layoutExercise:self.chordExercise];
     
-    [self startExeTimer];
+    if (self.chordExercise.youtubeId.length > 0) {
+        [self presentVideo];
+    } else{
+        [self startExeTimer];
+    }
 }
 
 - (void)addFretBoard{
@@ -315,20 +338,20 @@
     [self.fretsProgressView setupProgress:((float)_punchIndex/(float)[_exercisePunches count])];
     if(self.punchIndex < [self.exercisePunches count]){
         SongPunch* nextChord = self.exercisePunches[self.punchIndex];
-        [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
+        
+#warning TEST
+//        [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
         self.currentChord = nextChord;
         
         [self layoutChord:nextChord];
         
     } else{
-        //        if (self.currentRepetition < self.chordExercise.repetitionsCount) {
-        //            self.currentRepetition++;
-        //            [self layoutExercise:self.chordExercise];
-        //        } else {
+
         [self stopExeTimer];
-        [Audio.shared stop];
+        #warning TEST
+//        [Audio.shared stop];
         [self showPopup];
-        //        }
+
     }
 }
 
@@ -336,6 +359,18 @@
 - (void) didFinishExercise{
     [Audio.shared stop];
     NSLog(@"End of Exercise");
+}
+
+#pragma mark - MIDIPlayer
+
+- (void)willPlaying:(MIDIPlayer*)player{
+    
+//    [Audio.shared stop];
+}
+
+- (void)didEndPlaying:(MIDIPlayer*)player{
+    
+//    [Audio.shared start];
 }
 
 @end

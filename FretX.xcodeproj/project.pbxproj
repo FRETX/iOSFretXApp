@@ -51,7 +51,6 @@
 		8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0EC4541F05566F00EE1489 /* TunerViewController.m */; };
 		8B0F25D01F31C4ED00703AED /* MIDIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F25CF1F31C4ED00703AED /* MIDIPlayer.m */; };
 		8B0F25D21F31D7F300703AED /* chime_bell_ding.wav in Resources */ = {isa = PBXBuildFile; fileRef = 8B0F25D11F31D7F300703AED /* chime_bell_ding.wav */; };
-		8B0F25D61F31E39D00703AED /* FretxAudioListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F25D51F31E39D00703AED /* FretxAudioListener.m */; };
 		8B0F25DC1F31FD7D00703AED /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8B0F25DD1F31FD8900703AED /* FretXAudioProcessing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */; };
 		8B0F25DE1F31FD8900703AED /* FretXAudioProcessing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -71,6 +70,10 @@
 		8B1A94F61F03D02000E18BB7 /* MelodyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1A94F51F03D02000E18BB7 /* MelodyTableCell.m */; };
 		8B2AD7021F0F78B9000E7D33 /* ContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AD7011F0F78B9000E7D33 /* ContentManager.m */; };
 		8B2AD7061F0F8DE6000E7D33 /* NavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2AD7051F0F8DE6000E7D33 /* NavigationManager.m */; };
+		8B5C48741F3336C2003F3CF8 /* DataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5C48731F3336C2003F3CF8 /* DataBaseManager.m */; };
+		8B5C48781F33372F003F3CF8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5C48771F33372F003F3CF8 /* User.m */; };
+		8B5C487C1F33488A003F3CF8 /* ExerciseScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5C487B1F33488A003F3CF8 /* ExerciseScore.m */; };
+		8B5C48801F336AAB003F3CF8 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B5C487F1F336AAB003F3CF8 /* VideoPlayerViewController.m */; };
 		8B8F05AA1F0CD5FD00BAADAC /* AdditionalControlsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */; };
 		8B8F05AC1F0CD63200BAADAC /* AdditionalControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */; };
 		8B8F05B01F0D131A00BAADAC /* VideoEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F05AF1F0D131A00BAADAC /* VideoEditor.m */; };
@@ -200,8 +203,6 @@
 		8B0F25CE1F31C4ED00703AED /* MIDIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIPlayer.h; sourceTree = "<group>"; };
 		8B0F25CF1F31C4ED00703AED /* MIDIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIDIPlayer.m; sourceTree = "<group>"; };
 		8B0F25D11F31D7F300703AED /* chime_bell_ding.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime_bell_ding.wav; sourceTree = "<group>"; };
-		8B0F25D41F31E39D00703AED /* FretxAudioListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FretxAudioListener.h; sourceTree = "<group>"; };
-		8B0F25D51F31E39D00703AED /* FretxAudioListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FretxAudioListener.m; sourceTree = "<group>"; };
 		8B0F25DB1F31FD7D00703AED /* FretXAudioProcessing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FretXAudioProcessing.framework; sourceTree = "<group>"; };
 		8B135DFC1F0E4B4500402817 /* CompletionPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletionPopupView.h; sourceTree = "<group>"; };
 		8B135DFD1F0E4B4500402817 /* CompletionPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletionPopupView.m; sourceTree = "<group>"; };
@@ -228,6 +229,14 @@
 		8B2AD7011F0F78B9000E7D33 /* ContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentManager.m; sourceTree = "<group>"; };
 		8B2AD7041F0F8DE6000E7D33 /* NavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationManager.h; sourceTree = "<group>"; };
 		8B2AD7051F0F8DE6000E7D33 /* NavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationManager.m; sourceTree = "<group>"; };
+		8B5C48721F3336C2003F3CF8 /* DataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBaseManager.h; sourceTree = "<group>"; };
+		8B5C48731F3336C2003F3CF8 /* DataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBaseManager.m; sourceTree = "<group>"; };
+		8B5C48761F33372F003F3CF8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		8B5C48771F33372F003F3CF8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		8B5C487A1F33488A003F3CF8 /* ExerciseScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExerciseScore.h; sourceTree = "<group>"; };
+		8B5C487B1F33488A003F3CF8 /* ExerciseScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExerciseScore.m; sourceTree = "<group>"; };
+		8B5C487E1F336AAB003F3CF8 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
+		8B5C487F1F336AAB003F3CF8 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
 		8B8F05A81F0CD5FD00BAADAC /* AdditionalControlsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdditionalControlsView.h; sourceTree = "<group>"; };
 		8B8F05A91F0CD5FD00BAADAC /* AdditionalControlsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdditionalControlsView.m; sourceTree = "<group>"; };
 		8B8F05AB1F0CD63200BAADAC /* AdditionalControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdditionalControlsView.xib; sourceTree = "<group>"; };
@@ -394,6 +403,7 @@
 		8B0EC40D1F04E10500EE1489 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				8B5C48711F3336B3003F3CF8 /* DataBaseManager */,
 				8B2AD7031F0F8DD6000E7D33 /* NavigationManager */,
 				8B2AD6FF1F0F78B9000E7D33 /* ContentManager */,
 				8B0EC40E1F04E10500EE1489 /* RequestManager */,
@@ -567,15 +577,6 @@
 			path = MidiPlayer;
 			sourceTree = "<group>";
 		};
-		8B0F25D31F31E38A00703AED /* FretxAudioListener */ = {
-			isa = PBXGroup;
-			children = (
-				8B0F25D41F31E39D00703AED /* FretxAudioListener.h */,
-				8B0F25D51F31E39D00703AED /* FretxAudioListener.m */,
-			);
-			path = FretxAudioListener;
-			sourceTree = "<group>";
-		};
 		8B135DFB1F0E4B4500402817 /* CompletionPopupView */ = {
 			isa = PBXGroup;
 			children = (
@@ -653,7 +654,6 @@
 		8B1A94D31F039B4500E18BB7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8B0F25D31F31E38A00703AED /* FretxAudioListener */,
 				8B0F25CD1F31C46700703AED /* MidiPlayer */,
 				8B8F05AD1F0D12E800BAADAC /* VideoEditor */,
 				8B0EC40D1F04E10500EE1489 /* Managers */,
@@ -672,6 +672,7 @@
 				8B1A94D81F039B4500E18BB7 /* Settings */,
 				8B1A94D91F039B4500E18BB7 /* Tuner */,
 				8BF49A7C1F17B96E003565DD /* Onboarding */,
+				8B5C487D1F336A68003F3CF8 /* VideoPlayer */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -743,6 +744,8 @@
 		8B1A94F71F03D2C300E18BB7 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				8B5C48791F334875003F3CF8 /* ExerciseScore */,
+				8B5C48751F333722003F3CF8 /* User */,
 				8BF3504C1F14B4DF00F920FA /* ChordExercise */,
 				8B0EC42F1F051A3100EE1489 /* Lesson */,
 				8B0EC4311F051A3100EE1489 /* Melody */,
@@ -766,6 +769,42 @@
 				8B2AD7051F0F8DE6000E7D33 /* NavigationManager.m */,
 			);
 			path = NavigationManager;
+			sourceTree = "<group>";
+		};
+		8B5C48711F3336B3003F3CF8 /* DataBaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				8B5C48721F3336C2003F3CF8 /* DataBaseManager.h */,
+				8B5C48731F3336C2003F3CF8 /* DataBaseManager.m */,
+			);
+			path = DataBaseManager;
+			sourceTree = "<group>";
+		};
+		8B5C48751F333722003F3CF8 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				8B5C48761F33372F003F3CF8 /* User.h */,
+				8B5C48771F33372F003F3CF8 /* User.m */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		8B5C48791F334875003F3CF8 /* ExerciseScore */ = {
+			isa = PBXGroup;
+			children = (
+				8B5C487A1F33488A003F3CF8 /* ExerciseScore.h */,
+				8B5C487B1F33488A003F3CF8 /* ExerciseScore.m */,
+			);
+			path = ExerciseScore;
+			sourceTree = "<group>";
+		};
+		8B5C487D1F336A68003F3CF8 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				8B5C487E1F336AAB003F3CF8 /* VideoPlayerViewController.h */,
+				8B5C487F1F336AAB003F3CF8 /* VideoPlayerViewController.m */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		8B8F05A71F0CD5D300BAADAC /* AdditionalControlsView */ = {
@@ -1229,7 +1268,6 @@
 				8B0EC4551F05566F00EE1489 /* TunerViewController.m in Sources */,
 				8BEF69B61F13CCF8005603C0 /* ItemsCollectionView.m in Sources */,
 				8B1A94DF1F039C0200E18BB7 /* MelodiesViewController.m in Sources */,
-				8B0F25D61F31E39D00703AED /* FretxAudioListener.m in Sources */,
 				6CD1BF4A1F0A7AA9000D8819 /* ToastHelper.m in Sources */,
 				8B0EC43E1F0529C200EE1489 /* UIView+Activity.m in Sources */,
 				8BEF69A31F138BF2005603C0 /* ScaleExercisesViewController.m in Sources */,
@@ -1239,6 +1277,8 @@
 				8BF49A841F17B9B3003565DD /* MainSettingsViewController.m in Sources */,
 				8B0EC4221F04F6C900EE1489 /* NSDictionary+Safe.m in Sources */,
 				8B1A94C11F0397B900E18BB7 /* AppDelegate.m in Sources */,
+				8B5C48781F33372F003F3CF8 /* User.m in Sources */,
+				8B5C487C1F33488A003F3CF8 /* ExerciseScore.m in Sources */,
 				85015B4C1F1E670A0090BB5F /* TroubleshootingViewController.m in Sources */,
 				8BF3504F1F14B54600F920FA /* ChordExercise.m in Sources */,
 				8BF350521F14BD8700F920FA /* ChordExercisesViewController.m in Sources */,
@@ -1262,6 +1302,8 @@
 				8BF49A8A1F17B9F0003565DD /* VideoTutorialViewController.m in Sources */,
 				8B1A94DC1F039BDF00E18BB7 /* LearnProgrammsViewController.m in Sources */,
 				8B0EC44B1F05485800EE1489 /* BaseNavigationController.m in Sources */,
+				8B5C48741F3336C2003F3CF8 /* DataBaseManager.m in Sources */,
+				8B5C48801F336AAB003F3CF8 /* VideoPlayerViewController.m in Sources */,
 				8B0EC4371F051A7200EE1489 /* Lesson.m in Sources */,
 				8BF350661F14F23C00F920FA /* ExercisesPopupView.m in Sources */,
 				8B0EC4111F04E16300EE1489 /* RequestManager.m in Sources */,

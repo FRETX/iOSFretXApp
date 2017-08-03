@@ -12,6 +12,8 @@
 #import "ExerciseTableCell.h"
 #import "ContentManager.h"
 #import "ChordExercise.h"
+#import "RequestManager.h"
+#import "UIView+Activity.h"
 
 @interface ChordExercisesViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -20,6 +22,7 @@
 //data
 @property (nonatomic,strong) NSArray<ChordExercise*>* exercises;
 @property (assign) NSUInteger selectedChordExerciseIndex;
+@property (assign) NSUInteger exercisesPassed;
 @end
 
 @implementation ChordExercisesViewController
@@ -29,6 +32,12 @@
     // Do any additional setup after loading the view.
     
     [self layout];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,14 +57,48 @@
         ChordExercise* exercise = self.exercises[self.selectedChordExerciseIndex];
         
         ChordExerciseViewController* exerciseViewController = (ChordExerciseViewController*)segue.destinationViewController;
+        __weak typeof(self) weakSelf = self;
+        exerciseViewController.didPassedGuidedExerciseBlock = ^(ChordExercise* chordExercise, float timeInterval){
+            
+            [weakSelf.view showActivity];
+            [[ContentManager defaultManager] saveTime:timeInterval forGuidedExercise:chordExercise block:^(BOOL status) {
+                
+                [weakSelf updateUserProgress];
+            }];
+        };
         [exerciseViewController setupChordExercise:exercise];
     }
 }
 
 - (void)layout{
     
-    self.exercises = [[ContentManager defaultManager] defaultChordsExercises];
-    [self.tableView reloadData];
+    [self.view showActivity];
+    __weak typeof(self) weakSelf = self;
+    [[ContentManager defaultManager] defaultChordsExercisesWithResultBlock:^(BOOL status, NSArray<ChordExercise*>* guidedExercises) {
+        
+        weakSelf.exercises = guidedExercises;//[[ContentManager defaultManager] defaultChordsExercises];
+        [weakSelf updateUserProgress];
+    }];
+}
+
+- (void)updateUserProgress{
+    
+    static BOOL isUpdatingNow = NO;
+    if (isUpdatingNow) {
+        return;
+    }
+    
+    [self.view showActivity];
+    __weak typeof(self) weakSelf = self;
+    [[ContentManager defaultManager] loadUserProgressWithBlock:^(BOOL status, NSUInteger exercisesPassed) {
+        
+        [self.view hideActivity];
+        isUpdatingNow = NO;
+        if (status) {
+            weakSelf.exercisesPassed = exercisesPassed;
+            [weakSelf.tableView reloadData];
+        }
+    }];
 }
 
 #pragma mark - UITableView
@@ -70,16 +113,17 @@
     static NSString* cellID = @"ExerciseTableCell";
     ChordExercise* exercise = self.exercises[indexPath.row];
     ExerciseTableCell* cell = (ExerciseTableCell*)[tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    [cell setupChordExercise:exercise];
+    [cell setupChordExercise:exercise locked:(self.exercisesPassed <= indexPath.row)];
     return cell;
 }
 
-//kPickedExerciseSegue
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.selectedChordExerciseIndex = indexPath.row;
-    [self performSegueWithIdentifier:kPickedExerciseSegue sender:self];
+    if (self.exercisesPassed > indexPath.row) {
+        self.selectedChordExerciseIndex = indexPath.row;
+        [self performSegueWithIdentifier:kPickedExerciseSegue sender:self];
+    }
+
 }
 
 @end

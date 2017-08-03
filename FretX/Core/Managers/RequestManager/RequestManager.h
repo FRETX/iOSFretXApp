@@ -21,4 +21,6 @@ typedef void (^APIResultBlock)(id object, NSError* error);
 - (void)loadAllMelodiesWithBlock:(APIResultBlock)block;
 - (void)getLessonForMelody:(Melody*)melody withBlock:(APIResultBlock)block;
 
+- (void)getGuidedExercisesInfoWithBlock:(APIResultBlock)block;
+
 @end

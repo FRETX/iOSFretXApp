@@ -8,11 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+@class MIDIPlayer;
+
+@protocol MIDIPlayerDelegate <NSObject>
+
+- (void)didEndPlaying:(MIDIPlayer*)midiPlayer;
+- (void)willPlaying:(MIDIPlayer*)midiPlayer;
+
+@end
+
 @interface MIDIPlayer : NSObject
 
-- (void)setupWithArrayOfMIDINotes:(NSArray<NSNumber*>*)notes;
+@property (nonatomic, weak) id<MIDIPlayerDelegate> delegate;
 
-- (void)playMIDI;
+//- (void)setupWithArrayOfMIDINotes:(NSArray<NSNumber*>*)notes;
+//
+//- (void)playMIDI;
+
+- (instancetype)initWithDelegate:(id<MIDIPlayerDelegate>)delegate;
 
 - (void)playArrayOfMIDINotes:(NSArray<NSNumber*>*)notes;
 

@@ -28,30 +28,20 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithDelegate:(id<MIDIPlayerDelegate>)delegate{
+    self = [super init];
+    if (self) {
+        self.delegate = delegate;
+        [self initializeSources];
+    }
+    return self;
+}
+
 - (instancetype)init{
     
     self = [super init];
     if (self) {
-        [self initAudioSources];
-        
-        NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
-                                             pathForResource:@"chime_bell_ding"
-                                             ofType:@"wav"]];
-        NSError *error = nil;
-        AVAudioPlayer * audioPlayer = [[AVAudioPlayer alloc]
-                                       initWithContentsOfURL:url
-                                       error:&error];
-        self.audioPlayer = audioPlayer;
-        if (error)
-        {
-            NSLog(@"Error in audioPlayer: %@",[error localizedDescription]);
-        }
-        else
-        {
-            //        audioPlayer.delegate = self;
-            //[audioPlayer play];
-            //        [audioPlayer setNumberOfLoops:INT32_MAX]; // for continuous play
-        }
+        [self initializeSources];
     }
     return self;
 }
@@ -59,7 +49,7 @@
 - (void)initAudioSources{
     
     AVAudioEngine* audioEngine = [AVAudioEngine new];
-    
+//#warning TEST
 //    AudioOutputUnitStop(audioEngine.inputNode.audioUnit);
 //    AudioUnitUninitialize(audioEngine.inputNode.audioUnit);
     
@@ -88,9 +78,9 @@
     //    }
     
     NSError* engineError = nil;
-#warning TEST
-//    [audioEngine prepare];
-//    [audioEngine startAndReturnError:&engineError];
+
+    [audioEngine prepare];
+    [audioEngine startAndReturnError:&engineError];
     
     if (engineError) {
         NSLog(@"audioEngine error");
@@ -103,6 +93,29 @@
     }
     
     //[self.sampler startNote:60 withVelocity:64 onChannel:0];
+}
+
+- (void)initializeSources{
+    [self initAudioSources];
+    
+    [self setupWavPlayer];
+}
+
+- (void)setupWavPlayer{
+    
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
+                                         pathForResource:@"chime_bell_ding"
+                                         ofType:@"wav"]];
+    NSError *error = nil;
+    AVAudioPlayer * audioPlayer = [[AVAudioPlayer alloc]
+                                   initWithContentsOfURL:url
+                                   error:&error];
+    self.audioPlayer = audioPlayer;
+    if (error) {
+        NSLog(@"Error in audioPlayer: %@",[error localizedDescription]);
+    } else {
+        //        [audioPlayer setNumberOfLoops:INT32_MAX]; // for continuous play
+    }
 }
 
 #pragma mark - Public
@@ -124,6 +137,11 @@
 
 - (void)playArrayOfMIDINotes:(NSArray<NSNumber*>*)notes{
     
+    if ([self.delegate respondsToSelector:@selector(willPlaying:)])
+        [self.delegate willPlaying:self];
+    
+  //  [self initializeSources];
+    
     [self setupWithArrayOfMIDINotes:notes];
     [self playMIDI];
 }
@@ -132,7 +150,21 @@
 
 - (void)playChimeBell{
     
+    if ([self.delegate respondsToSelector:@selector(willPlaying:)])
+        [self.delegate willPlaying:self];
+
+    [self.audioPlayer pause];
+    self.audioPlayer.currentTime = 0.f;
     [self.audioPlayer play];
+    
+}
+
+#pragma mark - AVAudioPlayerDelegate
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    
+    if ([self.delegate respondsToSelector:@selector(didEndPlaying:)])
+        [self.delegate didEndPlaying:self];
 }
 
 #pragma mark - Private
@@ -159,7 +191,22 @@
     } else{
         
         [self stopTimer];
+        
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.7f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//             [self stopAllSources];
+//        });
     }
+}
+
+- (void)stopAllSources{
+    [self stopTimer];
+    
+    [self.audioEngine stop];
+    self.audioEngine = nil;
+    
+    if ([self.delegate respondsToSelector:@selector(didEndPlaying:)])
+        [self.delegate didEndPlaying:self];
+
 }
 
 @end

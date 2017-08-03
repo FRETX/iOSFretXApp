@@ -13,6 +13,14 @@
 #import "Melody.h"
 #import "Lesson.h"
 
+#import <Firebase/Firebase.h>
+
+//@import FirebaseDatabaseUI;
+@import Firebase;
+//@import FirebaseAuthUI;
+//@import FirebaseGoogleAuthUI;
+//@import FirebaseFacebookAuthUI;
+
 #define ApiCall(urlFormat, arg) [NSString stringWithFormat: urlFormat, arg]
 
 #define kBaseUrl @"http://player.fretx.rocks/api/v1/"
@@ -20,6 +28,7 @@
 #define kAPI_AllSongs              @"songs/index.json" // http://player.fretx.rocks/api/v1/
 #define kAPI_MelodyLesson(fertxID) ApiCall(@"songs/%@.json", fertxID)  //http://player.fretx.rocks/api/v1/  //  @"songs/<fretx_id>.json"
 
+#define kAPI_GuidedExercises @"gs://fretxappios.appspot.com/guided_chord_exercises_json" // "gs://fretxappios.appspot.com/guided_chord_exercises_json"
 //gs://fretxappios.appspot.com/guided_chord_exercises_json
 
 @interface RequestManager ()
@@ -124,6 +133,39 @@
             block(nil,error);
         }
     }];
+}
+
+- (void)getGuidedExercisesInfoWithBlock:(APIResultBlock)block{
+    
+    FIRStorage *storage = [FIRStorage storage];
+    
+    // Create a reference to the file you want to download
+    FIRStorageReference *islandRef = [storage referenceForURL:kAPI_GuidedExercises];
+    
+    // Create local filesystem URL
+    //NSURL *localURL = [NSURL URLWithString:@"path/to/image"];
+    NSURL *documentURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+    NSString* newPath = [documentURL.path stringByAppendingString:@"/GuidedExercises/GuidedExercisesJSON.json"];
+    
+    // Download to the local filesystem
+    FIRStorageDownloadTask *downloadTask = [islandRef writeToFile:[NSURL fileURLWithPath:newPath] completion:^(NSURL *URL, NSError *error){
+        if (error != nil) {
+            // Uh-oh, an error occurred!
+        } else {
+            // Local file URL for "images/island.jpg" is returned
+
+            NSData* receivedData = [NSData dataWithContentsOfURL:URL];
+            NSError* error = nil;
+            id jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingAllowFragments error:&error];
+            NSArray *exercisesInfo = [NSArray arrayWithArray:jsonObject];
+            
+            if (block)
+                block(exercisesInfo, error);
+            
+        }
+    }];
+    [downloadTask resume];
+    
 }
 
 @end
