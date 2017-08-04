@@ -8,6 +8,8 @@
 
 #import "Lesson.h"
 
+#import <FretXAudioProcessing/FretXAudioProcessing.h>
+
 #import "SafeCategories.h"
 #import "SongPunch.h"
 
@@ -86,6 +88,20 @@
 //        return resultChord;
 //    else
         return clossestChord;
+}
+
+- (NSArray<Chord *>*)getUniqueAudioProcChords{
+    NSMutableSet<Chord *> *uniqueChords = [[NSMutableSet alloc] init];
+    for (SongPunch *sp in self.punches) {
+        Chord *tmpChord = [[Chord alloc] initWithRoot:sp.root type:sp.quality];
+        if(![tmpChord.getRoot isEqualToString:@""]){
+            [uniqueChords addObject:tmpChord];
+        }
+    }
+    
+    NSArray<Chord *> *chords = [NSArray arrayWithArray:uniqueChords.allObjects];
+    
+    return chords;
 }
 
 @end

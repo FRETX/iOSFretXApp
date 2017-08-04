@@ -21,7 +21,7 @@
 
 #import "MIDIPlayer.h"
 
-@interface MelodyChordsViewController () <MIDIPlayerDelegate>
+@interface MelodyChordsViewController () <MIDIPlayerDelegate, AudioListener>
 
 //UI
 @property (nonatomic, weak) IBOutlet UILabel* songFullNameLabel;
@@ -48,7 +48,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self layout];
+//    [self layout];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +56,22 @@
     // Dispose of any resources that can be recreated.
     
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self layout];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+//    [Audio.shared stopListening];
+    [Audio.shared stop];
+
+    [self.midiPlayer clear];
+}
+
 
 
 #pragma mark - Navigation
@@ -134,7 +150,7 @@
 #pragma mark - 
 
 - (void)layout{
-    
+
     self.midiPlayer = [[MIDIPlayer alloc] initWithDelegate:self];
     
     [self.view layoutIfNeeded];
@@ -142,7 +158,8 @@
     [self addFretsProgressView];
     
     [self layoutLesson:self.lesson];
-    
+
+    [self setupAudioListening];
 }
 
 - (void)addFretBoard{
@@ -177,10 +194,10 @@
 
 - (void)setupAudioListening{
     
-//    [Audio.shared setAudioListenerWithListener:self];
-//    [Audio.shared setTargetChordsWithChords:nil];
-//    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
-//    [Audio.shared start];
+    [Audio.shared setAudioListenerWithListener:self];
+    [Audio.shared setTargetChordsWithChords:[self.lesson getUniqueAudioProcChords]];
+    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
+    [Audio.shared start];
     
 }
 
@@ -214,10 +231,7 @@
 #pragma mark - Actions
 
 - (IBAction)onPlayChordButton:(id)sender{
-    
-#warning TEST
-    //    [Audio.shared stop];
-    
+
     [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
 }
 
@@ -236,12 +250,12 @@
 
 - (void)willPlaying:(MIDIPlayer*)player{
     
-    //    [Audio.shared stop];
+    [Audio.shared stopListening];
 }
 
 - (void)didEndPlaying:(MIDIPlayer*)player{
     
-    //    [Audio.shared start];
+    [Audio.shared startListening];
 }
 
 

@@ -29,6 +29,8 @@
 
 - (void)playArrayOfMIDINotes:(NSArray<NSNumber*>*)notes;
 
+- (void)clear;
+
 #pragma mark - Wav
 
 - (void)playChimeBell;

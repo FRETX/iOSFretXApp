@@ -10,7 +10,7 @@
 
 #import <AVFoundation/AVfoundation.h>
 
-@interface MIDIPlayer ()
+@interface MIDIPlayer () <AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) AVAudioUnitSampler* sampler;
 @property (nonatomic, strong) AVAudioEngine* audioEngine;
@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) AVAudioPlayer * audioPlayer;
 
+@property (nonatomic, assign) BOOL playingInvoked;
+
 @end
 
 @implementation MIDIPlayer
@@ -32,7 +34,7 @@
     self = [super init];
     if (self) {
         self.delegate = delegate;
-        [self initializeSources];
+        [self setupWavPlayer];
     }
     return self;
 }
@@ -41,7 +43,7 @@
     
     self = [super init];
     if (self) {
-        [self initializeSources];
+        [self setupWavPlayer];
     }
     return self;
 }
@@ -95,13 +97,13 @@
     //[self.sampler startNote:60 withVelocity:64 onChannel:0];
 }
 
-- (void)initializeSources{
-    [self initAudioSources];
-    
-    [self setupWavPlayer];
-}
+//- (void)initializeSources{
+//    [self initAudioSources];
+//    [self setupWavPlayer];
+//}
 
 - (void)setupWavPlayer{
+    
     
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle]
                                          pathForResource:@"chime_bell_ding"
@@ -110,12 +112,14 @@
     AVAudioPlayer * audioPlayer = [[AVAudioPlayer alloc]
                                    initWithContentsOfURL:url
                                    error:&error];
+    audioPlayer.delegate = self;
     self.audioPlayer = audioPlayer;
     if (error) {
         NSLog(@"Error in audioPlayer: %@",[error localizedDescription]);
     } else {
         //        [audioPlayer setNumberOfLoops:INT32_MAX]; // for continuous play
     }
+    
 }
 
 #pragma mark - Public
@@ -126,24 +130,13 @@
     self.notes = notes;
 }
 
-- (void)playMIDI{
-    
-//    if (!self.audioEngine.running)
-//        [self.audioEngine startAndReturnError:nil];
-    
-    self.currentNoteIndex = 0;
-    [self startTimer];
-}
+- (void)clear{
 
-- (void)playArrayOfMIDINotes:(NSArray<NSNumber*>*)notes{
-    
-    if ([self.delegate respondsToSelector:@selector(willPlaying:)])
-        [self.delegate willPlaying:self];
-    
-  //  [self initializeSources];
-    
-    [self setupWithArrayOfMIDINotes:notes];
-    [self playMIDI];
+    [self stopAllSources];
+    self.audioPlayer = nil;
+    self.audioEngine = nil;
+    self.sampler = nil;
+    self.delegate = nil;
 }
 
 #pragma mark - Wav
@@ -154,14 +147,60 @@
         [self.delegate willPlaying:self];
 
     [self.audioPlayer pause];
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+
+    [self.audioPlayer pause];
     self.audioPlayer.currentTime = 0.f;
     [self.audioPlayer play];
     
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"chime_bell_ding" ofType:@"wav"];
+//    SystemSoundID soundID;
+//    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
+//    AudioServicesPlaySystemSound(soundID);
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        AudioServicesDisposeSystemSoundID(soundID);
+//    });
+
+}
+
+#pragma mark - 
+
+- (void)playMIDI{
+    
+    //    if (!self.audioEngine.running)
+    //        [self.audioEngine startAndReturnError:nil];
+    
+    self.playingInvoked = YES;
+    
+    self.currentNoteIndex = 0;
+    [self startTimer];
+}
+
+- (void)playArrayOfMIDINotes:(NSArray<NSNumber*>*)notes{
+    
+    if ([self.delegate respondsToSelector:@selector(willPlaying:)])
+        [self.delegate willPlaying:self];
+    
+    [self stopMIDI];
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+
+    [self initAudioSources];
+        
+    [self setupWithArrayOfMIDINotes:notes];
+    [self playMIDI];
 }
 
 #pragma mark - AVAudioPlayerDelegate
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    
+    NSLog(@"DidFinishPlaying");
+    
+//    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategorySoloAmbient withOptions:0 error:nil];
+//    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
     if ([self.delegate respondsToSelector:@selector(didEndPlaying:)])
         [self.delegate didEndPlaying:self];
@@ -190,19 +229,45 @@
         self.currentNoteIndex++;
     } else{
         
-        [self stopTimer];
+//        [self stopTimer];
+//        
+//        if ([self.delegate respondsToSelector:@selector(didEndPlaying:)])
+//            [self.delegate didEndPlaying:self];
         
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.7f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//             [self stopAllSources];
-//        });
+        [self stopMIDI];
+
+    }
+}
+
+- (void)stopMIDI{
+    
+    self.playingInvoked = NO;
+    static BOOL isStopingNow = NO;
+    
+    if (!isStopingNow) {
+        
+        isStopingNow = YES;
+#warning TEST
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.7f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            if (!self.playingInvoked)
+                [self stopAllSources];
+            isStopingNow = NO;
+        });
     }
 }
 
 - (void)stopAllSources{
     [self stopTimer];
     
-    [self.audioEngine stop];
-    self.audioEngine = nil;
+    if (self.audioEngine.isRunning) {
+        [self.audioEngine stop];
+        self.audioEngine = nil;
+    }
+    
+//    [[AVAudioSession sharedInstance] setActive:NO error:nil];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+//    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     
     if ([self.delegate respondsToSelector:@selector(didEndPlaying:)])
         [self.delegate didEndPlaying:self];

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class SongPunch;
+@class SongPunch,Chord;
 
 @interface Lesson : NSObject
 
@@ -27,5 +27,7 @@
 
 - (SongPunch*)chordNextToChord:(SongPunch*)chord allowEmpty:(BOOL)allowEmpty;
 - (SongPunch*)chordClosestToTime:(float)time;
+
+- (NSArray<Chord *>*)getUniqueAudioProcChords;
 
 @end

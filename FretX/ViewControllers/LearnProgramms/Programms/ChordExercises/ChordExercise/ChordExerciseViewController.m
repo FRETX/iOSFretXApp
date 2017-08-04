@@ -19,6 +19,9 @@
 #import "TimeConverter.h"
 #import "MIDIPlayer.h"
 
+#warning TEST
+#import <AVFoundation/AVFoundation.h>
+
 @interface ChordExerciseViewController () <AudioListener, MIDIPlayerDelegate>
 
 @property (strong) ChordExercise* chordExercise;
@@ -69,17 +72,18 @@
     [self layoutChord:self.currentChord];
     [self addPopup];
     [self.fretsProgressView setupProgress:0];
-    
-    #warning TEST
-//    [self setupAudioListening];
+
+    [self setupAudioListening];
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    #warning TEST
-//    [Audio.shared stop];
+//    [Audio.shared stopListening];
+    [Audio.shared stop];
+    
+    [self.midiPlayer clear];
 }
 
 
@@ -135,6 +139,11 @@
     [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
     [Audio.shared start];
 
+//test
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
+//    NSError* activationError = nil;
+//    [[AVAudioSession sharedInstance] setActive:YES error:&activationError];
+    
 }
 
 #pragma mark - Audio listening delegate
@@ -220,10 +229,7 @@
 #pragma mark - Actions
 
 - (IBAction)onPlayChordButton:(id)sender{
-    
-#warning TEST
-//    [Audio.shared stop];
-    
+
     [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
 }
 
@@ -248,7 +254,7 @@
 
 
 - (IBAction)onTestNextChord:(id)sender{
-    
+    NSLog(@"onTestNextChord");
     [self setupNextChord];
     [self.midiPlayer playChimeBell];
 }
@@ -339,8 +345,7 @@
     if(self.punchIndex < [self.exercisePunches count]){
         SongPunch* nextChord = self.exercisePunches[self.punchIndex];
         
-#warning TEST
-//        [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
+        [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
         self.currentChord = nextChord;
         
         [self layoutChord:nextChord];
@@ -348,8 +353,8 @@
     } else{
 
         [self stopExeTimer];
-        #warning TEST
-//        [Audio.shared stop];
+
+        [Audio.shared stop];
         [self showPopup];
 
     }
@@ -365,12 +370,12 @@
 
 - (void)willPlaying:(MIDIPlayer*)player{
     
-//    [Audio.shared stop];
+    [Audio.shared stopListening];
 }
 
 - (void)didEndPlaying:(MIDIPlayer*)player{
-    
-//    [Audio.shared start];
+  
+    [Audio.shared startListening];
 }
 
 @end
