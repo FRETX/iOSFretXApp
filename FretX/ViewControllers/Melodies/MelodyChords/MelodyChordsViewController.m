@@ -19,9 +19,7 @@
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 #import <FretXBLE/FretXBLE-Swift.h>
 
-#import "MIDIPlayer.h"
-
-@interface MelodyChordsViewController () <MIDIPlayerDelegate, AudioListener>
+@interface MelodyChordsViewController ()
 
 //UI
 @property (nonatomic, weak) IBOutlet UILabel* songFullNameLabel;
@@ -31,15 +29,12 @@
 @property (nonatomic, weak) GuitarNeckView* guitarNeckView;
 @property (nonatomic, weak) IBOutlet UIView* progressContainerView;
 @property (nonatomic, weak) FretsProgressView* fretsProgressView;
-@property (nonatomic, weak) IBOutlet UIImageView* microphoneImageView;
+
 
 //Data
 @property (strong, nonatomic) Lesson* lesson;
 @property (strong, nonatomic) NSArray<SongPunch*>* chords;
 @property (strong) SongPunch* currentChord;
-
-@property (nonatomic, strong) MIDIPlayer* midiPlayer;
-
 @end
 
 @implementation MelodyChordsViewController
@@ -48,7 +43,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self layout];
+    [self layout];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,22 +51,6 @@
     // Dispose of any resources that can be recreated.
     
 }
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self layout];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-
-//    [Audio.shared stopListening];
-    [Audio.shared stop];
-
-    [self.midiPlayer clear];
-}
-
 
 
 #pragma mark - Navigation
@@ -126,7 +105,6 @@
     [self layoutProgressForLesson:self.lesson];
     Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
     [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
-    
 }
 
 - (void)setupNextChord{
@@ -150,16 +128,12 @@
 #pragma mark - 
 
 - (void)layout{
-
-    self.midiPlayer = [[MIDIPlayer alloc] initWithDelegate:self];
-    
     [self.view layoutIfNeeded];
     [self addFretBoard];
     [self addFretsProgressView];
     
     [self layoutLesson:self.lesson];
-
-    [self setupAudioListening];
+    
 }
 
 - (void)addFretBoard{
@@ -190,50 +164,7 @@
     [self.view layoutIfNeeded];
 }
 
-#pragma mark - Audio processing
-
-- (void)setupAudioListening{
-    
-    [Audio.shared setAudioListenerWithListener:self];
-    [Audio.shared setTargetChordsWithChords:[self.lesson getUniqueAudioProcChords]];
-    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
-    [Audio.shared start];
-    
-}
-
-#pragma mark - Audio listening delegate
-
-- (void)onProgress {
-    float progress = [Audio.shared getProgress];
-    //    NSLog(@"progress: %f",progress);
-    if(progress >= 100){
-        [self setupNextChord];
-        
-        [self.midiPlayer playChimeBell];
-    }
-}
-
-- (void)onTimeout{
-    
-}
-
-- (void)onLowVolume{
-    
-    self.microphoneImageView.image = [UIImage imageNamed:@"MicrophoneIconDefault"];
-}
-
-- (void)onHighVolume{
-    
-    self.microphoneImageView.image = [UIImage imageNamed:@"MicrophoneIconGreen"];
-}
-
-
 #pragma mark - Actions
-
-- (IBAction)onPlayChordButton:(id)sender{
-
-    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
-}
 
 - (IBAction)onPlayYoutubeButton:(id)sender{
     
@@ -243,20 +174,8 @@
 - (IBAction)onNextChordButton:(id)sender{
     
     [self setupNextChord];
-    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
 }
 
-#pragma mark - MIDIPlayer
-
-- (void)willPlaying:(MIDIPlayer*)player{
-    
-    [Audio.shared stopListening];
-}
-
-- (void)didEndPlaying:(MIDIPlayer*)player{
-    
-    [Audio.shared startListening];
-}
 
 
 @end

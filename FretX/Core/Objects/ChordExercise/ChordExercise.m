@@ -46,29 +46,6 @@
 //        "nRepetitions" : 10
 //    },
 
-
-//{
-//    children =     (
-//                    {
-//                        id = e14;
-//                    }
-//                    );
-//    chords =     (
-//                  {
-//                      root = G;
-//                      type = maj;
-//                  },
-//                  {
-//                      root = A;
-//                      type = m;
-//                  }
-//                  );
-//    id = e13;
-//    nRepetitions = 10;
-//    name = "Exercise 13";
-//    youtubeId = "";
-//},
-
 + (NSArray<ChordExercise*>*)exercisesFromDictionary:(NSDictionary*)dictionary{
     
     NSArray<ChordExercise*>* exercises = nil;
@@ -80,17 +57,10 @@
     
     ChordExercise* chordExercise = [ChordExercise new];
     [chordExercise setValuesWithInfo:dictionary];
-    
-    NSArray* chordsInfos = [dictionary safeArrayObjectForKey:@"chords"];
-    chordExercise.guided = dictionary && chordsInfos.count > 0 ? YES : NO;
-    
     return chordExercise;
 }
 
 - (void)setValuesWithInfo:(NSDictionary*)info{
-    
-    self.exerciseID = [info safeStringObjectForKey:@"id"];
-    self.youtubeId = [info safeStringObjectForKey:@"youtubeId"];
     
     self.exerciseName = [info safeStringObjectForKey:@"name"];
     
@@ -178,26 +148,12 @@
 
 - (NSDictionary*)plistValues{
     
-    NSDictionary* values = @{ @"id" : self.exerciseID,
+    NSDictionary* values = @{ @"id" : @(self.exerciseID),
                               @"name" : self.exerciseName,
                               @"chords" : [self chordsDictionary],
                               @"nRepetitions" : @(self.repetitionsCount) };
     
     return values;
-}
-
-- (NSArray<Chord *>*)getUniqueAudioProcChords{
-    NSMutableSet<Chord *> *uniqueChords = [[NSMutableSet alloc] init];
-    for (SongPunch *sp in self.chords) {
-        Chord *tmpChord = [[Chord alloc] initWithRoot:sp.root type:sp.quality];
-        if(![tmpChord.getRoot isEqualToString:@""]){
-            [uniqueChords addObject:tmpChord];
-        }
-    }
-    
-    NSArray<Chord *> *chords = [NSArray arrayWithArray:uniqueChords.allObjects];
-    
-    return chords;
 }
 
 #pragma mark - Private
@@ -223,7 +179,7 @@
 
 - (NSString*)description{
     
-    NSString* description = [NSString stringWithFormat:@"%@. Name = %@ ID = %@ chords.count = %ld",[super description],self.exerciseName, self.exerciseID, self.chords.count];
+    NSString* description = [NSString stringWithFormat:@"%@. Name = %@ ID = %d chords.count = %ld",[super description],self.exerciseName, self.exerciseID, self.chords.count];
     return description;
 }
 

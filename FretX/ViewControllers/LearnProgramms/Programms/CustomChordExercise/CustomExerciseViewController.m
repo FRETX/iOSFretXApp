@@ -281,7 +281,7 @@
     ChordExercise* chordsExercise = [ChordExercise new];
     
     NSArray<ChordExercise*>* customExercises = self.chordExercises;
-    NSString* newID = customExercises.count > 0 ? [NSString stringWithFormat:@"%ld",customExercises.count+1] : @"1";
+    int newID = customExercises.count > 0 ? (customExercises.lastObject.exerciseID + 1) : 1;
     chordsExercise.exerciseID = newID;
     chordsExercise.exerciseName = @"New";
     chordsExercise.repetitionsCount = 2;

@@ -266,7 +266,6 @@ SWIFT_CLASS("_TtC20FretXAudioProcessing17FretboardPosition")
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
-@class Scale;
 
 SWIFT_CLASS("_TtC20FretXAudioProcessing10MusicUtils")
 @interface MusicUtils : NSObject
@@ -283,7 +282,6 @@ SWIFT_CLASS("_TtC20FretXAudioProcessing10MusicUtils")
 + (float)frequencyFromIntervalWithBaseNote:(float)baseNote intervalInSemitones:(NSInteger)intervalInSemitones SWIFT_WARN_UNUSED_RESULT;
 + (FingerPositions * _Nullable)getFingeringWithChordName:(NSString * _Nonnull)chordName SWIFT_WARN_UNUSED_RESULT;
 + (NSArray<NSNumber *> * _Nonnull)getBluetoothArrayFromChordWithChordName:(NSString * _Nonnull)chordName SWIFT_WARN_UNUSED_RESULT;
-+ (NSArray<NSNumber *> * _Nonnull)getBluetoothArrayFromScaleWithScale:(Scale * _Nonnull)scale SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

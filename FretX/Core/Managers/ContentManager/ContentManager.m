@@ -10,15 +10,12 @@
 
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 #import <FretXBLE/FretXBLE-Swift.h>
-#import <Firebase/Firebase.h>
 
-#import "DataBaseManager.h"
 #import "ChordExercise.h"
 #import "RequestManager.h"
 #import "SafeCategories.h"
 #import "Melody.h"
 #import "Lesson.h"
-#import "User.h"
 
 @interface ContentManager ()
 
@@ -118,9 +115,8 @@
         }];
     }
 }
-#pragma mark -
+
 #pragma mark - Learn
-#pragma mark -
 
 - (NSArray<SongPunch*>*)allChords{
     
@@ -153,67 +149,12 @@
     return allScaleTypes;
 }
 
-#pragma mark - Guided Exercises
-
-- (void)defaultChordsExercisesWithResultBlock:(GuidedExercisesBlock)block{
+- (NSArray<ChordExercise*>*)defaultChordsExercises{
     
-//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"GuidedChordExercises" ofType:@"json"];
-//    NSArray<ChordExercise*>* chordsExercises = [self defaultChordsExercisesFromPath:filePath];
-//    return chordsExercises;
-    
-    [[RequestManager defaultManager] getGuidedExercisesInfoWithBlock:^(NSArray* object, NSError *error) {
-        
-        if (block){
-            
-            if (object && !error) {
-                
-                NSArray<ChordExercise*>* guidedExercises = [self defaultChordsExercisesFromInfo:object];
-                
-                block(YES,guidedExercises);
-                
-            } else {
-                block(NO,nil);
-            }
-        }
-    }];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"GuidedChordExercises" ofType:@"json"];
+    NSArray<ChordExercise*>* chordsExercises = [self defaultChordsExercisesFromPath:filePath];
+    return chordsExercises;
 }
-
-- (void)saveTime:(float)time forGuidedExercise:(ChordExercise*)chordExercise block:(void(^)(BOOL status))block{
-    
-    if (chordExercise.guided){
-        
-        [[DataBaseManager defaultManager] fetchUserWithBlock:^(BOOL status, User *user) {
-            
-            NSString* exerciseID = chordExercise.exerciseID;
-            NSString* scoresValue = user.scores[exerciseID];
-            if (block && exerciseID.length > 0) {
-                
-                NSString* stringTime = [NSString stringWithFormat:@"%d", (int)time];
-                if (scoresValue.length > 0) {
-                    stringTime = [NSString stringWithFormat:@"%@ %d", scoresValue,(int)time];
-                }
-                
-                [[DataBaseManager defaultManager] saveUserScore:stringTime forExerciseID:chordExercise.exerciseID];
-                
-                block(status);
-            } else{
-                block(NO);
-            }
-        }];
-    }
-}
-
-- (void)loadUserProgressWithBlock:(void(^)(BOOL status, NSUInteger exercisesPassed))block{
-    
-    [[DataBaseManager defaultManager] fetchUserWithBlock:^(BOOL status, User *user) {
-        
-        if (block) {
-            block(status, user.exercisesPassed);
-        }
-    }];
-}
-
-#pragma mark - Custom Exercises
 
 - (NSArray<ChordExercise*>*)customChordsExercises{
     
@@ -253,11 +194,8 @@
 //        NSLog(@"exercises not saved");
 }
 
-#pragma mark -
-#pragma mark - Private
-#pragma mark -
 
-#pragma mark - Custom exercises
+#pragma mark - Private
 
 - (NSArray<ChordExercise*>*)customChordsExercisesFromFile{
     
@@ -280,13 +218,16 @@
     return chordsExercises;
 }
 
-#pragma mark - Guided exercises
-
-- (NSArray<ChordExercise*>*)defaultChordsExercisesFromInfo:(NSArray<NSDictionary*>*)info{
+- (NSArray<ChordExercise*>*)defaultChordsExercisesFromPath:(NSString*)filePath{
     
     NSMutableArray* mutResult = [NSMutableArray new];
-
-    [info enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull exerciseInfo, NSUInteger idx, BOOL * _Nonnull stop) {
+    
+    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CustomExercises" ofType:@"plist"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSError* error = nil;
+    NSArray<NSDictionary*> *exercises = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];//NSJSONReadingAllowFragments //kNilOptions
+    
+    [exercises enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull exerciseInfo, NSUInteger idx, BOOL * _Nonnull stop) {
         
         ChordExercise* chordExercise = [ChordExercise exerciseWithDictionary:exerciseInfo];
         [mutResult addObject:chordExercise];
@@ -295,29 +236,6 @@
     NSArray<ChordExercise*>* chordsExercises = [NSArray arrayWithArray:mutResult];
     return chordsExercises;
 }
-
-//- (NSArray<ChordExercise*>*)defaultChordsExercisesFromPath:(NSString*)filePath{
-//    
-//    NSMutableArray* mutResult = [NSMutableArray new];
-//    
-//    //NSString *filePath = [[NSBundle mainBundle] pathForResource:@"CustomExercises" ofType:@"plist"];
-//    NSData *data = [NSData dataWithContentsOfFile:filePath];
-//    NSError* error = nil;
-//    NSArray<NSDictionary*> *exercises = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];//NSJSONReadingAllowFragments //kNilOptions
-//    
-//    [exercises enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull exerciseInfo, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
-//        ChordExercise* chordExercise = [ChordExercise exerciseWithDictionary:exerciseInfo];
-//        [mutResult addObject:chordExercise];
-//    }];
-//    
-//    NSArray<ChordExercise*>* chordsExercises = [NSArray arrayWithArray:mutResult];
-//    return chordsExercises;
-//}
-
-
-
-#pragma mark -
 
 - (NSArray<Melody*>*)searchSongsForTitle:(NSString*)title{
     NSArray* filteredArray = [self filteredSongsByTitle:title];

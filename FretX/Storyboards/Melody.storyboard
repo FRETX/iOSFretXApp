@@ -383,24 +383,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SpeakerIconDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Uqq-2X-4E4">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SpeakerIconDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Uqq-2X-4E4">
                                 <rect key="frame" x="185" y="461.66666666666669" width="45" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="9IA-BD-VA4"/>
                                     <constraint firstAttribute="width" constant="45" id="hpU-eh-bgv"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkd-bT-itW">
-                                <rect key="frame" x="185" y="461.66666666666669" width="45" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="en9-GN-mXo"/>
-                                    <constraint firstAttribute="height" constant="48" id="l3p-IY-Pdm"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="onPlayChordButton:" destination="euD-ck-oRZ" eventType="touchUpInside" id="4Cx-O9-JlO"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncg-5H-5w0" userLabel="MicView">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncg-5H-5w0" userLabel="MicView">
                                 <rect key="frame" x="185" y="386.33333333333331" width="45" height="74.333333333333371"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MicrophoneIconDefault" translatesAutoresizingMaskIntoConstraints="NO" id="FPC-Kx-po5">
@@ -445,7 +435,6 @@
                             <constraint firstItem="Uqq-2X-4E4" firstAttribute="centerX" secondItem="ur9-Pk-tH4" secondAttribute="centerX" id="TPP-E3-pHM"/>
                             <constraint firstItem="HWD-of-LCd" firstAttribute="leading" secondItem="ur9-Pk-tH4" secondAttribute="leading" constant="5" id="UJt-i6-bUU"/>
                             <constraint firstItem="u0a-wv-jy6" firstAttribute="leading" secondItem="ur9-Pk-tH4" secondAttribute="leading" id="UmQ-8G-Avc"/>
-                            <constraint firstItem="fkd-bT-itW" firstAttribute="leading" secondItem="Uqq-2X-4E4" secondAttribute="trailing" constant="-45" id="V1n-4S-VhC"/>
                             <constraint firstItem="Ncg-5H-5w0" firstAttribute="top" secondItem="Za5-oT-aXL" secondAttribute="bottom" constant="4" id="Vbb-VA-af8"/>
                             <constraint firstAttribute="trailing" secondItem="2ct-gd-P7V" secondAttribute="trailing" constant="9" id="Y3C-zS-j28"/>
                             <constraint firstItem="wJp-Is-3ec" firstAttribute="top" secondItem="BjG-8h-84L" secondAttribute="bottom" constant="7" id="bza-8r-mWh"/>
@@ -457,7 +446,6 @@
                             <constraint firstAttribute="trailing" secondItem="USK-h0-kIn" secondAttribute="trailing" constant="19" id="njo-bl-xlA"/>
                             <constraint firstItem="Za5-oT-aXL" firstAttribute="top" secondItem="2ct-gd-P7V" secondAttribute="bottom" constant="4" id="rKP-yr-JKu"/>
                             <constraint firstItem="678-6a-Bvz" firstAttribute="leading" secondItem="ur9-Pk-tH4" secondAttribute="leading" constant="4" id="uPW-Dc-tx2"/>
-                            <constraint firstItem="Uqq-2X-4E4" firstAttribute="top" secondItem="fkd-bT-itW" secondAttribute="bottom" constant="-47.999999999999943" id="w1i-vr-ga2"/>
                             <constraint firstAttribute="trailing" secondItem="BjG-8h-84L" secondAttribute="trailing" constant="4" id="wgW-F1-gBr"/>
                             <constraint firstItem="Za5-oT-aXL" firstAttribute="leading" secondItem="ur9-Pk-tH4" secondAttribute="leading" constant="11" id="wy1-6Z-kym"/>
                             <constraint firstItem="HWD-of-LCd" firstAttribute="top" secondItem="lh1-cW-qQ3" secondAttribute="bottom" constant="3" id="yX3-Iz-y1d"/>
@@ -469,7 +457,6 @@
                     <connections>
                         <outlet property="currentChordLabel" destination="sB8-pZ-SIG" id="U37-KE-yga"/>
                         <outlet property="fretsContainerView" destination="2ct-gd-P7V" id="tEV-LT-dSB"/>
-                        <outlet property="microphoneImageView" destination="FPC-Kx-po5" id="mYs-ZU-xJc"/>
                         <outlet property="nextChordLabel" destination="USK-h0-kIn" id="BPq-Ld-WxV"/>
                         <outlet property="progressContainerView" destination="Za5-oT-aXL" id="10X-WK-YSe"/>
                         <outlet property="songFullNameLabel" destination="u0a-wv-jy6" id="LvL-2M-bQI"/>

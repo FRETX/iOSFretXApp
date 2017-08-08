@@ -15,7 +15,6 @@
 
 @property (weak) IBOutlet UILabel* nameLabel;
 @property (weak) IBOutlet UILabel* descriptionLabel;
-@property (weak) IBOutlet UIImageView* lockImageView;
 @end
 
 @implementation ExerciseTableCell
@@ -31,9 +30,8 @@
     // Configure the view for the selected state
 }
 
-- (void)setupChordExercise:(ChordExercise*)chordExercise locked:(BOOL)locked{
+- (void)setupChordExercise:(ChordExercise*)chordExercise{
     
-    self.lockImageView.hidden = !locked;
     self.nameLabel.text = chordExercise.exerciseName;
     self.descriptionLabel.text = [NSString stringWithFormat:@"Chord: %@", [self allChordsStringFromExercise:chordExercise]];
 }

@@ -10,11 +10,7 @@
 
 @class ChordExercise;
 
-typedef void (^DidPassedGuidedExerciseBlock) (ChordExercise* chordExercise, float timeInterval);
-
 @interface ChordExerciseViewController : BaseViewController
-
-@property (copy, nonatomic) DidPassedGuidedExerciseBlock didPassedGuidedExerciseBlock;
 
 - (void)setupChordExercise:(ChordExercise*)chordExercise;
 

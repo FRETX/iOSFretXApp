@@ -14,7 +14,6 @@
 #import "ContentManager.h"
 #import "GuitarNeckView.h"
 #import "SongPunch.h"
-#import "MIDIPlayer.h"
 
 @interface ChordsViewController () < ItemsCollectionViewDelegate>
 
@@ -38,8 +37,6 @@
 @property (strong) NSString* currentRoot;
 @property (strong) NSString* currentType;
 
-@property (nonatomic, strong) MIDIPlayer* midiPlayer;
-
 @end
 
 @implementation ChordsViewController
@@ -47,7 +44,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-   
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -98,8 +96,6 @@
 }
 
 - (void)layout{
-    
-    self.midiPlayer = [MIDIPlayer new];
     
     [self getContent];
     
@@ -184,13 +180,6 @@
     [self.fretsContainerView addSubview:self.guitarNeckView];
     
     [self.view layoutIfNeeded];
-}
-
-#pragma mark - Actions
-
-- (IBAction)onPlayChordButton:(id)sender{
-
-    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
 }
 
 #pragma mark - ItemsCollectionViewDelegate

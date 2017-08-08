@@ -10,17 +10,12 @@
 
 #import "SongPunch.h"
 
-@class Chord;
-
 @interface ChordExercise : NSObject
 
-@property (strong) NSString* exerciseID;
-@property (strong) NSString* youtubeId;
+@property (assign) int exerciseID;
 @property (strong) NSString* exerciseName;
 @property (strong,readonly) NSMutableArray<SongPunch*>* chords;
 @property (assign) NSUInteger repetitionsCount;
-
-@property (assign) BOOL guided;//else custom
 
 + (instancetype)exerciseWithDictionary:(NSDictionary*)dictionary;
 - (SongPunch*)chordNextToChord:(SongPunch*)chord;
@@ -29,7 +24,5 @@
 - (void)removeChord:(SongPunch*)chord;
 
 - (NSDictionary*)plistValues;
-
-- (NSArray<Chord *>*)getUniqueAudioProcChords;
 
 @end
