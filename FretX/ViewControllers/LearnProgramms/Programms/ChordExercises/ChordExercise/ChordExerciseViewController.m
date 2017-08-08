@@ -11,10 +11,13 @@
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 #import <FretXBLE/FretXBLE-Swift.h>
 
+#import "VideoPlayerViewController.h"
+#import "ContentManager.h"
 #import "ChordExercise.h"
 #import "FretsProgressView.h"
 #import "GuitarNeckView.h"
 #import "TimeConverter.h"
+#import "MIDIPlayer.h"
 
 @interface ChordExerciseViewController () <AudioListener>
 
@@ -30,6 +33,7 @@
 @property (nonatomic, weak) IBOutlet UIView* progressContainerView;
 @property (nonatomic, weak) FretsProgressView* fretsProgressView;
 @property (nonatomic, weak) IBOutlet UIView* popupContainer;
+@property (nonatomic, weak) IBOutlet UIImageView* microphoneImageView;
 
 //data
 @property (nonatomic, weak) IBOutlet UILabel* popupTimeLabel;
@@ -42,6 +46,9 @@
 @property (assign) float exerciseInterval;
 
 @property (assign) int currentRepetition;
+
+@property (strong) MIDIPlayer* midiPlayer;
+
 @end
 
 @implementation ChordExerciseViewController
@@ -103,14 +110,14 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Public
 
@@ -131,7 +138,56 @@
 
 
 
+    UIStoryboard* mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    VideoPlayerViewController* videoPlayerController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"VideoPlayerViewController"];
+    __weak typeof(self) weakSelf = self;
+    [videoPlayerController playOnTargetController:self youtubeVideoID:self.chordExercise.youtubeId completion:^{
+        [weakSelf startExeTimer];
+    }];
 }
+
+#pragma mark - Audio processing
+
+- (void)setupAudioListening{
+    
+    [Audio.shared setAudioListenerWithListener:self];
+    [Audio.shared setTargetChordsWithChords:[self.chordExercise getUniqueAudioProcChords]];
+    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
+    [Audio.shared start];
+
+//test
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
+//    NSError* activationError = nil;
+//    [[AVAudioSession sharedInstance] setActive:YES error:&activationError];
+    
+}
+
+#pragma mark - Audio listening delegate
+
+- (void)onProgress {
+    float progress = [Audio.shared getProgress];
+    //    NSLog(@"progress: %f",progress);
+    if(progress >= 100){
+        [self setupNextChord];
+        
+        [self.midiPlayer playChimeBell];
+    }
+}
+
+- (void)onTimeout{
+    
+}
+
+- (void)onLowVolume{
+    
+    self.microphoneImageView.image = [UIImage imageNamed:@"MicrophoneIconDefault"];
+}
+
+- (void)onHighVolume{
+    
+    self.microphoneImageView.image = [UIImage imageNamed:@"MicrophoneIconGreen"];
+}
+
 
 #pragma mark - private
 
@@ -169,7 +225,7 @@
     [self.view addSubview:self.popupContainer];
     
     [self hidePopup];
-  
+    
 }
 
 - (void)showPopup{
@@ -182,6 +238,11 @@
 }
 
 #pragma mark - Actions
+
+- (IBAction)onPlayChordButton:(id)sender{
+
+    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
+}
 
 - (IBAction)onTapBackToMenu:(id)sender{
     
@@ -202,10 +263,11 @@
     [self startExeTimer];
 }
 
-#warning TEST
+
 - (IBAction)onTestNextChord:(id)sender{
-    
+    NSLog(@"onTestNextChord");
     [self setupNextChord];
+    [self.midiPlayer playChimeBell];
 }
 
 #pragma mark - Layout
@@ -213,12 +275,18 @@
 - (void)layout{
     [self.view layoutIfNeeded];
     
+//    self.midiPlayer = [MIDIPlayer new];
+    
     [self addFretBoard];
     [self addFretsProgressView];
     
     [self layoutExercise:self.chordExercise];
     
-    [self startExeTimer];
+    if (self.chordExercise.youtubeId.length > 0) {
+        [self presentVideo];
+    } else{
+        [self startExeTimer];
+    }
 }
 
 - (void)addFretBoard{
@@ -305,6 +373,7 @@
 }
 
 
+#pragma mark - MIDIPlayer
 
 //<<<<<<< HEAD
 //[Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];

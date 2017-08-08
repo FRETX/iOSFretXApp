@@ -12,6 +12,8 @@
 
 @class Lesson,Melody,SongPunch,ChordExercise;
 
+typedef void (^GuidedExercisesBlock)(BOOL status, NSArray<ChordExercise*>* guidedExercises);
+
 @interface ContentManager : NSObject
 
 + (instancetype)defaultManager;
@@ -36,8 +38,17 @@
 - (NSArray<NSString*>*)allScaleRoots;
 - (NSArray<NSString*>*)allScaleTypes;
 
+#pragma mark - Guided Exercises
 
-- (NSArray<ChordExercise*>*)defaultChordsExercises;
+//- (NSArray<ChordExercise*>*)defaultChordsExercises;
+- (void)defaultChordsExercisesWithResultBlock:(GuidedExercisesBlock)block;
+
+- (void)saveTime:(float)time forGuidedExercise:(ChordExercise*)chordExercise block:(void(^)(BOOL status))block;
+
+- (void)loadUserProgressWithBlock:(void(^)(BOOL status, NSUInteger exercisesPassed))block;
+
+#pragma mark - Custom Exercises
+
 - (NSArray<ChordExercise*>*)customChordsExercises;
 - (void)saveCustomChords:(NSArray<ChordExercise*>*)chordExercises;
 

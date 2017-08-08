@@ -10,7 +10,7 @@
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 
 
-@class SongPunch;
+@class SongPunch,Chord;
 
 @interface Lesson : NSObject
 

@@ -441,6 +441,39 @@
             </objects>
             <point key="canvasLocation" x="-138.40000000000001" y="-924.28785607196414"/>
         </scene>
+        <!--Video Player View Controller-->
+        <scene sceneID="qB2-qB-OAZ">
+            <objects>
+                <viewController storyboardIdentifier="VideoPlayerViewController" id="H8A-EI-3Hj" customClass="VideoPlayerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l3R-vU-2U3"/>
+                        <viewControllerLayoutGuide type="bottom" id="VNG-rO-Z9c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qk1-PS-YQb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zVK-qe-f8g" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zVK-qe-f8g" firstAttribute="top" secondItem="l3R-vU-2U3" secondAttribute="bottom" id="CHo-tz-bbW"/>
+                            <constraint firstItem="VNG-rO-Z9c" firstAttribute="top" secondItem="zVK-qe-f8g" secondAttribute="bottom" id="dkA-vP-rRP"/>
+                            <constraint firstItem="zVK-qe-f8g" firstAttribute="leading" secondItem="Qk1-PS-YQb" secondAttribute="leading" id="klE-2Z-LOH"/>
+                            <constraint firstAttribute="trailing" secondItem="zVK-qe-f8g" secondAttribute="trailing" id="uro-b2-tYm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playerView" destination="zVK-qe-f8g" id="YmJ-6t-2ac"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bb4-zu-wFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044" y="-924.28785607196414"/>
+        </scene>
     </scenes>
     <resources>
         <image name="TabBarSettings" width="36" height="36"/>

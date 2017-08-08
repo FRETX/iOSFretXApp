@@ -18,5 +18,6 @@
 
 + (instancetype)initChordWithRoot:(NSString*)root type:(NSString*)type;
 
+- (NSArray<NSNumber*>*)getMIDINotes;
 
 @end

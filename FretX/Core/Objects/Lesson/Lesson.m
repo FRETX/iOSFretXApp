@@ -8,6 +8,8 @@
 
 #import "Lesson.h"
 
+#import <FretXAudioProcessing/FretXAudioProcessing.h>
+
 #import "SafeCategories.h"
 #import "SongPunch.h"
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>

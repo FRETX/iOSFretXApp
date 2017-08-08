@@ -12,6 +12,6 @@
 
 @interface ExerciseTableCell : UITableViewCell
 
-- (void)setupChordExercise:(ChordExercise*)chordExercise;
+- (void)setupChordExercise:(ChordExercise*)chordExercise locked:(BOOL)locked;
 
 @end

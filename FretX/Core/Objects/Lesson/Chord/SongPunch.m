@@ -8,6 +8,8 @@
 
 #import "SongPunch.h"
 
+#import "SongPunch+AudioProcessing.h"
+
 #import "SafeCategories.h"
 #import "FingerPosition.h"
 
@@ -56,6 +58,8 @@
     //
     NSNumber* time_ms = [info safeNSNumberObjectForKey:@"time_ms"];
     self.timeMs = time_ms.unsignedLongValue;
+    
+    self.midiNotes = [self getMIDINotes];
 }
 
 - (void)setFingeringPositions:(NSArray*)fingering{

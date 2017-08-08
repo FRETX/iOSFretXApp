@@ -25,6 +25,8 @@
         songPunch.quality = type;
         songPunch.chordName = [NSString stringWithFormat:@"%@ %@",root,type];
         songPunch.fingering = [SongPunch fingersPositionsWithAudioProcPositions:[audioProcScale getFingering]];
+        
+        //songPunch.midiNotes = [songPunch getMIDINotes];
     }
     return songPunch;
 }
@@ -42,10 +44,12 @@
         songPunch.quality = type;
         songPunch.chordName = [NSString stringWithFormat:@"%@ %@",root,type];
         
-        NSLog(@" ");
-        NSLog(@"%@ %@",root,type);
+//        NSLog(@" ");
+//        NSLog(@"%@ %@",root,type);
         songPunch.fingering = [SongPunch fingersPositionsWithAudioProcPositions:[audioProcChord getFingering]];
-        NSLog(@" ");
+//        NSLog(@" ");
+        
+        songPunch.midiNotes = [audioProcChord getMidiNotes];
     }
     return songPunch;
 }
@@ -61,7 +65,7 @@
         fingerPosition.string = (int)[fretPosition getString];
         fingerPosition.fret = (int)[fretPosition getFret];
         
-        NSLog(@"tap=%ld string=%d fret=%d ", idx, fingerPosition.string, fingerPosition.fret);
+       // NSLog(@"tap=%ld string=%d fret=%d ", idx, fingerPosition.string, fingerPosition.fret);
         
         [mutResult addObject:fingerPosition];
     }];
@@ -70,7 +74,12 @@
     return result;
 }
 
-
+- (NSArray<NSNumber*>*)getMIDINotes{
+    
+    Chord *audioProcChord = [[Chord alloc] initWithRoot:self.root type:self.quality];
+    NSArray<NSNumber *> * notes = [audioProcChord getMidiNotes];
+    return notes;
+}
 
 
 
