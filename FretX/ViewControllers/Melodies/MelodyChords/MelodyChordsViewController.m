@@ -19,7 +19,9 @@
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 #import <FretXBLE/FretXBLE-Swift.h>
 
-@interface MelodyChordsViewController () <AudioListener>
+#import "MIDIPlayer.h"
+
+@interface MelodyChordsViewController () <MIDIPlayerDelegate, AudioListener>
 
 //UI
 @property (nonatomic, weak) IBOutlet UILabel* songFullNameLabel;
@@ -45,19 +47,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self layout];
+    
+//    [self layout];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [Audio.shared setAudioListenerWithListener:self];
-    [Audio.shared setTargetChordsWithChords:[self.lesson getUniqueChords]];
-    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
-    [Audio.shared start];
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [Audio.shared setAudioListenerWithListener:self];
+//    [Audio.shared setTargetChordsWithChords:[self.lesson getUniqueAudioProcChords]];
+//    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
+//    [Audio.shared start];
+//}
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [Audio.shared stop];
-}
+//- (void)viewWillDisappear:(BOOL)animated{
+//    [Audio.shared stop];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -65,25 +68,22 @@
     
 }
 
-- (void)onProgress {
-    float progress = [Audio.shared getProgress];
-//    NSLog(@"progress: %f",progress);
-    if(progress >= 100){
-        [self setupNextChord];
-    }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self layout];
 }
 
-- (void)onTimeout{
-    
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+//    [Audio.shared stopListening];
+    [Audio.shared stop];
+
+    [self.midiPlayer clear];
 }
 
-- (void)onLowVolume{
-    
-}
 
-- (void)onHighVolume{
-    
-}
 
 #pragma mark - Navigation
 

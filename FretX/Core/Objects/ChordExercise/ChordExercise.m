@@ -220,24 +220,6 @@
     }
 }
 
-- (NSMutableArray<Chord *>*)getUniqueChords{
-    NSMutableSet<Chord *> *uniqueChords = [[NSMutableSet alloc] init];
-    for (SongPunch *sp in self.chords) {
-        Chord *tmpChord = [[Chord alloc] initWithRoot:sp.root type:sp.quality];
-        if(![tmpChord.getRoot isEqualToString:@""]){
-            [uniqueChords addObject:tmpChord];
-        }
-    }
-    
-    NSMutableArray<Chord *> *chords = [[NSMutableArray alloc] init];
-    
-    for (Chord* ch in uniqueChords) {
-        [chords addObject:ch];
-    }
-    
-    return chords;
-}
-
 #pragma mark -
 
 - (NSString*)description{

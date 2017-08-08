@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 
-
 @class SongPunch,Chord;
 
 @interface Lesson : NSObject
@@ -29,5 +28,7 @@
 
 - (SongPunch*)chordNextToChord:(SongPunch*)chord allowEmpty:(BOOL)allowEmpty;
 - (SongPunch*)chordClosestToTime:(float)time;
-- (NSArray<Chord *>*)getUniqueChords;
+
+- (NSArray<Chord *>*)getUniqueAudioProcChords;
+
 @end

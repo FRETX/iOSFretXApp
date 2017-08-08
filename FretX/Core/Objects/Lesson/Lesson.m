@@ -91,7 +91,7 @@
         return clossestChord;
 }
 
-- (NSMutableArray<Chord *>*)getUniqueChords{
+- (NSArray<Chord *>*)getUniqueAudioProcChords{
     NSMutableSet<Chord *> *uniqueChords = [[NSMutableSet alloc] init];
     for (SongPunch *sp in self.punches) {
         Chord *tmpChord = [[Chord alloc] initWithRoot:sp.root type:sp.quality];
@@ -100,11 +100,7 @@
         }
     }
     
-    NSMutableArray<Chord *> *chords = [[NSMutableArray alloc] init];
-    
-    for (Chord* ch in uniqueChords) {
-        [chords addObject:ch];
-    }
+    NSArray<Chord *> *chords = [NSArray arrayWithArray:uniqueChords.allObjects];
     
     return chords;
 }

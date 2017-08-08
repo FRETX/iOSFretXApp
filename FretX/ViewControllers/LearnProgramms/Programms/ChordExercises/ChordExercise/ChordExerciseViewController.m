@@ -19,7 +19,9 @@
 #import "TimeConverter.h"
 #import "MIDIPlayer.h"
 
-@interface ChordExerciseViewController () <AudioListener>
+#import <AVFoundation/AVFoundation.h>
+
+@interface ChordExerciseViewController () <AudioListener, MIDIPlayerDelegate>
 
 @property (strong) ChordExercise* chordExercise;
 @property (strong) NSMutableArray<SongPunch *>* exercisePunches;
@@ -68,17 +70,24 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
+    self.midiPlayer = [[MIDIPlayer alloc] initWithDelegate:self];
+    
     [self layoutChord:self.currentChord];
     [self addPopup];
     [self.fretsProgressView setupProgress:0];
-    [Audio.shared setAudioListenerWithListener:self];
-    [Audio.shared setTargetChordsWithChords:[self.chordExercise getUniqueChords]];
-    [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality]];
-    [Audio.shared start];
+
+    [self setupAudioListening];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+//    [Audio.shared stopListening];
     [Audio.shared stop];
+    
+    [self.midiPlayer clear];
 }
 
 
@@ -86,28 +95,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)onProgress {
-    float progress = [Audio.shared getProgress];
-    //    NSLog(@"progress: %f",progress);
-    if(progress >= 100){
-        [self setupNextChord];
-    }
-}
-
-- (void)onTimeout{
-    
-}
-
-- (void)onLowVolume{
-    
-}
-
-- (void)onHighVolume{
-    
-}
-
-
 
 /*
  #pragma mark - Navigation
@@ -135,8 +122,9 @@
             [self.exercisePunches addObject:sp];
         }
     }
+}
 
-
+- (void)presentVideo{
 
     UIStoryboard* mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     VideoPlayerViewController* videoPlayerController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"VideoPlayerViewController"];
@@ -229,6 +217,11 @@
 }
 
 - (void)showPopup{
+    
+    if (self.didPassedGuidedExerciseBlock) {
+        self.didPassedGuidedExerciseBlock(self.chordExercise, self.exerciseInterval);
+    }
+    
     NSLog(@"showing popup");
     self.popupContainer.hidden = NO;
 }
@@ -252,8 +245,8 @@
 
 - (IBAction)onTapRetry:(id)sender{
     
-//    self.currentChordIndexInAllSession = 0;
-//    self.currentRepetition = 1;
+    //    self.currentChordIndexInAllSession = 0;
+    //    self.currentRepetition = 1;
     _punchIndex = 0;
     [self layoutExercise:self.chordExercise];
     
@@ -274,8 +267,6 @@
 
 - (void)layout{
     [self.view layoutIfNeeded];
-    
-//    self.midiPlayer = [MIDIPlayer new];
     
     [self addFretBoard];
     [self addFretsProgressView];
@@ -337,15 +328,15 @@
         self.nextChordLabel.text = @"";
     }
     
-//    if ([self.chordExercise chordNextToChord:self.currentChord]) {
-//        self.nextChordLabel.text = [self.chordExercise chordNextToChord:self.currentChord].chordName;
-//    } else{
-//        self.nextChordLabel.text = @"";
-//
-//    }
+    //    if ([self.chordExercise chordNextToChord:self.currentChord]) {
+    //        self.nextChordLabel.text = [self.chordExercise chordNextToChord:self.currentChord].chordName;
+    //    } else{
+    //        self.nextChordLabel.text = @"";
+    //
+    //    }
     
     [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
-//    [self layoutProgressForChordExercise:self.chordExercise];
+    //    [self layoutProgressForChordExercise:self.chordExercise];
     Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
     [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
 }
@@ -355,27 +346,41 @@
     [self.fretsProgressView setupProgress:((float)_punchIndex/(float)[_exercisePunches count])];
     if(self.punchIndex < [self.exercisePunches count]){
         SongPunch* nextChord = self.exercisePunches[self.punchIndex];
+        
         [Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
         self.currentChord = nextChord;
         
         [self layoutChord:nextChord];
-
+        
     } else{
-//        if (self.currentRepetition < self.chordExercise.repetitionsCount) {
-//            self.currentRepetition++;
-//            [self layoutExercise:self.chordExercise];
-//        } else {
-            [self stopExeTimer];
-            [Audio.shared stop];
-            [self showPopup];
-//        }
+
+        [self stopExeTimer];
+
+        [Audio.shared stop];
+        [self showPopup];
+
     }
 }
 
 
+- (void) didFinishExercise{
+    [Audio.shared stop];
+    NSLog(@"End of Exercise");
+}
+
 #pragma mark - MIDIPlayer
 
-//<<<<<<< HEAD
+- (void)willPlaying:(MIDIPlayer*)player{
+    
+    [Audio.shared stopListening];
+}
+
+- (void)didEndPlaying:(MIDIPlayer*)player{
+  
+    [Audio.shared startListening];
+}
+
+///<<<<<<< HEAD
 //[Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];
 //} else {
 //    //TODO: pop up end of exercise dialog
@@ -403,10 +408,5 @@
 //    [self.fretsProgressView setupProgress:progress];
 //    self.currentChordIndexInAllSession++;
 //}
-
-- (void) didFinishExercise{
-    [Audio.shared stop];
-    NSLog(@"End of Exercise");
-}
 
 @end
