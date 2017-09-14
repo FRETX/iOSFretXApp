@@ -17,12 +17,12 @@
 #import "FretsProgressView.h"
 #import "GuitarNeckView.h"
 #import "TimeConverter.h"
-#import "MIDIPlayer.h"
+//#import "MIDIPlayer.h"
 
 #import <AVFoundation/AVFoundation.h>
 
-@interface ChordExerciseViewController () <AudioListener, MIDIPlayerDelegate>
-
+//@interface ChordExerciseViewController () <AudioListener, MIDIPlayerDelegate>
+@interface ChordExerciseViewController () <AudioListener>
 @property (strong) ChordExercise* chordExercise;
 @property (strong) NSMutableArray<SongPunch *>* exercisePunches;
 @property int punchIndex;
@@ -49,7 +49,7 @@
 
 @property (assign) int currentRepetition;
 
-@property (strong) MIDIPlayer* midiPlayer;
+//@property (strong) MIDIPlayer* midiPlayer;
 
 @end
 
@@ -71,7 +71,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     
-    self.midiPlayer = [[MIDIPlayer alloc] initWithDelegate:self];
+//    self.midiPlayer = [[MIDIPlayer alloc] initWithDelegate:self];
     
     [self layoutChord:self.currentChord];
     [self addPopup];
@@ -87,7 +87,7 @@
 //    [Audio.shared stopListening];
     [Audio.shared stop];
     
-    [self.midiPlayer clear];
+//    [self.midiPlayer clear];
 }
 
 
@@ -158,7 +158,7 @@
     if(progress >= 100){
         [self setupNextChord];
         
-        [self.midiPlayer playChimeBell];
+//        [self.midiPlayer playChimeBell];
     }
 }
 
@@ -234,7 +234,7 @@
 
 - (IBAction)onPlayChordButton:(id)sender{
 
-    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
+//    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
 }
 
 - (IBAction)onTapBackToMenu:(id)sender{
@@ -260,7 +260,7 @@
 - (IBAction)onTestNextChord:(id)sender{
     NSLog(@"onTestNextChord");
     [self setupNextChord];
-    [self.midiPlayer playChimeBell];
+//    [self.midiPlayer playChimeBell];
 }
 
 #pragma mark - Layout
@@ -368,17 +368,17 @@
     NSLog(@"End of Exercise");
 }
 
-#pragma mark - MIDIPlayer
-
-- (void)willPlaying:(MIDIPlayer*)player{
-    
-    [Audio.shared stopListening];
-}
-
-- (void)didEndPlaying:(MIDIPlayer*)player{
-  
-    [Audio.shared startListening];
-}
+//#pragma mark - MIDIPlayer
+//
+//- (void)willPlaying:(MIDIPlayer*)player{
+//    
+//    [Audio.shared stopListening];
+//}
+//
+//- (void)didEndPlaying:(MIDIPlayer*)player{
+//  
+//    [Audio.shared startListening];
+//}
 
 ///<<<<<<< HEAD
 //[Audio.shared setTargetChordWithChord:[[Chord alloc] initWithRoot:nextChord.root type:nextChord.quality]];

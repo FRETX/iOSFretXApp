@@ -19,9 +19,10 @@
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 #import <FretXBLE/FretXBLE-Swift.h>
 
-#import "MIDIPlayer.h"
+//#import "MIDIPlayer.h"
 
-@interface MelodyChordsViewController () <MIDIPlayerDelegate, AudioListener>
+//@interface MelodyChordsViewController () <MIDIPlayerDelegate, AudioListener>
+@interface MelodyChordsViewController () <AudioListener>
 
 //UI
 @property (nonatomic, weak) IBOutlet UILabel* songFullNameLabel;
@@ -38,7 +39,7 @@
 @property (strong, nonatomic) NSArray<SongPunch*>* chords;
 @property (strong) SongPunch* currentChord;
 
-@property (nonatomic, strong) MIDIPlayer* midiPlayer;
+//@property (nonatomic, strong) MIDIPlayer* midiPlayer;
 
 @end
 
@@ -80,7 +81,7 @@
 //    [Audio.shared stopListening];
     [Audio.shared stop];
 
-    [self.midiPlayer clear];
+//    [self.midiPlayer clear];
 }
 
 
@@ -162,7 +163,7 @@
 
 - (void)layout{
 
-    self.midiPlayer = [[MIDIPlayer alloc] initWithDelegate:self];
+//    self.midiPlayer = [[MIDIPlayer alloc] initWithDelegate:self];
     
     [self.view layoutIfNeeded];
     [self addFretBoard];
@@ -220,7 +221,7 @@
     if(progress >= 100){
         [self setupNextChord];
         
-        [self.midiPlayer playChimeBell];
+//        [self.midiPlayer playChimeBell];
     }
 }
 
@@ -243,7 +244,7 @@
 
 - (IBAction)onPlayChordButton:(id)sender{
 
-    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
+//    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
 }
 
 - (IBAction)onPlayYoutubeButton:(id)sender{
@@ -254,20 +255,20 @@
 - (IBAction)onNextChordButton:(id)sender{
     
     [self setupNextChord];
-    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
+//    [self.midiPlayer playArrayOfMIDINotes:self.currentChord.midiNotes];
 }
 
-#pragma mark - MIDIPlayer
-
-- (void)willPlaying:(MIDIPlayer*)player{
-    
-    [Audio.shared stopListening];
-}
-
-- (void)didEndPlaying:(MIDIPlayer*)player{
-    
-    [Audio.shared startListening];
-}
+//#pragma mark - MIDIPlayer
+//
+//- (void)willPlaying:(MIDIPlayer*)player{
+//    
+//    [Audio.shared stopListening];
+//}
+//
+//- (void)didEndPlaying:(MIDIPlayer*)player{
+//    
+//    [Audio.shared startListening];
+//}
 
 
 @end
