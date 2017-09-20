@@ -113,20 +113,20 @@ typedef enum{
     NSLog(@"PlayerError = %ld",(long)error);
 }
 
-#pragma mark - ImagePicker
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-    UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
-    [picker dismissViewControllerAnimated:NO completion:^{
-        [Intercom presentMessageComposerWithInitialMessage:@"I've set up my FretX on my guitar, here is a picture!"];
-    }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-}
+//#pragma mark - ImagePicker
+//
+//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+//    
+//    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+//    UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil);
+//    [picker dismissViewControllerAnimated:NO completion:^{
+//        [Intercom presentMessageComposerWithInitialMessage:@"I've set up my FretX on my guitar, here is a picture!"];
+//    }];
+//}
+//
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+//    [picker dismissViewControllerAnimated:YES completion:NULL];
+//}
 
 @end
 

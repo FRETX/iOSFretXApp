@@ -62,10 +62,20 @@
     self.currentChordIndexInAllSession = 0;
     self.currentRepetition = 1;
     [self layout];
+
+
+    
+    
+}
+
+-(void) startExercise {
+    [self startExeTimer];
+    [self setupAudioListening];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
 
 }
 
@@ -76,16 +86,28 @@
     [self layoutChord:self.currentChord];
     [self addPopup];
     [self.fretsProgressView setupProgress:0];
-
-    [self setupAudioListening];
+    
+    if (self.chordExercise.youtubeId.length > 0) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        BOOL isVideoWatched = [userDefaults boolForKey:_chordExercise.youtubeId];
+        if(isVideoWatched == true){
+            [self startExercise];
+        } else {
+            [self presentVideo];
+        }
+    } else{
+        //        [self startExeTimer];
+        [self startExercise];
+    }
+    
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-//    [Audio.shared stopListening];
-    [Audio.shared stop];
+    [Audio.shared stopListening];
+//    [Audio.shared stop];
     
 //    [self.midiPlayer clear];
 }
@@ -130,7 +152,13 @@
     VideoPlayerViewController* videoPlayerController = [mainStoryBoard instantiateViewControllerWithIdentifier:@"VideoPlayerViewController"];
     __weak typeof(self) weakSelf = self;
     [videoPlayerController playOnTargetController:self youtubeVideoID:self.chordExercise.youtubeId completion:^{
-        [weakSelf startExeTimer];
+//        [weakSelf startExeTimer];
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        //mark video as watched
+        [userDefaults setBool:true forKey:_chordExercise.youtubeId];
+        [userDefaults synchronize];
+        
+        [weakSelf startExercise];
     }];
 }
 
@@ -180,7 +208,7 @@
 #pragma mark - private
 
 - (void)startExeTimer{
-    
+    NSLog(@"startExeTimer");
     [self stopExeTimer];
     
     float interval = 1.f;
@@ -253,7 +281,8 @@
     self.exerciseInterval = 0;
     [self hidePopup];
     [self.fretsProgressView setupProgress:0];
-    [self startExeTimer];
+//    [self startExeTimer];
+    [self startExercise];
 }
 
 
@@ -272,12 +301,7 @@
     [self addFretsProgressView];
     
     [self layoutExercise:self.chordExercise];
-    
-    if (self.chordExercise.youtubeId.length > 0) {
-        [self presentVideo];
-    } else{
-        [self startExeTimer];
-    }
+
 }
 
 - (void)addFretBoard{

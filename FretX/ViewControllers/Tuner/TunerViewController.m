@@ -56,7 +56,8 @@ typedef enum {
         [_timer invalidate];
         _timer = nil;
     }
-    [Audio.shared stop];
+//    [Audio.shared stop];
+    [Audio.shared stopListening];
 }
 
 -(void) updatePitch{
