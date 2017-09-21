@@ -9,6 +9,7 @@
 #import "CustomExerciseViewController.h"
 
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+#import <FretXBLE/FretXBLE-Swift.h>
 
 #import "ChordExerciseViewController.h"
 #import "ItemsCollectionView.h"
@@ -154,10 +155,15 @@
     self.currentChord = chord;
     
     self.chordNameLabel.text = chord.chordName;
-    BOOL leftHanded = [[NSUserDefaults standardUserDefaults] valueForKey:@"leftHanded"];
-    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:YES withLeftHanded:(BOOL)leftHanded];
+    BOOL leftHanded = [[NSUserDefaults standardUserDefaults] boolForKey:@"leftHanded"];
+    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO withLeftHanded:(BOOL)leftHanded];
     
-    //    Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
+        Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
+    NSArray<NSNumber *> *btArray = [MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name];
+    if(leftHanded){
+        btArray = [MusicUtils leftHandizeBluetoothArrayWithBtArray:btArray];
+    }
+    [FretxBLE.sharedInstance sendWithFretCodes:btArray];
     //    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
 }
 

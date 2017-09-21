@@ -284,6 +284,7 @@ SWIFT_CLASS("_TtC20FretXAudioProcessing10MusicUtils")
 + (double)centToHzWithCent:(double)cent SWIFT_WARN_UNUSED_RESULT;
 + (float)frequencyFromIntervalWithBaseNote:(float)baseNote intervalInSemitones:(NSInteger)intervalInSemitones SWIFT_WARN_UNUSED_RESULT;
 + (FingerPositions * _Nullable)getFingeringWithChordName:(NSString * _Nonnull)chordName SWIFT_WARN_UNUSED_RESULT;
++ (NSArray<NSNumber *> * _Nonnull)leftHandizeBluetoothArrayWithBtArray:(NSArray<NSNumber *> * _Nonnull)btArray SWIFT_WARN_UNUSED_RESULT;
 + (NSArray<NSNumber *> * _Nonnull)getBluetoothArrayFromChordWithChordName:(NSString * _Nonnull)chordName SWIFT_WARN_UNUSED_RESULT;
 + (NSArray<NSNumber *> * _Nonnull)getBluetoothArrayFromScaleWithScale:(Scale * _Nonnull)scale SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;

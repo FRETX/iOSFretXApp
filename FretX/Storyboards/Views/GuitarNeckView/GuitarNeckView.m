@@ -87,7 +87,7 @@
 
 - (void)layoutChord:(SongPunch*)chord withLeftHanded:(BOOL)leftHanded{
 
-    [self layoutChord:chord withPunchAnimation:YES withLeftHanded:(BOOL)leftHanded];
+    [self layoutChord:chord withPunchAnimation:NO withLeftHanded:(BOOL)leftHanded];
     
 }
 
@@ -104,8 +104,9 @@
     
     //set horizontal positions
     [chord.fingering enumerateObjectsUsingBlock:^(FingerPosition * _Nonnull fingerPos, NSUInteger idx, BOOL * _Nonnull stop) {
+        //TODO:Handle image rotation
         if(leftHanded){
-            [self layoutDotImageForString:6-fingerPos.string fret:fingerPos.fret];
+            [self layoutDotImageForString:fingerPos.string fret:fingerPos.fret];
         } else {
             [self layoutDotImageForString:fingerPos.string fret:fingerPos.fret];
         }

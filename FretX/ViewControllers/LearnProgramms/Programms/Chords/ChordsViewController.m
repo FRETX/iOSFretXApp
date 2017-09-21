@@ -117,7 +117,12 @@
     SongPunch* currentChord = [SongPunch initChordWithRoot:self.currentRoot type:self.currentType];
     [self layoutChord:currentChord];
     Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
-    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
+    BOOL leftHanded = [[NSUserDefaults standardUserDefaults] boolForKey:@"leftHanded"];
+    NSArray<NSNumber *> *btArray = [MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name];
+    if(leftHanded){
+        btArray = [MusicUtils leftHandizeBluetoothArrayWithBtArray:btArray];
+    }
+    [FretxBLE.sharedInstance sendWithFretCodes:btArray];
 }
 
 - (void)layoutChord:(SongPunch*)chord{
