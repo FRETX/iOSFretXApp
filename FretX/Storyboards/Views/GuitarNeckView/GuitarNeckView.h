@@ -12,8 +12,8 @@
 
 @interface GuitarNeckView : UIView
 
-- (void)layoutChord:(SongPunch*)chord;
-- (void)layoutChord:(SongPunch*)chord withPunchAnimation:(BOOL)enabled;
+- (void)layoutChord:(SongPunch*)chord withLeftHanded:(BOOL)leftHanded;
+- (void)layoutChord:(SongPunch*)chord withPunchAnimation:(BOOL)enabled withLeftHanded:(BOOL)leftHanded;
 
 - (void)layoutDotImageForString:(int)string fret:(int)fret;
 

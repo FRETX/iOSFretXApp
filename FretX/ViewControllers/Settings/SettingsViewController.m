@@ -132,9 +132,20 @@
             // change Handedness
             if (selectedControll.selectedSegmentIndex == 0) {
                 [[[dbRef child: @"prefs"] child: @"hand"] setValue: @"right"];
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setBool:NO forKey:@"leftHanded"];
+                [defaults synchronize];
+                BOOL leftHanded = [[NSUserDefaults standardUserDefaults] boolForKey:@"leftHanded"];
+                NSLog(@"leftHanded: %d", leftHanded);
             } else
             {
                 [[[dbRef child: @"prefs"] child: @"hand"] setValue: @"left"];
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setBool:YES forKey:@"leftHanded"];
+                [defaults synchronize];
+                BOOL leftHanded = [[NSUserDefaults standardUserDefaults] boolForKey:@"leftHanded"];
+                NSLog(@"leftHanded: %d", leftHanded);
+                
             }
             break;
         case 2:

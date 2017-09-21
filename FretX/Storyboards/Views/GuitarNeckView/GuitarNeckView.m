@@ -85,13 +85,13 @@
 
 #pragma mark - Public
 
-- (void)layoutChord:(SongPunch*)chord{
+- (void)layoutChord:(SongPunch*)chord withLeftHanded:(BOOL)leftHanded{
 
-    [self layoutChord:chord withPunchAnimation:YES];
+    [self layoutChord:chord withPunchAnimation:YES withLeftHanded:(BOOL)leftHanded];
     
 }
 
-- (void)layoutChord:(SongPunch*)chord withPunchAnimation:(BOOL)enabled{
+- (void)layoutChord:(SongPunch*)chord withPunchAnimation:(BOOL)enabled withLeftHanded:(BOOL)leftHanded{
     
     self.chord = chord;
     
@@ -101,10 +101,15 @@
         return;
     }
     
+    
     //set horizontal positions
     [chord.fingering enumerateObjectsUsingBlock:^(FingerPosition * _Nonnull fingerPos, NSUInteger idx, BOOL * _Nonnull stop) {
+        if(leftHanded){
+            [self layoutDotImageForString:6-fingerPos.string fret:fingerPos.fret];
+        } else {
+            [self layoutDotImageForString:fingerPos.string fret:fingerPos.fret];
+        }
         
-        [self layoutDotImageForString:fingerPos.string fret:fingerPos.fret];
     }];
     
     if (enabled)

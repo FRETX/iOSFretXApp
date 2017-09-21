@@ -154,8 +154,8 @@
     self.currentChord = chord;
     
     self.chordNameLabel.text = chord.chordName;
-    
-    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
+    BOOL leftHanded = [[NSUserDefaults standardUserDefaults] valueForKey:@"leftHanded"];
+    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:YES withLeftHanded:(BOOL)leftHanded];
     
     //    Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
     //    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];

@@ -102,8 +102,9 @@
     self.currentChord = chord;
     
     self.chordNameLabel.text = chord.chordName;
-    
-    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
+    BOOL leftHanded = [[NSUserDefaults standardUserDefaults] valueForKey:@"leftHanded"];
+    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO withLeftHanded:(BOOL)leftHanded];
+//    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
     
     
     //    Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];

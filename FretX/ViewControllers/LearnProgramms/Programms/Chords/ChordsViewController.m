@@ -126,7 +126,7 @@
     
     self.chordNameLabel.text = chord.chordName;
     
-    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO];
+    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO withLeftHanded:false];
     
 //    Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
 //    [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];

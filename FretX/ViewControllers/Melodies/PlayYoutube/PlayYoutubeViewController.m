@@ -211,8 +211,9 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     self.currentChord = chord;
     
     self.testChordNameLabel.text = chord.chordName;
-    
-    [self.guitarNeckView layoutChord:self.currentChord];
+    BOOL leftHanded = [[NSUserDefaults standardUserDefaults] valueForKey:@"leftHanded"];
+    [self.guitarNeckView layoutChord:self.currentChord withPunchAnimation:NO withLeftHanded:(BOOL)leftHanded];
+//    [self.guitarNeckView layoutChord:self.currentChord];
     
     Chord *tmpChord = [[Chord alloc] initWithRoot:self.currentChord.root type:self.currentChord.quality];
     [FretxBLE.sharedInstance sendWithFretCodes:[MusicUtils getBluetoothArrayFromChordWithChordName:tmpChord.name]];
