@@ -15,6 +15,9 @@ target 'FretX' do
      
      pod 'GoogleSignIn'
      
+     pod 'Fabric', '~> 1.7.2'
+     pod 'Crashlytics', '~> 3.9.3'
+
      # Pods for Facebook
      pod 'Bolts'
      pod 'FBSDKCoreKit'
@@ -26,4 +29,5 @@ target 'FretX' do
 	
      # Pods for Youtube
      pod 'youtube-ios-player-helper', '~> 0.1.4'
+     
 end

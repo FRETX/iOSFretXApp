@@ -20,6 +20,9 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
+  - Fabric (1.7.2)
   - FBSDKCoreKit (4.24.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.24.0):
@@ -83,6 +86,8 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - Bolts
+  - Crashlytics (~> 3.9.3)
+  - Fabric (~> 1.7.2)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Auth
@@ -97,6 +102,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
   FBSDKLoginKit: 1214c6d5a1c4995b694d8db8a9ba6910c6028acf
   Firebase: 9e33fdfbca37cab635c693883caa90a4475b842b
@@ -114,6 +121,6 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 28a70eae3f74f9b7554528466e653848475b12f6
+PODFILE CHECKSUM: 5d889eca90e5650fc75301b4e221f64ea92ecdfe
 
 COCOAPODS: 1.2.1
