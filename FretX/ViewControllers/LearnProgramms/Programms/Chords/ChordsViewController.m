@@ -16,6 +16,7 @@
 #import "GuitarNeckView.h"
 #import "SongPunch.h"
 #import "MIDIPlayer.h"
+@import FirebaseAnalytics;
 
 @interface ChordsViewController () < ItemsCollectionViewDelegate>
 
@@ -61,7 +62,12 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"Chords",
+                                     kFIRParameterItemName:@"Chords",
+                                     kFIRParameterContentType:@"TAB"
+                                     }];
     }
 
 - (void)didReceiveMemoryWarning {

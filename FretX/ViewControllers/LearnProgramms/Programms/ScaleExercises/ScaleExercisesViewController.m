@@ -15,6 +15,7 @@
 #import "ContentManager.h"
 #import "GuitarNeckView.h"
 #import "SongPunch.h"
+@import FirebaseAnalytics;
 
 @interface ScaleExercisesViewController () <ItemsCollectionViewDelegate>
 
@@ -51,7 +52,12 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"Scale",
+                                     kFIRParameterItemName:@"Scale",
+                                     kFIRParameterContentType:@"EXERCISE"
+                                     }];
     [self updateChord];
 }
 

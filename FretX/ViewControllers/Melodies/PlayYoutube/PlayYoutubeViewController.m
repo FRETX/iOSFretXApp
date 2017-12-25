@@ -28,6 +28,7 @@
 #import <FretXBLE/FretXBLE-Swift.h>
 
 #import "UIImageView+AFNetworking.h"
+@import FirebaseAnalytics;
 
 @interface PlayYoutubeViewController () <YTPlayerViewDelegate, PlayerControlsViewDelegate,
 AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate>
@@ -76,6 +77,15 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
                                                object:nil];
     self.videoEditor = [VideoEditor initWithDelegate:self];
     [self layout];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:self.lesson.fretxID,
+                                     kFIRParameterItemName:self.lesson.songName,
+                                     kFIRParameterContentType:@"SONG"
+                                     }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

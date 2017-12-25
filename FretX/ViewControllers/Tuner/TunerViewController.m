@@ -10,6 +10,7 @@
 #import "TunerBarView.h"
 #import <FretXBLE/FretXBLE-Swift.h>
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
+@import FirebaseAnalytics;
 
 typedef enum {
     StringTypNone = 0,
@@ -44,6 +45,16 @@ typedef enum {
     [Audio.shared start];
     _timer = [NSTimer timerWithTimeInterval:0.01f target:self selector:@selector(updatePitch) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    printf("Tuner Tab\n");
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"Tuner",
+                                     kFIRParameterItemName:@"Tuner",
+                                     kFIRParameterContentType:@"TAB"
+                                     }];
 }
 
 - (void)didReceiveMemoryWarning {

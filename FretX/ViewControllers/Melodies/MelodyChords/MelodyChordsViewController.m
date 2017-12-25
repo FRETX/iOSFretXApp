@@ -18,6 +18,7 @@
 #import "SongPunch.h"
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 #import <FretXBLE/FretXBLE-Swift.h>
+@import FirebaseAnalytics;
 
 //#import "MIDIPlayer.h"
 
@@ -50,6 +51,15 @@
     // Do any additional setup after loading the view.
     
 //    [self layout];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:self.lesson.fretxID,
+                                     kFIRParameterItemName:self.lesson.songName,
+                                     kFIRParameterContentType:@"PREVIEW"
+                                     }];
 }
 
 //- (void)viewWillAppear:(BOOL)animated{

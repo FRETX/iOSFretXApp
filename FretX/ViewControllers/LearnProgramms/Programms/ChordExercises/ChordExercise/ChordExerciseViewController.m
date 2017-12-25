@@ -20,6 +20,7 @@
 //#import "MIDIPlayer.h"
 
 #import <AVFoundation/AVFoundation.h>
+@import FirebaseAnalytics;
 
 //@interface ChordExerciseViewController () <AudioListener, MIDIPlayerDelegate>
 @interface ChordExerciseViewController () <AudioListener>
@@ -75,7 +76,17 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    NSString * chordExerciseType = @"Custom";
+    if(self.chordExercise.guided){
+        chordExerciseType = @"Guided";
+    }
     
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:self.chordExercise.exerciseName,
+                                     kFIRParameterItemName:chordExerciseType,
+                                     kFIRParameterContentType:@"EXERCISE"
+                                     }];
 
 }
 

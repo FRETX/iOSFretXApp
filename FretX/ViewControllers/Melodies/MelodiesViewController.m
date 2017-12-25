@@ -19,6 +19,7 @@
 #import "Melody.h"
 #import "SongPunch.h"
 #import <FretXBLE/FretXBLE-Swift.h>
+@import FirebaseAnalytics;
 
 @interface MelodiesViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -48,6 +49,13 @@
 
 - (void) viewDidAppear:(BOOL)animated{
     [FretxBLE.sharedInstance clear];
+    printf("play tab\n");
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"Play",
+                                     kFIRParameterItemName:@"Play",
+                                     kFIRParameterContentType:@"TAB"
+                                     }];
 }
 
 - (void)didReceiveMemoryWarning {

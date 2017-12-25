@@ -46,7 +46,13 @@
     userAttributes.name = [[[FIRAuth auth] currentUser] displayName];
     userAttributes.userId = mUID;
     [Intercom updateUser:userAttributes];
-
+    printf("Settings Tab\n");
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"Settings",
+                                     kFIRParameterItemName:@"Play",
+                                     kFIRParameterContentType:@"TAB"
+                                     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

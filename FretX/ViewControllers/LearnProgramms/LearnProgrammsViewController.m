@@ -11,6 +11,8 @@
 #import <FretXAudioProcessing/FretXAudioProcessing-Swift.h>
 
 #import "ProgrammTableCell.h"
+@import FirebaseAnalytics;
+
 
 //Chord Exercicises", @"Custom Chord Exercices",@"Chords", @"Scale Exercicises"];
 typedef enum {
@@ -42,6 +44,13 @@ typedef enum {
 
 - (void) viewDidAppear:(BOOL)animated{
     [FretxBLE.sharedInstance clear];
+    printf("Learn Tab\n");
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:@"Learn",
+                                     kFIRParameterItemName:@"Learn",
+                                     kFIRParameterContentType:@"TAB"
+                                     }];
 }
 
 - (void)didReceiveMemoryWarning {
