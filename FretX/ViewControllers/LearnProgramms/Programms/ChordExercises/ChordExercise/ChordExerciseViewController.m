@@ -263,6 +263,16 @@
     
     NSLog(@"showing popup");
     self.popupContainer.hidden = NO;
+    NSString * chordExerciseType = @"Custom";
+    if(self.chordExercise.guided){
+        chordExerciseType = @"Guided";
+    }
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:self.chordExercise.exerciseName,
+                                     kFIRParameterItemName:chordExerciseType,
+                                     kFIRParameterContentType:@"CHORDEXERCISECOMPLETE"
+                                     }];
 }
 
 - (void)hidePopup{
