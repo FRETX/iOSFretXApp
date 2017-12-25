@@ -330,6 +330,13 @@ AdditionalControlsViewDelegate, VideoEditorDelegate, CompletionPopupViewDelegate
     
     [self.completionPopupView setupWithSongName:self.lesson.songName nextVideoLessonYoutubeID:self.lesson.nextLessonYoutubeID];
     
+    [FIRAnalytics logEventWithName:kFIREventSelectContent
+                        parameters:@{
+                                     kFIRParameterItemID:self.lesson.fretxID,
+                                     kFIRParameterItemName:self.lesson.songName,
+                                     kFIRParameterContentType:@"SONGCOMPLETE"
+                                     }];
+    
     [self.view layoutIfNeeded];
 }
 
