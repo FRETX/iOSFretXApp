@@ -7,4 +7,5 @@ framework module FretxBLE {
 
 module FretxBLE.Swift {
     header "FretxBLE-Swift.h"
+    requires objc
 }

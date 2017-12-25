@@ -7,4 +7,5 @@ framework module FretXAudioProcessing {
 
 module FretXAudioProcessing.Swift {
     header "FretXAudioProcessing-Swift.h"
+    requires objc
 }

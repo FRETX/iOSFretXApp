@@ -36,6 +36,9 @@ PODS:
   - Firebase/Database (4.0.3):
     - Firebase/Core
     - FirebaseDatabase (= 4.0.0)
+  - Firebase/DynamicLinks (4.0.3):
+    - Firebase/Core
+    - FirebaseDynamicLinks (= 2.0.0)
   - Firebase/Storage (4.0.3):
     - Firebase/Core
     - FirebaseStorage (= 2.0.0)
@@ -50,6 +53,8 @@ PODS:
   - FirebaseCore (4.0.3):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseDatabase (4.0.0):
+    - FirebaseAnalytics (~> 4.0)
+  - FirebaseDynamicLinks (2.0.0):
     - FirebaseAnalytics (~> 4.0)
   - FirebaseInstanceID (2.0.0):
     - FirebaseCore (~> 4.0)
@@ -93,6 +98,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/DynamicLinks
   - Firebase/Storage
   - GoogleSignIn
   - Intercom
@@ -111,6 +117,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
   FirebaseCore: c709067051de07bdaffdc4e735cd7299a23c463a
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
+  FirebaseDynamicLinks: ad3bef2e8addfa1490af9db02201429c5c9447dd
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
@@ -121,6 +128,6 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 5d889eca90e5650fc75301b4e221f64ea92ecdfe
+PODFILE CHECKSUM: 6e2394502bf37aa84dd4a8cae02650ad78eca001
 
 COCOAPODS: 1.2.1
