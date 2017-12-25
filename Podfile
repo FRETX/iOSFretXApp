@@ -10,9 +10,9 @@ target 'FretX' do
      pod 'Firebase/Core'
      pod 'Firebase/Auth'
      pod 'Firebase/Database'
-     
      pod 'Firebase/Storage'
-     
+     pod 'Firebase/DynamicLinks'     
+
      pod 'GoogleSignIn'
      
      pod 'Fabric', '~> 1.7.2'
