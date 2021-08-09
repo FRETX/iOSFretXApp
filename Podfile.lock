@@ -36,32 +36,32 @@ PODS:
   - FirebaseAnalytics (4.0.2):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseAuth (4.0.0):
     - FirebaseAnalytics (~> 4.0)
-    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (4.0.3):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseDatabase (4.0.0):
     - FirebaseAnalytics (~> 4.0)
   - FirebaseInstanceID (2.0.0):
     - FirebaseCore (~> 4.0)
   - GoogleSignIn (4.0.2):
-    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
-    - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMOAuth2 (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.1)":
     - GoogleToolboxForMac/Defines (= 2.1.1)
-  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1)":
     - GoogleToolboxForMac/DebugUtils (= 2.1.1)
     - GoogleToolboxForMac/Defines (= 2.1.1)
-    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
-  - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.1.1)"
   - GTMOAuth2 (1.1.4):
     - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.1.11):
@@ -86,6 +86,26 @@ DEPENDENCIES:
   - MBProgressHUD
   - youtube-ios-player-helper (~> 0.1.4)
 
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - Bolts
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAuth
+    - FirebaseCore
+    - FirebaseDatabase
+    - FirebaseInstanceID
+    - GoogleSignIn
+    - GoogleToolboxForMac
+    - GTMOAuth2
+    - GTMSessionFetcher
+    - Intercom
+    - MBProgressHUD
+    - youtube-ios-player-helper
+
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -99,7 +119,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
+  GTMOAuth2: 4eb69243935d2ca2650f8b18026770de5dc19e87
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   Intercom: 6e4e7bae6369aee8f937d1e67fd64646f42d8246
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -107,4 +127,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2d3ae9d854cb9a032b8ba40af1986a5740403f5a
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.10.2

@@ -588,16 +588,15 @@
 		8B1A94BB1F0397B900E18BB7 /* FretX */ = {
 			isa = PBXGroup;
 			children = (
-				8B1A94E61F039CCB00E18BB7 /* LaunchScreen.storyboard */,
-				8B1A94BF1F0397B900E18BB7 /* AppDelegate.h */,
-				8B1A94C01F0397B900E18BB7 /* AppDelegate.m */,
 				8B1A94C81F0397B900E18BB7 /* Assets.xcassets */,
+				8B1A94E31F039CB500E18BB7 /* Storyboards */,
+				FA9DD31426C15C8500123543 /* AppDelegate */,
+				8B0EC4281F0509CD00EE1489 /* Views */,
 				6CD1BF451F0A7A9B000D8819 /* CustomClasses */,
 				8B1A94D31F039B4500E18BB7 /* Core */,
 				8B0EC4431F05480800EE1489 /* NavigationControllers */,
 				8B1A94D51F039B4500E18BB7 /* ViewControllers */,
 				8B0EC4151F04F6C900EE1489 /* Utilities */,
-				8B1A94E31F039CB500E18BB7 /* Storyboards */,
 				8B1A94CD1F0397B900E18BB7 /* Info.plist */,
 				6CD1BF3D1F0A7A7F000D8819 /* GoogleService-Info.plist */,
 				6CD1BF3E1F0A7A7F000D8819 /* Roboto-Italic.ttf */,
@@ -688,7 +687,7 @@
 		8B1A94E31F039CB500E18BB7 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				8B0EC4281F0509CD00EE1489 /* Views */,
+				8B1A94E61F039CCB00E18BB7 /* LaunchScreen.storyboard */,
 				8B1A94EB1F039EBB00E18BB7 /* Main.storyboard */,
 				8B1A94E91F039E7500E18BB7 /* Melody.storyboard */,
 				8B1A94ED1F039ED700E18BB7 /* Learn.storyboard */,
@@ -1019,6 +1018,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FA9DD31426C15C8500123543 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				8B1A94BF1F0397B900E18BB7 /* AppDelegate.h */,
+				8B1A94C01F0397B900E18BB7 /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1064,6 +1072,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1127,13 +1136,32 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FretX/Pods-FretX-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FretX/Pods-FretX-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FretX/Pods-FretX-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6C72389968B719AB6AE85CCA /* [CP] Check Pods Manifest.lock */ = {
@@ -1142,13 +1170,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FretX-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8F8A1A49A1CA2C2C7CAE6AA9 /* [CP] Copy Pods Resources */ = {
@@ -1157,13 +1188,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FretX/Pods-FretX-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/Intercom.bundle",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/IntercomTranslations.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Intercom.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IntercomTranslations.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FretX/Pods-FretX-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FretX/Pods-FretX-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
